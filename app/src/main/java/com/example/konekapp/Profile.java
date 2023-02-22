@@ -27,6 +27,7 @@ public class Profile extends AppCompatActivity {
     private Button BtnProfToMain;
     private CircleImageView ProfImage;
 
+    //variabel
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
