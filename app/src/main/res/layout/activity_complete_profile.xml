@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".CompleteProfile">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LENGKAPI PROFIL ANDA"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/completeProfImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/profile_image"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"
+        android:layout_marginBottom="10dp"/>
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/btnChangeProfImage"-->
+<!--        android:text="UBAH FOTO PROFIL"-->
+<!--        android:textStyle="bold"-->
+<!--        />-->
+
+    <TextView
+        android:id="@+id/phoneNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <EditText
+        android:id="@+id/completeProfName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Lengkap"
+        android:layout_marginBottom="10dp"
+        android:minHeight="48dp"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:id="@+id/completeProfAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Alamat"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btnCompleteProfileDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SELESAI"
+        />
+
+
+
+
+</LinearLayout>

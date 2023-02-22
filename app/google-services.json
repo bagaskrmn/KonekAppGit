@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "912285370004",
+    "firebase_url": "https://konekapp-a4aab-default-rtdb.firebaseio.com",
+    "project_id": "konekapp-a4aab",
+    "storage_bucket": "konekapp-a4aab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912285370004:android:bf8ab0f677f30ef3249681",
+        "android_client_info": {
+          "package_name": "com.example.konekapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912285370004-fhnecqkk9ftimadujof3lrscohvpldpi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.konekapp",
+            "certificate_hash": "9a58c312332c6e6fe714bd23e549e88debe3a5b6"
+          }
+        },
+        {
+          "client_id": "912285370004-i48aklshms5c2ql3al8tcd4kt3lc77kv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpJwQdOiSRA-BWVktadXRRbGiUZZZ_gBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912285370004-i48aklshms5c2ql3al8tcd4kt3lc77kv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
