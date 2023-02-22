@@ -1,4 +1,4 @@
-package com.example.konekapp;
+package com.example.konekapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.konekapp.R;
 import com.example.konekapp.databinding.ActivityLoginPhoneBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginPhone extends AppCompatActivity {
+public class LoginPhoneActivity extends AppCompatActivity {
 
     private ActivityLoginPhoneBinding binding;
 
@@ -66,7 +66,7 @@ public class LoginPhone extends AppCompatActivity {
         binding.btnBackToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent BackToHomeIntent = new Intent(LoginPhone.this, HomeScreen.class);
+                Intent BackToHomeIntent = new Intent(LoginPhoneActivity.this, HomeScreenActivity.class);
                 startActivity(BackToHomeIntent);
             }
         });
@@ -91,10 +91,10 @@ public class LoginPhone extends AppCompatActivity {
                 if (e instanceof FirebaseTooManyRequestsException) {
                     //the SMS quota for the project has been exceeded
                     pd.dismiss();
-                    Toast.makeText(LoginPhone.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPhoneActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
                     pd.dismiss();
-                    Toast.makeText(LoginPhone.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPhoneActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -116,7 +116,7 @@ public class LoginPhone extends AppCompatActivity {
                 binding.phoneLl.setVisibility(View.GONE);
                 binding.codeLl.setVisibility(View.VISIBLE);
 
-                Toast.makeText(LoginPhone.this, "Verification code sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPhoneActivity.this, "Verification code sent", Toast.LENGTH_SHORT).show();
 
                 String phone = binding.loginPhoneNo.getText().toString().trim();
                 String phoneNumber = "+62" + phone;
@@ -134,7 +134,7 @@ public class LoginPhone extends AppCompatActivity {
                 String phone = binding.loginPhoneNo.getText().toString().trim();
                 String phoneNumber = "+62" + phone;
                 if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(LoginPhone.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
                 } else {
                     startPhoneNumberVerification(phoneNumber);
                 }
@@ -147,7 +147,7 @@ public class LoginPhone extends AppCompatActivity {
                 String phone = binding.loginPhoneNo.getText().toString().trim();
                 String phoneNumber = "+62" + phone;
                 if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(LoginPhone.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
                 } else {
                     resendVerificationCode(phoneNumber, forceResendingToken);
                 }
@@ -160,7 +160,7 @@ public class LoginPhone extends AppCompatActivity {
                 binding.enterOTPCode.requestFocus();
                 String code = binding.enterOTPCode.getText().toString().trim();
                 if (TextUtils.isEmpty(code)) {
-                    Toast.makeText(LoginPhone.this, "Masukkan kode OTP yang telah dikirim", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPhoneActivity.this, "Masukkan kode OTP yang telah dikirim", Toast.LENGTH_SHORT).show();
                 } else {
                     verifyPhoneNumberWithCode(mVerificationId, code);
                 }
@@ -175,7 +175,7 @@ public class LoginPhone extends AppCompatActivity {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser !=null) {
             //error
-            Intent userLoggedIn = new Intent(LoginPhone.this, Profile.class);
+            Intent userLoggedIn = new Intent(LoginPhoneActivity.this, ProfileActivity.class);
             startActivity(userLoggedIn);
         }
     }
@@ -229,7 +229,7 @@ public class LoginPhone extends AppCompatActivity {
                         pd.show();
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         String phoneNumber = user.getPhoneNumber();
-                        Toast.makeText(LoginPhone.this, "Success login as " + phoneNumber, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPhoneActivity.this, "Success login as " + phoneNumber, Toast.LENGTH_SHORT).show();
 
                         String currentUserId = user.getUid();
 
@@ -245,17 +245,17 @@ public class LoginPhone extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.hasChild(user.getUid())) {
-                                    Intent registeredUserIntent = new Intent(LoginPhone.this, Profile.class);
+                                    Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, ProfileActivity.class);
                                     startActivity(registeredUserIntent);
                                 } else {
-                                    Intent newUserIntent = new Intent(LoginPhone.this, CompleteProfile.class);
+                                    Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
                                     startActivity(newUserIntent);
                                 }
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-                                Toast.makeText(LoginPhone.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginPhoneActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -264,7 +264,7 @@ public class LoginPhone extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(LoginPhone.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPhoneActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

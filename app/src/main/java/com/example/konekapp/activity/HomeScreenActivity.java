@@ -1,4 +1,4 @@
-package com.example.konekapp;
+package com.example.konekapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class HomeScreen extends AppCompatActivity {
+import com.example.konekapp.R;
+
+public class HomeScreenActivity extends AppCompatActivity {
 
     private Button BtnLoginWithPhoneNumber;
 
@@ -21,7 +23,7 @@ public class HomeScreen extends AppCompatActivity {
         BtnLoginWithPhoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent HomeToLoginPhoneIntent = new Intent(HomeScreen.this, LoginPhone.class);
+                Intent HomeToLoginPhoneIntent = new Intent(HomeScreenActivity.this, LoginPhoneActivity.class);
                 startActivity(HomeToLoginPhoneIntent);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.konekapp;
+package com.example.konekapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.konekapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Profile extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     private TextView ProfName, ProfPhoneNumber, ProfAddress;
     private Button BtnProfToMain;
@@ -56,7 +57,7 @@ public class Profile extends AppCompatActivity {
         BtnProfToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ProfToMain = new Intent(Profile.this, MainActivity.class);
+                Intent ProfToMain = new Intent(ProfileActivity.this, MainActivity.class);
                 startActivity(ProfToMain);
             }
         });
@@ -79,7 +80,7 @@ public class Profile extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Profile.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

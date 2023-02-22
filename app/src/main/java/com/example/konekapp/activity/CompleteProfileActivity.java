@@ -1,4 +1,4 @@
-package com.example.konekapp;
+package com.example.konekapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.konekapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,14 +28,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageActivity;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CompleteProfile extends AppCompatActivity {
+public class CompleteProfileActivity extends AppCompatActivity {
 
     private CircleImageView CompleteProfImage;
     private TextView PhoneNumberTextView, BtnChangeProfImage;
@@ -87,7 +87,7 @@ public class CompleteProfile extends AppCompatActivity {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setAspectRatio(1,1)
-                        .start(CompleteProfile.this);
+                        .start(CompleteProfileActivity.this);
             }
         });
         //Profile Image
@@ -106,12 +106,6 @@ public class CompleteProfile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //can be removed
-//        if (requestCode==GalleryPick && resultCode==RESULT_OK && data !=null) {
-//            Uri imageUri = data.getData();
-//        }
-        //can be removed
-
         //result crop image OK
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
@@ -126,50 +120,8 @@ public class CompleteProfile extends AppCompatActivity {
                 //potong di sini
                 filePath = UserProfileImagesRef.child(currentUserId + ".jpg");
                 Log.d("CompleteProfile", filePath.toString());
-
             }
-                //put Uri cropped image into FirebaseStorage
-//                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            Toast.makeText(CompleteProfile.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
-//
-//                            //from comment section
-//                            //get download Url from the storage with the path
-//                            filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                                //can be change into filePath.getDownloadUrl
-//                                @Override
-//                                public void onComplete(@NonNull Task<Uri> task) {
-//                                    //downloadUrl result into String
-//                                    String profileUrl = task.getResult().toString();
-//                                    //set value of the downloadedUrl into database
-//                                    usersRef.child(currentUserId).child("Image").setValue(profileUrl)
-//                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                                @Override
-//                                                public void onComplete(@NonNull Task<Void> task) {
-//                                                    //when the database is uploaded with the download Url
-//                                                    if (task.isSuccessful()) {
-//                                                        Toast.makeText(CompleteProfile.this, "Gambar tersimpan di Database", Toast.LENGTH_SHORT).show();
-//                                                    }
-//                                                    else {
-//                                                        String message = task.getException().toString();
-//                                                        Toast.makeText(CompleteProfile.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-//                                                    }
-//                                                }
-//                                            });
-//                                }
-//                            });
-//
-//                        }
-//                        else {
-//                            String message = task.getException().toString();
-//                            Toast.makeText(CompleteProfile.this, "Error :" + message, Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//            }
-        }
+                        }
 
     }
 
@@ -192,7 +144,7 @@ public class CompleteProfile extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(CompleteProfile.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CompleteProfileActivity.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
 
                         //from comment section
                         //get download Url from the storage with the path
@@ -208,7 +160,7 @@ public class CompleteProfile extends AppCompatActivity {
                                 profileMap.put("Nama", Name);
                                 profileMap.put("Alamat", Address);
                                 profileMap.put("Image", profileUrl);
-
+                                profileMap.put("Role", "1");
 
 
                                 usersRef.child(currentUserId).updateChildren(profileMap)
@@ -216,39 +168,23 @@ public class CompleteProfile extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(CompleteProfile.this, "Profil selesai", Toast.LENGTH_SHORT).show();
-                                                    Intent toProfileIntent = new Intent(CompleteProfile.this, Profile.class);
+                                                    Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
+                                                    Intent toProfileIntent = new Intent(CompleteProfileActivity.this, ProfileActivity.class);
                                                     startActivity(toProfileIntent);
                                                 }
                                                 else {
                                                     String message = task.getException().toString();
-                                                    Toast.makeText(CompleteProfile.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(CompleteProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
-
-                                //set value of the downloadedUrl into database
-//                                usersRef.child(currentUserId).child("Image").setValue(profileUrl)
-//                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                //when the database is uploaded with the download Url
-//                                                if (task.isSuccessful()) {
-//                                                    Toast.makeText(CompleteProfile.this, "Gambar tersimpan di Database", Toast.LENGTH_SHORT).show();
-//                                                }
-//                                                else {
-//                                                    String message = task.getException().toString();
-//                                                    Toast.makeText(CompleteProfile.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-//                                                }
-//                                            }
-//                                        });
                             }
                         });
 
                     }
                     else {
                         String message = task.getException().toString();
-                        Toast.makeText(CompleteProfile.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CompleteProfileActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
                     }
                 }
             });
