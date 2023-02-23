@@ -21,8 +21,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -34,33 +37,32 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CompleteProfileActivity extends AppCompatActivity {
+public class UpdateProfileActivity extends AppCompatActivity {
 
-    private CircleImageView CompleteProfImage;
-    private TextView PhoneNumberTextView, BtnChangeProfImage;
-    private EditText CompleteProfName, CompleteProfAddress;
-    private Button BtnCompleteProfileDone;
+    private TextView UpdatePhoneNumber;
+    private EditText UpdateProfName, UpdateProfAddress;
+    private CircleImageView UpdateProfImage;
+    private Button BtnUpdateProfileDone;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String phoneNumber, currentUserId, profileUrl;
+    private String currentUserId, phoneNumber, profileUrl;
     private ProgressDialog pd;
     private StorageReference UserProfileImagesRef, filePath;
-    private static final int GalleryPick = 1;
 
     private Uri resultUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complete_profile);
+        setContentView(R.layout.activity_update_profile);
 
-//        BtnChangeProfImage = findViewById(R.id.btnChangeProfImage);
-        CompleteProfImage = findViewById(R.id.completeProfImage);
-        PhoneNumberTextView = findViewById(R.id.phoneNumberTextView);
-        CompleteProfName = findViewById(R.id.completeProfName);
-        CompleteProfAddress = findViewById(R.id.completeProfAddress);
-        BtnCompleteProfileDone = findViewById(R.id.btnCompleteProfileDone);
+        UpdatePhoneNumber = findViewById(R.id.updatePhoneNumber);
+        UpdateProfName = findViewById(R.id.updateProfName);
+        UpdateProfAddress = findViewById(R.id.updateProfAddress);
+        UpdateProfImage = findViewById(R.id.updateProfImage);
+        BtnUpdateProfileDone = findViewById(R.id.btnUpdateProfileDone);
 
         //init progress dialog
         pd = new ProgressDialog(this);
@@ -75,33 +77,46 @@ public class CompleteProfileActivity extends AppCompatActivity {
         usersRef = rootRef.child("Users");
         UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
-        PhoneNumberTextView.setText("Nomor Telfon anda adalah : " + phoneNumber);
 
+        //retrieve data to field
+        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        //profile image
-        CompleteProfImage.setOnClickListener(new View.OnClickListener() {
+                String retrieveName = snapshot.child("Nama").getValue().toString();
+                String retrieveAddress = snapshot.child("Alamat").getValue().toString();
+                String retrieveImage = snapshot.child("Image").getValue().toString();
+
+                UpdateProfName.setText(retrieveName);
+                UpdateProfAddress.setText(retrieveAddress);
+                UpdatePhoneNumber.setText("Nomor HP anda " + phoneNumber);
+                Picasso.get().load(retrieveImage).into(UpdateProfImage);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(UpdateProfileActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        UpdateProfImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //Open Gallery and Crop activity
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setAspectRatio(1,1)
-                        .start(CompleteProfileActivity.this);
+                        .start(UpdateProfileActivity.this);
             }
         });
-        //Profile Image
 
-        BtnCompleteProfileDone.setOnClickListener(new View.OnClickListener() {
+        BtnUpdateProfileDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CompleteProfileDone();
+                UpdateProfileDone();
             }
         });
     }
 
-
-    //profile image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -115,36 +130,30 @@ public class CompleteProfileActivity extends AppCompatActivity {
                 resultUri = result.getUri();
                 Log.d("CompleteProfile", resultUri.toString());
                 //retrieve to CircleImage
-                Picasso.get().load(resultUri).into(CompleteProfImage);
+                Picasso.get().load(resultUri).into(UpdateProfImage);
 
-                //potong di sini
                 filePath = UserProfileImagesRef.child(currentUserId + ".jpg");
                 Log.d("CompleteProfile", filePath.toString());
             }
-                        }
-
+        }
     }
 
-    //profile image
+    private void UpdateProfileDone() {
+        String updatedName = UpdateProfName.getText().toString();
+        String updatedAddress = UpdateProfAddress.getText().toString();
 
-    private void CompleteProfileDone() {
-
-        String Name = CompleteProfName.getText().toString();
-        String Address = CompleteProfAddress.getText().toString();
-
-        if (TextUtils.isEmpty(Name)) {
-            Toast.makeText(this, "Isikan Nama anda", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(updatedName)) {
+            Toast.makeText(this, "Isikan nama anda", Toast.LENGTH_SHORT).show();
         }
-        if (TextUtils.isEmpty(Address)) {
-            Toast.makeText(this, "Isikan Alamat Anda", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(updatedAddress)) {
+            Toast.makeText(this, "Isikan alamat anda", Toast.LENGTH_SHORT).show();
         }
         else {
-
             filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(CompleteProfileActivity.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateProfileActivity.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
 
                         //get download Url from the storage with the path
                         filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -156,10 +165,9 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                 Log.d("CompleteProfile profileUrl", profileUrl);
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
-                                profileMap.put("Nama", Name);
-                                profileMap.put("Alamat", Address);
+                                profileMap.put("Nama", updatedName);
+                                profileMap.put("Alamat", updatedAddress);
                                 profileMap.put("Image", profileUrl);
-                                profileMap.put("Role", "1");
 
 
                                 usersRef.child(currentUserId).updateChildren(profileMap)
@@ -167,13 +175,13 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
-                                                    Intent toProfileIntent = new Intent(CompleteProfileActivity.this, ProfileActivity.class);
+                                                    Toast.makeText(UpdateProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
+                                                    Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
                                                     startActivity(toProfileIntent);
                                                 }
                                                 else {
                                                     String message = task.getException().toString();
-                                                    Toast.makeText(CompleteProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(UpdateProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
@@ -183,13 +191,10 @@ public class CompleteProfileActivity extends AppCompatActivity {
                     }
                     else {
                         String message = task.getException().toString();
-                        Toast.makeText(CompleteProfileActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateProfileActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
         }
     }
-
-
 }

@@ -51,6 +51,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="UPDATE PROFILE"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/btnUpdateProfile"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/btnProfToMain"
         android:textStyle="bold"
         android:text="MENU UTAMA"

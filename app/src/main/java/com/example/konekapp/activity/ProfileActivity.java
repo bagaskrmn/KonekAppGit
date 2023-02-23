@@ -25,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView ProfName, ProfPhoneNumber, ProfAddress;
-    private Button BtnProfToMain;
+    private Button BtnProfToMain, BtnUpdateProfile;
     private CircleImageView ProfImage;
 
     //variabel
@@ -44,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         ProfAddress = findViewById(R.id.profAddress);
         ProfPhoneNumber = findViewById(R.id.profPhoneNumber);
         BtnProfToMain = findViewById(R.id.btnProfToMain);
+        BtnUpdateProfile = findViewById(R.id.btnUpdateProfile);
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -53,6 +54,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
+
+        BtnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent UpdateProfileIntent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
+                startActivity(UpdateProfileIntent);
+            }
+        });
 
         BtnProfToMain.setOnClickListener(new View.OnClickListener() {
             @Override
