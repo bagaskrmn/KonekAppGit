@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button BtnLogout, BtnMainToProfile;
+    private Button BtnLogout, BtnMainToProfile, BtnRegisterToMitra;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -23,8 +23,17 @@ public class MainActivity extends AppCompatActivity {
 
         BtnLogout = findViewById(R.id.btnLogout);
         BtnMainToProfile = findViewById(R.id.btnMainToProfile);
+        BtnRegisterToMitra = findViewById(R.id.btnRegisterToMitra);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        BtnRegisterToMitra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent RegToMitra = new Intent(MainActivity.this, RegisterMitraActivity.class);
+                startActivity(RegToMitra);
+            }
+        });
 
         BtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override

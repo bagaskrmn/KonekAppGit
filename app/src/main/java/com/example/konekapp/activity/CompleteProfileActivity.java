@@ -168,8 +168,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
-                                                    Intent toProfileIntent = new Intent(CompleteProfileActivity.this, ProfileActivity.class);
-                                                    startActivity(toProfileIntent);
+                                                    Intent CompleteProfileDoneIntent = new Intent(CompleteProfileActivity.this, MainActivity.class);
+                                                    startActivity(CompleteProfileDoneIntent);
                                                 }
                                                 else {
                                                     String message = task.getException().toString();

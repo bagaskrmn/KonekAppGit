@@ -1,9 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
     tools:context=".activity.RegisterMitraActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="LENGKAPI DATA DIRI UNTUK MENDAFTAR SEBAGAI MITRA"
+      android:textStyle="bold"
+      android:textAlignment="center"
+      android:textSize="18sp"
+      android:layout_marginBottom="10dp"
+      />
+
+  <de.hdodenhof.circleimageview.CircleImageView
+      android:id="@+id/regMitraImage"
+      android:layout_width="200dp"
+      android:layout_height="200dp"
+      android:src="@drawable/profile_image"
+      app:civ_border_color="#FF000000"
+      app:civ_border_width="2dp"
+      android:layout_marginBottom="15dp"/>
+
+  <TextView
+      android:id="@+id/regPhoneNumber"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="15dp"
+      />
+
+  <EditText
+      android:id="@+id/regMitraName"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Nama Lengkap"
+      android:layout_marginBottom="10dp"
+      android:minHeight="48dp"
+      android:inputType="text"
+      android:imeOptions="actionNext"
+
+      />
+
+  <EditText
+      android:id="@+id/regMitraAddress"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:hint="Alamat"
+      android:imeOptions="actionNext"
+      android:inputType="text"
+      android:minHeight="48dp" />
+
+  <EditText
+      android:id="@+id/regMitraNIK"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="NIK"
+      android:inputType="number"
+      android:imeOptions="actionNext"
+      />
+
+  <EditText
+      android:id="@+id/regMitraEmail"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Email"
+      android:inputType="textEmailAddress"
+      android:imeOptions="actionDone"
+      />
+
+  <Button
+      android:id="@+id/btnRegMitraDone"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="REGISTER"
+      />
+
+
+</LinearLayout>

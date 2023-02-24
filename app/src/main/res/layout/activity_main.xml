@@ -26,9 +26,18 @@
         />
 
     <Button
+        android:id="@+id/btnRegisterToMitra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DAFTAR MENJADI MITRA KAMI"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGOUT"
         />
+
 </LinearLayout>
