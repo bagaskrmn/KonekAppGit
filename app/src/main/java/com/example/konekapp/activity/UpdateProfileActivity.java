@@ -77,6 +77,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
         usersRef = rootRef.child("Users");
         UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
+        pd.setMessage("Memuat data Anda");
+        pd.show();
 
         //retrieve data to field
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
@@ -91,10 +93,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 UpdateProfAddress.setText(retrieveAddress);
                 UpdatePhoneNumber.setText("Nomor HP anda " + phoneNumber);
                 Picasso.get().load(retrieveImage).into(UpdateProfImage);
+
+                pd.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                pd.dismiss();
                 Toast.makeText(UpdateProfileActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -149,6 +154,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
             Toast.makeText(this, "Isikan alamat anda", Toast.LENGTH_SHORT).show();
         }
         else {
+            pd.setMessage("Mengunggah Data");
+            pd.show();
+
             filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -163,6 +171,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                 //downloadUrl result into String
                                 profileUrl = task.getResult().toString();
                                 Log.d("CompleteProfile profileUrl", profileUrl);
+
+                                pd.setMessage("Data terunggah");
+                                pd.show();
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("Nama", updatedName);

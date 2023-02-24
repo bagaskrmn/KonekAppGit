@@ -174,15 +174,11 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-//                                                    pd.dismiss();
-
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
                                                     Intent CompleteProfileDoneIntent = new Intent(CompleteProfileActivity.this, MainActivity.class);
                                                     startActivity(CompleteProfileDoneIntent);
                                                 }
                                                 else {
-//                                                    pd.dismiss();
-
                                                     String message = task.getException().toString();
                                                     Toast.makeText(CompleteProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }
@@ -193,7 +189,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
                     }
                     else {
-//                        pd.dismiss();
+                        pd.dismiss();
 
                         String message = task.getException().toString();
                         Toast.makeText(CompleteProfileActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
