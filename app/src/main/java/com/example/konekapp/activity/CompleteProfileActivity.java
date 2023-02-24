@@ -140,6 +140,10 @@ public class CompleteProfileActivity extends AppCompatActivity {
         }
         else {
 
+            pd.setMessage("Mengunggah Data");
+            pd.show();
+
+            //put cropped uri to firebase storage
             filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -155,6 +159,9 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                 profileUrl = task.getResult().toString();
                                 Log.d("CompleteProfile profileUrl", profileUrl);
 
+                                pd.setMessage("Data terunggah");
+                                pd.show();
+
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("Nama", Name);
                                 profileMap.put("Alamat", Address);
@@ -167,11 +174,15 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
+//                                                    pd.dismiss();
+
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
                                                     Intent CompleteProfileDoneIntent = new Intent(CompleteProfileActivity.this, MainActivity.class);
                                                     startActivity(CompleteProfileDoneIntent);
                                                 }
                                                 else {
+//                                                    pd.dismiss();
+
                                                     String message = task.getException().toString();
                                                     Toast.makeText(CompleteProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }
@@ -182,6 +193,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
                     }
                     else {
+//                        pd.dismiss();
+
                         String message = task.getException().toString();
                         Toast.makeText(CompleteProfileActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
                     }

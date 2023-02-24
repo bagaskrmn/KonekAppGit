@@ -3,6 +3,7 @@ package com.example.konekapp.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
     private String currentUserId, phoneNumber;
+    private ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,11 @@ public class ProfileActivity extends AppCompatActivity {
         BtnProfToMain = findViewById(R.id.btnProfToMain);
         BtnUpdateProfile = findViewById(R.id.btnUpdateProfile);
 
+        //init progress dialog
+        pd = new ProgressDialog(this);
+        pd.setTitle("Please wait...");
+        pd.setCanceledOnTouchOutside(false);
+
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
 
@@ -54,6 +61,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
+
+        pd.setMessage("Memuat data anda");
+        pd.show();
 
         BtnUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +84,8 @@ public class ProfileActivity extends AppCompatActivity {
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
                 String retrieveName = snapshot.child("Nama").getValue().toString();
                 String retrieveAddress = snapshot.child("Alamat").getValue().toString();
                 //profile image
@@ -85,6 +97,8 @@ public class ProfileActivity extends AppCompatActivity {
 
                 //profile image
                 Picasso.get().load(retrieveImage).into(ProfImage);
+
+                pd.dismiss();
             }
 
             @Override
@@ -94,4 +108,5 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
     }
+
 }
