@@ -46,6 +46,17 @@
         />
 
     <EditText
+        android:id="@+id/updateProfEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:layout_marginBottom="10dp"
+        android:minHeight="48dp"
+        android:inputType="textEmailAddress"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
         android:id="@+id/updateProfAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

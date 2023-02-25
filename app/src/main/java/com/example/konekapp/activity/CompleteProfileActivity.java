@@ -37,8 +37,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CompleteProfileActivity extends AppCompatActivity {
 
     private CircleImageView CompleteProfImage;
-    private TextView PhoneNumberTextView, BtnChangeProfImage;
-    private EditText CompleteProfName, CompleteProfAddress;
+    private TextView PhoneNumberTextView;
+    private EditText CompleteProfName, CompleteProfAddress, CompleteProfEmail;
     private Button BtnCompleteProfileDone;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -56,6 +56,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_complete_profile);
 
 //        BtnChangeProfImage = findViewById(R.id.btnChangeProfImage);
+        CompleteProfEmail = findViewById(R.id.completeProfEmail);
         CompleteProfImage = findViewById(R.id.completeProfImage);
         PhoneNumberTextView = findViewById(R.id.phoneNumberTextView);
         CompleteProfName = findViewById(R.id.completeProfName);
@@ -125,15 +126,16 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
     }
 
-    //profile image
 
     private void CompleteProfileDone() {
 
         String Name = CompleteProfName.getText().toString();
+        String Email = CompleteProfEmail.getText().toString();
         String Address = CompleteProfAddress.getText().toString();
 
+
         //empty checker
-        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(Address) || resultUri == null) {
+        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty((Email)) || TextUtils.isEmpty(Address) || resultUri == null) {
             Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -163,6 +165,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("Nama", Name);
+                                profileMap.put("Email", Email);
                                 profileMap.put("Alamat", Address);
                                 profileMap.put("Image", profileUrl);
                                 profileMap.put("Role", "1");

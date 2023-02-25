@@ -89,9 +89,11 @@ public class RegisterMitraActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String retrieveName = snapshot.child("Nama").getValue().toString();
                 String retrieveAddress = snapshot.child("Alamat").getValue().toString();
+                String retrieveEmail = snapshot.child("Email").getValue().toString();
                 String retrieveImage = snapshot.child("Image").getValue().toString();
 
                 RegMitraName.setText(retrieveName);
+                RegMitraEmail.setText(retrieveEmail);
                 RegMitraAddress.setText(retrieveAddress);
                 RegPhoneNumber.setText("Nomor HP anda " + phoneNumber);
                 Picasso.get().load(retrieveImage).into(RegMitraImage);

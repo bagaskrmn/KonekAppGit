@@ -40,7 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UpdateProfileActivity extends AppCompatActivity {
 
     private TextView UpdatePhoneNumber;
-    private EditText UpdateProfName, UpdateProfAddress;
+    private EditText UpdateProfName, UpdateProfAddress, UpdateProfEmail;
     private CircleImageView UpdateProfImage;
     private Button BtnUpdateProfileDone;
 
@@ -58,6 +58,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
+        UpdateProfEmail = findViewById(R.id.updateProfEmail);
         UpdatePhoneNumber = findViewById(R.id.updatePhoneNumber);
         UpdateProfName = findViewById(R.id.updateProfName);
         UpdateProfAddress = findViewById(R.id.updateProfAddress);
@@ -86,10 +87,12 @@ public class UpdateProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String retrieveName = snapshot.child("Nama").getValue().toString();
+                String retrieveEmail = snapshot.child("Email").getValue().toString();
                 String retrieveAddress = snapshot.child("Alamat").getValue().toString();
                 String retrieveImage = snapshot.child("Image").getValue().toString();
 
                 UpdateProfName.setText(retrieveName);
+                UpdateProfEmail.setText(retrieveEmail);
                 UpdateProfAddress.setText(retrieveAddress);
                 UpdatePhoneNumber.setText("Nomor HP anda " + phoneNumber);
                 Picasso.get().load(retrieveImage).into(UpdateProfImage);
@@ -150,8 +153,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private void UpdateProfileDone() {
         String updatedName = UpdateProfName.getText().toString();
         String updatedAddress = UpdateProfAddress.getText().toString();
+        String updatedEmail = UpdateProfEmail.getText().toString();
 
-        if (TextUtils.isEmpty(updatedName) || TextUtils.isEmpty(updatedAddress)) {
+        if (TextUtils.isEmpty(updatedName) || TextUtils.isEmpty(updatedAddress) || TextUtils.isEmpty((updatedEmail))) {
             Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -163,6 +167,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
             //hanya diupdate objek selain gambar
             HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("Nama", updatedName);
+            profileMap.put("Email", updatedEmail);
             profileMap.put("Alamat", updatedAddress);
 
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -209,6 +214,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("Nama", updatedName);
+                                profileMap.put("Email", updatedEmail);
                                 profileMap.put("Alamat", updatedAddress);
                                 profileMap.put("Image", profileUrl);
 

@@ -59,20 +59,20 @@
       android:minHeight="48dp" />
 
   <EditText
-      android:id="@+id/regMitraNIK"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:hint="NIK"
-      android:inputType="number"
-      android:imeOptions="actionNext"
-      />
-
-  <EditText
       android:id="@+id/regMitraEmail"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:hint="Email"
       android:inputType="textEmailAddress"
+      android:imeOptions="actionNext"
+      />
+
+  <EditText
+      android:id="@+id/regMitraNIK"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="NIK"
+      android:inputType="number"
       android:imeOptions="actionDone"
       />
 

@@ -45,6 +45,16 @@
         />
 
     <EditText
+        android:id="@+id/completeProfEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Email"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp" />
+
+    <EditText
         android:id="@+id/completeProfAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
