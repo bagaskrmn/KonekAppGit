@@ -151,16 +151,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
         String updatedName = UpdateProfName.getText().toString();
         String updatedAddress = UpdateProfAddress.getText().toString();
 
-        if (TextUtils.isEmpty(updatedName)) {
-            Toast.makeText(this, "Isikan nama anda", Toast.LENGTH_SHORT).show();
-        }
-        if (TextUtils.isEmpty(updatedAddress)) {
-            Toast.makeText(this, "Isikan alamat anda", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(updatedName) || TextUtils.isEmpty(updatedAddress)) {
+            Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         //jika gambar tidak diganti
         if (resultUri == null) {
-
             pd.setMessage("Data terunggah");
             pd.show();
             //hanya diupdate objek selain gambar

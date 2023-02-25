@@ -132,11 +132,10 @@ public class CompleteProfileActivity extends AppCompatActivity {
         String Name = CompleteProfName.getText().toString();
         String Address = CompleteProfAddress.getText().toString();
 
-        if (TextUtils.isEmpty(Name)) {
-            Toast.makeText(this, "Isikan Nama anda", Toast.LENGTH_SHORT).show();
-        }
-        if (TextUtils.isEmpty(Address)) {
-            Toast.makeText(this, "Isikan Alamat Anda", Toast.LENGTH_SHORT).show();
+        //empty checker
+        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(Address) || resultUri == null) {
+            Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
+            return;
         }
         else {
 

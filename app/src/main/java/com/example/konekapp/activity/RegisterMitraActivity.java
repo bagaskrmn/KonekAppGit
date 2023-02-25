@@ -151,19 +151,12 @@ public class RegisterMitraActivity extends AppCompatActivity {
         String registeredName = RegMitraName.getText().toString();
         String registeredAddress = RegMitraAddress.getText().toString();
 
-        //rules for Empty data not set yet
-        if (TextUtils.isEmpty(registeredEmail)) {
-            Toast.makeText(this, "Isikan email anda", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(registeredEmail) || TextUtils.isEmpty(registeredNIK) ||
+                TextUtils.isEmpty(registeredName) || TextUtils.isEmpty(registeredAddress)) {
+            Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
+            return;
         }
-        if (TextUtils.isEmpty(registeredNIK)) {
-            Toast.makeText(this, "Isikan NIK anda", Toast.LENGTH_SHORT).show();
-        }
-        if (TextUtils.isEmpty(registeredName)) {
-            Toast.makeText(this, "Isikan nama anda", Toast.LENGTH_SHORT).show();
-        }
-        if (TextUtils.isEmpty(registeredAddress)) {
-            Toast.makeText(this, "Isikan alamat anda", Toast.LENGTH_SHORT).show();
-        }
+
         //if ProfileImage not changed
         if (resultUri == null) {
 
