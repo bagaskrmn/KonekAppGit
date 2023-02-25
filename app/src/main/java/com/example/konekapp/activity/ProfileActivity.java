@@ -70,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent UpdateProfileIntent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
                 startActivity(UpdateProfileIntent);
+                finish();
             }
         });
 
@@ -78,6 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ProfToMain = new Intent(ProfileActivity.this, MainActivity.class);
                 startActivity(ProfToMain);
+                finish();
             }
         });
 

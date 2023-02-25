@@ -245,7 +245,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.hasChild(user.getUid())) {
-                                    Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, ProfileActivity.class);
+                                    Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
                                     startActivity(registeredUserIntent);
                                 } else {
                                     Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);

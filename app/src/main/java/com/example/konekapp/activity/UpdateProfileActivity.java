@@ -94,6 +94,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 UpdatePhoneNumber.setText("Nomor HP anda " + phoneNumber);
                 Picasso.get().load(retrieveImage).into(UpdateProfImage);
 
+                //retrieveImage is Url from database which is linked to storage
+                //transform retrieveImage into Uri
+                //or just make condition where filePath is null, doesn't have to put resultUri to filePath in Database
+
                 pd.dismiss();
             }
 
@@ -153,24 +157,55 @@ public class UpdateProfileActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(updatedAddress)) {
             Toast.makeText(this, "Isikan alamat anda", Toast.LENGTH_SHORT).show();
         }
+
+        //jika gambar tidak diganti
+        if (resultUri == null) {
+
+            pd.setMessage("Data terunggah");
+            pd.show();
+            //hanya diupdate objek selain gambar
+            HashMap<String, Object> profileMap = new HashMap<>();
+            profileMap.put("Nama", updatedName);
+            profileMap.put("Alamat", updatedAddress);
+
+            usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
+                        Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
+                        startActivity(toProfileIntent);
+                        finish();
+                    }
+                    else {
+                        String message = task.getException().toString();
+                        Toast.makeText(UpdateProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
         else {
             pd.setMessage("Mengunggah Data");
             pd.show();
 
+            //put Uri into firebaseStorage
             filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(UpdateProfileActivity.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
+                        Log.d("UpdateProfileFilePath", filePath.toString());
 
-                        //get download Url from the storage with the path
+                        //get download Url from the storage path(filePath)
                         filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
 
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
+
                                 //downloadUrl result into String
                                 profileUrl = task.getResult().toString();
-                                Log.d("CompleteProfile profileUrl", profileUrl);
 
                                 pd.setMessage("Data terunggah");
                                 pd.show();
@@ -180,15 +215,16 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                 profileMap.put("Alamat", updatedAddress);
                                 profileMap.put("Image", profileUrl);
 
-
+                                //update child onDatabase from hashmap(profileMap)
                                 usersRef.child(currentUserId).updateChildren(profileMap)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(UpdateProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                                                     Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
                                                     startActivity(toProfileIntent);
+                                                    finish();
                                                 }
                                                 else {
                                                     String message = task.getException().toString();

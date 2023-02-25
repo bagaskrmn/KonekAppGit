@@ -151,6 +151,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
         String registeredName = RegMitraName.getText().toString();
         String registeredAddress = RegMitraAddress.getText().toString();
 
+        //rules for Empty data not set yet
         if (TextUtils.isEmpty(registeredEmail)) {
             Toast.makeText(this, "Isikan email anda", Toast.LENGTH_SHORT).show();
         }
@@ -163,6 +164,36 @@ public class RegisterMitraActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(registeredAddress)) {
             Toast.makeText(this, "Isikan alamat anda", Toast.LENGTH_SHORT).show();
         }
+        //if ProfileImage not changed
+        if (resultUri == null) {
+
+            pd.setMessage("Data terunggah");
+            pd.show();
+            //hanya diupdate objek selain gambar
+            HashMap<String, Object> profileMap = new HashMap<>();
+            profileMap.put("Nama", registeredName);
+            profileMap.put("Alamat", registeredAddress);
+            profileMap.put("Email", registeredEmail);
+            profileMap.put("NIK", registeredNIK);
+            profileMap.put("Role", "2");
+
+            usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(RegisterMitraActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
+                        Intent toProfileIntent = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
+                        startActivity(toProfileIntent);
+                        finish();
+                    }
+                    else {
+                        String message = task.getException().toString();
+                        Toast.makeText(RegisterMitraActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
         else {
             pd.setMessage("Mengunggah Data");
             pd.show();
