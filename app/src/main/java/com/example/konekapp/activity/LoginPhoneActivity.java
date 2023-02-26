@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.databinding.ActivityLoginPhoneBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
@@ -29,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class LoginPhoneActivity extends AppCompatActivity {
@@ -41,6 +44,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
     private String mVerificationId;
     private static final String TAG = "MAIN_TAG";
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference rootRef, usersRef, currentUserRef;
     private ProgressDialog pd;
 
 
@@ -62,6 +66,12 @@ public class LoginPhoneActivity extends AppCompatActivity {
 
         //firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
+
+        //database ref
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        usersRef = rootRef.child("Users");
+
+
 
         binding.btnBackToHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,8 +141,14 @@ public class LoginPhoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 binding.loginPhoneNo.requestFocus();
+
+                //get phone number
                 String phone = binding.loginPhoneNo.getText().toString().trim();
-                String phoneNumber = "+62" + phone;
+
+                //function to remove leading zeros from string
+                ;
+
+                String phoneNumber = "+62" + removeLeadingZeros(phone);
                 if (TextUtils.isEmpty(phone)) {
                     Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
                 } else {
@@ -175,8 +191,34 @@ public class LoginPhoneActivity extends AppCompatActivity {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser !=null) {
             //error
-            Intent userLoggedIn = new Intent(LoginPhoneActivity.this, ProfileActivity.class);
-            startActivity(userLoggedIn);
+            pd.setMessage("Cek akun");
+            pd.show();
+
+            String currentUserId = currentUser.getUid();
+            usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild("Nama")) {
+                        pd.dismiss();
+                        Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
+                        usersRef.removeEventListener(this);
+                        startActivity(registeredUserIntent);
+                    } else {
+                        pd.dismiss();
+                        Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
+                        usersRef.removeEventListener(this);
+                        startActivity(newUserIntent);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+//
+//            Intent userLoggedIn = new Intent(LoginPhoneActivity.this, ProfileActivity.class);
+//            startActivity(userLoggedIn);
         }
     }
 
@@ -241,23 +283,54 @@ public class LoginPhoneActivity extends AppCompatActivity {
                         //database child Users reference
                         //getReference("Users")
                         DatabaseReference usersRef = rootRef.child("Users");
-                        usersRef.addValueEventListener(new ValueEventListener() {
+                        HashMap<String, Object> profileMap = new HashMap<>();
+                        profileMap.put("Role", "1");
+                        usersRef.child(currentUserId).updateChildren(profileMap).
+                                addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if (snapshot.hasChild(user.getUid())) {
-                                    Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
-                                    startActivity(registeredUserIntent);
-                                } else {
-                                    Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
-                                    startActivity(newUserIntent);
-                                }
-                            }
+                            public void onComplete(@NonNull Task<Void> task) {
+                                DatabaseReference currentUserRef = usersRef.child(currentUserId);
+                                currentUserRef.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.hasChild("Nama")) {
+                                            Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
+                                            currentUserRef.removeEventListener(this);
+                                            startActivity(registeredUserIntent);
+                                        } else {
+                                            Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
+                                            currentUserRef.removeEventListener(this);
+                                            startActivity(newUserIntent);
+                                        }
+                                    }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                                Toast.makeText(LoginPhoneActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Toast.makeText(LoginPhoneActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
                         });
+//                        DatabaseReference currentUserRef = usersRef.child(currentUserId);
+//                        currentUserRef.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                if (snapshot.hasChild("Nama")) {
+//                                    Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
+//                                    usersRef.removeEventListener(this);
+//                                    startActivity(registeredUserIntent);
+//                                } else {
+//                                    Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
+//                                    usersRef.removeEventListener(this);
+//                                    startActivity(newUserIntent);
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError error) {
+//                                Toast.makeText(LoginPhoneActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -267,5 +340,12 @@ public class LoginPhoneActivity extends AppCompatActivity {
                         Toast.makeText(LoginPhoneActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private String removeLeadingZeros(String phone) {
+        //0+ means = replace one or more zero on begining of the string
+        String regex = "0+(?!$)";
+        phone = phone.replace(regex,"");
+        return phone;
     }
 }

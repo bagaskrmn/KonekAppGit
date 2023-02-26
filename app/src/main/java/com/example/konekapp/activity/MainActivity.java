@@ -41,11 +41,15 @@ public class MainActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
 
+//        detect if user is mitra or not
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String role = snapshot.child("Role").getValue().toString();
+
+                //if user has registered as mitra
                 if (role.equals("2")) {
+                    //hide registerMitraButton
                     BtnRegisterToMitra.setVisibility(View.GONE);
                 }
             }
