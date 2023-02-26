@@ -133,6 +133,9 @@ public class CompleteProfileActivity extends AppCompatActivity {
         String Email = CompleteProfEmail.getText().toString();
         String Address = CompleteProfAddress.getText().toString();
 
+//        if (checkInput()) {
+//            //jalanin update database
+//        }
 
         //empty checker
         if (TextUtils.isEmpty(Name) || TextUtils.isEmpty((Email)) || TextUtils.isEmpty(Address) || resultUri == null) {
@@ -201,6 +204,24 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
         }
     }
+
+//    private Boolean checkInput() {
+//        String Name = CompleteProfName.getText().toString();
+//        String Email = CompleteProfEmail.getText().toString();
+//        String Address = CompleteProfAddress.getText().toString();
+//
+//        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty((Email)) || TextUtils.isEmpty(Address) || resultUri == null) {
+//            Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+//
+//        if (regex tidak match) {
+//
+//            return false;
+//        }
+//
+//        return true;
+//    }
 
 
 }
