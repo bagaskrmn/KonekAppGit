@@ -6,9 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
@@ -53,6 +58,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_phone);
 
+
         binding = ActivityLoginPhoneBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -72,15 +78,58 @@ public class LoginPhoneActivity extends AppCompatActivity {
         usersRef = rootRef.child("Users");
 
 
+        //false-true btn get from edit text
+        //default, set to false
+        binding.btnSendOTP.setEnabled(false);
+        binding.btnVerifyOTP.setEnabled(false);
 
-        binding.btnBackToHome.setOnClickListener(new View.OnClickListener() {
+        binding.loginPhoneNo.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                Intent BackToHomeIntent = new Intent(LoginPhoneActivity.this, HomeScreenActivity.class);
-                startActivity(BackToHomeIntent);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                if (s.toString().equals("")) {
+                    binding.btnSendOTP.setEnabled(false);
+                } else {
+                    binding.btnSendOTP.setEnabled(true);
+                }
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().equals("")) {
+                    binding.btnSendOTP.setEnabled(false);
+                } else {
+                    binding.btnSendOTP.setEnabled(true);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 
+        binding.enterOTPCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (s.toString().equals("")) {
+                    binding.btnVerifyOTP.setEnabled(false);
+                } else {
+                    binding.btnVerifyOTP.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().equals("")) {
+                    binding.btnVerifyOTP.setEnabled(false);
+                } else {
+                    binding.btnVerifyOTP.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {

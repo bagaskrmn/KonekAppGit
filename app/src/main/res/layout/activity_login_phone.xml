@@ -8,15 +8,6 @@
     android:padding="20dp"
     tools:context=".activity.LoginPhoneActivity">
 
-    <Button
-        android:id="@+id/btnBackToHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back To Home"
-        android:textAlignment="center"
-        android:layout_marginBottom="30dp"
-
-        />
 
     <LinearLayout
         android:id="@+id/phoneLl"
@@ -24,38 +15,103 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PHONE NUMBER"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Enter your phone number"
-            android:textAlignment="center"
-            android:layout_marginBottom="10dp" />
-
-        <EditText
-            android:id="@+id/loginPhoneNo"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Enter 08XXXXXXXXXX"
-            android:inputType="phone"
-            android:minHeight="48dp"
-            android:textAlignment="center"
-            android:maxLines="1"/>
+            android:fontFamily="@font/outfit_bold"
+            android:text="@string/welcome"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_phone"
+            android:fontFamily="@font/outfit_regular"
+            android:textAlignment="textStart"
+            android:textSize="15sp"
+            android:layout_marginBottom="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nomor Ponsel"
+            android:fontFamily="@font/outfit_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_edit_phone"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_phone_24"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+62"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="15sp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="10dp"/>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                />
+
+
+            <EditText
+                android:id="@+id/loginPhoneNo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="null"
+                android:hint="Nomor Ponsel"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="15sp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+
+        </LinearLayout>
+
+<!--        <EditText-->
+<!--            android:id="@+id/loginPhoneNo"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:hint="Enter 08XXXXXXXXXX"-->
+<!--            android:inputType="phone"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:textAlignment="center"-->
+<!--            android:maxLines="1"/>-->
 
         <Button
             android:id="@+id/btnSendOTP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SEND OTP" />
+            android:text="SEND OTP"
+            android:background="@drawable/btn_bg"
+            android:textColor="@color/white"
+            android:fontFamily="@font/outfit_semi_bold"
+            />
 
     </LinearLayout>
 
@@ -67,12 +123,23 @@
         >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OTP CODE"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/outfit_bold"
+            android:text="@string/confirm_otp"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_otp"
+            android:fontFamily="@font/outfit_regular"
+            android:textAlignment="textStart"
+            android:textSize="15sp"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/descOTPCodeSent"
@@ -87,6 +154,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="Enter your OTP Code"
+            android:fontFamily="@font/outfit_bold"
             android:inputType="number"
             android:minHeight="48dp"
             android:textAlignment="center"
@@ -98,7 +166,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="@string/didn_t_get_otp_resend"
+            android:text="@string/didnt_get_otp"
+            android:fontFamily="@font/outfit_regular"
+            android:textSize="15sp"
             android:layout_marginBottom="10dp"
             />
 
@@ -106,7 +176,10 @@
             android:id="@+id/btnVerifyOTP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Verify" />
+            android:text="Verify"
+            android:textColor="@color/white"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:background="@drawable/btn_bg"/>
 
     </LinearLayout>
 
