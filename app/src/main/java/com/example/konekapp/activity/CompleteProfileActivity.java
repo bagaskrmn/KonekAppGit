@@ -3,6 +3,7 @@ package com.example.konekapp.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -37,8 +39,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CompleteProfileActivity extends AppCompatActivity {
 
     private CircleImageView CompleteProfImage;
-    private TextView PhoneNumberTextView;
+    private ConstraintLayout ImageConstraint;
     private EditText CompleteProfName, CompleteProfAddress, CompleteProfEmail;
+    private TextView PhoneNumberTV;
     private Button BtnCompleteProfileDone;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -55,13 +58,13 @@ public class CompleteProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile);
 
-//        BtnChangeProfImage = findViewById(R.id.btnChangeProfImage);
-        CompleteProfEmail = findViewById(R.id.completeProfEmail);
+//        CompleteProfEmail = findViewById(R.id.completeProfEmail);
+        PhoneNumberTV = findViewById(R.id.phoneNumberTV);
         CompleteProfImage = findViewById(R.id.completeProfImage);
-        PhoneNumberTextView = findViewById(R.id.phoneNumberTextView);
         CompleteProfName = findViewById(R.id.completeProfName);
         CompleteProfAddress = findViewById(R.id.completeProfAddress);
         BtnCompleteProfileDone = findViewById(R.id.btnCompleteProfileDone);
+        ImageConstraint = findViewById(R.id.imageConstraint);
 
         //init progress dialog
         pd = new ProgressDialog(this);
@@ -76,11 +79,10 @@ public class CompleteProfileActivity extends AppCompatActivity {
         usersRef = rootRef.child("Users");
         UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
-        PhoneNumberTextView.setText("Nomor Telfon anda adalah : " + phoneNumber);
-
+        PhoneNumberTV.setText(phoneNumber);
 
         //profile image
-        CompleteProfImage.setOnClickListener(new View.OnClickListener() {
+        ImageConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
