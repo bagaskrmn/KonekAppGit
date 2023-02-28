@@ -40,7 +40,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
     private CircleImageView CompleteProfImage;
     private ConstraintLayout ImageConstraint;
-    private EditText CompleteProfName, CompleteProfAddress, CompleteProfEmail;
+    private EditText CompleteProfName, CompleteProfAddress, CompleteProfDetailAddress;
     private TextView PhoneNumberTV;
     private Button BtnCompleteProfileDone;
     private FirebaseAuth firebaseAuth;
@@ -58,7 +58,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile);
 
-//        CompleteProfEmail = findViewById(R.id.completeProfEmail);
+        CompleteProfDetailAddress = findViewById(R.id.completeProfDetailAddress);
         PhoneNumberTV = findViewById(R.id.phoneNumberTV);
         CompleteProfImage = findViewById(R.id.completeProfImage);
         CompleteProfName = findViewById(R.id.completeProfName);
@@ -132,15 +132,15 @@ public class CompleteProfileActivity extends AppCompatActivity {
     private void CompleteProfileDone() {
 
         String Name = CompleteProfName.getText().toString();
-        String Email = CompleteProfEmail.getText().toString();
         String Address = CompleteProfAddress.getText().toString();
+        String DetailAddress = CompleteProfDetailAddress.getText().toString();
 
 //        if (checkInput()) {
 //            //jalanin update database
 //        }
 
         //empty checker
-        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty((Email)) || TextUtils.isEmpty(Address) || resultUri == null) {
+        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty((DetailAddress)) || TextUtils.isEmpty(Address) || resultUri == null) {
             Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -154,7 +154,6 @@ public class CompleteProfileActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(CompleteProfileActivity.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
 
                         //get download Url from the storage with the path
                         filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -170,8 +169,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("Nama", Name);
-                                profileMap.put("Email", Email);
                                 profileMap.put("Alamat", Address);
+                                profileMap.put("Alamat Lengkap", DetailAddress);
                                 profileMap.put("Image", profileUrl);
                                 profileMap.put("Role", "1");
 

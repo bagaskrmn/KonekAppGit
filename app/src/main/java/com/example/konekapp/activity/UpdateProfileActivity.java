@@ -40,7 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UpdateProfileActivity extends AppCompatActivity {
 
     private TextView UpdatePhoneNumber;
-    private EditText UpdateProfName, UpdateProfAddress, UpdateProfEmail;
+    private EditText UpdateProfName, UpdateProfAddress, UpdateProfDetailAddress;
     private CircleImageView UpdateProfImage;
     private Button BtnUpdateProfileDone;
 
@@ -58,7 +58,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
-        UpdateProfEmail = findViewById(R.id.updateProfEmail);
+        UpdateProfDetailAddress = findViewById(R.id.updateProfDetailAddress);
         UpdatePhoneNumber = findViewById(R.id.updatePhoneNumber);
         UpdateProfName = findViewById(R.id.updateProfName);
         UpdateProfAddress = findViewById(R.id.updateProfAddress);
@@ -87,13 +87,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String retrieveName = snapshot.child("Nama").getValue().toString();
-                String retrieveEmail = snapshot.child("Email").getValue().toString();
                 String retrieveAddress = snapshot.child("Alamat").getValue().toString();
+                String retrieveDetailAddress = snapshot.child("Alamat Lengkap").getValue().toString();
                 String retrieveImage = snapshot.child("Image").getValue().toString();
 
                 UpdateProfName.setText(retrieveName);
-                UpdateProfEmail.setText(retrieveEmail);
                 UpdateProfAddress.setText(retrieveAddress);
+                UpdateProfDetailAddress.setText(retrieveDetailAddress);
                 UpdatePhoneNumber.setText("Nomor HP anda " + phoneNumber);
                 Picasso.get().load(retrieveImage).into(UpdateProfImage);
 
@@ -153,9 +153,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private void UpdateProfileDone() {
         String updatedName = UpdateProfName.getText().toString();
         String updatedAddress = UpdateProfAddress.getText().toString();
-        String updatedEmail = UpdateProfEmail.getText().toString();
+        String updatedDetailAddress = UpdateProfDetailAddress.getText().toString();
 
-        if (TextUtils.isEmpty(updatedName) || TextUtils.isEmpty(updatedAddress) || TextUtils.isEmpty((updatedEmail))) {
+        if (TextUtils.isEmpty(updatedName) || TextUtils.isEmpty(updatedAddress) || TextUtils.isEmpty((updatedDetailAddress))) {
             Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -167,8 +167,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
             //hanya diupdate objek selain gambar
             HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("Nama", updatedName);
-            profileMap.put("Email", updatedEmail);
             profileMap.put("Alamat", updatedAddress);
+            profileMap.put("Alamat Lengkap", updatedDetailAddress);
 
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -214,8 +214,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("Nama", updatedName);
-                                profileMap.put("Email", updatedEmail);
                                 profileMap.put("Alamat", updatedAddress);
+                                profileMap.put("Alamat Lengkap", updatedDetailAddress);
                                 profileMap.put("Image", profileUrl);
 
                                 //update child onDatabase from hashmap(profileMap)

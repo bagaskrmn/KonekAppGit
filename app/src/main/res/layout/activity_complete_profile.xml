@@ -11,7 +11,7 @@
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 
@@ -135,6 +135,7 @@
                 android:id="@+id/completeProfName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPersonName"
                 android:hint="Masukkan nama lengkap"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
@@ -199,15 +200,15 @@
                 android:id="@+id/phoneNumberTV"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:inputType="phone"
-                android:fontFamily="@font/outfit_regular"
                 android:background="@android:color/transparent"
-                android:textSize="15sp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
+                android:fontFamily="@font/outfit_regular"
+                android:inputType="phone"
                 android:paddingLeft="20dp"
+                android:paddingTop="15dp"
                 android:paddingRight="10dp"
-                />
+                android:paddingBottom="15dp"
+                android:textSize="15sp"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
@@ -243,6 +244,7 @@
                 android:id="@+id/completeProfAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapWords"
                 android:hint="Masukkan Kota Domisili"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
@@ -285,10 +287,11 @@
                 />
 
             <EditText
-                android:id="@+id/detailAddress"
+                android:id="@+id/completeProfDetailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Masukkan Alamat Lengkap"
+                android:inputType="textCapWords"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
                 android:paddingTop="15dp"

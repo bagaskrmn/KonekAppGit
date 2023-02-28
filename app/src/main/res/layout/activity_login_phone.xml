@@ -145,20 +145,30 @@
             android:textAlignment="textStart"
             android:fontFamily="@font/outfit_regular"
             android:textSize="15sp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="20dp" />
 
-        <EditText
+        <com.chaos.view.PinView
             android:id="@+id/enterOTPCode"
-            android:layout_width="match_parent"
+            style="@style/PinWidget.PinView"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="Enter your OTP Code"
+            android:cursorVisible="true"
             android:fontFamily="@font/outfit_bold"
             android:inputType="number"
-            android:minHeight="48dp"
-            android:textAlignment="center"
-            android:maxLines="1"
-            />
+            android:itemBackground="@android:color/transparent"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:cursorColor="@color/black"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="true"
+            app:itemCount="6"
+            app:itemRadius="12dp"
+            app:itemSpacing="4dp"
+            app:lineColor="@color/button_false"
+            app:lineWidth="2dp"
+            app:viewType="rectangle" />
 
         <TextView
             android:id="@+id/resendOTP"

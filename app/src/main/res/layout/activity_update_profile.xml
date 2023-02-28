@@ -41,30 +41,31 @@
         android:hint="Nama Lengkap"
         android:layout_marginBottom="10dp"
         android:minHeight="48dp"
-        android:inputType="text"
+        android:inputType="textPersonName"
         android:imeOptions="actionNext"
         />
 
-    <EditText
-        android:id="@+id/updateProfEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:layout_marginBottom="10dp"
-        android:minHeight="48dp"
-        android:inputType="textEmailAddress"
-        android:imeOptions="actionNext"
-        />
 
     <EditText
         android:id="@+id/updateProfAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:hint="Alamat"
+        android:hint="Domisili"
         android:imeOptions="actionDone"
-        android:inputType="text"
+        android:inputType="textCapWords"
         android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/updateProfDetailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Alamat Lengkap"
+        android:layout_marginBottom="10dp"
+        android:minHeight="48dp"
+        android:inputType="textCapWords"
+        android:imeOptions="actionNext"
+        />
 
     <Button
         android:id="@+id/btnUpdateProfileDone"

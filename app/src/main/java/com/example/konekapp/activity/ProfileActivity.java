@@ -25,11 +25,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView ProfName, ProfPhoneNumber, ProfAddress, ProfEmail;
+    private TextView ProfName, ProfPhoneNumber, ProfAddress, ProfDetailAddress;
     private Button BtnProfToMain, BtnUpdateProfile;
     private CircleImageView ProfImage;
 
-    //variabel
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
@@ -44,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         ProfImage = findViewById(R.id.profImage);
         ProfName = findViewById(R.id.profName);
         ProfAddress = findViewById(R.id.profAddress);
-        ProfEmail = findViewById(R.id.profEmail);
+        ProfDetailAddress = findViewById(R.id.profDetailAddress);
         ProfPhoneNumber = findViewById(R.id.profPhoneNumber);
         BtnProfToMain = findViewById(R.id.btnProfToMain);
         BtnUpdateProfile = findViewById(R.id.btnUpdateProfile);
@@ -90,16 +89,16 @@ public class ProfileActivity extends AppCompatActivity {
 
 
                 String retrieveName = snapshot.child("Nama").getValue().toString();
-                String retrieveEmail = snapshot.child("Email").getValue().toString();
                 String retrieveAddress = snapshot.child("Alamat").getValue().toString();
+                String retrieveDetailAddress = snapshot.child("Alamat Lengkap").getValue().toString();
 
                 //profile image
                 String retrieveImage = snapshot.child("Image").getValue().toString();
 
                 ProfName.setText("Nama : " +retrieveName);
                 ProfPhoneNumber.setText("Nomor HP : " + phoneNumber);
-                ProfEmail.setText("Email : " + retrieveEmail);
                 ProfAddress.setText("Alamat : "+retrieveAddress);
+                ProfDetailAddress.setText("Alamat Lengkap : " + retrieveDetailAddress);
 
                 //profile image
                 Picasso.get().load(retrieveImage).into(ProfImage);

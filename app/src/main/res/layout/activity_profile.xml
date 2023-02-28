@@ -41,15 +41,16 @@
         android:layout_marginBottom="10dp"
         />
 
+
     <TextView
-        android:id="@+id/profEmail"
+        android:id="@+id/profAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         />
 
     <TextView
-        android:id="@+id/profAddress"
+        android:id="@+id/profDetailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"

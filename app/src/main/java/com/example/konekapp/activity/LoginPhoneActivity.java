@@ -42,6 +42,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginPhoneActivity extends AppCompatActivity {
 
     private ActivityLoginPhoneBinding binding;
+    private ImageView BackAction;
 
     //used to resend OTP
     private PhoneAuthProvider.ForceResendingToken forceResendingToken;
@@ -65,6 +66,8 @@ public class LoginPhoneActivity extends AppCompatActivity {
         binding.phoneLl.setVisibility(View.VISIBLE);
         binding.codeLl.setVisibility(View.GONE);
 
+        BackAction = findViewById(R.id.backAction);
+
         //init progress dialog
         pd = new ProgressDialog(this);
         pd.setTitle("Please wait...");
@@ -82,6 +85,14 @@ public class LoginPhoneActivity extends AppCompatActivity {
         //default, set to false
         binding.btnSendOTP.setEnabled(false);
         binding.btnVerifyOTP.setEnabled(false);
+
+        BackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginPhoneActivity.super.onBackPressed();
+                //check first
+            }
+        });
 
         binding.loginPhoneNo.addTextChangedListener(new TextWatcher() {
             @Override
