@@ -7,4 +7,5 @@
     <string name="input_otp">Masukkan kode OTP yang kami kirimkan ke nomor  Anda</string>
     <string name="didnt_get_otp">Tidak mendapatkan kode? <b>Kirim Ulang</b></string>
     <string name="complete_profile">Selamat bergabung dengan KONEK, silahkan lengkapi data diri Anda di bawah ini dengan benar.</string>
+    <string name="welcome_greetings">Selamat bergabung dengan KONEK, aplikasi mitra Agro Lestari Merbabu</string>
 </resources>

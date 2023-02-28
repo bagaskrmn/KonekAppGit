@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CompleteProfileActivity extends AppCompatActivity {
 
+    private ImageView CompleteBackAction;
     private CircleImageView CompleteProfImage;
     private ConstraintLayout ImageConstraint;
     private EditText CompleteProfName, CompleteProfAddress, CompleteProfDetailAddress;
@@ -58,6 +61,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile);
 
+        CompleteBackAction = findViewById(R.id.completeBackAction);
         CompleteProfDetailAddress = findViewById(R.id.completeProfDetailAddress);
         PhoneNumberTV = findViewById(R.id.phoneNumberTV);
         CompleteProfImage = findViewById(R.id.completeProfImage);
@@ -80,6 +84,13 @@ public class CompleteProfileActivity extends AppCompatActivity {
         UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
         PhoneNumberTV.setText(phoneNumber);
+
+        CompleteBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CompleteProfileActivity.super.onBackPressed();
+            }
+        });
 
         //profile image
         ImageConstraint.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +156,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
             return;
         }
         else {
+
+            BtnCompleteProfileDone.setEnabled(true);
 
             pd.setMessage("Mengunggah Data");
             pd.show();

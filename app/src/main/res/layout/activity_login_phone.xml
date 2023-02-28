@@ -9,7 +9,7 @@
     tools:context=".activity.LoginPhoneActivity">
 
     <ImageView
-        android:id="@+id/backAction"
+        android:id="@+id/loginBackAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
@@ -109,7 +109,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Konfirmasi OTP"
-            android:textColor="@color/white"
             android:fontFamily="@font/outfit_semi_bold"
             android:textAllCaps="false"
             android:background="@drawable/btn_bg"
@@ -150,9 +149,9 @@
         <com.chaos.view.PinView
             android:id="@+id/enterOTPCode"
             style="@style/PinWidget.PinView"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:cursorVisible="true"
             android:fontFamily="@font/outfit_bold"
             android:inputType="number"
@@ -168,7 +167,8 @@
             app:itemSpacing="4dp"
             app:lineColor="@color/button_false"
             app:lineWidth="2dp"
-            app:viewType="rectangle" />
+            app:viewType="rectangle"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/resendOTP"
@@ -186,7 +186,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Verify"
-            android:textColor="@color/white"
             android:fontFamily="@font/outfit_semi_bold"
             android:textAllCaps="false"
             android:background="@drawable/btn_bg"
