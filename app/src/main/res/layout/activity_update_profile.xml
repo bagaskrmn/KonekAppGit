@@ -1,78 +1,302 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:padding="20dp"
-    tools:context=".activity.UpdateProfileActivity">
+    tools:context=".activity.UpdateProfileActivity"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UPDATE PROFIL ANDA"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginBottom="10dp"
-        />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/updateProfImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/profile_image"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp"
-        android:layout_marginBottom="15dp"/>
-
-    <TextView
-        android:id="@+id/updatePhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        />
-
-    <EditText
-        android:id="@+id/updateProfName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nama Lengkap"
-        android:layout_marginBottom="10dp"
-        android:minHeight="48dp"
-        android:inputType="textPersonName"
-        android:imeOptions="actionNext"
-        />
+        android:orientation="vertical"
+        >
+
+<!--        ActionBar-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            >
+            <ImageView
+                android:id="@+id/updateProfBackAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Ubah Informasi Akun"
+                android:gravity="center"
+                android:fontFamily="@font/outfit_bold"
+                />
+        </LinearLayout>
+
+<!--        Grup Image-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/updateProfImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="left"
+                android:src="@android:color/transparent"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unggah Foto"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Maks 2 MB"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textSize="18sp"
+                    android:layout_gravity="left"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+<!--        Nama-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Lengkap"
+            android:fontFamily="@font/outfit_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_person_24"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                />
+
+            <EditText
+                android:id="@+id/updateProfName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Masukkan nama lengkap"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
 
 
-    <EditText
-        android:id="@+id/updateProfAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:hint="Domisili"
-        android:imeOptions="actionDone"
-        android:inputType="textCapWords"
-        android:minHeight="48dp" />
 
-    <EditText
-        android:id="@+id/updateProfDetailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Alamat Lengkap"
-        android:layout_marginBottom="10dp"
-        android:minHeight="48dp"
-        android:inputType="textCapWords"
-        android:imeOptions="actionNext"
-        />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnUpdateProfileDone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UPDATE"
-        />
+<!--        Nomor Ponsel-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nomor Ponsel"
+            android:fontFamily="@font/outfit_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_phone_24"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+62"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="15sp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="10dp"/>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                />
 
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/updatePhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
+                android:inputType="phone"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="15dp"
+                android:textSize="15sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
+<!--        Domisili-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Domisili"
+            android:fontFamily="@font/outfit_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_location_on_24"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                />
+
+            <EditText
+                android:id="@+id/updateProfAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Masukkan Kota Domisili"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+        </LinearLayout>
+
+<!--        Alamat Lengkap-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat Lengkap"
+            android:fontFamily="@font/outfit_medium"
+            android:textSize="15sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_location_on_24"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                />
+
+            <EditText
+                android:id="@+id/updateProfDetailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Masukkan Alamat Lengkap"
+                android:inputType="textCapWords"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+        </LinearLayout>
+
+<!--        ButtonSave-->
+        <Button
+            android:id="@+id/btnUpdateProfileDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan Perubahan"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            />
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+
+
+

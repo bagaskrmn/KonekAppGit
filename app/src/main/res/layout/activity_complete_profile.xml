@@ -15,6 +15,7 @@
         android:orientation="vertical"
         >
 
+<!--        ActionButton-->
         <ImageView
             android:id="@+id/completeBackAction"
             android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
             android:layout_marginBottom="30dp"
             />
 
+<!--        Kata Awal-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +33,6 @@
             android:textSize="22sp"
             android:layout_marginBottom="10dp"
             />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,6 +42,7 @@
             android:layout_marginBottom="20dp"
             />
 
+<!--        Grup Image-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,9 +78,6 @@
                     app:layout_constraintEnd_toEndOf="@+id/completeProfImage"
                     app:layout_constraintStart_toStartOf="@+id/completeProfImage"
                     app:layout_constraintTop_toTopOf="@+id/completeProfImage" />
-
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -111,6 +110,7 @@
 
         </LinearLayout>
 
+<!--        Nama Lengkap-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,7 +119,6 @@
             android:textSize="15sp"
             android:layout_marginBottom="8dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,6 +155,7 @@
 
         </LinearLayout>
 
+<!--        Ponsel-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,7 +164,6 @@
             android:textSize="15sp"
             android:layout_marginBottom="8dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -201,7 +200,6 @@
                 android:background="@color/black"
                 />
 
-
             <TextView
                 android:id="@+id/phoneNumberTV"
                 android:layout_width="match_parent"
@@ -218,6 +216,7 @@
 
         </LinearLayout>
 
+<!--        Domisili-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -226,7 +225,6 @@
             android:textSize="15sp"
             android:layout_marginBottom="8dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -263,6 +261,7 @@
 
         </LinearLayout>
 
+<!--        Alamat Lengkap-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -271,7 +270,6 @@
             android:textSize="15sp"
             android:layout_marginBottom="8dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -305,11 +303,11 @@
                 />
         </LinearLayout>
 
+<!--        ButtonSave-->
         <Button
             android:id="@+id/btnCompleteProfileDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:background="@drawable/btn_bg"
             android:fontFamily="@font/outfit_semi_bold"
             android:text="Simpan"
@@ -318,11 +316,6 @@
             app:backgroundTint="@null"
             />
 
-
-
-
     </LinearLayout>
-
-
 </ScrollView>
 
