@@ -130,6 +130,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_person_24"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -141,6 +142,7 @@
                 android:id="@+id/completeProfName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:inputType="textPersonName"
                 android:hint="Masukkan nama lengkap"
                 android:background="@android:color/transparent"
@@ -176,6 +178,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_phone_24"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -186,9 +189,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="+62"
                 android:fontFamily="@font/outfit_regular"
-                android:textSize="15sp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingRight="20dp"
@@ -203,15 +206,14 @@
             <TextView
                 android:id="@+id/phoneNumberTV"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
-                android:inputType="phone"
-                android:paddingLeft="20dp"
                 android:paddingTop="15dp"
-                android:paddingRight="10dp"
                 android:paddingBottom="15dp"
-                android:textSize="15sp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
@@ -236,6 +238,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_location_on_24"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -247,6 +250,7 @@
                 android:id="@+id/completeProfAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:inputType="textCapWords"
                 android:hint="Masukkan Kota Domisili"
                 android:background="@android:color/transparent"
@@ -281,6 +285,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_location_on_24"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -292,6 +297,7 @@
                 android:id="@+id/completeProfDetailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:hint="Masukkan Alamat Lengkap"
                 android:inputType="textCapWords"
                 android:background="@android:color/transparent"

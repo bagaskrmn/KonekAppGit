@@ -1,87 +1,371 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
+    tools:context=".activity.RegisterMitraActivity"
     android:padding="20dp"
-    tools:context=".activity.RegisterMitraActivity">
-
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="LENGKAPI DATA DIRI UNTUK MENDAFTAR SEBAGAI MITRA"
-      android:textStyle="bold"
-      android:textAlignment="center"
-      android:textSize="18sp"
-      android:layout_marginBottom="10dp"
-      />
-
-  <de.hdodenhof.circleimageview.CircleImageView
-      android:id="@+id/regMitraImage"
-      android:layout_width="200dp"
-      android:layout_height="200dp"
-      android:src="@drawable/profile_image"
-      app:civ_border_color="#FF000000"
-      app:civ_border_width="2dp"
-      android:layout_marginBottom="15dp"/>
-
-  <TextView
-      android:id="@+id/regPhoneNumber"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="15dp"
-      />
-
-  <EditText
-      android:id="@+id/regMitraName"
+>
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:hint="Nama Lengkap"
-      android:layout_marginBottom="10dp"
-      android:minHeight="48dp"
-      android:inputType="text"
-      android:imeOptions="actionNext"
+      android:orientation="vertical"
+      >
 
-      />
+<!--    ActionBar-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+      <ImageView
+          android:id="@+id/updateProfBackAction"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+          />
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_gravity="center"
+          android:text="Gabung Mitra"
+          android:textSize="18sp"
+          android:gravity="center"
+          android:fontFamily="@font/outfit_bold"
+          />
+    </LinearLayout>
 
-  <EditText
-      android:id="@+id/regMitraAddress"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="10dp"
-      android:hint="Alamat"
-      android:imeOptions="actionNext"
-      android:inputType="text"
-      android:minHeight="48dp" />
+<!--      Nama Lengkap-->
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Nama Lengkap"
+          android:fontFamily="@font/outfit_medium"
+          android:textSize="15sp"
+          android:layout_marginBottom="8dp"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="15dp"
+          android:orientation="horizontal"
+          android:background="@drawable/bg_edit_text"
+          android:gravity="center"
+          >
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:src="@drawable/ic_baseline_person_24"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="10dp"
+              />
 
-  <EditText
-      android:id="@+id/regMitraEmail"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:hint="Email"
-      android:inputType="textEmailAddress"
-      android:imeOptions="actionNext"
-      />
+          <EditText
+              android:id="@+id/regMitraName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:background="@android:color/transparent"
+              android:hint="Masukkan nama lengkap"
+              android:fontFamily="@font/outfit_regular"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              />
 
-  <EditText
-      android:id="@+id/regMitraNIK"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:hint="NIK"
-      android:inputType="number"
-      android:imeOptions="actionDone"
-      />
+      </LinearLayout>
 
-  <Button
-      android:id="@+id/btnRegMitraDone"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="REGISTER"
-      />
+<!--      Nomor Ponsel-->
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Nomor Ponsel"
+          android:fontFamily="@font/outfit_medium"
+          android:textSize="15sp"
+          android:layout_marginBottom="8dp"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginBottom="15dp"
+          android:background="@drawable/bg_edit_text"
+          android:gravity="center"
+          >
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/ic_baseline_phone_24"
+              android:paddingTop="15dp"
+              android:layout_gravity="center"
+              android:paddingBottom="15dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="10dp"
+              />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="+62"
+              android:fontFamily="@font/outfit_regular"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingRight="20dp"
+              android:paddingLeft="10dp"/>
+
+          <View
+              android:layout_width="2dp"
+              android:layout_height="match_parent"
+              android:background="@color/black"
+              />
+
+          <TextView
+              android:id="@+id/regPhoneNumber"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_gravity="center"
+              android:fontFamily="@font/outfit_regular"
+              android:paddingLeft="20dp"
+              android:paddingTop="15dp"
+              android:paddingRight="10dp"
+              android:paddingBottom="15dp"
+
+              tools:ignore="SpeakableTextPresentCheck" />
+
+      </LinearLayout>
+
+<!--      NIK-->
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="NIK"
+          android:fontFamily="@font/outfit_medium"
+          android:textSize="15sp"
+          android:layout_marginBottom="8dp"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="15dp"
+          android:orientation="horizontal"
+          android:background="@drawable/bg_edit_text"
+          android:gravity="center"
+          >
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_gravity="center"
+              android:paddingLeft="20dp"
+              android:paddingTop="10dp"
+              android:paddingRight="10dp"
+              android:paddingBottom="10dp"
+              android:src="@drawable/personal_id" />
+
+          <EditText
+              android:id="@+id/regMitraNIK"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:fontFamily="@font/outfit_regular"
+              android:hint="16 digit nomor KTP"
+              android:inputType="number"
+              android:background="@android:color/transparent"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              />
+
+      </LinearLayout>
+
+<!--      Email-->
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Email"
+          android:fontFamily="@font/outfit_medium"
+          android:textSize="15sp"
+          android:layout_marginBottom="8dp"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="15dp"
+          android:orientation="horizontal"
+          android:background="@drawable/bg_edit_text"
+          android:gravity="center"
+          >
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:src="@drawable/ic_baseline_email_24"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="10dp"
+              />
+
+          <EditText
+              android:id="@+id/regMitraEmail"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:inputType="textCapWords"
+              android:hint="Masukkan alamat email"
+              android:background="@android:color/transparent"
+              android:fontFamily="@font/outfit_regular"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              />
+      </LinearLayout>
+
+<!--      Alamat Lengkap-->
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Alamat"
+          android:fontFamily="@font/outfit_medium"
+          android:layout_marginBottom="8dp"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="20dp"
+          android:orientation="horizontal"
+          android:background="@drawable/bg_edit_text"
+          android:gravity="center"
+          >
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:src="@drawable/ic_baseline_location_on_24"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="10dp"
+              />
+
+          <EditText
+              android:id="@+id/regMitraDetailAddress"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:hint="Masukkan Alamat Lengkap"
+              android:inputType="textCapWords"
+              android:background="@android:color/transparent"
+              android:fontFamily="@font/outfit_regular"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              />
+      </LinearLayout>
+
+<!--      Kuisioner-->
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Kuisioner"
+          android:fontFamily="@font/outfit_semi_bold"
+          android:textSize="18sp"
+          android:layout_marginBottom="15dp"
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/kuisioner_1"
+          android:fontFamily="@font/outfit_medium"
+          android:textSize="15sp"
+          android:layout_marginBottom="8dp"
+          />
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="15dp"
+          android:orientation="horizontal"
+          android:background="@drawable/bg_edit_text"
+          android:gravity="center"
+          >
+
+          <EditText
+              android:id="@+id/regKuisioner1"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:hint="Boleh lebih dari 1 komoditas"
+              android:inputType="textCapWords"
+              android:background="@android:color/transparent"
+              android:fontFamily="@font/outfit_regular"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              />
+      </LinearLayout>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/kuisioner_2"
+          android:fontFamily="@font/outfit_medium"
+          android:textSize="15sp"
+          android:layout_marginBottom="8dp"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="15dp"
+          android:orientation="horizontal"
+          android:background="@drawable/bg_edit_text"
+          android:gravity="center"
+          >
+
+          <EditText
+              android:id="@+id/regKuisioner2"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:hint="Boleh lebih dari 1 komoditas"
+              android:inputType="textCapWords"
+              android:background="@android:color/transparent"
+              android:fontFamily="@font/outfit_regular"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              />
+      </LinearLayout>
 
 
-</LinearLayout>
+      <Button
+          android:id="@+id/btnRegMitraDone"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Gabung Sekarang"
+          android:fontFamily="@font/outfit_semi_bold"
+          android:textAllCaps="false"
+          android:background="@drawable/btn_bg"
+          android:backgroundTint="@null"
+          app:backgroundTint="@null"
+          />
+
+  </LinearLayout>
+
+
+</ScrollView>
+

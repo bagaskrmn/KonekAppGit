@@ -14,6 +14,7 @@
         android:orientation="vertical"
         >
 
+<!--        ActioBar-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,12 +33,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Informasi Akun"
+                android:textSize="18sp"
                 android:gravity="center"
                 android:fontFamily="@font/outfit_bold"
                 />
 
         </LinearLayout>
 
+<!--        Grup Image-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unggah Foto"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:fontFamily="@font/outfit_semi_bold"
                     android:layout_gravity="left"
                     android:layout_marginBottom="10dp"
@@ -80,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:text="Maks 2 MB"
                     android:fontFamily="@font/outfit_regular"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_gravity="left"
                     />
 
@@ -88,6 +91,7 @@
 
         </LinearLayout>
 
+<!--        Nama Lengkap-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,7 +100,6 @@
             android:textSize="15sp"
             android:layout_marginBottom="8dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,6 +111,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_person_24"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -119,6 +123,7 @@
                 android:id="@+id/profName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/outfit_regular"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -128,6 +133,7 @@
 
         </LinearLayout>
 
+<!--        Nomor Ponsel-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,7 +142,6 @@
             android:textSize="15sp"
             android:layout_marginBottom="8dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -149,6 +154,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_phone_24"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -159,9 +165,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="+62"
                 android:fontFamily="@font/outfit_regular"
-                android:textSize="15sp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingRight="20dp"
@@ -176,17 +182,18 @@
             <TextView
                 android:id="@+id/profPhoneNumber"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/outfit_regular"
                 android:paddingLeft="20dp"
                 android:paddingTop="15dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="15dp"
-                android:textSize="15sp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
+<!--        Domisili-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -195,7 +202,6 @@
             android:textSize="15sp"
             android:layout_marginBottom="8dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -207,6 +213,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_location_on_24"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -218,6 +225,7 @@
                 android:id="@+id/profAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/outfit_regular"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -227,6 +235,7 @@
 
         </LinearLayout>
 
+<!--        Alamat Lengkap-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -235,7 +244,6 @@
             android:textSize="15sp"
             android:layout_marginBottom="8dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -248,6 +256,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_location_on_24"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -259,6 +268,7 @@
                 android:id="@+id/profDetailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/outfit_regular"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -267,6 +277,8 @@
                 />
 
         </LinearLayout>
+
+<!--        Button Save-->
         <Button
             android:id="@+id/btnUpdateProfile"
             android:layout_width="match_parent"
@@ -279,7 +291,7 @@
             app:backgroundTint="@null"
             android:layout_marginBottom="10dp"
             />
-    </LinearLayout>
 
+    </LinearLayout>
 </ScrollView>
 
