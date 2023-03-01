@@ -57,19 +57,6 @@
                 android:layout_marginRight="20dp"
                 >
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/completeProfImage"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_gravity="left"
-                    android:src="@android:color/transparent"
-                    app:civ_border_color="#FF000000"
-                    app:civ_border_width="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,6 +65,21 @@
                     app:layout_constraintEnd_toEndOf="@+id/completeProfImage"
                     app:layout_constraintStart_toStartOf="@+id/completeProfImage"
                     app:layout_constraintTop_toTopOf="@+id/completeProfImage" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/completeProfImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="left"
+                    android:src="@android:color/transparent"
+                    app:civ_border_color="@color/neutral"
+                    app:civ_border_width="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -198,9 +200,9 @@
                 android:paddingLeft="10dp"/>
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/black"
+                android:background="@color/neutral"
                 />
 
             <TextView
@@ -299,7 +301,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="Masukkan Alamat Lengkap"
-                android:inputType="textCapWords"
+                android:inputType="textMultiLine"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
                 android:paddingTop="15dp"

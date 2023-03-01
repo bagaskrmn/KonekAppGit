@@ -40,9 +40,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RegisterMitraActivity extends AppCompatActivity {
 
     private TextView RegPhoneNumber;
-    private EditText RegMitraName, RegMitraDetailAddress, RegMitraNIK, RegMitraEmail;
+    private EditText RegMitraName, RegMitraDetailAddress, RegMitraNIK, RegMitraEmail, RegKuisioner1, RegKuisioner2;
     private Button BtnRegMitraDone;
-
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
@@ -63,6 +62,8 @@ public class RegisterMitraActivity extends AppCompatActivity {
         RegMitraNIK = findViewById(R.id.regMitraNIK);
         RegMitraEmail = findViewById(R.id.regMitraEmail);
         BtnRegMitraDone = findViewById(R.id.btnRegMitraDone);
+        RegKuisioner1 = findViewById(R.id.regKuisioner1);
+        RegKuisioner2 = findViewById(R.id.regKuisioner2);
 
         //init progress dialog
         pd = new ProgressDialog(this);

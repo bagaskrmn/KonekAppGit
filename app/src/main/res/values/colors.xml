@@ -10,5 +10,5 @@
 
     <color name="dark_green">#064F0C</color>
     <color name="light_green">#3CA520</color>
-    <color name="button_false">#DFE8F6</color>
+    <color name="neutral">#DFE8F6</color>
 </resources>

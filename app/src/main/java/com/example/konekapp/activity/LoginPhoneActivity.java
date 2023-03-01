@@ -89,7 +89,8 @@ public class LoginPhoneActivity extends AppCompatActivity {
         LoginBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginPhoneActivity.super.onBackPressed();
+                Intent toHomeIntent = new Intent(LoginPhoneActivity.this, HomeScreenActivity.class);
+                startActivity(toHomeIntent);
             }
         });
 
