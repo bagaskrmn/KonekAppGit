@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView ProfName, ProfPhoneNumber, ProfAddress, ProfDetailAddress;
-    private Button BtnProfToMain, BtnUpdateProfile;
+    private ImageView ProfBackAction;
+    private Button BtnUpdateProfile;
     private CircleImageView ProfImage;
 
     private FirebaseAuth firebaseAuth;
@@ -40,12 +42,12 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        ProfBackAction = findViewById(R.id.profBackAction);
         ProfImage = findViewById(R.id.profImage);
         ProfName = findViewById(R.id.profName);
         ProfAddress = findViewById(R.id.profAddress);
         ProfDetailAddress = findViewById(R.id.profDetailAddress);
         ProfPhoneNumber = findViewById(R.id.profPhoneNumber);
-        BtnProfToMain = findViewById(R.id.btnProfToMain);
         BtnUpdateProfile = findViewById(R.id.btnUpdateProfile);
 
         //init progress dialog
@@ -65,6 +67,13 @@ public class ProfileActivity extends AppCompatActivity {
         pd.setMessage("Memuat data anda");
         pd.show();
 
+        ProfBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //add back action here
+            }
+        });
+
         BtnUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,14 +83,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        BtnProfToMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ProfToMain = new Intent(ProfileActivity.this, MainActivity.class);
-                startActivity(ProfToMain);
-                finish();
-            }
-        });
 
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override

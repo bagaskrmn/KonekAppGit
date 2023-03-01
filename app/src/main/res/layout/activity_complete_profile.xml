@@ -114,7 +114,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:text="Nama Lengkap"
             android:fontFamily="@font/outfit_medium"
             android:textSize="15sp"
@@ -160,7 +159,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:text="Nomor Ponsel"
             android:fontFamily="@font/outfit_medium"
             android:textSize="15sp"
@@ -223,7 +221,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:text="Domisili"
             android:fontFamily="@font/outfit_medium"
             android:textSize="15sp"
@@ -269,7 +266,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:text="Alamat"
             android:fontFamily="@font/outfit_medium"
             android:textSize="15sp"
