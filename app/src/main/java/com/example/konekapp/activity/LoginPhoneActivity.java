@@ -251,7 +251,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser !=null) {
             //error
-            pd.setMessage("Cek akun");
+            pd.setMessage("Memeriksa akun");
             pd.show();
 
             String currentUserId = currentUser.getUid();

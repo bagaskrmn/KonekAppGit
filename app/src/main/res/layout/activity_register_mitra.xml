@@ -129,15 +129,16 @@
               />
 
           <TextView
-              android:id="@+id/regPhoneNumber"
+              android:id="@+id/regMitraPhoneNumber"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               android:layout_gravity="center"
               android:fontFamily="@font/outfit_regular"
               android:textSize="14sp"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
               android:paddingRight="16dp"
+              android:paddingLeft="16dp"
               />
 
       </LinearLayout>
@@ -162,10 +163,10 @@
 
           <ImageView
               android:layout_width="wrap_content"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               android:layout_gravity="center"
-              android:paddingLeft="16dp"
-              android:paddingRight="16dp"
+              android:paddingLeft="14dp"
+              android:paddingRight="14dp"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
               android:src="@drawable/personal_id" />
@@ -180,8 +181,9 @@
               android:hint="16 digit nomor KTP"
               android:inputType="number"
               android:paddingTop="10dp"
-              android:paddingRight="16dp"
               android:paddingBottom="10dp"
+              android:paddingRight="16dp"
+
               android:textSize="14sp"
               tools:ignore="TouchTargetSizeCheck" />
 
@@ -310,7 +312,7 @@
               android:background="@android:color/transparent"
               android:fontFamily="@font/outfit_regular"
               android:hint="Boleh lebih dari 1 komoditas"
-              android:inputType="textCapWords"
+              android:inputType="text"
               android:paddingLeft="16dp"
               android:paddingTop="15dp"
               android:paddingRight="16dp"

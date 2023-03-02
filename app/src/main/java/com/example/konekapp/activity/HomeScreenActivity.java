@@ -20,12 +20,9 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         BtnLoginWithPhoneNumber = findViewById(R.id.btnLoginWithPhoneNumber);
 
-        BtnLoginWithPhoneNumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent HomeToLoginPhoneIntent = new Intent(HomeScreenActivity.this, LoginPhoneActivity.class);
-                startActivity(HomeToLoginPhoneIntent);
-            }
+        BtnLoginWithPhoneNumber.setOnClickListener(v -> {
+            Intent HomeToLoginPhoneIntent = new Intent(HomeScreenActivity.this, LoginPhoneActivity.class);
+            startActivity(HomeToLoginPhoneIntent);
         });
     }
 }

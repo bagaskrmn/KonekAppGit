@@ -39,17 +39,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegisterMitraActivity extends AppCompatActivity {
 
-    private TextView RegPhoneNumber;
-    private EditText RegMitraName, RegMitraDetailAddress, RegMitraNIK, RegMitraEmail, RegKuisioner1, RegKuisioner2;
+    private TextView RegMitraPhoneNumber, RegMitraName;
+    private EditText RegMitraDetailAddress, RegMitraNIK, RegMitraEmail, RegKuisioner1, RegKuisioner2;
     private Button BtnRegMitraDone;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String currentUserId, phoneNumber, profileUrl;
+    private String currentUserId, phoneNumber;
     private ProgressDialog pd;
-    private StorageReference UserProfileImagesRef, filePath;
-
-    private Uri resultUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +54,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_mitra);
 
         RegMitraDetailAddress = findViewById(R.id.regMitraDetailAddress);
-        RegPhoneNumber = findViewById(R.id.regPhoneNumber);
+        RegMitraPhoneNumber = findViewById(R.id.regMitraPhoneNumber);
         RegMitraName = findViewById(R.id.regMitraName);
         RegMitraNIK = findViewById(R.id.regMitraNIK);
         RegMitraEmail = findViewById(R.id.regMitraEmail);
@@ -76,7 +73,6 @@ public class RegisterMitraActivity extends AppCompatActivity {
         phoneNumber = currentUser.getPhoneNumber();
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
-        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
 
         pd.setMessage("Memuat data anda");
@@ -87,11 +83,12 @@ public class RegisterMitraActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String retrieveName = snapshot.child("Nama").getValue().toString();
+
                 String retrieveDetailAddress = snapshot.child("Alamat Lengkap").getValue().toString();
 
                 RegMitraName.setText(retrieveName);
                 RegMitraDetailAddress.setText(retrieveDetailAddress);
-                RegPhoneNumber.setText("Nomor HP anda " + phoneNumber);
+                RegMitraPhoneNumber.setText(phoneNumber);
 
                 pd.dismiss();
             }
@@ -103,16 +100,6 @@ public class RegisterMitraActivity extends AppCompatActivity {
             }
         });
 
-//        RegMitraImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                CropImage.activity()
-//                        .setGuidelines(CropImageView.Guidelines.ON)
-//                        .setAspectRatio(1,1)
-//                        .start(RegisterMitraActivity.this);
-//            }
-//        });
-
         BtnRegMitraDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,79 +108,29 @@ public class RegisterMitraActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        //result crop image OK
-//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//
-//            if (resultCode == RESULT_OK) {
-//                //result of cropped image into Uri
-//                resultUri = result.getUri();
-//
-//                //retrieve to CircleImage
-//                Picasso.get().load(resultUri).into(RegMitraImage);
-//
-//                filePath = UserProfileImagesRef.child(currentUserId + ".jpg");
-//
-//            }
-//        }
-//    }
-
     private void RegMitraDone() {
-        String registeredEmail = RegMitraEmail.getText().toString();
         String registeredNIK = RegMitraNIK.getText().toString();
-        String registeredName = RegMitraName.getText().toString();
+        String registeredEmail = RegMitraEmail.getText().toString();
         String registeredDetailAddress = RegMitraDetailAddress.getText().toString();
+        String registeredKuisioner1 = RegKuisioner1.getText().toString();
+        String registeredKuisioner2 = RegKuisioner2.getText().toString();
 
-        if (TextUtils.isEmpty(registeredEmail) || TextUtils.isEmpty(registeredNIK) ||
-                TextUtils.isEmpty(registeredName) || TextUtils.isEmpty(registeredDetailAddress)) {
+        if (TextUtils.isEmpty(registeredEmail) || TextUtils.isEmpty(registeredNIK) || TextUtils.isEmpty(registeredDetailAddress)
+                || TextUtils.isEmpty(registeredKuisioner1) || TextUtils.isEmpty(registeredKuisioner2) ) {
             Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        //if ProfileImage not changed
-//        if (resultUri == null) {
-//
-//            pd.setMessage("Data terunggah");
-//            pd.show();
-//            //hanya diupdate objek selain gambar
-//            HashMap<String, Object> profileMap = new HashMap<>();
-//            profileMap.put("Nama", registeredName);
-//            profileMap.put("Alamat Lengkap", registeredDetailAddress);
-//            profileMap.put("Email", registeredEmail);
-//            profileMap.put("NIK", registeredNIK);
-//            profileMap.put("Role", "2");
-//
-//            usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                @Override
-//                public void onComplete(@NonNull Task<Void> task) {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(RegisterMitraActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-//                        Intent toProfileIntent = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
-//                        startActivity(toProfileIntent);
-//                        finish();
-//                    }
-//                    else {
-//                        String message = task.getException().toString();
-//                        Toast.makeText(RegisterMitraActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        }
 
         else {
             pd.setMessage("Mengunggah Data");
             pd.show();
 
             HashMap<String, Object> profileMap = new HashMap<>();
-            profileMap.put("Nama", registeredName);
-            profileMap.put("Alamat Lengkap", registeredDetailAddress);
-//                                profileMap.put("Image", profileUrl);
-            profileMap.put("Email", registeredEmail);
             profileMap.put("NIK", registeredNIK);
+            profileMap.put("Email", registeredEmail);
+            profileMap.put("Alamat Lengkap", registeredDetailAddress);
+            profileMap.put("Kuisioner 1", registeredKuisioner1);
+            profileMap.put("Kuisioner 2", registeredKuisioner2);
             profileMap.put("Role", "2");
 
 
@@ -202,7 +139,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(RegisterMitraActivity.this, "Pendaftaran selesai", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterMitraActivity.this, "Registrasi selesai", Toast.LENGTH_SHORT).show();
                                 Intent toProfileIntent = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
                                 startActivity(toProfileIntent);
                             }
@@ -212,60 +149,6 @@ public class RegisterMitraActivity extends AppCompatActivity {
                             }
                         }
                     });
-
-//            filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(RegisterMitraActivity.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
-//
-//                        //get download Url from the storage with the path
-//                        filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-//
-//                            @Override
-//                            public void onComplete(@NonNull Task<Uri> task) {
-//                                //downloadUrl result into String
-//                                profileUrl = task.getResult().toString();
-//                                Log.d("CompleteProfile profileUrl", profileUrl);
-//
-//                                pd.setMessage("Data terunggah");
-//                                pd.show();
-//
-//                                HashMap<String, Object> profileMap = new HashMap<>();
-//                                profileMap.put("Nama", registeredName);
-//                                profileMap.put("Alamat Lengkap", registeredDetailAddress);
-////                                profileMap.put("Image", profileUrl);
-//                                profileMap.put("Email", registeredEmail);
-//                                profileMap.put("NIK", registeredNIK);
-//                                profileMap.put("Role", "2");
-//
-//
-//                                usersRef.child(currentUserId).updateChildren(profileMap)
-//                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                if (task.isSuccessful()) {
-//                                                    Toast.makeText(RegisterMitraActivity.this, "Pendaftaran selesai", Toast.LENGTH_SHORT).show();
-//                                                    Intent toProfileIntent = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
-//                                                    startActivity(toProfileIntent);
-//                                                }
-//                                                else {
-//                                                    String message = task.getException().toString();
-//                                                    Toast.makeText(RegisterMitraActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-//                                                }
-//                                            }
-//                                        });
-//                            }
-//                        });
-//
-//                    }
-//                    else {
-//                        pd.dismiss();
-//                        String message = task.getException().toString();
-//                        Toast.makeText(RegisterMitraActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
         }
     }
 }

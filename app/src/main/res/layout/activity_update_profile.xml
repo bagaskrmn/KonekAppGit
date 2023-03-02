@@ -122,7 +122,7 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
                 android:hint="Masukkan nama lengkap"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingRight="16dp"
