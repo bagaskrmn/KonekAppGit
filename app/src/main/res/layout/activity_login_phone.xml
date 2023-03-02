@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="16dp"
     tools:context=".activity.LoginPhoneActivity">
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         />
 
     <LinearLayout
@@ -25,11 +25,12 @@
         <TextView
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/outfit_bold"
             android:text="@string/welcome"
             android:textAlignment="textStart"
-            android:textSize="25sp"
+            android:lineSpacingExtra="8dp"
+            android:textSize="24sp"
             />
 
         <TextView
@@ -38,15 +39,16 @@
             android:text="@string/input_phone"
             android:fontFamily="@font/outfit_regular"
             android:textAlignment="textStart"
-            android:textSize="15sp"
-            android:layout_marginBottom="30dp" />
+            android:lineSpacingExtra="6dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="40dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nomor Ponsel"
             android:fontFamily="@font/outfit_medium"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:layout_marginBottom="8dp"
             />
 
@@ -54,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/bg_edit_text"
             android:gravity="center"
             >
@@ -63,10 +65,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_phone_24"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 />
 
             <TextView
@@ -74,33 +76,29 @@
                 android:layout_height="wrap_content"
                 android:text="+62"
                 android:fontFamily="@font/outfit_regular"
-                android:textSize="15sp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingRight="20dp"
-                android:paddingLeft="10dp"/>
+                android:textSize="16sp"
+                android:paddingRight="12dp"
+                />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/neutral"
+                android:background="@color/neutral_dark"
                 />
 
 
             <EditText
                 android:id="@+id/loginPhoneNo"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
                 android:hint="Nomor Ponsel"
                 android:inputType="phone"
-                android:fontFamily="@font/outfit_regular"
-                android:background="@android:color/transparent"
-                android:textSize="15sp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                />
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
@@ -129,7 +127,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/outfit_bold"
             android:text="@string/confirm_otp"
             android:textAlignment="textStart"
@@ -143,8 +141,9 @@
             android:layout_height="wrap_content"
             android:textAlignment="textStart"
             android:fontFamily="@font/outfit_regular"
-            android:textSize="15sp"
-            android:layout_marginBottom="20dp" />
+            android:lineSpacingExtra="6dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="40dp" />
 
 
         <com.chaos.view.PinView
@@ -153,20 +152,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
             android:cursorVisible="true"
             android:fontFamily="@font/outfit_bold"
             android:inputType="number"
             android:itemBackground="@android:color/transparent"
-            android:padding="10dp"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:cursorColor="@color/black"
             app:cursorWidth="1dp"
             app:hideLineWhenFilled="false"
             app:itemCount="6"
             app:itemRadius="12dp"
             app:itemSpacing="6dp"
-            app:lineColor="@color/neutral"
+            app:lineColor="@color/neutral_dark"
             app:lineWidth="1dp"
             app:viewType="rectangle"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -178,8 +177,8 @@
             android:textAlignment="center"
             android:text="@string/didnt_get_otp"
             android:fontFamily="@font/outfit_regular"
-            android:textSize="15sp"
-            android:layout_marginBottom="10dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="30dp"
             />
 
         <Button
