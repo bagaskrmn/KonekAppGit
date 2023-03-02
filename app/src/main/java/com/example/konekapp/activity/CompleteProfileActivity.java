@@ -156,9 +156,6 @@ public class CompleteProfileActivity extends AppCompatActivity {
             return;
         }
         else {
-
-            BtnCompleteProfileDone.setEnabled(true);
-
             pd.setMessage("Mengunggah Data");
             pd.show();
 
@@ -182,7 +179,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("Nama", Name);
-                                profileMap.put("Alamat", Address);
+                                profileMap.put("Domisili", Address);
                                 profileMap.put("Alamat Lengkap", DetailAddress);
                                 profileMap.put("Image", profileUrl);
                                 profileMap.put("Role", "1");

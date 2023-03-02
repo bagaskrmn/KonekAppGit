@@ -90,17 +90,16 @@ public class ProfileActivity extends AppCompatActivity {
 
 
                 String retrieveName = snapshot.child("Nama").getValue().toString();
-                String retrieveAddress = snapshot.child("Alamat").getValue().toString();
+                String retrieveAddress = snapshot.child("Domisili").getValue().toString();
                 String retrieveDetailAddress = snapshot.child("Alamat Lengkap").getValue().toString();
 
                 //profile image
                 String retrieveImage = snapshot.child("Image").getValue().toString();
 
-                ProfName.setText("Nama : " +retrieveName);
-                ProfPhoneNumber.setText("Nomor HP : " + phoneNumber);
-                ProfAddress.setText("Alamat : "+retrieveAddress);
-                ProfDetailAddress.setText("Alamat Lengkap : " + retrieveDetailAddress);
-
+                ProfName.setText(retrieveName);
+                ProfPhoneNumber.setText(phoneNumber);
+                ProfAddress.setText(retrieveAddress);
+                ProfDetailAddress.setText(retrieveDetailAddress);
                 //profile image
                 Picasso.get().load(retrieveImage).into(ProfImage);
 

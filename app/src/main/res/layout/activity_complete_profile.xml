@@ -151,6 +151,8 @@
                 android:hint="Masukkan nama lengkap"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:paddingRight="16dp"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -213,10 +215,10 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
                 android:textSize="14sp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
                 android:paddingRight="16dp"
                 android:paddingLeft="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 />
 
         </LinearLayout>
@@ -259,8 +261,8 @@
                 android:hint="Masukkan Kota Domisili"
                 android:inputType="textCapWords"
                 android:paddingTop="10dp"
-                android:paddingRight="16dp"
                 android:paddingBottom="10dp"
+                android:paddingRight="16dp"
                 android:textSize="14sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -305,8 +307,8 @@
                 android:fontFamily="@font/outfit_regular"
                 android:hint="Masukkan Alamat Lengkap"
                 android:inputType="textMultiLine"
-                android:paddingTop="10dp"
                 android:paddingRight="16dp"
+                android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textSize="14sp"
                 tools:ignore="TouchTargetSizeCheck" />

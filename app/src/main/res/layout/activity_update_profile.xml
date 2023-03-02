@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:padding="16dp"
     tools:context=".activity.UpdateProfileActivity"
     >
 
@@ -51,13 +51,10 @@
                 android:layout_height="100dp"
                 android:layout_gravity="left"
                 android:src="@android:color/transparent"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp"
+                app:civ_border_color="@color/neutral_dark"
+                app:civ_border_width="1dp"
                 android:layout_marginRight="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -70,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unggah Foto"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/outfit_semi_bold"
                     android:layout_gravity="left"
                     android:layout_marginBottom="10dp"
@@ -81,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:text="Maks 2 MB"
                     android:fontFamily="@font/outfit_regular"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:layout_gravity="left"
                     />
 
@@ -95,13 +92,13 @@
             android:layout_height="wrap_content"
             android:text="Nama Lengkap"
             android:fontFamily="@font/outfit_medium"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:layout_marginBottom="8dp"
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="16dp"
             android:orientation="horizontal"
             android:background="@drawable/bg_edit_text"
             android:gravity="center"
@@ -111,25 +108,25 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_person_24"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 />
 
             <EditText
                 android:id="@+id/updateProfName"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Masukkan nama lengkap"
+                android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:hint="Masukkan nama lengkap"
+                android:inputType="textPersonName"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
+                android:textSize="14sp"
                 />
 
 
@@ -142,14 +139,14 @@
             android:layout_height="wrap_content"
             android:text="Nomor Ponsel"
             android:fontFamily="@font/outfit_medium"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:layout_marginBottom="8dp"
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/bg_edit_text"
             android:gravity="center"
             >
@@ -159,10 +156,10 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_phone_24"
                 android:layout_gravity="center"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 />
 
             <TextView
@@ -171,31 +168,30 @@
                 android:layout_gravity="center"
                 android:text="+62"
                 android:fontFamily="@font/outfit_regular"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingRight="20dp"
-                android:paddingLeft="10dp"/>
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp" />
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/black"
+                android:background="@color/neutral_dark"
                 />
-
 
             <TextView
                 android:id="@+id/updatePhoneNumber"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
-                android:inputType="phone"
-                android:paddingLeft="20dp"
-                android:paddingTop="15dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="15dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
 
         </LinearLayout>
 
@@ -205,13 +201,13 @@
             android:layout_height="wrap_content"
             android:text="Domisili"
             android:fontFamily="@font/outfit_medium"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:layout_marginBottom="8dp"
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="16dp"
             android:orientation="horizontal"
             android:background="@drawable/bg_edit_text"
             android:gravity="center"
@@ -221,10 +217,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_location_on_24"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 />
 
             <EditText
@@ -236,10 +232,10 @@
                 android:hint="Masukkan Kota Domisili"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
                 />
         </LinearLayout>
 
@@ -249,13 +245,13 @@
             android:layout_height="wrap_content"
             android:text="Alamat Lengkap"
             android:fontFamily="@font/outfit_medium"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:layout_marginBottom="8dp"
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="24dp"
             android:orientation="horizontal"
             android:background="@drawable/bg_edit_text"
             android:gravity="center"
@@ -265,10 +261,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_location_on_24"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 />
 
             <EditText
@@ -280,10 +276,10 @@
                 android:inputType="textCapWords"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
                 />
         </LinearLayout>
 
@@ -299,11 +295,7 @@
             android:backgroundTint="@null"
             app:backgroundTint="@null"
             />
-
-
     </LinearLayout>
-
-
 </ScrollView>
 
 

@@ -87,14 +87,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String retrieveName = snapshot.child("Nama").getValue().toString();
-                String retrieveAddress = snapshot.child("Alamat").getValue().toString();
+                String retrieveAddress = snapshot.child("Domisili").getValue().toString();
                 String retrieveDetailAddress = snapshot.child("Alamat Lengkap").getValue().toString();
                 String retrieveImage = snapshot.child("Image").getValue().toString();
 
                 UpdateProfName.setText(retrieveName);
                 UpdateProfAddress.setText(retrieveAddress);
                 UpdateProfDetailAddress.setText(retrieveDetailAddress);
-                UpdatePhoneNumber.setText("Nomor HP anda " + phoneNumber);
+                UpdatePhoneNumber.setText(phoneNumber);
                 Picasso.get().load(retrieveImage).into(UpdateProfImage);
 
                 //retrieveImage is Url from database which is linked to storage
@@ -162,12 +162,12 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         //jika gambar tidak diganti
         if (resultUri == null) {
-            pd.setMessage("Data terunggah");
+            pd.setMessage("Mengunggah Data");
             pd.show();
             //hanya diupdate objek selain gambar
             HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("Nama", updatedName);
-            profileMap.put("Alamat", updatedAddress);
+            profileMap.put("Domisili", updatedAddress);
             profileMap.put("Alamat Lengkap", updatedDetailAddress);
 
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -196,7 +196,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(UpdateProfileActivity.this, "Foto Profil terunggah", Toast.LENGTH_SHORT).show();
                         Log.d("UpdateProfileFilePath", filePath.toString());
 
                         //get download Url from the storage path(filePath)
@@ -214,7 +213,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("Nama", updatedName);
-                                profileMap.put("Alamat", updatedAddress);
+                                profileMap.put("Domisili", updatedAddress);
                                 profileMap.put("Alamat Lengkap", updatedDetailAddress);
                                 profileMap.put("Image", profileUrl);
 
