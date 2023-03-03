@@ -14,5 +14,10 @@
     <color name="neutral_dark">#A9B4CD</color>
     <color name="neutral_dark2">#424F7B</color>
     <color name="neutral_dark3">#192252</color>
+    <color name="neutral_dark4">#848FAC</color>
+
+    <color name="line_selected">#000000</color>
+    <color name="line_focused">#A9B4CD</color>
+    <color name="line_default">#A9B4CD</color>
 
 </resources>

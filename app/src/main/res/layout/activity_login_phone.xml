@@ -64,7 +64,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_phone_24"
+                android:src="@drawable/call"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingLeft="16dp"
@@ -165,10 +165,11 @@
             app:itemCount="6"
             app:itemRadius="12dp"
             app:itemSpacing="6dp"
-            app:lineColor="@color/neutral_dark"
-            app:lineWidth="1dp"
+            app:lineColor="@color/line_colors"
+            app:lineWidth="1.5dp"
             app:viewType="rectangle"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            />
 
         <TextView
             android:id="@+id/resendOTP"

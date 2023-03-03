@@ -59,7 +59,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="center"
-              android:src="@drawable/ic_baseline_person_24"
+              android:src="@drawable/profile_dark"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
               android:paddingLeft="16dp"
@@ -103,7 +103,7 @@
           <ImageView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:src="@drawable/ic_baseline_phone_24"
+              android:src="@drawable/call"
               android:layout_gravity="center"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
@@ -165,11 +165,11 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="center"
-              android:paddingLeft="14dp"
-              android:paddingRight="14dp"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
-              android:src="@drawable/personal_id" />
+              android:src="@drawable/personalcard" />
 
           <EditText
               android:id="@+id/regMitraNIK"
@@ -210,7 +210,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="center"
-              android:src="@drawable/ic_baseline_email_24"
+              android:src="@drawable/mail"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
               android:paddingLeft="16dp"
@@ -253,7 +253,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="center"
-              android:src="@drawable/ic_baseline_location_on_24"
+              android:src="@drawable/location"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
               android:paddingLeft="16dp"
