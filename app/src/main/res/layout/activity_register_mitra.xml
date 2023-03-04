@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RegisterMitraActivity"
-    android:padding="20dp"
+    android:padding="16dp"
 >
   <LinearLayout
       android:layout_width="match_parent"
@@ -32,6 +32,7 @@
           android:layout_height="match_parent"
           android:layout_gravity="center"
           android:text="Gabung Mitra"
+          android:textColor="@color/neutral_dark3"
           android:textSize="18sp"
           android:gravity="center"
           android:fontFamily="@font/outfit_bold"
@@ -44,6 +45,7 @@
           android:layout_height="wrap_content"
           android:text="Nama Lengkap"
           android:fontFamily="@font/outfit_medium"
+          android:textColor="@color/neutral_dark3"
           android:textSize="14sp"
           android:layout_marginBottom="8dp"
           />
@@ -73,6 +75,7 @@
               android:layout_gravity="center"
               android:background="@android:color/transparent"
               android:fontFamily="@font/outfit_regular"
+              android:textColor="@color/neutral_dark3"
               android:paddingTop="10dp"
               android:paddingRight="16dp"
               android:paddingBottom="10dp"
@@ -88,6 +91,7 @@
           android:layout_height="wrap_content"
           android:text="Nomor Ponsel"
           android:fontFamily="@font/outfit_medium"
+          android:textColor="@color/neutral_dark3"
           android:textSize="14sp"
           android:layout_marginBottom="8dp"
           />
@@ -117,6 +121,7 @@
               android:layout_gravity="center"
               android:text="+62"
               android:fontFamily="@font/outfit_regular"
+              android:textColor="@color/neutral_dark3"
               android:textSize="14sp"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
@@ -134,6 +139,7 @@
               android:layout_height="wrap_content"
               android:layout_gravity="center"
               android:fontFamily="@font/outfit_regular"
+              android:textColor="@color/neutral_dark3"
               android:textSize="14sp"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
@@ -149,6 +155,7 @@
           android:layout_height="wrap_content"
           android:text="NIK"
           android:fontFamily="@font/outfit_medium"
+          android:textColor="@color/neutral_dark3"
           android:textSize="14sp"
           android:layout_marginBottom="8dp"
           />
@@ -178,6 +185,7 @@
               android:layout_gravity="center"
               android:background="@android:color/transparent"
               android:fontFamily="@font/outfit_regular"
+              android:textColor="@color/neutral_dark3"
               android:hint="16 digit nomor KTP"
               android:inputType="number"
               android:paddingTop="10dp"
@@ -195,6 +203,7 @@
           android:layout_height="wrap_content"
           android:text="Email"
           android:fontFamily="@font/outfit_medium"
+          android:textColor="@color/neutral_dark3"
           android:textSize="14sp"
           android:layout_marginBottom="8dp"
           />
@@ -224,6 +233,7 @@
               android:layout_gravity="center"
               android:background="@android:color/transparent"
               android:fontFamily="@font/outfit_regular"
+              android:textColor="@color/neutral_dark3"
               android:hint="Masukkan alamat email"
               android:inputType="textEmailAddress"
               android:paddingTop="14dp"
@@ -239,6 +249,7 @@
           android:layout_height="wrap_content"
           android:text="Alamat"
           android:fontFamily="@font/outfit_medium"
+          android:textColor="@color/neutral_dark3"
           android:layout_marginBottom="8dp"
           />
       <LinearLayout
@@ -267,6 +278,7 @@
               android:layout_gravity="center"
               android:background="@android:color/transparent"
               android:fontFamily="@font/outfit_regular"
+              android:textColor="@color/neutral_dark3"
               android:hint="Masukkan Alamat Lengkap"
               android:inputType="textCapWords"
               android:paddingTop="10dp"
@@ -283,6 +295,7 @@
           android:layout_height="wrap_content"
           android:text="Kuisioner"
           android:fontFamily="@font/outfit_semi_bold"
+          android:textColor="@color/neutral_dark3"
           android:textSize="18sp"
           android:layout_marginBottom="16dp"
           />
@@ -291,6 +304,7 @@
           android:layout_height="wrap_content"
           android:text="@string/kuisioner_1"
           android:fontFamily="@font/outfit_medium"
+          android:textColor="@color/neutral_dark3"
           android:textSize="14sp"
           android:layout_marginBottom="8dp"
           />
@@ -311,6 +325,7 @@
               android:layout_gravity="center"
               android:background="@android:color/transparent"
               android:fontFamily="@font/outfit_regular"
+              android:textColor="@color/neutral_dark3"
               android:hint="Boleh lebih dari 1 komoditas"
               android:inputType="text"
               android:paddingLeft="16dp"
@@ -326,6 +341,7 @@
           android:layout_height="wrap_content"
           android:text="@string/kuisioner_2"
           android:fontFamily="@font/outfit_medium"
+          android:textColor="@color/neutral_dark3"
           android:textSize="14sp"
           android:layout_marginBottom="8dp"
           />
@@ -345,6 +361,7 @@
               android:layout_gravity="center"
               android:background="@android:color/transparent"
               android:fontFamily="@font/outfit_regular"
+              android:textColor="@color/neutral_dark3"
               android:hint="Tuliskan lokasi lahan utama anda"
               android:inputType="textCapWords"
               android:paddingLeft="16dp"

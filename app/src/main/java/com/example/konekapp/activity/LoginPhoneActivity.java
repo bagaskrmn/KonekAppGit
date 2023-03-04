@@ -80,12 +80,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
 
-
-        //false-true btn get from edit text
-        //default, set to false
-        binding.btnSendOTP.setEnabled(false);
-        binding.btnVerifyOTP.setEnabled(false);
-
         LoginBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

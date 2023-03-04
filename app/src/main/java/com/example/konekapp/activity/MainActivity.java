@@ -52,15 +52,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         return true;
-                        //get id from the nav_menu
                     case R.id.forum:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, forumFragment).commit();
                         return true;
-                        //get id from the nav_menu
                     case R.id.notification:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, notificationFragment).commit();
                         return true;
-                        //get id from the nav_menu
                     case R.id.account:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, accountFragment).commit();
                         return true;

@@ -88,7 +88,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
         CompleteBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CompleteProfileActivity.super.onBackPressed();
+                Intent CompleteToHome = new Intent(CompleteProfileActivity.this, HomeScreenActivity.class);
+                startActivity(CompleteToHome);
             }
         });
 

@@ -32,9 +32,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Ubah Informasi Akun"
+                android:fontFamily="@font/outfit_bold"
+                android:textColor="@color/neutral_dark3"
                 android:textSize="18sp"
                 android:gravity="center"
-                android:fontFamily="@font/outfit_bold"
+
                 />
         </LinearLayout>
 
@@ -67,6 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unggah Foto"
+                    android:textColor="@color/neutral_dark3"
                     android:textSize="14sp"
                     android:fontFamily="@font/outfit_semi_bold"
                     android:layout_gravity="left"
@@ -78,6 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="Maks 2 MB"
                     android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark4"
                     android:textSize="14sp"
                     android:layout_gravity="left"
                     />
@@ -92,6 +96,7 @@
             android:layout_height="wrap_content"
             android:text="Nama Lengkap"
             android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"
             />
@@ -121,6 +126,7 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
                 android:hint="Masukkan nama lengkap"
                 android:inputType="textCapWords"
                 android:paddingTop="10dp"
@@ -139,6 +145,7 @@
             android:layout_height="wrap_content"
             android:text="Nomor Ponsel"
             android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"
             />
@@ -168,6 +175,7 @@
                 android:layout_gravity="center"
                 android:text="+62"
                 android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
                 android:textSize="14sp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -186,6 +194,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark4"
                 android:textSize="14sp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -201,6 +210,7 @@
             android:layout_height="wrap_content"
             android:text="Domisili"
             android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"
             />
@@ -232,6 +242,7 @@
                 android:hint="Masukkan Kota Domisili"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
                 android:textSize="14sp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -245,6 +256,7 @@
             android:layout_height="wrap_content"
             android:text="Alamat Lengkap"
             android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"
             />
@@ -276,6 +288,7 @@
                 android:inputType="textCapWords"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
                 android:textSize="14sp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
