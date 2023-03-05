@@ -70,7 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
         ProfBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //add back action here
+                ProfileActivity.super.onBackPressed();
             }
         });
 
@@ -79,7 +79,6 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent UpdateProfileIntent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
                 startActivity(UpdateProfileIntent);
-                finish();
             }
         });
 

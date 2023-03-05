@@ -34,7 +34,10 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -52,7 +55,12 @@ public class CompleteProfileActivity extends AppCompatActivity {
     private String phoneNumber, currentUserId, profileUrl;
     private ProgressDialog pd;
     private StorageReference UserProfileImagesRef, filePath;
-    private static final int GalleryPick = 1;
+
+    //date
+
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date;
 
     private Uri resultUri;
 
@@ -74,6 +82,11 @@ public class CompleteProfileActivity extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setTitle("Please wait...");
         pd.setCanceledOnTouchOutside(false);
+
+        //calendar
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date = dateFormat.format(calendar.getTime());
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -184,6 +197,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                 profileMap.put("Alamat Lengkap", DetailAddress);
                                 profileMap.put("Image", profileUrl);
                                 profileMap.put("Role", "1");
+                                profileMap.put("Bergabung pada", date);
 
 
                                 usersRef.child(currentUserId).updateChildren(profileMap)

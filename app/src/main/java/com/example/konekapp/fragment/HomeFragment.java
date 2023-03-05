@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment {
                     ConstraintKonsultasi.setVisibility(View.GONE);
                 }
                 //if role is mitra(2)
-                else {
+                if (role.equals("2")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.VISIBLE);
                 }
@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                //should repaired
+                //error
                 Toast.makeText(getActivity(), "Error"+ error.getMessage(), Toast.LENGTH_SHORT).show();
                 pd.dismiss();
             }

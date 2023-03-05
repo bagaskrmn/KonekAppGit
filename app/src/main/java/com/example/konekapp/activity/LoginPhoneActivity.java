@@ -164,7 +164,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
                     pd.dismiss();
                     Toast.makeText(LoginPhoneActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
@@ -314,7 +313,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
     private void verifyPhoneNumberWithCode(String s, String code) {
         pd.setMessage("Verifying Code");
         pd.show();
-
+        //error here
         PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(s, code);
         signInWithPhoneAuthCredential(phoneAuthCredential);
     }

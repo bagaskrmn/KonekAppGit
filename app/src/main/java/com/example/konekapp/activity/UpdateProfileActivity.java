@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private EditText UpdateProfName, UpdateProfAddress, UpdateProfDetailAddress;
     private CircleImageView UpdateProfImage;
     private Button BtnUpdateProfileDone;
+    private ImageView UpdateProfBackAction;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -64,6 +66,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         UpdateProfAddress = findViewById(R.id.updateProfAddress);
         UpdateProfImage = findViewById(R.id.updateProfImage);
         BtnUpdateProfileDone = findViewById(R.id.btnUpdateProfileDone);
+        UpdateProfBackAction = findViewById(R.id.updateProfBackAction);
 
         //init progress dialog
         pd = new ProgressDialog(this);
@@ -125,6 +128,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UpdateProfileDone();
+            }
+        });
+
+        UpdateProfBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdateProfileActivity.super.onBackPressed();
             }
         });
     }
