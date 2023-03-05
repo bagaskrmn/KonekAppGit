@@ -10,6 +10,8 @@
     <string name="welcome_greetings">Selamat bergabung dengan KONEK, aplikasi mitra Agro Lestari Merbabu</string>
     <string name="kuisioner_1">Komoditas apa saja yang anda miliki? (isi jika ada)</string>
     <string name="kuisioner_2">Di mana lokasi lahan utama anda?</string>
+    <string name="forum_baru">Yuk bagikan pengalamanmu ke sesama petani Konek untuk kemajuan bersama!</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -136,7 +136,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
                 filePath = UserProfileImagesRef.child(currentUserId + ".jpg");
                 Log.d("CompleteProfile", filePath.toString());
             }
-                        }
+        }
 
     }
 
