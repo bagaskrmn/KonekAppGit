@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
     private TextView RegMitraPhoneNumber, RegMitraName;
     private EditText RegMitraDetailAddress, RegMitraNIK, RegMitraEmail, RegKuisioner1, RegKuisioner2;
     private Button BtnRegMitraDone;
+    private ImageView RegMitraBackAction;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
@@ -61,6 +63,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
         BtnRegMitraDone = findViewById(R.id.btnRegMitraDone);
         RegKuisioner1 = findViewById(R.id.regKuisioner1);
         RegKuisioner2 = findViewById(R.id.regKuisioner2);
+        RegMitraBackAction = findViewById(R.id.regMitraBackAction);
 
         //init progress dialog
         pd = new ProgressDialog(this);
@@ -106,6 +109,13 @@ public class RegisterMitraActivity extends AppCompatActivity {
                 RegMitraDone();
             }
         });
+
+        RegMitraBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterMitraActivity.super.onBackPressed();
+            }
+        });
     }
 
     private void RegMitraDone() {
@@ -140,8 +150,9 @@ public class RegisterMitraActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterMitraActivity.this, "Registrasi selesai", Toast.LENGTH_SHORT).show();
-                                Intent toProfileIntent = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
-                                startActivity(toProfileIntent);
+                                Intent registerMitraSuccess = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
+                                registerMitraSuccess.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(registerMitraSuccess);
                             }
                             else {
                                 String message = task.getException().toString();

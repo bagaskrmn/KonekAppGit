@@ -12,7 +12,6 @@ import com.example.konekapp.R;
 
 public class RegisterSuccessActivity extends AppCompatActivity {
 
-    private ImageView BackRegisterSuccess;
     private Button NextRegisterSuccess;
 
     @Override
@@ -20,21 +19,13 @@ public class RegisterSuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_success);
 
-        BackRegisterSuccess = findViewById(R.id.backRegisterSuccess);
         NextRegisterSuccess = findViewById(R.id.nextRegisterSuccess);
-
-        BackRegisterSuccess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backRegisterIntent = new Intent(RegisterSuccessActivity.this, MainActivity.class);
-                startActivity(backRegisterIntent);
-            }
-        });
 
         NextRegisterSuccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent nextRegisterIntent = new Intent(RegisterSuccessActivity.this, MainActivity.class);
+                nextRegisterIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(nextRegisterIntent);
             }
         });

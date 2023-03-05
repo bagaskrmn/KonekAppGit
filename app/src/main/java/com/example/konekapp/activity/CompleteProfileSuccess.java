@@ -12,7 +12,6 @@ import com.example.konekapp.R;
 
 public class CompleteProfileSuccess extends AppCompatActivity {
 
-    private ImageView BackCompleteSuccess;
     private Button NextCompleteSuccess;
 
     @Override
@@ -20,16 +19,7 @@ public class CompleteProfileSuccess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile_success);
 
-        BackCompleteSuccess = findViewById(R.id.backCompleteSuccess);
         NextCompleteSuccess = findViewById(R.id.nextCompleteSuccess);
-
-        BackCompleteSuccess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backCompleteIntent = new Intent(CompleteProfileSuccess.this, MainActivity.class);
-                startActivity(backCompleteIntent);
-            }
-        });
 
         NextCompleteSuccess.setOnClickListener(new View.OnClickListener() {
             @Override

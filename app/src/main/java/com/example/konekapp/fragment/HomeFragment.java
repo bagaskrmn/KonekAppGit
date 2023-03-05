@@ -1,10 +1,12 @@
 package com.example.konekapp.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.activity.RegisterMitraActivity;
+import com.example.konekapp.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,11 +33,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeFragment extends Fragment {
 
     private CircleImageView AccImageHome;
-    private Button BtnRegisterMitra;
+    private Button BtnRegisterMitra, BtnKonsultasi;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
     private String currentUserId;
+    private ConstraintLayout ConstraintRegister, ConstraintKonsultasi;
+    private ProgressDialog pd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,22 +57,51 @@ public class HomeFragment extends Fragment {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
 
-        //error here
-        AccImageHome = (CircleImageView) getView().findViewById(R.id.accImageHome);
+        AccImageHome = (CircleImageView)getView().findViewById(R.id.accImageHome);
         BtnRegisterMitra= (Button)getView().findViewById(R.id.btnRegisterMitra);
+        BtnKonsultasi = (Button)getView().findViewById(R.id.btnKonsultasi);
+
+        ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
+        ConstraintKonsultasi = (ConstraintLayout)getView().findViewById(R.id.constraintKonsultasi);
+
+        //init ProgressDialog
+        pd = new ProgressDialog(getActivity());
+        pd.setTitle("Please Wait...");
+        pd.setCanceledOnTouchOutside(false);
+
+        pd.setMessage("Memuat data anda");
+        pd.show();
+
+
 
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String retrieveImage = snapshot.child("Image").getValue().toString();
-
                 Picasso.get().load(retrieveImage).into(AccImageHome);
-            }
 
+
+                //chek role
+                String role = snapshot.child("Role").getValue().toString();
+
+                //if role is user (1)
+                if (role.equals("1")) {
+                    ConstraintRegister.setVisibility(View.VISIBLE);
+                    ConstraintKonsultasi.setVisibility(View.GONE);
+                }
+                //if role is mitra(2)
+                else {
+                    ConstraintRegister.setVisibility(View.GONE);
+                    ConstraintKonsultasi.setVisibility(View.VISIBLE);
+                }
+
+                pd.dismiss();
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //should repaired
                 Toast.makeText(getActivity(), "Error"+ error.getMessage(), Toast.LENGTH_SHORT).show();
+                pd.dismiss();
             }
         });
 
@@ -76,6 +110,13 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent registerMitraIntent = new Intent(getActivity(), RegisterMitraActivity.class);
                 startActivity(registerMitraIntent);
+            }
+        });
+
+        BtnKonsultasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //add konsultasi activity here
             }
         });
 

@@ -42,6 +42,10 @@ import java.util.concurrent.TimeUnit;
 public class LoginPhoneActivity extends AppCompatActivity {
 
     private ActivityLoginPhoneBinding binding;
+
+
+
+
     private ImageView LoginBackAction;
 
     //used to resend OTP
@@ -256,11 +260,13 @@ public class LoginPhoneActivity extends AppCompatActivity {
                         pd.dismiss();
                         Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
                         usersRef.removeEventListener(this);
+                        registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(registeredUserIntent);
                     } else {
                         pd.dismiss();
                         Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
                         usersRef.removeEventListener(this);
+                        newUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(newUserIntent);
                     }
                 }
@@ -270,9 +276,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
 
                 }
             });
-//
-//            Intent userLoggedIn = new Intent(LoginPhoneActivity.this, ProfileActivity.class);
-//            startActivity(userLoggedIn);
         }
     }
 
@@ -350,10 +353,12 @@ public class LoginPhoneActivity extends AppCompatActivity {
                                         if (snapshot.hasChild("Nama")) {
                                             Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
                                             currentUserRef.removeEventListener(this);
+                                            registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(registeredUserIntent);
                                         } else {
                                             Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
                                             currentUserRef.removeEventListener(this);
+                                            newUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(newUserIntent);
                                         }
                                     }
@@ -365,26 +370,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
                                 });
                             }
                         });
-//                        DatabaseReference currentUserRef = usersRef.child(currentUserId);
-//                        currentUserRef.addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                if (snapshot.hasChild("Nama")) {
-//                                    Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
-//                                    usersRef.removeEventListener(this);
-//                                    startActivity(registeredUserIntent);
-//                                } else {
-//                                    Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
-//                                    usersRef.removeEventListener(this);
-//                                    startActivity(newUserIntent);
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError error) {
-//                                Toast.makeText(LoginPhoneActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

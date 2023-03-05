@@ -8,15 +8,6 @@
     android:orientation="vertical"
     tools:context=".activity.CompleteProfileSuccess">
 
-    <ImageView
-        android:id="@+id/backCompleteSuccess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
-        />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
