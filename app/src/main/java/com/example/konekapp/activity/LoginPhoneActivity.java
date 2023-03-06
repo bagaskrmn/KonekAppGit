@@ -333,14 +333,11 @@ public class LoginPhoneActivity extends AppCompatActivity {
 
                         //root database reference
                         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-//                        rootRef.child("Users").child(currentUserId).setValue(""); //value for Uid is ""
 
-                        //getReference().child("Users")
-                        //database child Users reference
-                        //getReference("Users")
                         DatabaseReference usersRef = rootRef.child("Users");
                         HashMap<String, Object> profileMap = new HashMap<>();
-                        profileMap.put("Role", "1");
+                        //Hanya untuk memunculkan UserID di child Users
+                        profileMap.put("UserID", currentUserId);
                         usersRef.child(currentUserId).updateChildren(profileMap).
                                 addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
