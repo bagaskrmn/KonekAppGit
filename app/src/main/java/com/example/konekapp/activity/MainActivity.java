@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNav = findViewById(R.id.bottomNav);
 
+        BottomNav.setItemIconTintList(null);
+
         //replace FrameLayout in main_activity.xml (id : container) with fragment_home.xml
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 
