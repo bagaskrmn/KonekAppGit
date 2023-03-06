@@ -1,5 +1,6 @@
 package com.example.konekapp.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -13,6 +14,12 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -21,6 +28,9 @@ public class SettingActivity extends AppCompatActivity {
     private LinearLayout BtnLogout;
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
+    private DatabaseReference rootRef, usersRef;
+    private String currentUserId, role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,23 @@ public class SettingActivity extends AppCompatActivity {
         BtnLogout = findViewById(R.id.btnLogout);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        currentUserId = currentUser.getUid();
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        usersRef = rootRef.child("Users");
+
+        //check role
+        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                role = snapshot.child("Role").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         SettingBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,8 +73,14 @@ public class SettingActivity extends AppCompatActivity {
         BtnKelolaAkun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ProfileIntent = new Intent(SettingActivity.this, ProfileActivity.class);
-                startActivity(ProfileIntent);
+                if (role.equals("1")) {
+                    Intent userProfileIntent = new Intent(SettingActivity.this, ProfileActivity.class);
+                    startActivity(userProfileIntent);
+                }
+                if (role.equals("2")) {
+                    Intent mitraProfileIntent = new Intent(SettingActivity.this, MitraProfileActivity.class);
+                    startActivity(mitraProfileIntent);
+                }
             }
         });
 

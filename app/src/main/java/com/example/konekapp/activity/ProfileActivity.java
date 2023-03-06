@@ -34,7 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String currentUserId, phoneNumber;
+    private String currentUserId, phoneNumber, removedPhoneNumber;
     private ProgressDialog pd;
 
     @Override
@@ -60,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         currentUserId = currentUser.getUid();
         phoneNumber = currentUser.getPhoneNumber();
+        removedPhoneNumber = phoneNumber.substring(3);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
@@ -96,7 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
                 String retrieveImage = snapshot.child("Image").getValue().toString();
 
                 ProfName.setText(retrieveName);
-                ProfPhoneNumber.setText(phoneNumber);
+                ProfPhoneNumber.setText(removedPhoneNumber);
                 ProfAddress.setText(retrieveAddress);
                 ProfDetailAddress.setText(retrieveDetailAddress);
                 //profile image

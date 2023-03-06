@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.konekapp.R;
+import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.SettingActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -145,7 +146,13 @@ public class AccountFragment extends Fragment {
             }
         });
 
-
+        ConstraintGabungKemitraan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gabungKemitraanIntent = new Intent(getActivity(), RegisterMitraActivity.class);
+                startActivity(gabungKemitraanIntent);
+            }
+        });
 
     }
 }

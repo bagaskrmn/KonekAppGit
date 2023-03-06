@@ -205,7 +205,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 //function to remove leading zeros from string
                 ;
 
-                String phoneNumber = "+62" + removeLeadingZeros(phone);
+                String phoneNumber = "+62" + phone;
                 if (TextUtils.isEmpty(phone)) {
                     Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
                 } else {
@@ -247,7 +247,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser !=null) {
-            //error
             pd.setMessage("Memeriksa akun");
             pd.show();
 
@@ -313,7 +312,8 @@ public class LoginPhoneActivity extends AppCompatActivity {
     private void verifyPhoneNumberWithCode(String s, String code) {
         pd.setMessage("Verifying Code");
         pd.show();
-        //error here
+        //leaked window
+
         PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(s, code);
         signInWithPhoneAuthCredential(phoneAuthCredential);
     }
@@ -380,10 +380,10 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 });
     }
 
-    private String removeLeadingZeros(String phone) {
-        //0+ means = replace one or more zero on begining of the string
-        String regex = "0+(?!$)";
-        phone = phone.replace(regex,"");
-        return phone;
-    }
+//    private String removeLeadingZeros(String phone) {
+//        //0+ means = replace one or more zero on begining of the string
+//        String regex = "0+(?!$)";
+//        phone = phone.replace(regex,"");
+//        return phone;
+//    }
 }

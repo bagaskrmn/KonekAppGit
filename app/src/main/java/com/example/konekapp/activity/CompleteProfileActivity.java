@@ -52,7 +52,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String phoneNumber, currentUserId, profileUrl;
+    private String phoneNumber, currentUserId, profileUrl, removedPhoneNumber;
     private ProgressDialog pd;
     private StorageReference UserProfileImagesRef, filePath;
 
@@ -92,11 +92,12 @@ public class CompleteProfileActivity extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         phoneNumber = currentUser.getPhoneNumber();
+        removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
         UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
-        PhoneNumberTV.setText(phoneNumber);
+        PhoneNumberTV.setText(removedPhoneNumber);
 
         CompleteBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,6 +173,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         else {
             pd.setMessage("Mengunggah Data");
             pd.show();
+            //leaked window
 
             //put cropped uri to firebase storage
             filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {

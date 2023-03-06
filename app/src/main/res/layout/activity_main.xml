@@ -24,4 +24,6 @@
         app:itemTextColor="@color/bottom_nav_color"
         />
 
+<!--    removeItemIconTint-->
+
 </RelativeLayout>

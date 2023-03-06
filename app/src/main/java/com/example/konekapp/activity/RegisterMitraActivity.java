@@ -47,7 +47,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String currentUserId, phoneNumber;
+    private String currentUserId, phoneNumber, removedPhoneNumber;
     private ProgressDialog pd;
 
     @Override
@@ -74,6 +74,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         phoneNumber = currentUser.getPhoneNumber();
+        removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
 
@@ -91,7 +92,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
 
                 RegMitraName.setText(retrieveName);
                 RegMitraDetailAddress.setText(retrieveDetailAddress);
-                RegMitraPhoneNumber.setText(phoneNumber);
+                RegMitraPhoneNumber.setText(removedPhoneNumber);
 
                 pd.dismiss();
             }
