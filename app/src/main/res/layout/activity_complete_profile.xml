@@ -145,7 +145,6 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 />
-
             <EditText
                 android:id="@+id/completeProfName"
                 android:layout_width="match_parent"
@@ -160,7 +159,8 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingRight="16dp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                />
 
 
 

@@ -357,10 +357,12 @@ public class LoginPhoneActivity extends AppCompatActivity {
                                             newUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(newUserIntent);
                                         }
+                                        pd.dismiss();
                                     }
 
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError error) {
+                                        pd.dismiss();
                                         Toast.makeText(LoginPhoneActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
