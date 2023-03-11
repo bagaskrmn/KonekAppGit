@@ -24,6 +24,7 @@ import com.example.konekapp.activity.ArtikelActivity;
 import com.example.konekapp.activity.ArtikelAdapter;
 import com.example.konekapp.activity.ArtikelModel;
 import com.example.konekapp.activity.RegisterMitraActivity;
+import com.example.konekapp.activity.chat.ConsultationActivity;
 import com.example.konekapp.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -140,6 +141,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //add konsultasi activity here
+                Intent intent = new Intent(requireContext(), ConsultationActivity.class);
+                startActivity(intent);
             }
         });
 
