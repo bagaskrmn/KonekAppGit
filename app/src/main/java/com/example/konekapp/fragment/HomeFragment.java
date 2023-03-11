@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.activity.RegisterMitraActivity;
+import com.example.konekapp.activity.Userlist;
 import com.example.konekapp.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeFragment extends Fragment {
 
     private CircleImageView AccImageHome;
-    private Button BtnRegisterMitra, BtnKonsultasi;
+    private Button BtnRegisterMitra, BtnKonsultasi, BtnRecycle;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
@@ -63,6 +64,8 @@ public class HomeFragment extends Fragment {
 
         ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
         ConstraintKonsultasi = (ConstraintLayout)getView().findViewById(R.id.constraintKonsultasi);
+
+        BtnRecycle = (Button)getView().findViewById(R.id.btnCobaRecycle);
 
         //init ProgressDialog
         pd = new ProgressDialog(getActivity());
@@ -117,6 +120,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //add konsultasi activity here
+            }
+        });
+
+        BtnRecycle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cobaRecycle = new Intent(getActivity(), Userlist.class);
+                startActivity(cobaRecycle);
             }
         });
 
