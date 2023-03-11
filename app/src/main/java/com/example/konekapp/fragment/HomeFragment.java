@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.activity.ArtikelAdapter;
+import com.example.konekapp.activity.ArtikelModel;
 import com.example.konekapp.activity.RegisterMitraActivity;
-import com.example.konekapp.activity.Userlist;
 import com.example.konekapp.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,18 +32,25 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment {
 
     private CircleImageView AccImageHome;
-    private Button BtnRegisterMitra, BtnKonsultasi, BtnRecycle;
+    private Button BtnRegisterMitra, BtnKonsultasi;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
-    private DatabaseReference rootRef, usersRef;
+    private DatabaseReference rootRef, usersRef, artikelRef;
     private String currentUserId;
     private ConstraintLayout ConstraintRegister, ConstraintKonsultasi;
     private ProgressDialog pd;
+
+    //Keperluan RecyclerView
+    private ArrayList<ArtikelModel> list;
+    private ArtikelAdapter adapter;
+    private RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +67,7 @@ public class HomeFragment extends Fragment {
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
+        artikelRef = rootRef.child("Artikel");
 
         AccImageHome = (CircleImageView)getView().findViewById(R.id.accImageHome);
         BtnRegisterMitra= (Button)getView().findViewById(R.id.btnRegisterMitra);
@@ -65,7 +76,12 @@ public class HomeFragment extends Fragment {
         ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
         ConstraintKonsultasi = (ConstraintLayout)getView().findViewById(R.id.constraintKonsultasi);
 
-        BtnRecycle = (Button)getView().findViewById(R.id.btnCobaRecycle);
+        //RecyclerView
+        recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
+        list = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        adapter = new ArtikelAdapter(getContext(), list);
+        recyclerView.setAdapter(adapter);
 
         //init ProgressDialog
         pd = new ProgressDialog(getActivity());
@@ -123,14 +139,20 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        BtnRecycle.setOnClickListener(new View.OnClickListener() {
+        artikelRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Intent cobaRecycle = new Intent(getActivity(), Userlist.class);
-                startActivity(cobaRecycle);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    ArtikelModel artikel = dataSnapshot.getValue(ArtikelModel.class);
+                    list.add(artikel);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
-
     }
 }

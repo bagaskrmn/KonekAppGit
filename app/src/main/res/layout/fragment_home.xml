@@ -1,295 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:orientation="vertical"
-    tools:context=".fragment.HomeFragment">
-
-<!--    top constraint-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <ImageView
-            android:id="@+id/image_view"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_view"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="8dp">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="25dp"
-                android:src="@drawable/konek" />
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/byagrolestarimerbabu" />
-
-
-        </LinearLayout>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/accImageHome"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--    card register-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_card"
-        android:paddingLeft="16dp"
-        android:layout_marginTop="30dp"
-        >
-
-        <LinearLayout
-            android:id="@+id/linear_layout1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:text="Makin untung dengan"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:text="Kemitraan Perusahaan"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/btnRegisterMitra"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_bg_white"
-                android:backgroundTint="@null"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:text="Daftar Sekarang"
-                android:textAllCaps="false"
-                android:textColor="@color/light_green"
-                android:textSize="14sp"
-                app:backgroundTint="@null" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="110dp"
-            android:layout_height="140dp"
-            android:src="@drawable/people"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linear_layout1"
-            />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--    card konsultasi-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintKonsultasi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_card"
-        android:paddingLeft="16dp"
-        android:layout_marginTop="30dp"
-        >
-
-        <LinearLayout
-            android:id="@+id/linear_layout2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:text="Konsultasi langsung"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:text="dengan Ahli Tani"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/btnKonsultasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_bg_white"
-                android:backgroundTint="@null"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:text="Konsultasi"
-                android:textAllCaps="false"
-                android:textColor="@color/light_green"
-                android:textSize="14sp"
-                app:backgroundTint="@null" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="110dp"
-            android:layout_height="140dp"
-            android:src="@drawable/person"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linear_layout2" />
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Informasi Seputar Tanaman"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="14dp"
-        android:fontFamily="@font/outfit_semi_bold"
-        android:textColor="@color/neutral_dark3"
-        android:textSize="16sp"
-        />
-
+    tools:context=".fragment.HomeFragment"
+    android:scrollbars="none"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         >
-        <!--        Penyakit Tanaman-->
-        <LinearLayout
-            android:id="@+id/btnPenyakitTanaman"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+
+        <!--    top constraint-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_btn_home"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:layout_marginRight="8dp"
-            android:clickable="true"
-            android:focusable="true"
             >
+
             <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_view"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="8dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/konek" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/byagrolestarimerbabu" />
+
+
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/accImageHome"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--    card register-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:paddingLeft="16dp"
+            android:layout_marginTop="30dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/linear_layout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/health"
-                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:text="Makin untung dengan"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:text="Kemitraan Perusahaan"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnRegisterMitra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_bg_white"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:text="Daftar Sekarang"
+                    android:textAllCaps="false"
+                    android:textColor="@color/light_green"
+                    android:textSize="14sp"
+                    app:backgroundTint="@null" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_height="140dp"
+                android:src="@drawable/people"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linear_layout1"
                 />
-            <TextView
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--    card konsultasi-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintKonsultasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:paddingLeft="16dp"
+            android:layout_marginTop="30dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/linear_layout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Penyakit Tanaman"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="16sp"
-                />
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:text="Konsultasi langsung"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:text="dengan Ahli Tani"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnKonsultasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_bg_white"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:text="Konsultasi"
+                    android:textAllCaps="false"
+                    android:textColor="@color/light_green"
+                    android:textSize="14sp"
+                    app:backgroundTint="@null" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_height="140dp"
+                android:src="@drawable/person"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linear_layout2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--    Info Seputar Tanaman Text-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informasi Seputar Tanaman"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="16sp"
+            />
+
+        <!--    penyakit dan obat-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <!--        Penyakit Tanaman-->
+            <LinearLayout
+                android:id="@+id/btnPenyakitTanaman"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_home"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:layout_marginRight="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/health"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Penyakit Tanaman"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+
+            <!--        Obat Tanaman-->
+            <LinearLayout
+                android:id="@+id/btnObatTanaman"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_home"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:layout_marginLeft="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/glass"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Obat Tanaman"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
 
-        <!--        Obat Tanaman-->
-        <LinearLayout
-            android:id="@+id/btnObatTanaman"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <!--    Artikel Pertanian text-->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_btn_home"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:layout_marginLeft="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/glass"
-                android:layout_marginBottom="8dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Obat Tanaman"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="16sp"
-                />
-        </LinearLayout>
+            android:text="Artikel Pertanian"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="16sp"
+            />
+
+        <!--    RecyclerView-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Informasi Seputar Tanaman"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="14dp"
-        android:fontFamily="@font/outfit_semi_bold"
-        android:textColor="@color/neutral_dark3"
-        android:textSize="16sp"
-        />
+</ScrollView>
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Coba Recycle"
-        android:id="@+id/btnCobaRecycle"
-        />
-
-
-
-
-</LinearLayout>
