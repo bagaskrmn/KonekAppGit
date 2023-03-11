@@ -16,9 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.activity.ArtikelActivity;
 import com.example.konekapp.activity.ArtikelAdapter;
 import com.example.konekapp.activity.ArtikelModel;
 import com.example.konekapp.activity.RegisterMitraActivity;
@@ -46,6 +48,7 @@ public class HomeFragment extends Fragment {
     private String currentUserId;
     private ConstraintLayout ConstraintRegister, ConstraintKonsultasi;
     private ProgressDialog pd;
+    private TextView BtnFullArtikel;
 
     //Keperluan RecyclerView
     private ArrayList<ArtikelModel> list;
@@ -72,6 +75,7 @@ public class HomeFragment extends Fragment {
         AccImageHome = (CircleImageView)getView().findViewById(R.id.accImageHome);
         BtnRegisterMitra= (Button)getView().findViewById(R.id.btnRegisterMitra);
         BtnKonsultasi = (Button)getView().findViewById(R.id.btnKonsultasi);
+        BtnFullArtikel = (TextView)getView().findViewById(R.id.btnFullArtikel);
 
         ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
         ConstraintKonsultasi = (ConstraintLayout)getView().findViewById(R.id.constraintKonsultasi);
@@ -152,6 +156,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        BtnFullArtikel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fullArtikel = new Intent(getActivity(), ArtikelActivity.class);
+                startActivity(fullArtikel);
             }
         });
     }

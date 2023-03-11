@@ -186,7 +186,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 Toast.makeText(LoginPhoneActivity.this, "Verification code sent", Toast.LENGTH_SHORT).show();
 
                 String phone = binding.loginPhoneNo.getText().toString().trim();
-                String phoneNumber = "+62" + phone;
+                String phoneNumber = "+62" + removeLeadingZeros(phone);
 
                 binding.descOTPCodeSent.setText("Masukkan SMS OTP yang telah kami kirim " +
                         "\nke " + phoneNumber);
@@ -205,7 +205,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 //function to remove leading zeros from string
                 ;
 
-                String phoneNumber = "+62" + phone;
+                String phoneNumber = "+62" + removeLeadingZeros(phone);
                 if (TextUtils.isEmpty(phone)) {
                     Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
                 } else {
@@ -218,7 +218,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String phone = binding.loginPhoneNo.getText().toString().trim();
-                String phoneNumber = "+62" + phone;
+                String phoneNumber = "+62" + removeLeadingZeros(phone);
                 if (TextUtils.isEmpty(phone)) {
                     Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
                 } else {
@@ -379,10 +379,10 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 });
     }
 
-//    private String removeLeadingZeros(String phone) {
-//        //0+ means = replace one or more zero on begining of the string
-//        String regex = "0+(?!$)";
-//        phone = phone.replace(regex,"");
-//        return phone;
-//    }
+    private String removeLeadingZeros(String phone) {
+        //0+ means = replace one or more zero on begining of the string
+        String regex = "0+(?!$)";
+        phone = phone.replaceFirst(regex,"");
+        return phone;
+    }
 }
