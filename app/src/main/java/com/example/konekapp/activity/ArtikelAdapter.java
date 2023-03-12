@@ -1,6 +1,7 @@
 package com.example.konekapp.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,21 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.MyViewHo
         Picasso.get().load(artikel.Image).into(holder.ImageArtikel);
         holder.SourceArtikel.setText(artikel.Source);
         holder.DateArtikel.setText(artikel.Date);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detailArtikelIntent = new Intent(context, DetailArtikelActivity.class);
+                detailArtikelIntent.putExtra("Title", artikel.Title);
+                detailArtikelIntent.putExtra("Image", artikel.Image);
+                detailArtikelIntent.putExtra("Source", artikel.Source);
+                detailArtikelIntent.putExtra("Date", artikel.Date);
+                detailArtikelIntent.putExtra("Description", artikel.Description);
+                context.startActivity(detailArtikelIntent);
+
+            }
+        });
+
     }
 
     @Override

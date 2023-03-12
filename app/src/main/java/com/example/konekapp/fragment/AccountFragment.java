@@ -109,19 +109,24 @@ public class AccountFragment extends Fragment {
                 }
                 if (role.equals("2")) {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
-                    ConstraintKonsultasi.setVisibility(View.GONE);
+                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
+                    ConstraintKonsultasi.setVisibility(View.VISIBLE);
 
                     RoleUserTv.setText("Petani Mitra");
                 }
                 if (role.equals("3")) {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
-                    ConstraintKonsultasi.setVisibility(View.VISIBLE);
+                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
+                    ConstraintKonsultasi.setVisibility(View.GONE);
 
                     RoleUserTv.setText("Ahli Tani");
                 }
 
+                if (role.equals("4")) {
+                    ConstraintGabungKemitraan.setVisibility(View.GONE);
+                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
+                    ConstraintKonsultasi.setVisibility(View.GONE);
+                }
                 pd.dismiss();
             }
 

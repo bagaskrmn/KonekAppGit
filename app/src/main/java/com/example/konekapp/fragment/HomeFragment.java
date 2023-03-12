@@ -118,6 +118,15 @@ public class HomeFragment extends Fragment {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.VISIBLE);
                 }
+                if (role.equals("3")) {
+                    ConstraintRegister.setVisibility(View.GONE);
+                    ConstraintKonsultasi.setVisibility(View.GONE);
+                }
+                if (role.equals("4")) {
+                    ConstraintRegister.setVisibility(View.GONE);
+                    ConstraintKonsultasi.setVisibility(View.GONE);
+                }
+
 
                 pd.dismiss();
             }

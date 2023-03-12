@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,286 +7,301 @@
     android:layout_height="match_parent"
     tools:context=".fragment.AccountFragment"
     android:padding="16dp"
+    android:orientation="vertical"
     >
 
-    <LinearLayout
+    <!--    Akun n setting-->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         >
-
-        <!--    Akun n setting-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:text="Akun"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:fontFamily="@font/outfit_semi_bold"
+            android:text="Akun"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/btnSetting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/setting"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/btnSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/setting"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!--    ProfileCard-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        >
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_btn_home"
-            android:padding="16dp"
-            android:layout_marginBottom="20dp"
+            android:orientation="vertical"
             >
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/accImageProfile"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                />
-
+            <!--    ProfileCard-->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_btn_home"
+                android:padding="16dp"
+                android:layout_marginBottom="20dp"
                 >
-                <TextView
-                    android:id="@+id/nameAccountTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/outfit_semi_bold"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="4dp"
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/accImageProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    tools:src="@tools:sample/avatars"
                     />
 
-                <TextView
-                    android:id="@+id/roleUserTv"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/outfit_semi_bold"
-                    android:textColor="@color/light_green"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="4dp"
-                    />
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    >
+                    <TextView
+                        android:id="@+id/nameAccountTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textColor="@color/neutral_dark3"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="4dp"
+                        tools:text="Bagaskara"
+                        />
 
-                <TextView
-                    android:id="@+id/dateJoinedTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/outfit_semi_bold"
-                    android:textColor="@color/neutral_dark4"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="4dp"
-                    />
+                    <TextView
+                        android:id="@+id/roleUserTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textColor="@color/light_green"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="4dp"
+                        tools:text="Ahli Tani"
+                        />
+
+                    <TextView
+                        android:id="@+id/dateJoinedTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textColor="@color/neutral_dark4"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="4dp"
+                        tools:text="Bergabung sejak"
+                        />
+
+                </LinearLayout>
+
 
             </LinearLayout>
+
+            <!--    Gabung Kemitraan-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintGabungKemitraan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/bg_account_btn"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/account_gabung_kemitraan"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gabung Kemitraan"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_circle_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    Kelola Kemitraan-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintKelolaKemitraan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/bg_account_btn"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/account_kelola_kemitraan"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kelola Kemitraan"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_circle_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    Konsultasi Petani-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintKonsultasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/bg_account_btn"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/account_konsultasi"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Konsultasi Petani"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_circle_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forum Saya"
+                android:textColor="@color/neutral_dark3"
+                android:fontFamily="@font/outfit_semi_bold"
+                android:textSize="20sp"
+                android:layout_marginBottom="24dp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/forum_3"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yuk buat Forum pertamamu!"
+                android:fontFamily="@font/outfit_bold"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/outfit_regular"
+                android:text="@string/forum_baru"
+                android:textSize="14sp"
+                android:lineSpacingExtra="2dp"
+                android:textAlignment="center"
+                android:textColor="@color/neutral_dark4"
+                android:layout_marginBottom="20dp"
+                />
+
+            <Button
+                android:id="@+id/btnBuatForum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:text="+ Buat Forum Baru"
+                android:fontFamily="@font/outfit_semi_bold"
+                android:textAllCaps="false"
+                android:layout_marginBottom="10dp"
+                />
 
 
         </LinearLayout>
 
-        <!--    Gabung Kemitraan-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintGabungKemitraan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/bg_account_btn"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            >
+    </ScrollView>
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/account_gabung_kemitraan"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gabung Kemitraan"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="16dp"
-                android:layout_marginLeft="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow_circle_right"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--    Kelola Kemitraan-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintKelolaKemitraan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/bg_account_btn"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            >
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/account_kelola_kemitraan"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kelola Kemitraan"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="16dp"
-                android:layout_marginLeft="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow_circle_right"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--    Konsultasi Petani-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintKonsultasi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/bg_account_btn"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            >
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/account_konsultasi"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Konsultasi Petani"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="16dp"
-                android:layout_marginLeft="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow_circle_right"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Forum Saya"
-            android:textColor="@color/neutral_dark3"
-            android:fontFamily="@font/outfit_semi_bold"
-            android:textSize="20sp"
-            android:layout_marginBottom="24dp"
-            />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/forum_3"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yuk buat Forum pertamamu!"
-            android:fontFamily="@font/outfit_bold"
-            android:textColor="@color/neutral_dark3"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/outfit_regular"
-            android:text="@string/forum_baru"
-            android:textSize="14sp"
-            android:lineSpacingExtra="2dp"
-            android:textAlignment="center"
-            android:textColor="@color/neutral_dark4"
-            android:layout_marginBottom="20dp"
-            />
-
-        <Button
-            android:id="@+id/btnBuatForum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:backgroundTint="@null"
-            app:backgroundTint="@null"
-            android:text="+ Buat Forum Baru"
-            android:fontFamily="@font/outfit_semi_bold"
-            android:textAllCaps="false"
-            />
-
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>
 
 

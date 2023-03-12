@@ -1,6 +1,7 @@
 package com.example.konekapp.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,20 @@ public class FullArtikelAdapter extends RecyclerView.Adapter<FullArtikelAdapter.
         holder.FullTitleArtikel.setText(artikel.Title);
         holder.FullSourceArtikel.setText(artikel.Source);
         holder.FullDateArtikel.setText(artikel.Date);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detailArtikelIntent = new Intent(context, DetailArtikelActivity.class);
+                detailArtikelIntent.putExtra("Title", artikel.Title);
+                detailArtikelIntent.putExtra("Image", artikel.Image);
+                detailArtikelIntent.putExtra("Source", artikel.Source);
+                detailArtikelIntent.putExtra("Date", artikel.Date);
+                detailArtikelIntent.putExtra("Description", artikel.Description);
+                context.startActivity(detailArtikelIntent);
+            }
+        });
+
     }
 
     @Override
