@@ -42,12 +42,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeFragment extends Fragment {
 
     private CircleImageView AccImageHome;
-    private Button BtnRegisterMitra, BtnKonsultasi;
+    private Button BtnRegisterMitra, BtnKonsultasi, BtnChatMitra;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef, artikelRef;
     private String currentUserId;
-    private ConstraintLayout ConstraintRegister, ConstraintKonsultasi;
+    private ConstraintLayout ConstraintRegister, ConstraintKonsultasi, ConstraintChatMitra;
     private ProgressDialog pd;
     private TextView BtnFullArtikel;
 
@@ -77,9 +77,11 @@ public class HomeFragment extends Fragment {
         BtnRegisterMitra= (Button)getView().findViewById(R.id.btnRegisterMitra);
         BtnKonsultasi = (Button)getView().findViewById(R.id.btnKonsultasi);
         BtnFullArtikel = (TextView)getView().findViewById(R.id.btnFullArtikel);
+        BtnChatMitra = (Button)getView().findViewById(R.id.btnChatMitra);
 
         ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
         ConstraintKonsultasi = (ConstraintLayout)getView().findViewById(R.id.constraintKonsultasi);
+        ConstraintChatMitra = (ConstraintLayout)getView().findViewById(R.id.constraintChatMitra);
 
         //RecyclerView
         recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
@@ -112,19 +114,25 @@ public class HomeFragment extends Fragment {
                 if (role.equals("1")) {
                     ConstraintRegister.setVisibility(View.VISIBLE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
+                    ConstraintChatMitra.setVisibility(View.GONE);
                 }
                 //if role is mitra(2)
                 if (role.equals("2")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.VISIBLE);
+                    ConstraintChatMitra.setVisibility(View.GONE);
                 }
+                //if role is Ahli Tani
                 if (role.equals("3")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
+                    ConstraintChatMitra.setVisibility(View.VISIBLE);
                 }
+                //if role is admin
                 if (role.equals("4")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
+                    ConstraintChatMitra.setVisibility(View.GONE);
                 }
 
 
@@ -152,6 +160,13 @@ public class HomeFragment extends Fragment {
                 //add konsultasi activity here
                 Intent intent = new Intent(requireContext(), ConsultationActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        BtnChatMitra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //add chat with mitra activity here
             }
         });
 

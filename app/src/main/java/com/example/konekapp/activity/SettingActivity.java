@@ -73,13 +73,14 @@ public class SettingActivity extends AppCompatActivity {
         BtnKelolaAkun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (role.equals("1")) {
-                    Intent userProfileIntent = new Intent(SettingActivity.this, ProfileActivity.class);
-                    startActivity(userProfileIntent);
-                }
                 if (role.equals("2")) {
                     Intent mitraProfileIntent = new Intent(SettingActivity.this, MitraProfileActivity.class);
                     startActivity(mitraProfileIntent);
+                }
+
+                else {
+                    Intent userProfileIntent = new Intent(SettingActivity.this, ProfileActivity.class);
+                    startActivity(userProfileIntent);
                 }
             }
         });

@@ -200,6 +200,70 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!--    card konsultasi-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintChatMitra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="30dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear_layout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Jawab Pertanyaan dari"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Petani Mitra"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnChatMitra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_bg_white"
+                        android:backgroundTint="@null"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Chat Mitra"
+                        android:textAllCaps="false"
+                        android:textColor="@color/light_green"
+                        android:textSize="14sp"
+                        app:backgroundTint="@null" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/person"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <!--    Info Seputar Tanaman Text-->
             <TextView
                 android:layout_width="wrap_content"

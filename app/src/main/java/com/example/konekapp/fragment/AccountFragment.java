@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.konekapp.R;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.SettingActivity;
+import com.example.konekapp.activity.chat.ConsultationActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -126,6 +127,8 @@ public class AccountFragment extends Fragment {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
                     ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
+
+                    RoleUserTv.setText("Admin");
                 }
                 pd.dismiss();
             }
@@ -156,6 +159,22 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 Intent gabungKemitraanIntent = new Intent(getActivity(), RegisterMitraActivity.class);
                 startActivity(gabungKemitraanIntent);
+            }
+        });
+
+        ConstraintKonsultasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Add konsultasiActivity here
+                Intent intentKonsultasi = new Intent(requireContext(), ConsultationActivity.class);
+                startActivity(intentKonsultasi);
+            }
+        });
+
+        ConstraintKelolaKemitraan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //add KelolaKemitraanActivity here
             }
         });
 
