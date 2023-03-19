@@ -58,7 +58,6 @@ public class AddArtikelActivity extends AppCompatActivity {
         AddArtikelBackAction = findViewById(R.id.addArtikelBackAction);
         BtnAddArtikelDone = findViewById(R.id.btnAddArtikelDone);
 
-        //progressDialog
         //init progress dialog
         pd = new ProgressDialog(this);
         pd.setTitle("Please wait...");
@@ -120,14 +119,15 @@ public class AddArtikelActivity extends AppCompatActivity {
         String Description = AddDescriptionArtikel.getText().toString();
 
         //add empty checker here
-
         pd.setMessage("Mengunggah Artikel");
         pd.show();
+
         //put cropped uri image to storage
         artikelPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (task.isSuccessful()) {
+                    pd.dismiss();
                     artikelPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
@@ -143,10 +143,13 @@ public class AddArtikelActivity extends AppCompatActivity {
                             artikelMap.put("Image", artikelImageUrl);
                             artikelMap.put("Description", Description);
 
+
+
                             artikelRef.child(artikelId).updateChildren(artikelMap)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
+                                            pd.dismiss();
                                             if(task.isSuccessful()) {
                                                 Toast.makeText(AddArtikelActivity.this, "Artikel Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                                                 Intent addArtikelDone = new Intent(AddArtikelActivity.this, ArtikelActivity.class);

@@ -64,35 +64,12 @@ public class DetailArtikelActivity extends AppCompatActivity {
         //retrieve Key for artikel from Adapter
         Intent intent = getIntent();
         DetailKey = intent.getStringExtra("Key");
-        if (DetailKey.equals("")) {
+        if (DetailKey.isEmpty()) {
             Intent i = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
         } else {
-            artikelRef.child(DetailKey).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    //retrieve Data Artikel
-                    String retrieveTitle = snapshot.child("Title").getValue().toString();
-                    String retrieveImage = snapshot.child("Image").getValue().toString();
-                    String retrieveSource = snapshot.child("Source").getValue().toString();
-                    String retrieveDate = snapshot.child("Date").getValue().toString();
-                    String retrieveDescription = snapshot.child("Description").getValue().toString();
-
-                    //set Data to the item
-                    DetailArtikelTitle.setText(retrieveTitle);
-                    Picasso.get().load(retrieveImage).into(DetailArtikelImage);
-                    DetailArtikelSource.setText(retrieveSource);
-                    DetailArtikelDate.setText(retrieveDate);
-                    DetailArtikelDescription.setText(retrieveDescription);
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
+            artikelRef.child(DetailKey).addValueEventListener(listener);
         }
 
 
@@ -127,6 +104,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
         BtnDeleteArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                artikelRef.child(DetailKey).removeEventListener(listener);
                 artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
                 artikelPath.delete();
                 //delete on database
@@ -149,24 +127,29 @@ public class DetailArtikelActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-//        String DetailTitle = intent.getStringExtra("Title");
-//        String DetailImage = intent.getStringExtra("Image");
-//        String DetailSource = intent.getStringExtra("Source");
-//        String DetailDate = intent.getStringExtra("Date");
-//        String DetailDescription = intent.getStringExtra("Description");
-
-        //set Data to the item
-//        DetailArtikelTitle.setText(DetailTitle);
-//        Picasso.get().load(DetailImage).into(DetailArtikelImage);
-//        DetailArtikelSource.setText(DetailSource);
-//        DetailArtikelDate.setText(DetailDate);
-//        DetailArtikelDescription.setText(DetailDescription);
-
     }
+
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            //retrieve Data Artikel
+            String retrieveTitle = snapshot.child("Title").getValue().toString();
+            String retrieveImage = snapshot.child("Image").getValue().toString();
+            String retrieveSource = snapshot.child("Source").getValue().toString();
+            String retrieveDate = snapshot.child("Date").getValue().toString();
+            String retrieveDescription = snapshot.child("Description").getValue().toString();
+
+            //set Data to the item
+            DetailArtikelTitle.setText(retrieveTitle);
+            Picasso.get().load(retrieveImage).into(DetailArtikelImage);
+            DetailArtikelSource.setText(retrieveSource);
+            DetailArtikelDate.setText(retrieveDate);
+            DetailArtikelDescription.setText(retrieveDescription);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 }

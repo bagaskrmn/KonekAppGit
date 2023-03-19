@@ -173,7 +173,6 @@ public class CompleteProfileActivity extends AppCompatActivity {
         else {
             pd.setMessage("Mengunggah Data");
             pd.show();
-            //leaked window
 
             //put cropped uri to firebase storage
             filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
