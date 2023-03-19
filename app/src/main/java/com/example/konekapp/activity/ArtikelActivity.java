@@ -113,6 +113,7 @@ public class ArtikelActivity extends AppCompatActivity {
                 pd.dismiss();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ArtikelModel artikel = dataSnapshot.getValue(ArtikelModel.class);
+                    artikel.setKey(dataSnapshot.getKey());
                     list.add(artikel);
                 }
                 adapter.notifyDataSetChanged();

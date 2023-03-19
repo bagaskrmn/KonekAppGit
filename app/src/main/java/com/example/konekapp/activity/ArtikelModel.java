@@ -6,6 +6,15 @@ public class ArtikelModel {
     String Source;
     String Date;
     String Description;
+    String Key;
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
+    }
 
     //tanpa masukin data bisa pakai constructor ini
     public ArtikelModel() {

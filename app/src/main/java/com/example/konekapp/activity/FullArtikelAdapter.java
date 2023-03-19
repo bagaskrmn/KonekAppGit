@@ -45,11 +45,7 @@ public class FullArtikelAdapter extends RecyclerView.Adapter<FullArtikelAdapter.
             @Override
             public void onClick(View v) {
                 Intent detailArtikelIntent = new Intent(context, DetailArtikelActivity.class);
-                detailArtikelIntent.putExtra("Title", artikel.Title);
-                detailArtikelIntent.putExtra("Image", artikel.Image);
-                detailArtikelIntent.putExtra("Source", artikel.Source);
-                detailArtikelIntent.putExtra("Date", artikel.Date);
-                detailArtikelIntent.putExtra("Description", artikel.Description);
+                detailArtikelIntent.putExtra("Key", artikel.Key);
                 context.startActivity(detailArtikelIntent);
             }
         });
