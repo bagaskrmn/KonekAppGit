@@ -1,5 +1,6 @@
 package com.example.konekapp.activity.chat.addconsultation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,11 @@ import com.example.konekapp.R;
 import com.example.konekapp.activity.chat.models.UserModel;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class AddConsultationAdapter extends RecyclerView.Adapter<AddConsultationAdapter.ViewHolder> {
 
@@ -38,7 +43,11 @@ public class AddConsultationAdapter extends RecyclerView.Adapter<AddConsultation
         Picasso.get().load(user.getImage()).into(holder.ivProfile);
         holder.name.setText(user.getNama());
         if (user.getRole().equals("3")) {
-            holder.title.setText("Ahli Tani sejak " + user.getBergabungPada());
+            try {
+                holder.title.setText("Ahli Tani sejak " + getMonthAndYear(user.getBergabungPada()));
+            } catch (ParseException e) {
+                Log.d(AddConsultationAdapter.class.getSimpleName(), "onBindViewHolder: " + e.getMessage());
+            }
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,4 +74,13 @@ public class AddConsultationAdapter extends RecyclerView.Adapter<AddConsultation
         }
     }
 
+    private static String getMonthAndYear(String stringDate) throws ParseException {
+        SimpleDateFormat originalFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("id", "ID"));
+        Date date = originalFormat.parse(stringDate);
+
+        SimpleDateFormat targetFormat = new SimpleDateFormat("MMMM yyyy", new Locale("id", "ID"));
+        String targetDateString = targetFormat.format(date);
+
+        return targetDateString;
+    }
 }

@@ -14,6 +14,7 @@ import com.example.konekapp.R;
 import com.example.konekapp.activity.chat.addconsultation.AddConsultationAdapter;
 import com.example.konekapp.activity.chat.addconsultation.UserListener;
 import com.example.konekapp.activity.chat.models.UserModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,13 +58,14 @@ public class TambahKonsultasiActivity extends AppCompatActivity implements UserL
     }
 
     private void listenUserFromDatabase() {
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listUser.clear();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     UserModel user = ds.getValue(UserModel.class);
-                    if (user != null && user.getRole().equals("3")) {
+                    if (user != null && !user.getUserId().equals(currentUserId)) {
                         listUser.add(user);
                     }
                 }

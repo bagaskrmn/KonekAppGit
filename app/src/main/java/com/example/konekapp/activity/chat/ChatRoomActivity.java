@@ -1,7 +1,8 @@
 package com.example.konekapp.activity.chat;
 
+import static com.example.konekapp.activity.chat.helper.Constants.*;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,23 +19,25 @@ import com.example.konekapp.activity.chat.chatroom.ChatMessageAdapter;
 import com.example.konekapp.activity.chat.models.ChatMessagesModel;
 import com.example.konekapp.activity.chat.models.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.EventListener;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -47,29 +50,17 @@ public class ChatRoomActivity extends AppCompatActivity {
     //chat
     private ArrayList<ChatMessagesModel> listChatMessages;
     private ChatMessageAdapter chatMessageAdapter;
-    private static final String KEY_COLLECTION_CHAT = "chat";
-    private static final String KEY_SENDER_ID = "senderId";
-    private static final String KEY_RECEIVER_ID = "receiverId";
-    private static final String KEY_MESSAGE = "message";
-    private static final String KEY_DATE_TIME = "dateTime";
 
     //conversation
-    private static final String KEY_COLLECTION_CONVERSATION = "conversations";
-    private static final String KEY_SENDER_NAME = "senderName";
-    private static final String KEY_RECEIVER_NAME = "receiverName";
-    private static final String KEY_SENDER_IMAGE = "senderImage";
-    private static final String KEY_RECEIVER_IMAGE = "receiverImage";
-    private static final String KEY_LAST_MESSAGE = "lastMessage";
-
-    private static final String KEY_LAST_TIMESTAMP = "lastTimestamp";
-    private static final String KEY_UNREAD_COUNT = "unreadCount";
-    private String conversationId = null;
-
+    private String conversationId;
+    private String senderConversationId;
 
     //firebase
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private String currentUserId;
+    private DatabaseReference rootRef, usersRef;
+    private DatabaseReference messageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +72,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         //viewInitialization
         initialization();
 
+        //profile receiver
+        getProfileReceiver();
+
         //message listener
         listenMessages();
 
@@ -88,11 +82,11 @@ public class ChatRoomActivity extends AppCompatActivity {
         tvNameMentor.setText(userReceiver.getNama());
 
         //tv title mentor
-        if (userReceiver.getRole().equals("3")) {
-            tvTitleMentor.setText("Ahli Tani");
-        } else if (userReceiver.getRole().equals("2")) {
-            tvTitleMentor.setText("Mitra Tani");
-        }
+//        if (userReceiver.getRole().equals("3")) {
+//            tvTitleMentor.setText("Ahli Tani");
+//        } else if (userReceiver.getRole().equals("2")) {
+//            tvTitleMentor.setText("Mitra Tani");
+//        }
 
         //iv profile
         Picasso.get().load(userReceiver.getImage()).into(ivProfile);
@@ -116,6 +110,10 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     private void initialization() {
+        //Database Reference
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        usersRef = rootRef.child("Users");
+
         //view initialization
         tvNameMentor = findViewById(R.id.tvNameMentor);
         tvTitleMentor = findViewById(R.id.tvTitleMentor);
@@ -139,6 +137,38 @@ public class ChatRoomActivity extends AppCompatActivity {
         layoutManager.setStackFromEnd(true);
         rvChat.setLayoutManager(layoutManager);
         rvChat.setAdapter(chatMessageAdapter);
+
+        //database ref
+        messageRef = FirebaseDatabase.getInstance().getReference(KEY_COLLECTION_CHAT);
+
+    }
+
+    private void getProfileReceiver() {
+        usersRef.child(userReceiver.getUserId()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //check role
+                String role = snapshot.child("Role").getValue().toString();
+                //if role is user(1)
+                switch (role) {
+                    case "1":
+                        tvTitleMentor.setText("Pengguna");
+                        break;
+                    case "2":
+                        tvTitleMentor.setText("Petani Mitra");
+                        break;
+                    case "3":
+                        tvTitleMentor.setText("Ahli Tani");
+                        break;
+                    case "4":
+                        tvTitleMentor.setText("Admin");
+                        break;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
     }
 
     //function to send message
@@ -149,6 +179,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         chatMessagesModel.setReceiverId(userReceiver.getUserId());
         chatMessagesModel.setMessage(message);
         chatMessagesModel.setDateTime(getDateTime());
+        chatMessagesModel.setIsSenderRead(true);
+        chatMessagesModel.setIsReceiverRead(false);
 
         //save message to firebase
         FirebaseDatabase.getInstance().getReference()
@@ -186,6 +218,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                                     conversation.put(KEY_RECEIVER_IMAGE, userReceiver.getImage());
                                     conversation.put(KEY_LAST_MESSAGE, chatMessagesModel.getMessage());
                                     conversation.put(KEY_DATE_TIME, chatMessagesModel.getDateTime());
+                                    conversation.put(KEY_UNREAD_RECEIVER_COUNT, unReadCount + 1);
+                                    conversation.put(KEY_UNREAD_SENDER_COUNT, 0);
                                     addConversation(conversation);
                                 }
 
@@ -199,24 +233,41 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     private String getDateTime() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", new Locale("id", "ID"));
         Date date = new Date();
 
         return dateFormat.format(date);
     }
 
     private void listenMessages() {
-        FirebaseDatabase.getInstance().getReference(KEY_COLLECTION_CHAT).addValueEventListener(listener);
+        messageRef.addValueEventListener(listener);
     }
+
+    private int unReadCount = 0;
 
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             listChatMessages.clear();
+            unReadCount = 0;
+
             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                 ChatMessagesModel chatMessagesModel = dataSnapshot.getValue(ChatMessagesModel.class);
-                if (chatMessagesModel.getSenderId().equals(currentUserId) && chatMessagesModel.getReceiverId().equals(userReceiver.getUserId()) ||
-                        chatMessagesModel.getSenderId().equals(userReceiver.getUserId()) && chatMessagesModel.getReceiverId().equals(currentUserId)) {
+                if (chatMessagesModel.getSenderId().equals(currentUserId) && chatMessagesModel.getReceiverId().equals(userReceiver.getUserId())) {
+                    //count unread message
+                    if (!chatMessagesModel.getIsReceiverRead()) {
+                        unReadCount ++;
+                    }
+                    try {chatMessagesModel.setDateTime(setSimpleDate(chatMessagesModel.getDateTime()));}
+                    catch (ParseException e) {Log.d("ChatRoomActivity", "onDataChange: " + e.getMessage());}
+                    listChatMessages.add(chatMessagesModel);
+                } else if (chatMessagesModel.getSenderId().equals(userReceiver.getUserId()) && chatMessagesModel.getReceiverId().equals(currentUserId)) {
+                    //udate message to read
+                    if (!chatMessagesModel.getIsReceiverRead()) {
+                        updateReceiverReadMessage(dataSnapshot.getKey());
+                    }
+                    try {chatMessagesModel.setDateTime(setSimpleDate(chatMessagesModel.getDateTime()));}
+                    catch (ParseException e) {Log.d("ChatRoomActivity", "onDataChange: " + e.getMessage());}
                     listChatMessages.add(chatMessagesModel);
                 }
             }
@@ -232,11 +283,20 @@ public class ChatRoomActivity extends AppCompatActivity {
             if (conversationId == null) {
                 checkForConversation();
             }
+
         }
 
         @Override
         public void onCancelled(@NonNull DatabaseError error) {}
     };
+
+    private String setSimpleDate(String dateTime) throws ParseException {
+        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date1 = originalFormat.parse(dateTime);
+
+        SimpleDateFormat targetFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm", new Locale("id", "ID"));
+        return targetFormat.format(date1);
+    }
 
     void checkForConversation() {
         if (listChatMessages.size() != 0) {
@@ -255,6 +315,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     if (child.child(KEY_SENDER_ID).getValue().equals(currentUserId) && child.child(KEY_RECEIVER_ID).getValue().equals(userReceiver.getUserId()) ||
                             child.child(KEY_SENDER_ID).getValue().equals(userReceiver.getUserId()) && child.child(KEY_RECEIVER_ID).getValue().equals(currentUserId)) {
                         conversationId = child.getKey();
+                        senderConversationId = child.child(KEY_SENDER_ID).getValue().toString();
                         break;
                     }
                 }
@@ -276,9 +337,44 @@ public class ChatRoomActivity extends AppCompatActivity {
         conversation.put(KEY_LAST_MESSAGE, message);
         conversation.put(KEY_DATE_TIME, getDateTime());
 
+        if (currentUser.getUid().equals(senderConversationId)) {
+            conversation.put(KEY_UNREAD_RECEIVER_COUNT, unReadCount + 1);
+            conversation.put(KEY_UNREAD_SENDER_COUNT, 0);
+        } else {
+            conversation.put(KEY_UNREAD_RECEIVER_COUNT, 0);
+            conversation.put(KEY_UNREAD_SENDER_COUNT, unReadCount + 1);
+        }
+
         FirebaseDatabase.getInstance().getReference()
                 .child(KEY_COLLECTION_CONVERSATION)
                 .child(conversationId)
                 .updateChildren(conversation);
+    }
+
+    private void updateConversationCount(int count) {
+        DatabaseReference conversationRef = FirebaseDatabase.getInstance().getReference()
+                .child(KEY_COLLECTION_CONVERSATION)
+                .child(conversationId);
+        if (currentUser.getUid().equals(senderConversationId)) {
+            conversationRef.child(KEY_UNREAD_RECEIVER_COUNT)
+                    .setValue(count);
+        } else {
+            conversationRef.child(KEY_UNREAD_RECEIVER_COUNT)
+                    .setValue(count);
+        }
+    }
+
+    private void updateReceiverReadMessage(String key) {
+        FirebaseDatabase.getInstance().getReference()
+                .child(KEY_COLLECTION_CHAT)
+                .child(key)
+                .child("isReceiverRead")
+                .setValue(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        messageRef.removeEventListener(listener);
     }
 }

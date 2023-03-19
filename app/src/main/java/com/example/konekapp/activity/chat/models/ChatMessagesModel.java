@@ -1,19 +1,23 @@
 package com.example.konekapp.activity.chat.models;
 
 public class ChatMessagesModel {
-    String senderId, receiverId, message, dateTime, isRead;
+    String senderId, receiverId, message, dateTime;
+    Boolean isSenderRead, isReceiverRead;
 
-    public String conversionId, conversionName;
+    public String conversationId, conversationName, conversationImage, lastMessage;
+
+    public int unreadCount = 0;
 
     public ChatMessagesModel() {
     }
 
-    public ChatMessagesModel(String senderId, String receiverId, String message, String dateTime, String isRead) {
+    public ChatMessagesModel(String senderId, String receiverId, String message, String dateTime, Boolean isSenderRead, Boolean isReceiverRead) {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.message = message;
         this.dateTime = dateTime;
-        this.isRead = isRead;
+        this.isSenderRead = isSenderRead;
+        this.isReceiverRead = isReceiverRead;
     }
 
     public String getSenderId() {
@@ -48,11 +52,20 @@ public class ChatMessagesModel {
         this.dateTime = dateTime;
     }
 
-    public String getIsRead() {
-        return isRead;
+    public Boolean getIsSenderRead() {
+        return isSenderRead;
     }
 
-    public void setIsRead(String isRead) {
-        this.isRead = isRead;
+    public void setIsSenderRead(Boolean isSenderRead) {
+        this.isSenderRead = isSenderRead;
     }
+
+    public Boolean getIsReceiverRead() {
+        return isReceiverRead;
+    }
+
+    public void setIsReceiverRead(Boolean isReceiverRead) {
+        this.isReceiverRead = isReceiverRead;
+    }
+
 }

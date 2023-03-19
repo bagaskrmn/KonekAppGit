@@ -1,8 +1,10 @@
 package com.example.konekapp.activity.chat.chatroom;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.konekapp.R;
 import com.example.konekapp.activity.chat.models.ChatMessagesModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -20,6 +26,8 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
+
+    private ChatMessagesModel previousChatMessagesModel;
 
     public ChatMessageAdapter(ArrayList<ChatMessagesModel> listChatMessagesModel, String senderId) {
         this.listChatMessagesModel = listChatMessagesModel;
@@ -41,9 +49,17 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() == VIEW_TYPE_MESSAGE_SENT) {
-            ((SentMessageViewHolder) holder).bind(listChatMessagesModel.get(position));
+            if (position == 0) {
+                ((SentMessageViewHolder) holder).bind(null, listChatMessagesModel.get(position));
+            } else {
+                ((SentMessageViewHolder) holder).bind(listChatMessagesModel.get(position - 1), listChatMessagesModel.get(position));
+            }
         } else {
-            ((ReceivedMessageViewHolder) holder).bind(listChatMessagesModel.get(position));
+            if (position == 0) {
+                ((ReceivedMessageViewHolder) holder).bind(null, listChatMessagesModel.get(position));
+            } else {
+                ((ReceivedMessageViewHolder) holder).bind(listChatMessagesModel.get(position - 1), listChatMessagesModel.get(position));
+            }
         }
     }
 
@@ -62,32 +78,117 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     static class SentMessageViewHolder extends RecyclerView.ViewHolder {
-        TextView message, time;
+        TextView message, time, timeSeparator;
+        LinearLayout linearTime;
         public SentMessageViewHolder(@NonNull View itemView) {
             super(itemView);
             message = itemView.findViewById(R.id.tvSentMessage);
             time = itemView.findViewById(R.id.tvSentTime);
+            linearTime = itemView.findViewById(R.id.linear_item_bubble_time);
+            timeSeparator = linearTime.findViewById(R.id.tvTimeSeparator);
         }
 
-        void bind(ChatMessagesModel chatMessagesModel) {
-            message.setText(chatMessagesModel.getMessage());
-            time.setText(chatMessagesModel.getDateTime());
+        void bind(ChatMessagesModel previousMessage, ChatMessagesModel currentMessage) {
+            if (previousMessage != null) {
+                String date1 = previousMessage.getDateTime();
+                String date2 = currentMessage.getDateTime();
+                int timeComparator = 0;
+
+                try {
+                    timeComparator = compareTime(date1, date2);
+                } catch (ParseException e) {
+                    Log.d("ChatMessageAdapter", "bind: " + e.getMessage());
+                }
+
+                if (timeComparator == 0) {
+                    linearTime.setVisibility(View.GONE);
+                } else {
+                    linearTime.setVisibility(View.VISIBLE);
+                    try { timeSeparator.setText(getDateAndMonth(currentMessage.getDateTime()));}
+                    catch (ParseException e) { Log.d("ChatMessageAdapter", "bind: " + e.getMessage()); }
+                }
+            } else {
+                linearTime.setVisibility(View.VISIBLE);
+                try { timeSeparator.setText(getDateAndMonth(currentMessage.getDateTime()));
+                } catch (ParseException e) { Log.d("ChatMessageAdapter", "bind: " + e.getMessage()); }
+            }
+            message.setText(currentMessage.getMessage());
+            try {time.setText(getHours(currentMessage.getDateTime()));}
+            catch (ParseException e) { Log.d("ChatMessageAdapter", "bind: " + e.getMessage()); }
         }
     }
 
     static class ReceivedMessageViewHolder extends RecyclerView.ViewHolder {
-        TextView message, time;
+        TextView message, time, timeSeparator;
+        LinearLayout linearTime;
 
         public ReceivedMessageViewHolder(@NonNull View itemView) {
             super(itemView);
             message = itemView.findViewById(R.id.tvReceivedMessage);
             time = itemView.findViewById(R.id.tvReceivedTime);
+            linearTime = itemView.findViewById(R.id.linear_item_bubble_time);
+            timeSeparator = linearTime.findViewById(R.id.tvTimeSeparator);
         }
 
-        void bind(ChatMessagesModel chatMessagesModel) {
-            message.setText(chatMessagesModel.getMessage());
-            time.setText(chatMessagesModel.getDateTime());
+        void bind(ChatMessagesModel previousMessage, ChatMessagesModel currentMessage) {
+            if (previousMessage != null) {
+                String date1 = previousMessage.getDateTime();
+                String date2 = currentMessage.getDateTime();
+                int timeComparator = 0;
+
+                try {
+                    timeComparator = compareTime(date1, date2);
+                } catch (ParseException e) {
+                    Log.d("ChatMessageAdapter", "bind: " + e.getMessage());
+                }
+
+                if (timeComparator == 0) {
+                    linearTime.setVisibility(View.GONE);
+                } else {
+                    linearTime.setVisibility(View.VISIBLE);
+                    try { timeSeparator.setText(getDateAndMonth(currentMessage.getDateTime()));
+                    } catch (ParseException e) { Log.d("ChatMessageAdapter", "bind: " + e.getMessage()); }
+                }
+            } else {
+                linearTime.setVisibility(View.VISIBLE);
+                try { timeSeparator.setText(getDateAndMonth(currentMessage.getDateTime()));
+                } catch (ParseException e) { Log.d("ChatMessageAdapter", "bind: " + e.getMessage()); }
+            }
+            message.setText(currentMessage.getMessage());
+            try {time.setText(getHours(currentMessage.getDateTime()));}
+            catch (ParseException e) { Log.d("ChatMessageAdapter", "bind: " + e.getMessage()); }
         }
     }
 
+    private static int compareTime(String stringDate1, String stringDate2) throws ParseException {
+        SimpleDateFormat originalFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm", new Locale("id", "ID"));
+        Date date1 = originalFormat.parse(stringDate1);
+        Date date2 = originalFormat.parse(stringDate2);
+
+        SimpleDateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String targetDateString1 = targetFormat.format(date1);
+        String targetDateString2 = targetFormat.format(date2);
+
+        return targetFormat.parse(targetDateString1).compareTo(targetFormat.parse(targetDateString2));
+    }
+
+    private static String getDateAndMonth(String stringDate) throws ParseException {
+        SimpleDateFormat originalFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm", new Locale("id", "ID"));
+        Date date = originalFormat.parse(stringDate);
+
+        SimpleDateFormat targetFormat = new SimpleDateFormat("dd MMM yyyy", new Locale("id", "ID"));
+        String targetDateString = targetFormat.format(date);
+
+        return targetDateString;
+    }
+
+    private static String getHours(String stringDate) throws ParseException {
+        SimpleDateFormat originalFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm", new Locale("id", "ID"));
+        Date date = originalFormat.parse(stringDate);
+
+        SimpleDateFormat targetFormat = new SimpleDateFormat("HH:mm", new Locale("id", "ID"));
+        String targetDateString = targetFormat.format(date);
+
+        return targetDateString;
+    }
 }

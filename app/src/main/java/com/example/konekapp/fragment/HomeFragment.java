@@ -25,6 +25,7 @@ import com.example.konekapp.activity.ArtikelAdapter;
 import com.example.konekapp.activity.ArtikelModel;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.chat.ConsultationActivity;
+import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
 import com.example.konekapp.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -167,6 +168,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //add chat with mitra activity here
+                Intent intent = new Intent(requireContext(), MitraConsultationActivity.class);
+                startActivity(intent);
             }
         });
 

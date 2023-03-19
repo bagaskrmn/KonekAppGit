@@ -72,7 +72,10 @@
                 android:id="@+id/linearBadge"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
                 android:gravity="center"
+                android:visibility="gone"
+                tools:visibility="visible"
                 android:background="@drawable/btn_bg">
 
                 <TextView

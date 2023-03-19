@@ -1,6 +1,16 @@
-package com.example.konekapp.activity.chat;
+package com.example.konekapp.activity.chatmitra;
 
-import static com.example.konekapp.activity.chat.helper.Constants.*;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_COLLECTION_CONVERSATION;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_DATE_TIME;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_LAST_MESSAGE;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_RECEIVER_ID;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_RECEIVER_IMAGE;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_RECEIVER_NAME;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_SENDER_ID;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_SENDER_IMAGE;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_SENDER_NAME;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_UNREAD_RECEIVER_COUNT;
+import static com.example.konekapp.activity.chat.helper.Constants.KEY_UNREAD_SENDER_COUNT;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
+import com.example.konekapp.activity.chat.ChatRoomActivity;
 import com.example.konekapp.activity.chat.addconsultation.UserListener;
 import com.example.konekapp.activity.chat.consultation.ConversationListener;
 import com.example.konekapp.activity.chat.consultation.RecentConversationAdapter;
@@ -31,7 +42,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ConsultationActivity extends AppCompatActivity implements ConversationListener {
+public class MitraConsultationActivity extends AppCompatActivity implements ConversationListener {
 
     ImageView btnBack;
     LinearLayout btnAddNewConsultation;
@@ -52,7 +63,9 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
         rvConversation = findViewById(R.id.rvConversation);
 
         //initialization
+        btnAddNewConsultation.setVisibility(View.GONE);
         init();
+
         //listen conversation
         listenConversation();
 
@@ -63,13 +76,13 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
             }
         });
 
-        btnAddNewConsultation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ConsultationActivity.this, TambahKonsultasiActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btnAddNewConsultation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MitraConsultationMActivity.this, TambahKonsultasiActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     void init() {
@@ -100,13 +113,11 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
                     Integer unreadSenderCount = dataSnapshot.child(KEY_UNREAD_SENDER_COUNT).getValue(Integer.class);
                     Integer unreadReceiverCount = dataSnapshot.child(KEY_UNREAD_RECEIVER_COUNT).getValue(Integer.class);
 
-                    //create chat model
                     ChatMessagesModel chatMessagesModel = new ChatMessagesModel();
                     chatMessagesModel.setSenderId(senderId);
                     chatMessagesModel.setReceiverId(receiverId);
                     chatMessagesModel.lastMessage = message;
                     chatMessagesModel.setDateTime(dateTime);
-                    chatMessagesModel.conversationId = dataSnapshot.getKey();
 
                     if (currentUserId.equals(senderId)) {
                         chatMessagesModel.conversationId = dataSnapshot.child(KEY_RECEIVER_ID).getValue(String.class);
@@ -135,7 +146,7 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
 
     @Override
     public void onConversationClick(String conversationId, UserModel user) {
-        Intent intent = new Intent(ConsultationActivity.this, ChatRoomActivity.class);
+        Intent intent = new Intent(MitraConsultationActivity.this, ChatRoomActivity.class);
         intent.putExtra("conversationId", conversationId);
         intent.putExtra("user", user);
         startActivity(intent);

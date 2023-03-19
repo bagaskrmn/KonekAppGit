@@ -1,5 +1,6 @@
 package com.example.konekapp.activity.chat.consultation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
+import com.example.konekapp.activity.chat.addconsultation.UserListener;
 import com.example.konekapp.activity.chat.models.ChatMessagesModel;
+import com.example.konekapp.activity.chat.models.UserModel;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConversationAdapter.ViewHolder> {
 
     private final List<ChatMessagesModel> listMessage;
+    private ConversationListener conversationListener;
+    private String currentId;
 
-    public RecentConversationAdapter(List<ChatMessagesModel> listMessage) {
+    public RecentConversationAdapter(String currentId, List<ChatMessagesModel> listMessage, ConversationListener conversationListener) {
+        this.currentId = currentId;
         this.listMessage = listMessage;
+        this.conversationListener = conversationListener;
     }
 
     @NonNull
@@ -58,9 +70,33 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
         }
 
         void bind(ChatMessagesModel dataConversation) {
-            tvConversationName.setText(dataConversation.conversionName);
-            tvMessage.setText(dataConversation.getMessage());
-            tvTime.setText(dataConversation.getDateTime());
+            tvConversationName.setText(dataConversation.conversationName);
+            tvMessage.setText(dataConversation.lastMessage);
+            try {
+                tvTime.setText(getTime(dataConversation.getDateTime()));
+            } catch (ParseException e) {
+                Log.d("RecentConversationAdapter", "bind: " + e.getMessage());
+            }
+            Picasso.get().load(dataConversation.conversationImage).into(ivConversation);
+
+            if (dataConversation.unreadCount == 0) {
+                linearBadge.setVisibility(View.GONE);
+            } else {
+                linearBadge.setVisibility(View.VISIBLE);
+                tvBadge.setText(String.valueOf(dataConversation.unreadCount));
+            }
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UserModel user = new UserModel();
+                    user.setUserId(dataConversation.conversationId);
+                    user.setNama(dataConversation.conversationName);
+                    user.setImage(dataConversation.conversationImage);
+                    conversationListener.onConversationClick(dataConversation.conversationId, user);
+                }
+            });
+
 //            if (dataConversation.getBadge() == 0) {
 //                linearBadge.setVisibility(View.GONE);
 //            } else {
@@ -68,5 +104,25 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
 //                tvBadge.setText(String.valueOf(dataConversation.getBadge()));
 //            }
         }
+    }
+
+    private static String getTime(String stringDate) throws ParseException {
+        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = originalFormat.parse(stringDate);
+
+        SimpleDateFormat targetFormatDate = new SimpleDateFormat("dd MMM", new Locale("id", "ID"));
+        String targetDateString = targetFormatDate.format(date);
+
+        SimpleDateFormat targetFormatTime = new SimpleDateFormat("HH:mm", new Locale("id", "ID"));
+        String targetTimeString = targetFormatTime.format(date);
+
+        Date today = new Date();
+
+        if (targetDateString.equals(targetFormatDate.format(today))) {
+            return targetTimeString;
+        } else {
+            return targetDateString;
+        }
+
     }
 }
