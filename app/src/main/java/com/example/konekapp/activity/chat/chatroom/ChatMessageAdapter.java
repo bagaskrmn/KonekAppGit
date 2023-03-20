@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -80,12 +81,14 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     static class SentMessageViewHolder extends RecyclerView.ViewHolder {
         TextView message, time, timeSeparator;
         LinearLayout linearTime;
+        ImageView ivSentMessageStatus;
         public SentMessageViewHolder(@NonNull View itemView) {
             super(itemView);
             message = itemView.findViewById(R.id.tvSentMessage);
             time = itemView.findViewById(R.id.tvSentTime);
             linearTime = itemView.findViewById(R.id.linear_item_bubble_time);
             timeSeparator = linearTime.findViewById(R.id.tvTimeSeparator);
+            ivSentMessageStatus = itemView.findViewById(R.id.icCheckReadSender);
         }
 
         void bind(ChatMessagesModel previousMessage, ChatMessagesModel currentMessage) {
@@ -115,12 +118,19 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             message.setText(currentMessage.getMessage());
             try {time.setText(getHours(currentMessage.getDateTime()));}
             catch (ParseException e) { Log.d("ChatMessageAdapter", "bind: " + e.getMessage()); }
+
+            if (currentMessage.getIsReceiverRead()) {
+                ivSentMessageStatus.setColorFilter(itemView.getContext().getResources().getColor(R.color.check_active, null));
+            } else {
+                ivSentMessageStatus.setColorFilter(itemView.getContext().getResources().getColor(R.color.neutral_dark, null));
+            }
         }
     }
 
     static class ReceivedMessageViewHolder extends RecyclerView.ViewHolder {
         TextView message, time, timeSeparator;
         LinearLayout linearTime;
+        ImageView ivSentMessageStatus;
 
         public ReceivedMessageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -128,6 +138,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             time = itemView.findViewById(R.id.tvReceivedTime);
             linearTime = itemView.findViewById(R.id.linear_item_bubble_time);
             timeSeparator = linearTime.findViewById(R.id.tvTimeSeparator);
+            ivSentMessageStatus = itemView.findViewById(R.id.icCheckReadReceiver);
         }
 
         void bind(ChatMessagesModel previousMessage, ChatMessagesModel currentMessage) {
@@ -157,6 +168,12 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             message.setText(currentMessage.getMessage());
             try {time.setText(getHours(currentMessage.getDateTime()));}
             catch (ParseException e) { Log.d("ChatMessageAdapter", "bind: " + e.getMessage()); }
+
+            if (currentMessage.getIsReceiverRead()) {
+                ivSentMessageStatus.setColorFilter(itemView.getContext().getResources().getColor(R.color.check_active, null));
+            } else {
+                ivSentMessageStatus.setColorFilter(itemView.getContext().getResources().getColor(R.color.neutral_dark, null));
+            }
         }
     }
 

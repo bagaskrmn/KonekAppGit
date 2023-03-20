@@ -4,7 +4,7 @@ public class ChatMessagesModel {
     String senderId, receiverId, message, dateTime;
     Boolean isSenderRead, isReceiverRead;
 
-    public String conversationId, conversationName, conversationImage, lastMessage;
+    public String conversationKey, conversationId, conversationName, conversationImage, lastMessage;
 
     public int unreadCount = 0;
 

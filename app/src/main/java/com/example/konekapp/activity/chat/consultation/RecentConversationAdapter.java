@@ -93,7 +93,7 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
                     user.setUserId(dataConversation.conversationId);
                     user.setNama(dataConversation.conversationName);
                     user.setImage(dataConversation.conversationImage);
-                    conversationListener.onConversationClick(dataConversation.conversationId, user);
+                    conversationListener.onConversationClick(dataConversation, user);
                 }
             });
 

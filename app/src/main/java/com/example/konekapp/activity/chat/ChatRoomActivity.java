@@ -276,6 +276,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 chatMessageAdapter.notifyDataSetChanged();
             } else {
                 chatMessageAdapter.notifyItemRangeInserted(listChatMessages.size(), listChatMessages.size());
+                chatMessageAdapter.notifyDataSetChanged();
                 rvChat.smoothScrollToPosition(listChatMessages.size() - 1);
             }
 
@@ -349,19 +350,6 @@ public class ChatRoomActivity extends AppCompatActivity {
                 .child(KEY_COLLECTION_CONVERSATION)
                 .child(conversationId)
                 .updateChildren(conversation);
-    }
-
-    private void updateConversationCount(int count) {
-        DatabaseReference conversationRef = FirebaseDatabase.getInstance().getReference()
-                .child(KEY_COLLECTION_CONVERSATION)
-                .child(conversationId);
-        if (currentUser.getUid().equals(senderConversationId)) {
-            conversationRef.child(KEY_UNREAD_RECEIVER_COUNT)
-                    .setValue(count);
-        } else {
-            conversationRef.child(KEY_UNREAD_RECEIVER_COUNT)
-                    .setValue(count);
-        }
     }
 
     private void updateReceiverReadMessage(String key) {

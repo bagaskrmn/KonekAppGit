@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class ConsultationActivity extends AppCompatActivity implements ConversationListener {
@@ -106,7 +107,7 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
                     chatMessagesModel.setReceiverId(receiverId);
                     chatMessagesModel.lastMessage = message;
                     chatMessagesModel.setDateTime(dateTime);
-                    chatMessagesModel.conversationId = dataSnapshot.getKey();
+                    chatMessagesModel.conversationKey = dataSnapshot.getKey();
 
                     if (currentUserId.equals(senderId)) {
                         chatMessagesModel.conversationId = dataSnapshot.child(KEY_RECEIVER_ID).getValue(String.class);
@@ -133,10 +134,28 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
         public void onCancelled(@NonNull DatabaseError error) {}
     };
 
+    private void updateConversationCount(String conversationId, String child, int count) {
+        HashMap<String, Object> conversation = new HashMap<>();
+        conversation.put(child, count);
+
+        DatabaseReference conversationRef = FirebaseDatabase.getInstance().getReference()
+                .child(KEY_COLLECTION_CONVERSATION)
+                .child(conversationId);
+
+        conversationRef.updateChildren(conversation);
+
+    }
+
     @Override
-    public void onConversationClick(String conversationId, UserModel user) {
+    public void onConversationClick(ChatMessagesModel chatMessage, UserModel user) {
+        if (chatMessage.getSenderId().equals(currentUserId)) {
+            //update count unread
+            updateConversationCount(chatMessage.conversationKey, KEY_UNREAD_SENDER_COUNT, 0);
+        } else {
+            //update count unread
+            updateConversationCount(chatMessage.conversationKey, KEY_UNREAD_RECEIVER_COUNT, 0);
+        }
         Intent intent = new Intent(ConsultationActivity.this, ChatRoomActivity.class);
-        intent.putExtra("conversationId", conversationId);
         intent.putExtra("user", user);
         startActivity(intent);
     }

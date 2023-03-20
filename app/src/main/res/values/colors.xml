@@ -21,4 +21,6 @@
     <color name="line_focused">#A9B4CD</color>
     <color name="line_default">#A9B4CD</color>
 
+    <color name="check_active">#009CEA</color>
+
 </resources>
