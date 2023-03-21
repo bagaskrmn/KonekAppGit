@@ -3,6 +3,7 @@ package com.example.konekapp.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +38,8 @@ public class DetailArtikelActivity extends AppCompatActivity {
     private DatabaseReference artikelRef, rootRef, usersRef;
     private StorageReference ArtikelImagesRef, artikelPath;
 
+    private ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +64,15 @@ public class DetailArtikelActivity extends AppCompatActivity {
         ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("Artikel Images");
         artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
 
+        //init progress dialog
+        pd = new ProgressDialog(this);
+        pd.setTitle("Please wait...");
+        pd.setCanceledOnTouchOutside(false);
+
         //retrieve Key for artikel from Adapter
         Intent intent = getIntent();
         DetailKey = intent.getStringExtra("Key");
+        //error right here
         if (DetailKey.isEmpty()) {
             Intent i = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -101,9 +110,20 @@ public class DetailArtikelActivity extends AppCompatActivity {
             }
         });
 
+        BtnEditArtikel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent EditArtikelIntent = new Intent(DetailArtikelActivity.this, EditArtikelActivity.class);
+                EditArtikelIntent.putExtra("Key", DetailKey);
+                startActivity(EditArtikelIntent);
+            }
+        });
+
         BtnDeleteArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pd.setMessage("Menghapus Artikel");
+                pd.show();
                 artikelRef.child(DetailKey).removeEventListener(listener);
                 artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
                 artikelPath.delete();
@@ -112,12 +132,15 @@ public class DetailArtikelActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            pd.setMessage("Artikel terhapus");
+                            pd.show();
                             Intent backToArtikel = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
                             backToArtikel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(backToArtikel);
                             finish();
                         }
                         else {
+                            pd.dismiss();
                             String message = task.getException().toString();
                             Toast.makeText(DetailArtikelActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
                         }

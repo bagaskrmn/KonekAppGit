@@ -49,7 +49,6 @@ public class FullArtikelAdapter extends RecyclerView.Adapter<FullArtikelAdapter.
                 context.startActivity(detailArtikelIntent);
             }
         });
-
     }
 
     @Override
@@ -57,19 +56,15 @@ public class FullArtikelAdapter extends RecyclerView.Adapter<FullArtikelAdapter.
         return list.size();
     }
 
-
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView FullTitleArtikel, FullSourceArtikel, FullDateArtikel;
         ImageView FullImageArtikel;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             FullTitleArtikel = itemView.findViewById(R.id.fullTitleArtikel);
             FullSourceArtikel = itemView.findViewById(R.id.fullSourceArtikel);
             FullDateArtikel = itemView.findViewById(R.id.fullDateArtikel);
             FullImageArtikel = itemView.findViewById(R.id.fullImageArtikel);
-
         }
     }
 }

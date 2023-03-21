@@ -75,6 +75,13 @@ public class AddArtikelActivity extends AppCompatActivity {
 
         artikelId = rootRef.push().getKey();
 
+        AddArtikelBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddArtikelActivity.super.onBackPressed();
+            }
+        });
+
         //Open Gallery and Crop
         AddImageArtikel.setOnClickListener(new View.OnClickListener() {
             @Override

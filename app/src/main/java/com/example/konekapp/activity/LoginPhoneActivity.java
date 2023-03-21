@@ -337,7 +337,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                         DatabaseReference usersRef = rootRef.child("Users");
                         HashMap<String, Object> profileMap = new HashMap<>();
                         //Hanya untuk memunculkan UserID di child Users
-                        profileMap.put("UserID", currentUserId);
+                        profileMap.put("Nomor HP", phoneNumber);
                         usersRef.child(currentUserId).updateChildren(profileMap).
                                 addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

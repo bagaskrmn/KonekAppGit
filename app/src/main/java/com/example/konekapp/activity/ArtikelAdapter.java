@@ -17,10 +17,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.MyViewHolder> {
-
     Context context;
     ArrayList<ArtikelModel> list;
-
 
     public ArtikelAdapter(Context context, ArrayList<ArtikelModel> list) {
         this.context = context;
@@ -49,10 +47,8 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.MyViewHo
                 Intent detailArtikelIntent = new Intent(context, DetailArtikelActivity.class);
                 detailArtikelIntent.putExtra("Key", artikel.Key);
                 context.startActivity(detailArtikelIntent);
-
             }
         });
-
     }
 
     @Override
@@ -63,10 +59,8 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.MyViewHo
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView TitleArtikel, SourceArtikel, DateArtikel;
         ImageView ImageArtikel;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             TitleArtikel = itemView.findViewById(R.id.titleArtikel);
             SourceArtikel = itemView.findViewById(R.id.sourceArtikel);
             DateArtikel = itemView.findViewById(R.id.dateArtikel);
