@@ -45,8 +45,8 @@ public class EditArtikelActivity extends AppCompatActivity {
     private DatabaseReference rootRef, artikelRef;
     private ProgressDialog pd;
 
-    private Calendar calendar;
-    private SimpleDateFormat dateFormat;
+//    private Calendar calendar;
+//    private SimpleDateFormat dateFormat;
     private String date, artikelImageUrl, DetailKey;
 
     private Uri resultUri;
@@ -69,9 +69,9 @@ public class EditArtikelActivity extends AppCompatActivity {
         pd.setCanceledOnTouchOutside(false);
 
         //date
-        calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        date = dateFormat.format(calendar.getTime());
+//        calendar = Calendar.getInstance();
+//        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        date = dateFormat.format(calendar.getTime());
 
         //database and storage
         rootRef = FirebaseDatabase.getInstance().getReference();

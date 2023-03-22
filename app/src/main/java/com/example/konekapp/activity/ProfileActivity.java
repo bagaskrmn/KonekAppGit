@@ -74,8 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
         ProfBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backtoSettings = new Intent(ProfileActivity.this, SettingActivity.class);
-                startActivity(backtoSettings);
+                ProfileActivity.super.onBackPressed();
             }
         });
 

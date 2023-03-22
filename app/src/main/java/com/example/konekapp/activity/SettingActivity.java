@@ -66,8 +66,7 @@ public class SettingActivity extends AppCompatActivity {
         SettingBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent SettingBackAction = new Intent(SettingActivity.this, MainActivity.class);
-                startActivity(SettingBackAction);
+                SettingActivity.super.onBackPressed();
             }
         });
 
@@ -112,7 +111,7 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 firebaseAuth.signOut();
                 //error
-                Intent signOutIntent = new Intent(SettingActivity.this, HomeScreenActivity.class);
+                Intent signOutIntent = new Intent(SettingActivity.this, LoginPhoneActivity.class);
                 signOutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(signOutIntent);
 

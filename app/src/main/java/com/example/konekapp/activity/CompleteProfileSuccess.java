@@ -25,6 +25,7 @@ public class CompleteProfileSuccess extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent nextCompleteIntent = new Intent(CompleteProfileSuccess.this, MainActivity.class);
+                nextCompleteIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(nextCompleteIntent);
             }
         });

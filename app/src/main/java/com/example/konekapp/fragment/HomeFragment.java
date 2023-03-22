@@ -31,6 +31,7 @@ import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.chat.ConsultationActivity;
 import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
 import com.example.konekapp.databinding.FragmentHomeBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -183,8 +184,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //if pressed, go to account fragment
+//                BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottomNav);
+//                bottomNav.setSelectedItemId(R.id.account);
 //                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                fragmentTransaction.replace(R.id.container, accountFragment).commit();
+
+
+
 
                 //if pressed, go to profile
                 if (role.equals("2")) {

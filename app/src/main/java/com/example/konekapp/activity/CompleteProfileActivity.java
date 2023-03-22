@@ -102,8 +102,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         CompleteBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent CompleteToHome = new Intent(CompleteProfileActivity.this, HomeScreenActivity.class);
-                startActivity(CompleteToHome);
+                CompleteProfileActivity.super.onBackPressed();
             }
         });
 
@@ -208,6 +207,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
                                                     Intent CompleteProfileDoneIntent = new Intent(CompleteProfileActivity.this, CompleteProfileSuccess.class);
+                                                    CompleteProfileDoneIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                     startActivity(CompleteProfileDoneIntent);
                                                 }
                                                 else {

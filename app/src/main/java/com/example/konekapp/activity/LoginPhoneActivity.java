@@ -84,11 +84,14 @@ public class LoginPhoneActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
 
+        LoginBackAction.setVisibility(View.GONE);
+
         LoginBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toHomeIntent = new Intent(LoginPhoneActivity.this, HomeScreenActivity.class);
-                startActivity(toHomeIntent);
+                binding.phoneLl.setVisibility(View.VISIBLE);
+                binding.codeLl.setVisibility(View.GONE);
+                LoginBackAction.setVisibility(View.GONE);
             }
         });
 
@@ -182,6 +185,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 //show OTP code Layout
                 binding.phoneLl.setVisibility(View.GONE);
                 binding.codeLl.setVisibility(View.VISIBLE);
+                LoginBackAction.setVisibility(View.VISIBLE);
 
                 Toast.makeText(LoginPhoneActivity.this, "Verification code sent", Toast.LENGTH_SHORT).show();
 

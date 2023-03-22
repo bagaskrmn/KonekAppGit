@@ -166,7 +166,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         String updatedAddress = UpdateProfAddress.getText().toString();
         String updatedDetailAddress = UpdateProfDetailAddress.getText().toString();
 
-        if (TextUtils.isEmpty(updatedName) || TextUtils.isEmpty(updatedAddress) || TextUtils.isEmpty((updatedDetailAddress))) {
+        if (TextUtils.isEmpty(updatedName) || TextUtils.isEmpty(updatedAddress) || TextUtils.isEmpty(updatedDetailAddress)) {
             Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -187,8 +187,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                         Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
-                        toProfileIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(toProfileIntent);
+                        finish();
 
                     }
                     else {

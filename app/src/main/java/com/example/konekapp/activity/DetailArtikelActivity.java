@@ -75,8 +75,8 @@ public class DetailArtikelActivity extends AppCompatActivity {
         //error right here
         if (DetailKey== null) {
             Intent i = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
+            finish();
         } else {
             artikelRef.child(DetailKey).addValueEventListener(listener);
         }
@@ -106,7 +106,9 @@ public class DetailArtikelActivity extends AppCompatActivity {
         BackActionDetailArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailArtikelActivity.super.onBackPressed();
+                Intent BackActionDetailIntent = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
+                startActivity(BackActionDetailIntent);
+                finish();
             }
         });
 
@@ -132,10 +134,10 @@ public class DetailArtikelActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            pd.dismiss();
                             pd.setMessage("Artikel terhapus");
                             pd.show();
                             Intent backToArtikel = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
-                            backToArtikel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(backToArtikel);
                             finish();
                         }
