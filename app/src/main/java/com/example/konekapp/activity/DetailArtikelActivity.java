@@ -73,7 +73,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
         Intent intent = getIntent();
         DetailKey = intent.getStringExtra("Key");
         //error right here
-        if (DetailKey.isEmpty()) {
+        if (DetailKey== null) {
             Intent i = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);

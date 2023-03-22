@@ -49,7 +49,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String currentUserId, phoneNumber, profileUrl;
+    private String currentUserId, phoneNumber, profileUrl, removedPhoneNumber;
     private ProgressDialog pd;
     private StorageReference UserProfileImagesRef, filePath;
 
@@ -77,6 +77,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         phoneNumber = currentUser.getPhoneNumber();
+        removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
         UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
@@ -97,7 +98,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 UpdateProfName.setText(retrieveName);
                 UpdateProfAddress.setText(retrieveAddress);
                 UpdateProfDetailAddress.setText(retrieveDetailAddress);
-                UpdatePhoneNumber.setText(phoneNumber);
+                UpdatePhoneNumber.setText(removedPhoneNumber);
                 Picasso.get().load(retrieveImage).into(UpdateProfImage);
 
                 //retrieveImage is Url from database which is linked to storage
@@ -186,8 +187,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                         Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
+                        toProfileIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(toProfileIntent);
-                        finish();
+
                     }
                     else {
                         String message = task.getException().toString();

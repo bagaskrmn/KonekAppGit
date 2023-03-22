@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +25,8 @@ import com.example.konekapp.R;
 import com.example.konekapp.activity.ArtikelActivity;
 import com.example.konekapp.activity.ArtikelAdapter;
 import com.example.konekapp.activity.ArtikelModel;
+import com.example.konekapp.activity.MitraProfileActivity;
+import com.example.konekapp.activity.ProfileActivity;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.chat.ConsultationActivity;
 import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
@@ -47,7 +51,7 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef, artikelRef;
-    private String currentUserId;
+    private String currentUserId, role;
     private ConstraintLayout ConstraintRegister, ConstraintKonsultasi, ConstraintChatMitra;
     private ProgressDialog pd;
     private TextView BtnFullArtikel;
@@ -56,6 +60,8 @@ public class HomeFragment extends Fragment {
     private ArrayList<ArtikelModel> list;
     private ArtikelAdapter adapter;
     private RecyclerView recyclerView;
+
+    AccountFragment accountFragment = new AccountFragment();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,7 +115,7 @@ public class HomeFragment extends Fragment {
 
 
                 //chek role
-                String role = snapshot.child("Role").getValue().toString();
+                role = snapshot.child("Role").getValue().toString();
 
                 //if role is user (1)
                 if (role.equals("1")) {
@@ -170,6 +176,25 @@ public class HomeFragment extends Fragment {
                 //add chat with mitra activity here
                 Intent intent = new Intent(requireContext(), MitraConsultationActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        AccImageHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //if pressed, go to account fragment
+//                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.container, accountFragment).commit();
+
+                //if pressed, go to profile
+                if (role.equals("2")) {
+                    Intent mitraProfile = new Intent(getActivity(), MitraProfileActivity.class);
+                    startActivity(mitraProfile);
+                }
+                else {
+                    Intent profileIntent = new Intent(getActivity(), ProfileActivity.class);
+                    startActivity(profileIntent);
+                }
             }
         });
 

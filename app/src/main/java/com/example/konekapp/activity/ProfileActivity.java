@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.fragment.AccountFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +37,8 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference rootRef, usersRef;
     private String currentUserId, phoneNumber, removedPhoneNumber;
     private ProgressDialog pd;
+
+    AccountFragment accountFragment= new AccountFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,8 @@ public class ProfileActivity extends AppCompatActivity {
         ProfBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProfileActivity.super.onBackPressed();
+                Intent backtoSettings = new Intent(ProfileActivity.this, SettingActivity.class);
+                startActivity(backtoSettings);
             }
         });
 

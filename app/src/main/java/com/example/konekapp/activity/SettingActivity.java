@@ -66,7 +66,8 @@ public class SettingActivity extends AppCompatActivity {
         SettingBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SettingActivity.super.onBackPressed();
+                Intent SettingBackAction = new Intent(SettingActivity.this, MainActivity.class);
+                startActivity(SettingBackAction);
             }
         });
 
