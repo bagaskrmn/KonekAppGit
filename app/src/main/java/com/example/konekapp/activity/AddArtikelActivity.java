@@ -88,6 +88,7 @@ public class AddArtikelActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(2,1)
                         .start(AddArtikelActivity.this);
             }
         });
@@ -161,12 +162,12 @@ public class AddArtikelActivity extends AppCompatActivity {
                                                 Toast.makeText(AddArtikelActivity.this, "Artikel Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                                                 Intent addArtikelDone = new Intent(AddArtikelActivity.this, ArtikelActivity.class);
                                                 startActivity(addArtikelDone);
+                                                finish();
                                             }
                                             else {
                                                 String message = task.getException().toString();
                                                 Toast.makeText(AddArtikelActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                             }
-
                                         }
                                     });
                         }

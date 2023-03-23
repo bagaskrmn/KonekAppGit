@@ -109,7 +109,7 @@
             <ImageView
                 android:id="@+id/addImageArtikel"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="180dp"
                 android:src="@drawable/ic_baseline_add_24"
                 android:layout_marginBottom="10dp"
                 />

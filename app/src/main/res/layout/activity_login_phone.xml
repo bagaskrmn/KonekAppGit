@@ -179,6 +179,44 @@
             tools:ignore="SpeakableTextPresentCheck"
             />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mohon tunggu "
+                android:textColor="@color/neutral_dark4"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="16sp"
+                android:layout_marginRight="2dp"
+                />
+
+            <TextView
+                android:id="@+id/countDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="60"
+                android:textStyle="bold"
+                android:textColor="@color/neutral_dark4"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="16sp"
+                android:layout_marginRight="2dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="detik"
+                android:textColor="@color/neutral_dark4"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="16sp"
+                />
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/resendOTP"
             android:layout_width="match_parent"

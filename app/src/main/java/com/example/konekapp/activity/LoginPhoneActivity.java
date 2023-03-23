@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -56,6 +57,8 @@ public class LoginPhoneActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference rootRef, usersRef, currentUserRef;
     private ProgressDialog pd;
+
+    public int counter;
 
 
     @Override

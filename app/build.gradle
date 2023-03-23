@@ -51,6 +51,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    //for get Data JSON
+    implementation 'com.squareup.okhttp:okhttp:2.5.0'
+
     //pinViewForOTP
     implementation 'io.github.chaosleung:pinview:1.4.4'
 

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import com.example.konekapp.activity.ArtikelModel;
 import com.example.konekapp.activity.MitraProfileActivity;
 import com.example.konekapp.activity.ProfileActivity;
 import com.example.konekapp.activity.RegisterMitraActivity;
+import com.example.konekapp.activity.TanamanActivity;
 import com.example.konekapp.activity.chat.ConsultationActivity;
 import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
 import com.example.konekapp.databinding.FragmentHomeBinding;
@@ -54,6 +56,7 @@ public class HomeFragment extends Fragment {
     private DatabaseReference rootRef, usersRef, artikelRef;
     private String currentUserId, role;
     private ConstraintLayout ConstraintRegister, ConstraintKonsultasi, ConstraintChatMitra;
+    private LinearLayout BtnPenyakitTanaman, BtnObatTanaman;
     private ProgressDialog pd;
     private TextView BtnFullArtikel;
 
@@ -86,6 +89,8 @@ public class HomeFragment extends Fragment {
         BtnKonsultasi = (Button)getView().findViewById(R.id.btnKonsultasi);
         BtnFullArtikel = (TextView)getView().findViewById(R.id.btnFullArtikel);
         BtnChatMitra = (Button)getView().findViewById(R.id.btnChatMitra);
+        BtnPenyakitTanaman = (LinearLayout)getView().findViewById(R.id.btnPenyakitTanaman);
+        BtnObatTanaman = (LinearLayout)getView().findViewById(R.id.btnObatTanaman);
 
         ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
         ConstraintKonsultasi = (ConstraintLayout)getView().findViewById(R.id.constraintKonsultasi);
@@ -189,9 +194,6 @@ public class HomeFragment extends Fragment {
 //                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                fragmentTransaction.replace(R.id.container, accountFragment).commit();
 
-
-
-
                 //if pressed, go to profile
                 if (role.equals("2")) {
                     Intent mitraProfile = new Intent(getActivity(), MitraProfileActivity.class);
@@ -226,6 +228,22 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent fullArtikel = new Intent(getActivity(), ArtikelActivity.class);
                 startActivity(fullArtikel);
+            }
+        });
+
+        BtnPenyakitTanaman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tanamanIntent = new Intent(getActivity(), TanamanActivity.class);
+                startActivity(tanamanIntent);
+            }
+        });
+
+        BtnObatTanaman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tanamanIntent = new Intent(getActivity(), TanamanActivity.class);
+                startActivity(tanamanIntent);
             }
         });
     }

@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ArtikelActivity"
+    tools:context=".activity.TanamanActivity"
     android:padding="16dp"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-<!--    artikel action bar-->
+<!--    Tanaman ActionBar-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +16,7 @@
         android:layout_marginBottom="20dp"
         >
         <ImageView
-            android:id="@+id/artikelBackAction"
+            android:id="@+id/tanamanBackAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
@@ -26,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Artikel"
+            android:text="Jenis Tanaman"
             android:fontFamily="@font/outfit_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"
@@ -39,25 +38,22 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnAddArtikel"
+        android:id="@+id/btnAddTanaman"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_bg"
         android:backgroundTint="@null"
         app:backgroundTint="@null"
         android:layout_marginBottom="20dp"
-        android:text="+ Tambah Artikel"
+        android:text="+ Tambah Tanaman"
         android:textAllCaps="false"
         android:fontFamily="@font/outfit_semi_bold"
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fullArtikelrtikelRecyclerView"
+        android:id="@+id/tanamanRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-
-
-
 
 </LinearLayout>
