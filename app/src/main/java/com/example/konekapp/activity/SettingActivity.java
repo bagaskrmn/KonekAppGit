@@ -51,17 +51,7 @@ public class SettingActivity extends AppCompatActivity {
         usersRef = rootRef.child("Users");
 
         //check role
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                role = snapshot.child("Role").getValue().toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        usersRef.child(currentUserId).addValueEventListener(listener);
 
         SettingBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,15 +99,27 @@ public class SettingActivity extends AppCompatActivity {
         BtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                usersRef.child(currentUserId).removeEventListener(listener);
                 firebaseAuth.signOut();
-                //error
+                
                 Intent signOutIntent = new Intent(SettingActivity.this, LoginPhoneActivity.class);
                 signOutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(signOutIntent);
-
                 Toast.makeText(SettingActivity.this, "Logout Berhasil", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+    //chek user role
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            role = snapshot.child("Role").getValue().toString();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 }

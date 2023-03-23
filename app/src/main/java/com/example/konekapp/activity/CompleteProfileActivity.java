@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -99,6 +101,13 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
         PhoneNumberTV.setText(removedPhoneNumber);
 
+        //enable and disable button
+        BtnCompleteProfileDone.setEnabled(false);
+        CompleteProfName.addTextChangedListener(textWatcher);
+        CompleteProfAddress.addTextChangedListener(textWatcher);
+        CompleteProfDetailAddress.addTextChangedListener(textWatcher);
+
+
         CompleteBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,14 +169,9 @@ public class CompleteProfileActivity extends AppCompatActivity {
         String Address = CompleteProfAddress.getText().toString();
         String DetailAddress = CompleteProfDetailAddress.getText().toString();
 
-//        if (checkInput()) {
-//            //jalanin update database
-//        }
-
-        //empty checker
-        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty((DetailAddress)) || TextUtils.isEmpty(Address) || resultUri == null) {
-            Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
-            return;
+        //if image is empty
+        if (resultUri == null) {
+            Toast.makeText(this, "Unggah foto profil anda", Toast.LENGTH_SHORT).show();
         }
         else {
             pd.setMessage("Mengunggah Data");
@@ -177,8 +181,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
             filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    pd.dismiss();
                     if (task.isSuccessful()) {
-
                         //get download Url from the storage with the path
                         filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
 
@@ -204,6 +208,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+                                                pd.dismiss();
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
                                                     Intent CompleteProfileDoneIntent = new Intent(CompleteProfileActivity.this, CompleteProfileSuccess.class);
@@ -221,8 +226,6 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
                     }
                     else {
-                        pd.dismiss();
-
                         String message = task.getException().toString();
                         Toast.makeText(CompleteProfileActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
                     }
@@ -232,23 +235,25 @@ public class CompleteProfileActivity extends AppCompatActivity {
         }
     }
 
-//    private Boolean checkInput() {
-//        String Name = CompleteProfName.getText().toString();
-//        String Email = CompleteProfEmail.getText().toString();
-//        String Address = CompleteProfAddress.getText().toString();
-//
-//        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty((Email)) || TextUtils.isEmpty(Address) || resultUri == null) {
-//            Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
-//            return false;
-//        }
-//
-//        if (regex tidak match) {
-//
-//            return false;
-//        }
-//
-//        return true;
-//    }
+    //text Watcher for disable btn if any editText is empty
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        }
 
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String textName = CompleteProfName.getText().toString().trim();
+            String textAddress = CompleteProfAddress.getText().toString().trim();
+            String textDetailAddress = CompleteProfDetailAddress.getText().toString().trim();
+            BtnCompleteProfileDone.setEnabled(!textName.isEmpty() && !textAddress.isEmpty() && !textDetailAddress.isEmpty());
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 }

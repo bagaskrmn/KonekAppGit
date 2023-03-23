@@ -98,15 +98,11 @@ public class LoginPhoneActivity extends AppCompatActivity {
             }
         });
 
+        //disable and enable button
         binding.loginPhoneNo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                if (s.toString().equals("")) {
-                    binding.btnSendOTP.setEnabled(false);
-                } else {
-                    binding.btnSendOTP.setEnabled(true);
-                }
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -124,13 +120,8 @@ public class LoginPhoneActivity extends AppCompatActivity {
         binding.enterOTPCode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.toString().equals("")) {
-                    binding.btnVerifyOTP.setEnabled(false);
-                } else {
-                    binding.btnVerifyOTP.setEnabled(true);
-                }
-            }
 
+            }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().equals("")) {
@@ -139,7 +130,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
                     binding.btnVerifyOTP.setEnabled(true);
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -193,7 +183,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 Toast.makeText(LoginPhoneActivity.this, "Verification code sent", Toast.LENGTH_SHORT).show();
 
                 String phone = binding.loginPhoneNo.getText().toString().trim();
-                String phoneNumber = "+62" + phone;
+                String phoneNumber = "+62" + removeLeadingZeros(phone);
 
                 binding.descOTPCodeSent.setText("Masukkan SMS OTP yang telah kami kirim " +
                         "\nke " + phoneNumber);
@@ -213,11 +203,12 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 ;
 
                 String phoneNumber = "+62" + phone;
-                if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
-                } else {
-                    startPhoneNumberVerification(phoneNumber);
-                }
+                startPhoneNumberVerification(phoneNumber);
+//                if (TextUtils.isEmpty(phone)) {
+//                    Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    startPhoneNumberVerification(phoneNumber);
+//                }
             }
         });
 
@@ -226,11 +217,12 @@ public class LoginPhoneActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String phone = binding.loginPhoneNo.getText().toString().trim();
                 String phoneNumber = "+62" + phone;
-                if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
-                } else {
-                    resendVerificationCode(phoneNumber, forceResendingToken);
-                }
+                resendVerificationCode(phoneNumber, forceResendingToken);
+//                if (TextUtils.isEmpty(phone)) {
+//                    Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    resendVerificationCode(phoneNumber, forceResendingToken);
+//                }
             }
         });
 
@@ -239,50 +231,51 @@ public class LoginPhoneActivity extends AppCompatActivity {
             public void onClick(View v) {
                 binding.enterOTPCode.requestFocus();
                 String code = binding.enterOTPCode.getText().toString().trim();
-                if (TextUtils.isEmpty(code)) {
-                    Toast.makeText(LoginPhoneActivity.this, "Masukkan kode OTP yang telah dikirim", Toast.LENGTH_SHORT).show();
-                } else {
-                    verifyPhoneNumberWithCode(mVerificationId, code);
-                }
+                verifyPhoneNumberWithCode(mVerificationId, code);
+//                if (TextUtils.isEmpty(code)) {
+//                    Toast.makeText(LoginPhoneActivity.this, "Masukkan kode OTP yang telah dikirim", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    verifyPhoneNumberWithCode(mVerificationId, code);
+//                }
             }
         });
     }
 
     //check user first
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if (currentUser !=null) {
-            pd.setMessage("Memeriksa akun");
-            pd.show();
-
-            String currentUserId = currentUser.getUid();
-            usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.hasChild("Nama")) {
-                        pd.dismiss();
-                        Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
-                        usersRef.removeEventListener(this);
-                        registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(registeredUserIntent);
-                    } else {
-                        pd.dismiss();
-                        Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
-                        usersRef.removeEventListener(this);
-                        newUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(newUserIntent);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+//        if (currentUser !=null) {
+//            pd.setMessage("Memeriksa akun");
+//            pd.show();
+//
+//            String currentUserId = currentUser.getUid();
+//            usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if (snapshot.hasChild("Nama")) {
+//                        pd.dismiss();
+//                        Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
+//                        usersRef.removeEventListener(this);
+//                        registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        startActivity(registeredUserIntent);
+//                    } else {
+//                        pd.dismiss();
+//                        Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
+//                        usersRef.removeEventListener(this);
+//                        newUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        startActivity(newUserIntent);
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+//        }
+//    }
 
     //Start Phone Number Auth
     private void startPhoneNumberVerification(String phoneNumber) {
@@ -386,10 +379,10 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 });
     }
 
-//    private String removeLeadingZeros(String phone) {
-//        //0+ means = replace one or more zero on begining of the string
-//        String regex = "0+(?!$)";
-//        phone = phone.replaceFirst(regex,"");
-//        return phone;
-//    }
+    private String removeLeadingZeros(String phone) {
+        //0+ means = replace one or more zero on begining of the string
+        String regex = "0+(?!$)";
+        phone = phone.replaceFirst(regex,"");
+        return phone;
+    }
 }

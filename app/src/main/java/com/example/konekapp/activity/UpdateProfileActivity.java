@@ -167,7 +167,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         String updatedDetailAddress = UpdateProfDetailAddress.getText().toString();
 
         if (TextUtils.isEmpty(updatedName) || TextUtils.isEmpty(updatedAddress) || TextUtils.isEmpty(updatedDetailAddress)) {
-            Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Data tidak boleh kosong", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -184,12 +184,12 @@ public class UpdateProfileActivity extends AppCompatActivity {
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
+                    pd.dismiss();
                     if (task.isSuccessful()) {
                         Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                         Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
                         startActivity(toProfileIntent);
                         finish();
-
                     }
                     else {
                         String message = task.getException().toString();
@@ -207,6 +207,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
             filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    pd.dismiss();
                     if (task.isSuccessful()) {
                         Log.d("UpdateProfileFilePath", filePath.toString());
 
@@ -234,6 +235,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+                                                pd.dismiss();
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                                                     Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
