@@ -32,10 +32,12 @@ public class PenyakitDanObatAdapter extends FragmentPagerAdapter {
                 ObatFragment obatFragment = new ObatFragment();
                 return obatFragment;
             default:
+                //why return null?
                 return null;
         }
     }
 
+    //getCount?
     @Override
     public int getCount() {
         return totalTabs;

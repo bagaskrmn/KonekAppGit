@@ -1,6 +1,7 @@
 package com.example.konekapp.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,9 @@ public class TanamanAdapter extends RecyclerView.Adapter<TanamanAdapter.MyViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //give action if item selected
+                Intent detailTanaman = new Intent(context, PenyakitDanObatActivity.class);
+                detailTanaman.putExtra("Key", tanaman.Key);
+                context.startActivity(detailTanaman);
             }
         });
     }
