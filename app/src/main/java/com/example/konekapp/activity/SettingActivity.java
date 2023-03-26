@@ -101,7 +101,7 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 usersRef.child(currentUserId).removeEventListener(listener);
                 firebaseAuth.signOut();
-                
+
                 Intent signOutIntent = new Intent(SettingActivity.this, LoginPhoneActivity.class);
                 signOutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(signOutIntent);

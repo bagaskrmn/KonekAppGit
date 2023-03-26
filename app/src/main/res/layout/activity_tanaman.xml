@@ -56,4 +56,12 @@
         android:layout_height="wrap_content"
         />
 
+    <Button
+        android:id="@+id/btnViewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIEWPAGER"
+        android:layout_marginTop="10dp"
+        />
+
 </LinearLayout>
