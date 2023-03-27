@@ -45,6 +45,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CompleteProfileActivity extends AppCompatActivity {
 
+    private View decorView;
+
     private ImageView CompleteBackAction;
     private CircleImageView CompleteProfImage;
     private ConstraintLayout ImageConstraint;
@@ -100,6 +102,16 @@ public class CompleteProfileActivity extends AppCompatActivity {
         UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
         PhoneNumberTV.setText(removedPhoneNumber);
+
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility==0) {
+                    decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            }
+        });
 
         //enable and disable button
         BtnCompleteProfileDone.setEnabled(false);
@@ -256,4 +268,21 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+    private int hideSystemBars() {
+        return
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
 }

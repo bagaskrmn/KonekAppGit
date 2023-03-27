@@ -18,9 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.konekapp.R;
+import com.example.konekapp.activity.KelolaMitra;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.SettingActivity;
 import com.example.konekapp.activity.chat.ConsultationActivity;
+import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +40,7 @@ public class AccountFragment extends Fragment {
 
     private CircleImageView AccImageProfile;
     private Button BtnBuatForum;
-    private ConstraintLayout ConstraintGabungKemitraan, ConstraintKelolaKemitraan, ConstraintKonsultasi;
+    private ConstraintLayout ConstraintGabungKemitraan, ConstraintKelolaKemitraan, ConstraintKonsultasi, ConstraintChatMitra;
     private TextView NameAccountTv, RoleUserTv, DateJoinedTv;
     private ImageView BtnSetting;
 
@@ -76,6 +78,7 @@ public class AccountFragment extends Fragment {
         ConstraintGabungKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintGabungKemitraan);
         ConstraintKelolaKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintKelolaKemitraan);
         ConstraintKonsultasi = (ConstraintLayout) getView().findViewById(R.id.constraintKonsultasi);
+        ConstraintChatMitra = (ConstraintLayout)getView().findViewById(R.id.constraintChatMitra);
         NameAccountTv = (TextView) getView().findViewById(R.id.nameAccountTv);
         RoleUserTv = (TextView) getView().findViewById(R.id.roleUserTv);
         DateJoinedTv = (TextView) getView().findViewById(R.id.dateJoinedTv);
@@ -102,31 +105,35 @@ public class AccountFragment extends Fragment {
                 //if role is user(1)
                 if (role.equals("1")) {
                     ConstraintGabungKemitraan.setVisibility(View.VISIBLE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
+                    ConstraintChatMitra.setVisibility(View.GONE);
+                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                     RoleUserTv.setText("Pengguna");
 
                 }
                 if (role.equals("2")) {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.VISIBLE);
+                    ConstraintChatMitra.setVisibility(View.GONE);
+                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                     RoleUserTv.setText("Petani Mitra");
                 }
                 if (role.equals("3")) {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
+                    ConstraintChatMitra.setVisibility(View.VISIBLE);
+                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                     RoleUserTv.setText("Ahli Tani");
                 }
 
                 if (role.equals("4")) {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
+                    ConstraintChatMitra.setVisibility(View.GONE);
+                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
 
                     RoleUserTv.setText("Admin");
                 }
@@ -171,10 +178,19 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        ConstraintChatMitra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), MitraConsultationActivity.class);
+                startActivity(intent);
+            }
+        });
+
         ConstraintKelolaKemitraan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //add KelolaKemitraanActivity here
+                Intent intent = new Intent(requireContext(), KelolaMitra.class);
+                startActivity(intent);
             }
         });
 

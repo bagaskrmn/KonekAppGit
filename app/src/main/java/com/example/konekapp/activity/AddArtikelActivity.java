@@ -33,6 +33,8 @@ import java.util.HashMap;
 
 public class AddArtikelActivity extends AppCompatActivity {
 
+    private View decorView;
+
     private EditText AddTitleArtikel, AddSourceArtikel, AddDescriptionArtikel;
     private ImageView AddImageArtikel, AddArtikelBackAction;
     private Button BtnAddArtikelDone;
@@ -74,6 +76,17 @@ public class AddArtikelActivity extends AppCompatActivity {
         ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("Artikel Images");
 
         artikelId = rootRef.push().getKey();
+
+
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility==0) {
+                    decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            }
+        });
 
         AddArtikelBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,4 +196,21 @@ public class AddArtikelActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+    private int hideSystemBars() {
+        return
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
 }

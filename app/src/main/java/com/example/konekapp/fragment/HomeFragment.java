@@ -26,6 +26,7 @@ import com.example.konekapp.R;
 import com.example.konekapp.activity.ArtikelActivity;
 import com.example.konekapp.activity.ArtikelAdapter;
 import com.example.konekapp.activity.ArtikelModel;
+import com.example.konekapp.activity.KelolaMitra;
 import com.example.konekapp.activity.MitraProfileActivity;
 import com.example.konekapp.activity.ProfileActivity;
 import com.example.konekapp.activity.RegisterMitraActivity;
@@ -50,12 +51,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeFragment extends Fragment {
 
     private CircleImageView AccImageHome;
-    private Button BtnRegisterMitra, BtnKonsultasi, BtnChatMitra;
+    private Button BtnRegisterMitra, BtnKonsultasi, BtnChatMitra, BtnKelolaKemitraan;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef, artikelRef;
     private String currentUserId, role;
-    private ConstraintLayout ConstraintRegister, ConstraintKonsultasi, ConstraintChatMitra;
+    private ConstraintLayout ConstraintRegister, ConstraintKonsultasi, ConstraintChatMitra, ConstraintKelolaKemitraan;
     private LinearLayout BtnPenyakitTanaman, BtnObatTanaman;
     private ProgressDialog pd;
     private TextView BtnFullArtikel;
@@ -91,10 +92,12 @@ public class HomeFragment extends Fragment {
         BtnChatMitra = (Button)getView().findViewById(R.id.btnChatMitra);
         BtnPenyakitTanaman = (LinearLayout)getView().findViewById(R.id.btnPenyakitTanaman);
         BtnObatTanaman = (LinearLayout)getView().findViewById(R.id.btnObatTanaman);
+        BtnKelolaKemitraan = (Button)getView().findViewById(R.id.btnKelolaKemitraan);
 
         ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
         ConstraintKonsultasi = (ConstraintLayout)getView().findViewById(R.id.constraintKonsultasi);
         ConstraintChatMitra = (ConstraintLayout)getView().findViewById(R.id.constraintChatMitra);
+        ConstraintKelolaKemitraan = (ConstraintLayout)getView().findViewById(R.id.constraintKelolaKemitraan);
 
         //RecyclerView
         recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
@@ -128,24 +131,28 @@ public class HomeFragment extends Fragment {
                     ConstraintRegister.setVisibility(View.VISIBLE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.GONE);
+                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 }
                 //if role is mitra(2)
                 if (role.equals("2")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.VISIBLE);
                     ConstraintChatMitra.setVisibility(View.GONE);
+                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 }
                 //if role is Ahli Tani
                 if (role.equals("3")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.VISIBLE);
+                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 }
                 //if role is admin
                 if (role.equals("4")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.GONE);
+                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
                 }
 
 
@@ -181,6 +188,14 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 //add chat with mitra activity here
                 Intent intent = new Intent(requireContext(), MitraConsultationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        BtnKelolaKemitraan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), KelolaMitra.class);
                 startActivity(intent);
             }
         });

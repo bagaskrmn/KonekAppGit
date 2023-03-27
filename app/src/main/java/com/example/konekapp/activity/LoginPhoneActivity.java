@@ -37,15 +37,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class LoginPhoneActivity extends AppCompatActivity {
 
+    private View decorView;
+
     private ActivityLoginPhoneBinding binding;
-
-
-
 
     private ImageView LoginBackAction;
 
@@ -65,6 +66,16 @@ public class LoginPhoneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_phone);
+
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility==0) {
+                    decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            }
+        });
 
 
         binding = ActivityLoginPhoneBinding.inflate(getLayoutInflater());
@@ -180,6 +191,24 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 binding.codeLl.setVisibility(View.VISIBLE);
                 LoginBackAction.setVisibility(View.VISIBLE);
 
+                //hide resend btn
+                binding.resendOTP.setVisibility(View.GONE);
+                //show timer
+                new CountDownTimer(60000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        // Used for formatting digit to be in 2 digits only
+                        NumberFormat f = new DecimalFormat("00");
+                        long min = (millisUntilFinished / 60000) % 60;
+                        long sec = (millisUntilFinished / 1000) % 60;
+                        binding.cTimer.setText(f.format(min) + ":" + f.format(sec));
+                    }
+                    // When the task is over
+                    public void onFinish() {
+                        binding.cTimer.setVisibility(View.GONE);
+                        binding.resendOTP.setVisibility(View.VISIBLE);
+                    }
+                }.start();
+
                 Toast.makeText(LoginPhoneActivity.this, "Verification code sent", Toast.LENGTH_SHORT).show();
 
                 String phone = binding.loginPhoneNo.getText().toString().trim();
@@ -240,42 +269,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
             }
         });
     }
-
-    //check user first
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-//        if (currentUser !=null) {
-//            pd.setMessage("Memeriksa akun");
-//            pd.show();
-//
-//            String currentUserId = currentUser.getUid();
-//            usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if (snapshot.hasChild("Nama")) {
-//                        pd.dismiss();
-//                        Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
-//                        usersRef.removeEventListener(this);
-//                        registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        startActivity(registeredUserIntent);
-//                    } else {
-//                        pd.dismiss();
-//                        Intent newUserIntent = new Intent(LoginPhoneActivity.this, CompleteProfileActivity.class);
-//                        usersRef.removeEventListener(this);
-//                        newUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        startActivity(newUserIntent);
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
-//        }
-//    }
 
     //Start Phone Number Auth
     private void startPhoneNumberVerification(String phoneNumber) {
@@ -384,5 +377,22 @@ public class LoginPhoneActivity extends AppCompatActivity {
         String regex = "0+(?!$)";
         phone = phone.replaceFirst(regex,"");
         return phone;
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+    private int hideSystemBars() {
+        return
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 }
