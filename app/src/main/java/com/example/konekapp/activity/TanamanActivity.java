@@ -25,7 +25,7 @@ public class TanamanActivity extends AppCompatActivity {
     private ImageView TanamanBackAction;
     private ProgressDialog pd;
     private DatabaseReference tanamanRef, rootRef;
-    private Button BtnAddTanaman, BtnViewPager;
+    private Button BtnAddTanaman;
 
 
     private ArrayList<TanamanModel> list;
@@ -39,8 +39,6 @@ public class TanamanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tanaman);
 
         TanamanBackAction = findViewById(R.id.tanamanBackAction);
-
-        BtnViewPager = findViewById(R.id.btnViewPager);
 
         BtnAddTanaman = findViewById(R.id.btnAddTanaman);
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -86,13 +84,6 @@ public class TanamanActivity extends AppCompatActivity {
             }
         });
 
-        BtnViewPager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(TanamanActivity.this, PenyakitDanObatActivity.class);
-                startActivity(i);
-            }
-        });
 
         TanamanBackAction.setOnClickListener(new View.OnClickListener() {
             @Override

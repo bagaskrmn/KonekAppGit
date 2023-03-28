@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/detailPenyakitName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:text="Ini Name Artikeljiefjesifjdsjfnsdjkfnrnfrnfrsrfnfnrrffnrfnrfn fnrfurnfrufnrufn"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"
+            />
+        <ImageView
+            android:id="@+id/detailPenyakitImage"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            tools:src="@tools:sample/avatars"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/detailPenyakitDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Ini isi/deskripsi artikel"
+            android:fontFamily="@font/outfit_regular"
+            android:textColor="@color/neutral_dark4"
+            />
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
