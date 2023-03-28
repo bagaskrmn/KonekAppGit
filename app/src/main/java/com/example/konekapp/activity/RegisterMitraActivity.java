@@ -50,6 +50,8 @@ public class RegisterMitraActivity extends AppCompatActivity {
     private String currentUserId, phoneNumber, removedPhoneNumber;
     private ProgressDialog pd;
 
+    private View decorView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,16 @@ public class RegisterMitraActivity extends AppCompatActivity {
         RegKuisioner1 = findViewById(R.id.regKuisioner1);
         RegKuisioner2 = findViewById(R.id.regKuisioner2);
         RegMitraBackAction = findViewById(R.id.regMitraBackAction);
+
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility==0) {
+                    decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            }
+        });
 
         //init progress dialog
         pd = new ProgressDialog(this);
@@ -162,5 +174,21 @@ public class RegisterMitraActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+    private int hideSystemBars() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 }

@@ -300,6 +300,256 @@
                     />
             </LinearLayout>
 
+            <!--      Kelurahan/Desa-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kelurahan/Desa"
+                android:fontFamily="@font/outfit_medium"
+                android:textColor="@color/neutral_dark3"
+                android:layout_marginBottom="8dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/location"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    />
+
+                <EditText
+                    android:id="@+id/regMitraKelurahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark3"
+                    android:hint="Masukkan Kelurahan/Desa"
+                    android:inputType="textCapWords"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck"
+                    />
+            </LinearLayout>
+
+            <!--      Kecamatan-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kecamatan"
+                android:fontFamily="@font/outfit_medium"
+                android:textColor="@color/neutral_dark3"
+                android:layout_marginBottom="8dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/location"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    />
+
+                <EditText
+                    android:id="@+id/regMitraKecamatan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark3"
+                    android:hint="Masukkan Kecamatan"
+                    android:inputType="textCapWords"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck"
+                    />
+            </LinearLayout>
+
+            <!--      Kabupaten/Kota-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kabupaten/Kota"
+                android:fontFamily="@font/outfit_medium"
+                android:textColor="@color/neutral_dark3"
+                android:layout_marginBottom="8dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/location"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    />
+
+                <EditText
+                    android:id="@+id/regMitraKabupaten"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark3"
+                    android:hint="Masukkan Kabupaten/Kota"
+                    android:inputType="textCapWords"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck"
+                    />
+            </LinearLayout>
+
+            <!--      Provinsi-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Provinsi"
+                android:fontFamily="@font/outfit_medium"
+                android:textColor="@color/neutral_dark3"
+                android:layout_marginBottom="8dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/location"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    />
+
+                <EditText
+                    android:id="@+id/regMitraProvinsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark3"
+                    android:hint="Masukkan Provinsi"
+                    android:inputType="textCapWords"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck"
+                    />
+            </LinearLayout>
+
+<!--            Kelengkapan Dokumen-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Foto kelengkapan Dokumen"
+                android:textSize="18sp"
+                android:fontFamily="@font/outfit_semi_bold"
+                android:textColor="@color/neutral_dark3"
+                android:layout_marginBottom="8dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unggah foto KTP anda"
+                android:textSize="14sp"
+                android:fontFamily="@font/outfit_medium"
+                android:textColor="@color/neutral_dark4"
+                android:layout_marginBottom="8dp"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/regMitraDocumentAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/document_upload"
+                    app:layout_constraintBottom_toBottomOf="@+id/regiMitraDocument"
+                    app:layout_constraintEnd_toEndOf="@+id/regiMitraDocument"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/regiMitraDocument"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_regular"
+                    android:text="Unggah Dokumen"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/regiMitraDocument"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView9"
+                    android:layout_marginTop="8dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/regiMitraDocument"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
             <!--      Kuisioner-->
             <TextView
                 android:layout_width="wrap_content"

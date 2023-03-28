@@ -38,6 +38,8 @@ public class ProfileActivity extends AppCompatActivity {
     private String currentUserId, phoneNumber, removedPhoneNumber;
     private ProgressDialog pd;
 
+    private View decorView;
+
     AccountFragment accountFragment= new AccountFragment();
 
     @Override
@@ -67,6 +69,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("Users");
+
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility==0) {
+                    decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            }
+        });
 
         pd.setMessage("Memuat data anda");
         pd.show();
@@ -118,4 +130,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+    private int hideSystemBars() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
 }

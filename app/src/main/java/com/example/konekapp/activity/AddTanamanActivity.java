@@ -78,6 +78,13 @@ public class AddTanamanActivity extends AppCompatActivity {
             }
         });
 
+        AddTanamanBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddTanamanActivity.super.onBackPressed();
+            }
+        });
+
     }
 
     @Override

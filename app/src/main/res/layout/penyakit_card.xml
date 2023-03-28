@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="12dp"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="10dp"
     >
 
     <LinearLayout
@@ -40,6 +43,7 @@
             tools:text="Ini isi/deskripsi artikel"
             android:fontFamily="@font/outfit_regular"
             android:textColor="@color/neutral_dark4"
+            android:layout_marginBottom="20dp"
             />
     </LinearLayout>
 
