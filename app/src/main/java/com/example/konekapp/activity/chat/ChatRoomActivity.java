@@ -81,13 +81,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         //tv name mentor
         tvNameMentor.setText(userReceiver.getNama());
 
-        //tv title mentor
-//        if (userReceiver.getRole().equals("3")) {
-//            tvTitleMentor.setText("Ahli Tani");
-//        } else if (userReceiver.getRole().equals("2")) {
-//            tvTitleMentor.setText("Mitra Tani");
-//        }
-
         //iv profile
         Picasso.get().load(userReceiver.getImage()).into(ivProfile);
 
@@ -195,9 +188,11 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     private void addOrUpdateConversation(ChatMessagesModel chatMessagesModel) {
+        //Add new conversation if conversationId is null
         if (conversationId != null) {
             updateConversation(chatMessagesModel.getMessage());
         } else {
+            //Step 1. Get user information
             FirebaseDatabase.getInstance().getReference()
                     .child("Users")
                     .child(currentUserId)
@@ -220,6 +215,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                                     conversation.put(KEY_DATE_TIME, chatMessagesModel.getDateTime());
                                     conversation.put(KEY_UNREAD_RECEIVER_COUNT, unReadCount + 1);
                                     conversation.put(KEY_UNREAD_SENDER_COUNT, 0);
+                                    //Step 2. Add new conversation
                                     addConversation(conversation);
                                 }
 
@@ -262,7 +258,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     catch (ParseException e) {Log.d("ChatRoomActivity", "onDataChange: " + e.getMessage());}
                     listChatMessages.add(chatMessagesModel);
                 } else if (chatMessagesModel.getSenderId().equals(userReceiver.getUserId()) && chatMessagesModel.getReceiverId().equals(currentUserId)) {
-                    //udate message to read
+                    //update message to has read
                     if (!chatMessagesModel.getIsReceiverRead()) {
                         updateReceiverReadMessage(dataSnapshot.getKey());
                     }
@@ -352,6 +348,21 @@ public class ChatRoomActivity extends AppCompatActivity {
                 .updateChildren(conversation);
     }
 
+    private void updateZeroCountConversation() {
+        HashMap<String, Object> conversation = new HashMap<>();
+
+        if (currentUser.getUid().equals(senderConversationId)) {
+            conversation.put(KEY_UNREAD_SENDER_COUNT, 0);
+        } else {
+            conversation.put(KEY_UNREAD_RECEIVER_COUNT, 0);
+        }
+
+        FirebaseDatabase.getInstance().getReference()
+                .child(KEY_COLLECTION_CONVERSATION)
+                .child(conversationId)
+                .updateChildren(conversation);
+    }
+
     private void updateReceiverReadMessage(String key) {
         FirebaseDatabase.getInstance().getReference()
                 .child(KEY_COLLECTION_CHAT)
@@ -363,6 +374,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        updateZeroCountConversation();
         messageRef.removeEventListener(listener);
     }
 }

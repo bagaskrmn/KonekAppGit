@@ -48,12 +48,9 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultation);
 
-        btnBack = findViewById(R.id.btnBack);
-        btnAddNewConsultation = findViewById(R.id.btnAddNewConsultation);
-        rvConversation = findViewById(R.id.rvConversation);
-
         //initialization
         init();
+
         //listen conversation
         listenConversation();
 
@@ -74,6 +71,11 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
     }
 
     void init() {
+        //initialize view
+        btnBack = findViewById(R.id.btnBack);
+        btnAddNewConsultation = findViewById(R.id.btnAddNewConsultation);
+        rvConversation = findViewById(R.id.rvConversation);
+
         listConversation = new ArrayList<>();
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         recentConversationAdapter = new RecentConversationAdapter(currentUserId, listConversation, this);
@@ -101,7 +103,7 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
                     Integer unreadSenderCount = dataSnapshot.child(KEY_UNREAD_SENDER_COUNT).getValue(Integer.class);
                     Integer unreadReceiverCount = dataSnapshot.child(KEY_UNREAD_RECEIVER_COUNT).getValue(Integer.class);
 
-                    //create chat model
+                    //create chat model and assign the value
                     ChatMessagesModel chatMessagesModel = new ChatMessagesModel();
                     chatMessagesModel.setSenderId(senderId);
                     chatMessagesModel.setReceiverId(receiverId);
@@ -110,11 +112,13 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
                     chatMessagesModel.conversationKey = dataSnapshot.getKey();
 
                     if (currentUserId.equals(senderId)) {
+                        //conversationId mean the id of the receiver
                         chatMessagesModel.conversationId = dataSnapshot.child(KEY_RECEIVER_ID).getValue(String.class);
                         chatMessagesModel.conversationName = dataSnapshot.child(KEY_RECEIVER_NAME).getValue(String.class);
                         chatMessagesModel.conversationImage = dataSnapshot.child(KEY_RECEIVER_IMAGE).getValue(String.class);
                         chatMessagesModel.unreadCount = unreadSenderCount;
                     } else {
+                        //conversationId mean the id of the sender
                         chatMessagesModel.conversationId = dataSnapshot.child(KEY_SENDER_ID).getValue(String.class);
                         chatMessagesModel.conversationName = dataSnapshot.child(KEY_SENDER_NAME).getValue(String.class);
                         chatMessagesModel.conversationImage = dataSnapshot.child(KEY_SENDER_IMAGE).getValue(String.class);
@@ -124,7 +128,9 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
                     listConversation.add(chatMessagesModel);
                 }
             }
+            //sorting list conversation by date time
             Collections.sort(listConversation, (obj1, obj2) -> obj2.getDateTime().compareTo(obj1.getDateTime()));
+
             Log.d("ConsultationActivity", "onDataChange: " + listConversation.size() );
             recentConversationAdapter.notifyDataSetChanged();
             rvConversation.smoothScrollToPosition(0);
@@ -148,6 +154,7 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
 
     @Override
     public void onConversationClick(ChatMessagesModel chatMessage, UserModel user) {
+        //updating unread count
         if (chatMessage.getSenderId().equals(currentUserId)) {
             //update count unread
             updateConversationCount(chatMessage.conversationKey, KEY_UNREAD_SENDER_COUNT, 0);

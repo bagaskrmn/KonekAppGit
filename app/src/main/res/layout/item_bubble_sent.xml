@@ -37,15 +37,16 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
                 android:paddingHorizontal="16dp"
-                tools:text="Selamat Siang Pak  Agus Wibowo, sebelumnya perkenalkan saya Andro, Petani mitra konek dari Semarang"
+                tools:text="Sel"
                 android:textColor="@color/neutral_dark3"
                 android:textSize="14sp"
                 android:fontFamily="@font/outfit_regular" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:layout_gravity="end"
                 android:layout_marginHorizontal="8dp"
                 android:orientation="horizontal">
 
