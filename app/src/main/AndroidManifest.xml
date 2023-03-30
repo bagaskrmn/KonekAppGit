@@ -18,9 +18,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".activity.AddPenyakitActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:name=".activity.AddObatActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.AddPenyakitActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -70,8 +77,7 @@
         <activity
             android:name=".activity.AddArtikelActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

@@ -32,24 +32,18 @@
             android:textSize="18sp"
             android:gravity="center"
             />
+        <ImageView
+            android:id="@+id/btnAddArtikel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_24"
+            />
         <View
+            android:id="@+id/spaceView"
             android:layout_width="24dp"
             android:layout_height="24dp"
             />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnAddArtikel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:backgroundTint="@null"
-        app:backgroundTint="@null"
-        android:layout_marginBottom="20dp"
-        android:text="+ Tambah Artikel"
-        android:textAllCaps="false"
-        android:fontFamily="@font/outfit_semi_bold"
-        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fullArtikelrtikelRecyclerView"

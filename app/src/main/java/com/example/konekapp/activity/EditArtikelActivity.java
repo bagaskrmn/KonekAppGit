@@ -3,6 +3,7 @@ package com.example.konekapp.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -38,6 +39,7 @@ import java.util.HashMap;
 
 public class EditArtikelActivity extends AppCompatActivity {
 
+    private ConstraintLayout EditImageArtikelConstraint;
     private EditText EditTitleArtikel, EditSourceArtikel, EditDescriptionArtikel;
     private ImageView EditImageArtikel, EditArtikelBackAction;
     private Button BtnEditArtikelDone;
@@ -68,6 +70,7 @@ public class EditArtikelActivity extends AppCompatActivity {
             }
         });
 
+        EditImageArtikelConstraint = findViewById(R.id.editImageArtikelConstraint);
         EditTitleArtikel = findViewById(R.id.editTitleArtikel);
         EditSourceArtikel = findViewById(R.id.editSourceArtikel);
         EditDescriptionArtikel = findViewById(R.id.editDescriptionArtikel);
@@ -105,7 +108,7 @@ public class EditArtikelActivity extends AppCompatActivity {
             }
         });
 
-        EditImageArtikel.setOnClickListener(new View.OnClickListener() {
+        EditImageArtikelConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CropImage.activity()

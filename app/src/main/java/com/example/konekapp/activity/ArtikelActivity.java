@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Space;
 
 import com.example.konekapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,10 +26,9 @@ import java.util.ArrayList;
 
 public class ArtikelActivity extends AppCompatActivity {
 
-    private ImageView ArtikelBackAction;
+    private ImageView ArtikelBackAction, BtnAddArtikel;
     private ProgressDialog pd;
     private DatabaseReference artikelRef, rootRef, usersRef;
-    private Button BtnAddArtikel;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -39,7 +39,7 @@ public class ArtikelActivity extends AppCompatActivity {
     private FullArtikelAdapter adapter;
     private RecyclerView recyclerView;
 
-    private View decorView;
+    private View decorView, SpaceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,8 @@ public class ArtikelActivity extends AppCompatActivity {
                 }
             }
         });
+
+        SpaceView = findViewById(R.id.spaceView);
 
         BtnAddArtikel = findViewById(R.id.btnAddArtikel);
         BtnAddArtikel.setVisibility(View.GONE);
@@ -88,9 +90,11 @@ public class ArtikelActivity extends AppCompatActivity {
 
                 if (role.equals("3") || role.equals("4")) {
                     BtnAddArtikel.setVisibility(View.VISIBLE);
+                    SpaceView.setVisibility(View.GONE);
                 }
                 else {
                     BtnAddArtikel.setVisibility(View.GONE);
+                    SpaceView.setVisibility(View.VISIBLE);
                 }
             }
 

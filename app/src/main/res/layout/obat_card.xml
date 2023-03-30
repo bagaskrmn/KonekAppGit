@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:elevation="12dp"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="10dp"
-    >
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
         >
 
         <TextView
-            android:id="@+id/detailPenyakitName"
+            android:id="@+id/detailObatName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -28,7 +27,7 @@
             android:layout_marginBottom="10dp"
             />
         <ImageView
-            android:id="@+id/detailPenyakitImage"
+            android:id="@+id/detailObatImage"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             tools:src="@tools:sample/avatars"
@@ -37,7 +36,7 @@
             />
 
         <TextView
-            android:id="@+id/detailPenyakitDescription"
+            android:id="@+id/detailObatDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Ini isi/deskripsi artikel"
@@ -46,7 +45,5 @@
             android:layout_marginBottom="20dp"
             />
     </LinearLayout>
-
-
 
 </androidx.cardview.widget.CardView>

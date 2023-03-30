@@ -3,6 +3,7 @@ package com.example.konekapp.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -49,13 +50,14 @@ public class AddArtikelActivity extends AppCompatActivity {
 
     private Uri resultUri;
 
+    private ConstraintLayout AddImageArtikelConstraint;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_artikel);
 
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
+        AddImageArtikelConstraint = findViewById(R.id.addImageArtikelConstraint);
         AddTitleArtikel = findViewById(R.id.addTitleArtikel);
         AddSourceArtikel = findViewById(R.id.addSourceArtikel);
         AddDescriptionArtikel = findViewById(R.id.addDescriptionArtikel);
@@ -99,7 +101,7 @@ public class AddArtikelActivity extends AppCompatActivity {
         });
 
         //Open Gallery and Crop
-        AddImageArtikel.setOnClickListener(new View.OnClickListener() {
+        AddImageArtikelConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CropImage.activity()

@@ -161,15 +161,32 @@
             </LinearLayout>
 
             <!--      NIK-->
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NIK"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NIK"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -209,15 +226,30 @@
             </LinearLayout>
 
             <!--      Email-->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -255,14 +287,28 @@
             </LinearLayout>
 
             <!--      Alamat Lengkap-->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alamat"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:layout_marginBottom="8dp"
-                />
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -301,14 +347,29 @@
             </LinearLayout>
 
             <!--      Kelurahan/Desa-->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kelurahan/Desa"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:layout_marginBottom="8dp"
-                />
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kelurahan/Desa"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -347,14 +408,27 @@
             </LinearLayout>
 
             <!--      Kecamatan-->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kecamatan"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:layout_marginBottom="8dp"
-                />
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kecamatan"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -393,14 +467,29 @@
             </LinearLayout>
 
             <!--      Kabupaten/Kota-->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kabupaten/Kota"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:layout_marginBottom="8dp"
-                />
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kabupaten/Kota"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -439,14 +528,27 @@
             </LinearLayout>
 
             <!--      Provinsi-->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Provinsi"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:layout_marginBottom="8dp"
-                />
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Provinsi"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -485,15 +587,29 @@
             </LinearLayout>
 
 <!--            Kelengkapan Dokumen-->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Foto kelengkapan Dokumen"
-                android:textSize="18sp"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:layout_marginBottom="8dp"
-                />
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Foto kelengkapan Dokumen"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"

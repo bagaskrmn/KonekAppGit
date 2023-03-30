@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".activity.AddPenyakitActivity">
+    tools:context=".activity.AddObatActivity">
 
     <!--    add artikel action bar-->
     <LinearLayout
@@ -16,7 +16,7 @@
         android:layout_marginBottom="20dp"
         >
         <ImageView
-            android:id="@+id/addPenyakitBackAction"
+            android:id="@+id/addObatBackAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Tambah Penyakit"
+            android:text="Tambah Obat"
             android:fontFamily="@font/outfit_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"
@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/addImagePenyakitConstraint"
+        android:id="@+id/addImageObatConstraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -47,17 +47,17 @@
         >
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/imageView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/document_upload"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/addImagePenyakit"
-            app:layout_constraintStart_toStartOf="@+id/addImagePenyakit"
-            app:layout_constraintTop_toTopOf="@+id/addImagePenyakit" />
+            app:layout_constraintEnd_toEndOf="@+id/addImageObat"
+            app:layout_constraintStart_toStartOf="@+id/addImageObat"
+            app:layout_constraintTop_toTopOf="@+id/addImageObat" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/outfit_regular"
@@ -65,12 +65,12 @@
             android:textColor="@color/neutral_dark3"
             android:textSize="16sp"
             android:layout_marginTop="6dp"
-            app:layout_constraintEnd_toEndOf="@+id/addImagePenyakit"
-            app:layout_constraintStart_toStartOf="@+id/addImagePenyakit"
-            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+            app:layout_constraintEnd_toEndOf="@+id/addImageObat"
+            app:layout_constraintStart_toStartOf="@+id/addImageObat"
+            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
         <ImageView
-            android:id="@+id/addImagePenyakit"
+            android:id="@+id/addImageObat"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +91,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama Penyakit"
+            android:text="Nama Obat"
             android:fontFamily="@font/outfit_semi_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="14sp"
@@ -108,14 +108,14 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/addNamePenyakit"
+        android:id="@+id/addNameObat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_edit_text"
         android:fontFamily="@font/outfit_regular"
         android:textSize="14sp"
         android:padding="8dp"
-        tools:text="Ini Nama Penyakit"
+        tools:text="Ini Nama Obat"
         android:layout_marginBottom="10dp"
         android:inputType="textCapWords"
         />
@@ -129,7 +129,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deskripsi Penyakit"
+            android:text="Deskripsi Obat"
             android:fontFamily="@font/outfit_semi_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="14sp"
@@ -147,7 +147,7 @@
 
 
     <EditText
-        android:id="@+id/addDescriptionPenyakit"
+        android:id="@+id/addDescriptionObat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_edit_text"
@@ -170,7 +170,7 @@
         >
 
         <Button
-            android:id="@+id/btnAddPenyakitDone"
+            android:id="@+id/btnAddObatDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_bg"
@@ -182,8 +182,5 @@
             />
 
     </LinearLayout>
-
-
-
 
 </LinearLayout>

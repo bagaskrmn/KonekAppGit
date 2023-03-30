@@ -38,15 +38,75 @@
 
     </LinearLayout>
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addImageTanamanConstraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama Tanaman"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_add_image"
+        >
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/document_upload"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/addImageTanaman"
+            app:layout_constraintStart_toStartOf="@+id/addImageTanaman"
+            app:layout_constraintTop_toTopOf="@+id/addImageTanaman" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_regular"
+            android:text="Unggah Foto"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="16sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/addImageTanaman"
+            app:layout_constraintStart_toStartOf="@+id/addImageTanaman"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+        <ImageView
+            android:id="@+id/addImageTanaman"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/outfit_semi_bold"
-        android:textColor="@color/neutral_dark3"
-        android:textSize="14sp"
-        />
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Tanaman"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="#D8244E"
+            android:text="*"
+            />
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/addNameTanaman"
@@ -61,34 +121,26 @@
         android:inputType="textCapWords"
         />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gambar"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/outfit_semi_bold"
-        android:textColor="@color/neutral_dark3"
-        android:textSize="14sp"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        >
+        <Button
+            android:id="@+id/btnAddTanamanDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:text="Tambah"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textAllCaps="false"
+            />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:id="@+id/addImageTanaman"
-        android:src="@drawable/ic_baseline_add_24"
-        android:layout_marginBottom="10dp"
-        />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnAddTanamanDone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:backgroundTint="@null"
-        app:backgroundTint="@null"
-        android:text="Tambah"
-        android:fontFamily="@font/outfit_semi_bold"
-        android:textAllCaps="false"
-        />
+
 
 </LinearLayout>

@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.konekapp.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,18 +25,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class TanamanActivity extends AppCompatActivity {
-    private ImageView TanamanBackAction;
+    private ImageView TanamanBackAction, BtnAddTanaman;
     private ProgressDialog pd;
-    private DatabaseReference tanamanRef, rootRef;
-    private Button BtnAddTanaman;
-
+    private DatabaseReference tanamanRef, rootRef, usersRef;
 
     private ArrayList<TanamanModel> list;
     private TanamanAdapter adapter;
     private RecyclerView recyclerView;
 
-    private View decorView;
+    private View decorView, SpaceViewTanaman;
 
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
+    private String currentUserId, role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class TanamanActivity extends AppCompatActivity {
 
         TanamanBackAction = findViewById(R.id.tanamanBackAction);
 
+        SpaceViewTanaman = findViewById(R.id.spaceViewTanaman);
         BtnAddTanaman = findViewById(R.id.btnAddTanaman);
         rootRef = FirebaseDatabase.getInstance().getReference();
         tanamanRef = rootRef.child("Tanaman");
@@ -61,6 +66,13 @@ public class TanamanActivity extends AppCompatActivity {
         adapter = new TanamanAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
+        //users
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        currentUserId = currentUser.getUid();
+        usersRef = rootRef.child("Users");
+
+
         //init ProgressDialog
         pd = new ProgressDialog(this);
         pd.setTitle("Please Wait...");
@@ -68,6 +80,27 @@ public class TanamanActivity extends AppCompatActivity {
 
         pd.setMessage("Memuat data");
         pd.show();
+
+        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                role = snapshot.child("Role").getValue().toString();
+
+                if (role.equals("3") || role.equals("4")) {
+                    BtnAddTanaman.setVisibility(View.VISIBLE);
+                    SpaceViewTanaman.setVisibility(View.GONE);
+                }
+                else {
+                    BtnAddTanaman.setVisibility(View.GONE);
+                    SpaceViewTanaman.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         tanamanRef.addValueEventListener(new ValueEventListener() {

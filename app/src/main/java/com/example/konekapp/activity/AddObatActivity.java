@@ -9,7 +9,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,26 +29,24 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 
-public class AddPenyakitActivity extends AppCompatActivity {
-
-    private ImageView AddImagePenyakit, AddPenyakitBackAction;
-    private EditText AddNamePenyakit, AddDescriptionPenyakit;
-    private Button BtnAddPenyakitDone;
-    private StorageReference PenyakitImagesRef, penyakitPath;
-    private DatabaseReference rootRef, tanamanRef, penyakitRef;
+public class AddObatActivity extends AppCompatActivity {
+    private ImageView AddImageObat, AddObatBackAction;
+    private EditText AddNameObat, AddDescriptionObat;
+    private Button BtnAddObatDone;
+    private StorageReference ObatImagesRef, obatPath;
+    private DatabaseReference rootRef, tanamanRef, obatRef;
     private ProgressDialog pd;
-    private ConstraintLayout AddImagePenyakitConstraint;
-    private String tanamanId, penyakitId, penyakitImageUrl;
+    private ConstraintLayout AddImageObatConstraint;
+    private String tanamanId, obatId, obatImageUrl;
 
     private Uri resultUri;
 
     private View decorView;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_penyakit);
-
+        setContentView(R.layout.activity_add_obat);
         decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
@@ -60,12 +57,11 @@ public class AddPenyakitActivity extends AppCompatActivity {
             }
         });
 
-        AddImagePenyakitConstraint = findViewById(R.id.addImagePenyakitConstraint);
-        AddImagePenyakit = findViewById(R.id.addImagePenyakit);
-        AddPenyakitBackAction = findViewById(R.id.addPenyakitBackAction);
-        AddNamePenyakit = findViewById(R.id.addNamePenyakit);
-        AddDescriptionPenyakit = findViewById(R.id.addDescriptionPenyakit);
-        BtnAddPenyakitDone = findViewById(R.id.btnAddPenyakitDone);
+        AddImageObat = findViewById(R.id.addImageObat);
+        AddObatBackAction = findViewById(R.id.addObatBackAction);
+        AddNameObat = findViewById(R.id.addNameObat);
+        AddDescriptionObat = findViewById(R.id.addDescriptionObat);
+        BtnAddObatDone = findViewById(R.id.btnAddObatDone);
 
         //init progress dialog
         pd = new ProgressDialog(this);
@@ -77,34 +73,33 @@ public class AddPenyakitActivity extends AppCompatActivity {
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         tanamanRef = rootRef.child("Tanaman");
-        PenyakitImagesRef = FirebaseStorage.getInstance().getReference().child("Penyakit Images");
-        penyakitId = rootRef.push().getKey();
-        penyakitRef = tanamanRef.child(tanamanId).child("Penyakit");
+        ObatImagesRef = FirebaseStorage.getInstance().getReference().child("Obat Images");
+        obatId = rootRef.push().getKey();
+        obatRef = tanamanRef.child(tanamanId).child("Obat");
 
-        AddImagePenyakitConstraint.setOnClickListener(new View.OnClickListener() {
+        AddImageObatConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setAspectRatio(2,1)
-                        .start(AddPenyakitActivity.this);
+                        .start(AddObatActivity.this);
             }
         });
 
-        BtnAddPenyakitDone.setOnClickListener(new View.OnClickListener() {
+        BtnAddObatDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddPenyakitDone();
+                AddObatDone();
             }
         });
 
-        AddPenyakitBackAction.setOnClickListener(new View.OnClickListener() {
+        AddObatBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddPenyakitActivity.super.onBackPressed();
+                AddObatActivity.super.onBackPressed();
             }
         });
-
     }
 
     @Override
@@ -118,54 +113,53 @@ public class AddPenyakitActivity extends AppCompatActivity {
                 resultUri = result.getUri();
 
                 //set Uri to ImageArtikel
-                Picasso.get().load(resultUri).into(AddImagePenyakit);
+                Picasso.get().load(resultUri).into(AddImageObat);
 
-                penyakitPath = PenyakitImagesRef.child(penyakitId + ".jpg");
+                obatPath = ObatImagesRef.child(obatId + ".jpg");
             }
         }
     }
 
-    private void AddPenyakitDone() {
-        String Name = AddNamePenyakit.getText().toString();
-        String Description = AddDescriptionPenyakit.getText().toString().trim();
+    private void AddObatDone() {
+        String Name = AddNameObat.getText().toString();
+        String Description = AddDescriptionObat.getText().toString();
 
-        pd.setMessage("Mengunggah Penyakit");
+        pd.setMessage("Mengunggah Obat");
         pd.show();
 
-        penyakitPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        obatPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (task.isSuccessful()) {
                     pd.dismiss();
-                    penyakitPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    obatPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
-                            penyakitImageUrl = task.getResult().toString();
+                            obatImageUrl=task.getResult().toString();
 
-                            pd.setMessage("Data penyakit terunggah");
+                            pd.setMessage("Data Obat terunggah");
                             pd.show();
 
-                            HashMap<String, Object> penyakitMap = new HashMap<>();
-                            penyakitMap.put("Name", Name);
-                            penyakitMap.put("Description", Description);
-                            penyakitMap.put("Image", penyakitImageUrl);
+                            HashMap<String, Object> obatMap = new HashMap<>();
+                            obatMap.put("Name", Name);
+                            obatMap.put("Description", Description);
+                            obatMap.put("Image", obatImageUrl);
 
-                            penyakitRef.child(penyakitId).updateChildren(penyakitMap)
+                            obatRef.child(obatId).updateChildren(obatMap)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             pd.dismiss();
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(AddPenyakitActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                                Intent addPenyakitDone = new Intent(AddPenyakitActivity.this, PenyakitDanObatActivity.class);
-                                                addPenyakitDone.putExtra("Key", tanamanId);
-                                                //add put string extra?
-                                                startActivity(addPenyakitDone);
+                                                Toast.makeText(AddObatActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                                Intent addObatDone = new Intent(AddObatActivity.this, PenyakitDanObatActivity.class);
+                                                addObatDone.putExtra("Key", tanamanId);
+                                                startActivity(addObatDone);
                                                 finish();
                                             }
                                             else {
                                                 String message = task.getException().toString();
-                                                Toast.makeText(AddPenyakitActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(AddObatActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -175,7 +169,7 @@ public class AddPenyakitActivity extends AppCompatActivity {
                 else {
                     pd.dismiss();
                     String message = task.getException().toString();
-                    Toast.makeText(AddPenyakitActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddObatActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
                 }
             }
         });

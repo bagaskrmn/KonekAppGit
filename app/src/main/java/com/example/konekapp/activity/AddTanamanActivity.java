@@ -3,6 +3,7 @@ package com.example.konekapp.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -36,6 +37,7 @@ public class AddTanamanActivity extends AppCompatActivity {
     private StorageReference TanamanImagesRef, tanamanPath;
     private DatabaseReference rootRef, tanamanRef;
     private ProgressDialog pd;
+    private ConstraintLayout AddImageTanamanConstraint;
 
     private String tanamanId, tanamanImageUrl;
 
@@ -46,6 +48,7 @@ public class AddTanamanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tanaman);
 
+        AddImageTanamanConstraint = findViewById(R.id.addImageTanamanConstraint);
         AddImageTanaman = findViewById(R.id.addImageTanaman);
         AddNameTanaman = findViewById(R.id.addNameTanaman);
         BtnAddTanamanDone = findViewById(R.id.btnAddTanamanDone);
@@ -61,7 +64,7 @@ public class AddTanamanActivity extends AppCompatActivity {
         TanamanImagesRef = FirebaseStorage.getInstance().getReference().child("Tanaman Images");
         tanamanId = rootRef.push().getKey();
 
-        AddImageTanaman.setOnClickListener(new View.OnClickListener() {
+        AddImageTanamanConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CropImage.activity()

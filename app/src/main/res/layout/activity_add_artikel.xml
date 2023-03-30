@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Artikel"
+            android:text="Tambah Artikel"
             android:fontFamily="@font/outfit_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"
@@ -41,8 +41,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:scrollbars="none"
         >
 
@@ -51,15 +50,74 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <TextView
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addImageArtikelConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Judul Artikel"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="6dp"
-                />
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_add_image"
+                >
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/document_upload"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/addImageArtikel"
+                    app:layout_constraintStart_toStartOf="@+id/addImageArtikel"
+                    app:layout_constraintTop_toTopOf="@+id/addImageArtikel" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_regular"
+                    android:text="Unggah Foto"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintEnd_toEndOf="@+id/addImageArtikel"
+                    app:layout_constraintStart_toStartOf="@+id/addImageArtikel"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+                <ImageView
+                    android:id="@+id/addImageArtikel"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Judul Artikel"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/addTitleArtikel"
@@ -74,15 +132,30 @@
                 android:inputType="textCapWords"
                 />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sumber Artikel"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="6dp"
-                />
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sumber Artikel"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/addSourceArtikel"
@@ -96,33 +169,31 @@
                 android:layout_marginBottom="10dp"
                 />
 
-            <TextView
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gambar Artikel"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="6dp"
-                />
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deskripsi Artikel"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
 
-            <ImageView
-                android:id="@+id/addImageArtikel"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:src="@drawable/ic_baseline_add_24"
-                android:layout_marginBottom="10dp"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Deskripsi Artikel"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="6dp"
-                />
+            </LinearLayout>
 
 
             <EditText
@@ -148,14 +219,12 @@
                 android:background="@drawable/btn_bg"
                 android:backgroundTint="@null"
                 app:backgroundTint="@null"
-                android:text="Tambah"
+                android:text="Simpan"
                 android:fontFamily="@font/outfit_semi_bold"
                 android:textAllCaps="false"
                 />
 
         </LinearLayout>
-
-
     </ScrollView>
 
 

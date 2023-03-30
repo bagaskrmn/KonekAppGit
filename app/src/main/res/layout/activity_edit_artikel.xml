@@ -49,15 +49,74 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <TextView
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/editImageArtikelConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Judul Artikel"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="6dp"
-                />
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_add_image"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/document_upload"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editImageArtikel"
+                    app:layout_constraintStart_toStartOf="@+id/editImageArtikel"
+                    app:layout_constraintTop_toTopOf="@+id/editImageArtikel" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_regular"
+                    android:text="Unggah Foto"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintEnd_toEndOf="@+id/editImageArtikel"
+                    app:layout_constraintStart_toStartOf="@+id/editImageArtikel"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+                <ImageView
+                    android:id="@+id/editImageArtikel"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Judul Artikel"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/editTitleArtikel"
@@ -72,15 +131,30 @@
                 android:inputType="textCapWords"
                 />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sumber Artikel"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="6dp"
-                />
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sumber Artikel"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/editSourceArtikel"
@@ -94,33 +168,30 @@
                 android:layout_marginBottom="10dp"
                 />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gambar Artikel"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="6dp"
-                />
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deskripsi Artikel"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
 
-            <ImageView
-                android:id="@+id/editImageArtikel"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:src="@drawable/ic_baseline_add_24"
-                android:layout_marginBottom="10dp"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Deskripsi Artikel"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="6dp"
-                />
+            </LinearLayout>
 
 
             <EditText
@@ -139,6 +210,12 @@
                 android:layout_marginBottom="10dp"
                 />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
             <Button
                 android:id="@+id/btnEditArtikelDone"
                 android:layout_width="match_parent"
@@ -152,7 +229,6 @@
                 />
 
         </LinearLayout>
-
 
     </ScrollView>
 
