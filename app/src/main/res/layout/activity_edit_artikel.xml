@@ -165,6 +165,7 @@
                 android:textSize="14sp"
                 android:padding="8dp"
                 tools:text="Ini Sumber"
+                android:inputType="text"
                 android:layout_marginBottom="10dp"
                 />
 

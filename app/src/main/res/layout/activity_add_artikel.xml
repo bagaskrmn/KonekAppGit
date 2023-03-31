@@ -165,6 +165,7 @@
                 android:fontFamily="@font/outfit_regular"
                 android:textSize="14sp"
                 android:padding="8dp"
+                android:inputType="text"
                 tools:text="Ini Sumber"
                 android:layout_marginBottom="10dp"
                 />

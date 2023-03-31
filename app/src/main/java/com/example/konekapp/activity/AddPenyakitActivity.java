@@ -76,10 +76,10 @@ public class AddPenyakitActivity extends AppCompatActivity {
         tanamanId = intent.getStringExtra("Key");
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("Tanaman");
-        PenyakitImagesRef = FirebaseStorage.getInstance().getReference().child("Penyakit Images");
+        tanamanRef = rootRef.child("plant");
+        PenyakitImagesRef = FirebaseStorage.getInstance().getReference().child("plantDiseaseImages");
         penyakitId = rootRef.push().getKey();
-        penyakitRef = tanamanRef.child(tanamanId).child("Penyakit");
+        penyakitRef = tanamanRef.child(tanamanId).child("disease");
 
         AddImagePenyakitConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,9 +146,9 @@ public class AddPenyakitActivity extends AppCompatActivity {
                             pd.show();
 
                             HashMap<String, Object> penyakitMap = new HashMap<>();
-                            penyakitMap.put("Name", Name);
-                            penyakitMap.put("Description", Description);
-                            penyakitMap.put("Image", penyakitImageUrl);
+                            penyakitMap.put("name", Name);
+                            penyakitMap.put("description", Description);
+                            penyakitMap.put("image", penyakitImageUrl);
 
                             penyakitRef.child(penyakitId).updateChildren(penyakitMap)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {

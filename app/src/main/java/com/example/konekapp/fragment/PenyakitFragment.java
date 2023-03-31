@@ -74,8 +74,8 @@ public class PenyakitFragment extends Fragment {
         tanamanId = getActivity().getIntent().getStringExtra("Key");
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("Tanaman");
-        penyakitRef = tanamanRef.child(tanamanId).child("Penyakit");
+        tanamanRef = rootRef.child("plant");
+        penyakitRef = tanamanRef.child(tanamanId).child("disease");
         list = new ArrayList<>();
         recyclerView = (RecyclerView)getView().findViewById(R.id.penyakitRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

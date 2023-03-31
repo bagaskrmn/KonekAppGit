@@ -37,14 +37,14 @@ public class TanamanAdapter extends RecyclerView.Adapter<TanamanAdapter.MyViewHo
     public void onBindViewHolder(@NonNull TanamanAdapter.MyViewHolder holder, int position) {
         TanamanModel tanaman = list.get(position);
 
-        holder.NameTanamanTv.setText(tanaman.Name);
-        Picasso.get().load(tanaman.Image).into(holder.ImageTanamanImg);
+        holder.NameTanamanTv.setText(tanaman.name);
+        Picasso.get().load(tanaman.image).into(holder.ImageTanamanImg);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent detailTanaman = new Intent(context, PenyakitDanObatActivity.class);
-                detailTanaman.putExtra("Key", tanaman.Key);
+                detailTanaman.putExtra("Key", tanaman.key);
                 context.startActivity(detailTanaman);
             }
         });

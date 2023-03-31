@@ -1,50 +1,70 @@
 package com.example.konekapp.activity;
 
 public class ArtikelModel {
-    String Title;
-    String Image;
-    String Source;
-    String Date;
-    String Description;
-    String Key;
+    String title;
+    String image;
+    String source;
+    String date;
+    String description;
+    String key;
 
-    public String getKey() {
-        return Key;
-    }
-
-    public void setKey(String key) {
-        Key = key;
-    }
-
-    //tanpa masukin data bisa pakai constructor ini
     public ArtikelModel() {
     }
 
-    public ArtikelModel(String title, String image, String source, String date, String description) {
-        Title = title;
-        Image = image;
-        Source = source;
-        Date = date;
-        Description = description;
+    public ArtikelModel(String title, String image, String source, String date, String description, String key) {
+        this.title = title;
+        this.image = image;
+        this.source = source;
+        this.date = date;
+        this.description = description;
+        this.key = key;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getImage() {
-        return Image;
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getSource() {
-        return Source;
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getDate() {
-        return Date;
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

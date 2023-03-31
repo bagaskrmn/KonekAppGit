@@ -72,8 +72,8 @@ public class DetailArtikelActivity extends AppCompatActivity {
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
-        artikelRef = FirebaseDatabase.getInstance().getReference().child("Artikel");
-        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("Artikel Images");
+        artikelRef = rootRef.child("article");
+        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
         artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
 
         //init progress dialog
@@ -170,11 +170,11 @@ public class DetailArtikelActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             //retrieve Data Artikel
-            String retrieveTitle = snapshot.child("Title").getValue().toString();
-            String retrieveImage = snapshot.child("Image").getValue().toString();
-            String retrieveSource = snapshot.child("Source").getValue().toString();
-            String retrieveDate = snapshot.child("Date").getValue().toString();
-            String retrieveDescription = snapshot.child("Description").getValue().toString();
+            String retrieveTitle = snapshot.child("title").getValue().toString();
+            String retrieveImage = snapshot.child("image").getValue().toString();
+            String retrieveSource = snapshot.child("source").getValue().toString();
+            String retrieveDate = snapshot.child("date").getValue().toString();
+            String retrieveDescription = snapshot.child("description").getValue().toString();
 
             //set Data to the item
             DetailArtikelTitle.setText(retrieveTitle);

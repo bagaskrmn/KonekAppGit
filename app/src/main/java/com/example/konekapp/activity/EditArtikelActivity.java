@@ -90,10 +90,8 @@ public class EditArtikelActivity extends AppCompatActivity {
 
         //database and storage
         rootRef = FirebaseDatabase.getInstance().getReference();
-        artikelRef = rootRef.child("Artikel");
-        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("Artikel Images");
-
-//        artikelId = rootRef.push().getKey();
+        artikelRef = rootRef.child("article");
+        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
 
         //recieve StringExtra from previous Activity via Intent
         Intent intent = getIntent();
@@ -113,6 +111,7 @@ public class EditArtikelActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(2,1)
                         .start(EditArtikelActivity.this);
             }
         });
@@ -140,7 +139,6 @@ public class EditArtikelActivity extends AppCompatActivity {
                 Picasso.get().load(resultUri).into(EditImageArtikel);
 
                 artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
-                Log.d("AddArtikel", artikelPath.toString());
             }
         }
     }
@@ -156,9 +154,9 @@ public class EditArtikelActivity extends AppCompatActivity {
             pd.show();
 
             HashMap<String, Object> artikelMap = new HashMap<>();
-            artikelMap.put("Title", EditTitle);
-            artikelMap.put("Source", EditSource);
-            artikelMap.put("Description", EditDescription);
+            artikelMap.put("title", EditTitle);
+            artikelMap.put("source", EditSource);
+            artikelMap.put("description", EditDescription);
 
             artikelRef.child(DetailKey).updateChildren(artikelMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -197,10 +195,10 @@ public class EditArtikelActivity extends AppCompatActivity {
                                 pd.setMessage("Artikel Terubah");
                                 pd.show();
                                 HashMap<String, Object> artikelMap = new HashMap<>();
-                                artikelMap.put("Title", EditTitle);
-                                artikelMap.put("Source", EditSource);
-                                artikelMap.put("Description", EditDescription);
-                                artikelMap.put("Image", artikelImageUrl);
+                                artikelMap.put("title", EditTitle);
+                                artikelMap.put("source", EditSource);
+                                artikelMap.put("description", EditDescription);
+                                artikelMap.put("image", artikelImageUrl);
 
                                 artikelRef.child(DetailKey).updateChildren(artikelMap)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -234,10 +232,10 @@ public class EditArtikelActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             //retrieve Data Artikel
-            String retrieveTitle = snapshot.child("Title").getValue().toString();
-            String retrieveImage = snapshot.child("Image").getValue().toString();
-            String retrieveSource = snapshot.child("Source").getValue().toString();
-            String retrieveDescription = snapshot.child("Description").getValue().toString();
+            String retrieveTitle = snapshot.child("title").getValue().toString();
+            String retrieveImage = snapshot.child("image").getValue().toString();
+            String retrieveSource = snapshot.child("source").getValue().toString();
+            String retrieveDescription = snapshot.child("description").getValue().toString();
 
             //set Data to the item
             EditTitleArtikel.setText(retrieveTitle);

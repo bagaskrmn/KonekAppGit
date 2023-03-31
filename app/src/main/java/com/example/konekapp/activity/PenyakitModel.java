@@ -1,37 +1,50 @@
 package com.example.konekapp.activity;
 
 public class PenyakitModel {
-    String Image;
-    String Name;
-    String Description;
-    String Key;
-
-    public String getKey() {
-        return Key;
-    }
-
-    public void setKey(String key) {
-        Key = key;
-    }
+    String image;
+    String name;
+    String description;
+    String key;
 
     public PenyakitModel() {
     }
 
-    public PenyakitModel(String image, String name, String description) {
-        Image = image;
-        Name = Name;
-        Description = description;
+    public PenyakitModel(String image, String name, String description, String key) {
+        this.image = image;
+        this.name = name;
+        this.description = description;
+        this.key = key;
     }
 
     public String getImage() {
-        return Image;
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {
-        return Name;
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

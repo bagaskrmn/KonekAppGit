@@ -67,8 +67,8 @@ public class ObatFragment extends Fragment {
         tanamanId = getActivity().getIntent().getStringExtra("Key");
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("Tanaman");
-        obatRef = tanamanRef.child(tanamanId).child("Obat");
+        tanamanRef = rootRef.child("plant");
+        obatRef = tanamanRef.child(tanamanId).child("drug");
         list = new ArrayList<>();
         recyclerView = (RecyclerView)getView().findViewById(R.id.obatRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

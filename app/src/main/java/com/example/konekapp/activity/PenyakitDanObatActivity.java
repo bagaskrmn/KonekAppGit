@@ -50,7 +50,7 @@ public class PenyakitDanObatActivity extends AppCompatActivity {
         JenisTanaman = findViewById(R.id.jenisTanaman);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("Tanaman");
+        tanamanRef = rootRef.child("plant");
 
         PenyakitDanObatBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +66,7 @@ public class PenyakitDanObatActivity extends AppCompatActivity {
         tanamanRef.child(TanamanKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                nameTanaman = snapshot.child("Name").getValue().toString();
+                nameTanaman = snapshot.child("name").getValue().toString();
                 JenisTanaman.setText(nameTanaman);
             }
 

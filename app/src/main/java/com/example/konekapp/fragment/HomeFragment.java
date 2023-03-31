@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
-        artikelRef = rootRef.child("Artikel");
+        artikelRef = rootRef.child("article");
 
         AccImageHome = (CircleImageView)getView().findViewById(R.id.accImageHome);
         BtnRegisterMitra= (Button)getView().findViewById(R.id.btnRegisterMitra);

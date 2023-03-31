@@ -60,8 +60,8 @@ public class AddTanamanActivity extends AppCompatActivity {
         pd.setCanceledOnTouchOutside(false);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("Tanaman");
-        TanamanImagesRef = FirebaseStorage.getInstance().getReference().child("Tanaman Images");
+        tanamanRef = rootRef.child("plant");
+        TanamanImagesRef = FirebaseStorage.getInstance().getReference().child("plantImages");
         tanamanId = rootRef.push().getKey();
 
         AddImageTanamanConstraint.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +104,6 @@ public class AddTanamanActivity extends AppCompatActivity {
                 Picasso.get().load(resultUri).into(AddImageTanaman);
 
                 tanamanPath = TanamanImagesRef.child(tanamanId+".jpg");
-                Log.d("AddArtikel", tanamanPath.toString());
             }
         }
 
@@ -131,8 +130,8 @@ public class AddTanamanActivity extends AppCompatActivity {
                             pd.show();
 
                             HashMap<String, Object> tanamanMap = new HashMap<>();
-                            tanamanMap.put("Name", Name);
-                            tanamanMap.put("Image", tanamanImageUrl);
+                            tanamanMap.put("name", Name);
+                            tanamanMap.put("image", tanamanImageUrl);
 
                             tanamanRef.child(tanamanId).updateChildren(tanamanMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

@@ -36,9 +36,9 @@ public class PenyakitAdapter extends RecyclerView.Adapter<PenyakitAdapter.MyView
     public void onBindViewHolder(@NonNull PenyakitAdapter.MyViewHolder holder, int position) {
         PenyakitModel penyakit = list.get(position);
 
-        holder.DetailPenyakitName.setText(penyakit.Name);
-        Picasso.get().load(penyakit.Image).into(holder.DetailPenyakitImage);
-        holder.DetailPenyakitDescription.setText(penyakit.Description);
+        holder.DetailPenyakitName.setText(penyakit.name);
+        Picasso.get().load(penyakit.image).into(holder.DetailPenyakitImage);
+        holder.DetailPenyakitDescription.setText(penyakit.description);
     }
 
     @Override

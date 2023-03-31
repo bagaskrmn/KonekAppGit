@@ -36,16 +36,16 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.MyViewHo
     public void onBindViewHolder(@NonNull ArtikelAdapter.MyViewHolder holder, int position) {
         ArtikelModel artikel = list.get(position);
 
-        holder.TitleArtikel.setText(artikel.Title);
-        Picasso.get().load(artikel.Image).into(holder.ImageArtikel);
-        holder.SourceArtikel.setText(artikel.Source);
-        holder.DateArtikel.setText(artikel.Date);
+        holder.TitleArtikel.setText(artikel.title);
+        Picasso.get().load(artikel.image).into(holder.ImageArtikel);
+        holder.SourceArtikel.setText(artikel.source);
+        holder.DateArtikel.setText(artikel.date);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent detailArtikelIntent = new Intent(context, DetailArtikelActivity.class);
-                detailArtikelIntent.putExtra("Key", artikel.Key);
+                detailArtikelIntent.putExtra("Key", artikel.key);
                 context.startActivity(detailArtikelIntent);
             }
         });

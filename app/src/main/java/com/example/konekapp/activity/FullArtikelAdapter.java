@@ -36,16 +36,16 @@ public class FullArtikelAdapter extends RecyclerView.Adapter<FullArtikelAdapter.
     public void onBindViewHolder(@NonNull FullArtikelAdapter.MyViewHolder holder, int position) {
         ArtikelModel artikel = list.get(position);
 
-        Picasso.get().load(artikel.Image).into(holder.FullImageArtikel);
-        holder.FullTitleArtikel.setText(artikel.Title);
-        holder.FullSourceArtikel.setText(artikel.Source);
-        holder.FullDateArtikel.setText(artikel.Date);
+        Picasso.get().load(artikel.image).into(holder.FullImageArtikel);
+        holder.FullTitleArtikel.setText(artikel.title);
+        holder.FullSourceArtikel.setText(artikel.source);
+        holder.FullDateArtikel.setText(artikel.date);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent detailArtikelIntent = new Intent(context, DetailArtikelActivity.class);
-                detailArtikelIntent.putExtra("Key", artikel.Key);
+                detailArtikelIntent.putExtra("Key", artikel.key);
                 context.startActivity(detailArtikelIntent);
             }
         });

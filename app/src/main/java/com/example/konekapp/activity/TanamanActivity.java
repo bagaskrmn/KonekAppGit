@@ -59,7 +59,7 @@ public class TanamanActivity extends AppCompatActivity {
         SpaceViewTanaman = findViewById(R.id.spaceViewTanaman);
         BtnAddTanaman = findViewById(R.id.btnAddTanaman);
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("Tanaman");
+        tanamanRef = rootRef.child("plant");
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.tanamanRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -70,7 +70,7 @@ public class TanamanActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
 
 
         //init ProgressDialog
@@ -84,9 +84,9 @@ public class TanamanActivity extends AppCompatActivity {
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                role = snapshot.child("Role").getValue().toString();
+                role = snapshot.child("role").getValue().toString();
 
-                if (role.equals("3") || role.equals("4")) {
+                if (role.equals("2") || role.equals("3")) {
                     BtnAddTanaman.setVisibility(View.VISIBLE);
                     SpaceViewTanaman.setVisibility(View.GONE);
                 }

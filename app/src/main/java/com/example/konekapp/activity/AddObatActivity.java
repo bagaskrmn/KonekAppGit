@@ -57,6 +57,8 @@ public class AddObatActivity extends AppCompatActivity {
             }
         });
 
+
+        AddImageObatConstraint = findViewById(R.id.addImageObatConstraint);
         AddImageObat = findViewById(R.id.addImageObat);
         AddObatBackAction = findViewById(R.id.addObatBackAction);
         AddNameObat = findViewById(R.id.addNameObat);
@@ -72,10 +74,10 @@ public class AddObatActivity extends AppCompatActivity {
         tanamanId = intent.getStringExtra("Key");
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("Tanaman");
-        ObatImagesRef = FirebaseStorage.getInstance().getReference().child("Obat Images");
+        tanamanRef = rootRef.child("plant");
+        ObatImagesRef = FirebaseStorage.getInstance().getReference().child("plantDrugImages");
         obatId = rootRef.push().getKey();
-        obatRef = tanamanRef.child(tanamanId).child("Obat");
+        obatRef = tanamanRef.child(tanamanId).child("drug");
 
         AddImageObatConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,9 +143,9 @@ public class AddObatActivity extends AppCompatActivity {
                             pd.show();
 
                             HashMap<String, Object> obatMap = new HashMap<>();
-                            obatMap.put("Name", Name);
-                            obatMap.put("Description", Description);
-                            obatMap.put("Image", obatImageUrl);
+                            obatMap.put("name", Name);
+                            obatMap.put("description", Description);
+                            obatMap.put("image", obatImageUrl);
 
                             obatRef.child(obatId).updateChildren(obatMap)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {

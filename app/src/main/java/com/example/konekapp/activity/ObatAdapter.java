@@ -36,9 +36,9 @@ public class ObatAdapter extends RecyclerView.Adapter<ObatAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull ObatAdapter.MyViewHolder holder, int position) {
         ObatModel obat = list.get(position);
 
-        holder.DetailObatName.setText(obat.Name);
-        Picasso.get().load(obat.Image).into(holder.DetailObatImage);
-        holder.DetailObatDescription.setText(obat.Description);
+        holder.DetailObatName.setText(obat.name);
+        Picasso.get().load(obat.image).into(holder.DetailObatImage);
+        holder.DetailObatDescription.setText(obat.description);
     }
 
     @Override

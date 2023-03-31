@@ -77,8 +77,8 @@ public class AddArtikelActivity extends AppCompatActivity {
 
         //database and storage
         rootRef = FirebaseDatabase.getInstance().getReference();
-        artikelRef = rootRef.child("Artikel");
-        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("Artikel Images");
+        artikelRef = rootRef.child("article");
+        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
 
         artikelId = rootRef.push().getKey();
 
@@ -163,11 +163,11 @@ public class AddArtikelActivity extends AppCompatActivity {
                             pd.show();
 
                             HashMap<String, Object> artikelMap = new HashMap<>();
-                            artikelMap.put("Title", Title);
-                            artikelMap.put("Source", Source);
-                            artikelMap.put("Date", date);
-                            artikelMap.put("Image", artikelImageUrl);
-                            artikelMap.put("Description", Description);
+                            artikelMap.put("title", Title);
+                            artikelMap.put("source", Source);
+                            artikelMap.put("date", date);
+                            artikelMap.put("image", artikelImageUrl);
+                            artikelMap.put("description", Description);
 
 
 

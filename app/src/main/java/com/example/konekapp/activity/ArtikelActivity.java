@@ -68,7 +68,7 @@ public class ArtikelActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
 
-        artikelRef = rootRef.child("Artikel");
+        artikelRef = rootRef.child("article");
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.fullArtikelrtikelRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
