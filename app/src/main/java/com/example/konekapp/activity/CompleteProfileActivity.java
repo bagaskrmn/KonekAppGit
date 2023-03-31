@@ -98,8 +98,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
         phoneNumber = currentUser.getPhoneNumber();
         removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
-        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+        usersRef = rootRef.child("users");
+        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
 
         PhoneNumberTV.setText(removedPhoneNumber);
 
@@ -139,7 +139,6 @@ public class CompleteProfileActivity extends AppCompatActivity {
                         .start(CompleteProfileActivity.this);
             }
         });
-        //Profile Image
 
         BtnCompleteProfileDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,12 +207,22 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                 pd.show();
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
-                                profileMap.put("Nama", Name);
-                                profileMap.put("Domisili", Address);
-                                profileMap.put("Alamat Lengkap", DetailAddress);
-                                profileMap.put("Image", profileUrl);
-                                profileMap.put("Role", "1");
-                                profileMap.put("Bergabung pada", date);
+                                profileMap.put("name", Name);
+                                profileMap.put("domicile", Address);
+                                profileMap.put("fullAddress", DetailAddress);
+                                profileMap.put("image", profileUrl);
+                                profileMap.put("role", "0");
+                                profileMap.put("dateJoined", date);
+                                profileMap.put("nik", "");
+                                profileMap.put("email", "");
+                                profileMap.put("village", "");
+                                profileMap.put("subdistrict", "");
+                                profileMap.put("city", "");
+                                profileMap.put("province", "");
+                                profileMap.put("idCardImage", "");
+                                profileMap.put("question1","");
+                                profileMap.put("question2","");
+
 
 
                                 usersRef.child(currentUserId).updateChildren(profileMap)

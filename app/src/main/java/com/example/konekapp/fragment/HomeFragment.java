@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
         artikelRef = rootRef.child("Artikel");
 
         AccImageHome = (CircleImageView)getView().findViewById(R.id.accImageHome);
@@ -119,36 +119,36 @@ public class HomeFragment extends Fragment {
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String retrieveImage = snapshot.child("Image").getValue().toString();
+                String retrieveImage = snapshot.child("image").getValue().toString();
                 Picasso.get().load(retrieveImage).into(AccImageHome);
 
 
                 //chek role
-                role = snapshot.child("Role").getValue().toString();
+                role = snapshot.child("role").getValue().toString();
 
                 //if role is user (1)
-                if (role.equals("1")) {
+                if (role.equals("0")) {
                     ConstraintRegister.setVisibility(View.VISIBLE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.GONE);
                     ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 }
                 //if role is mitra(2)
-                if (role.equals("2")) {
+                if (role.equals("1")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.VISIBLE);
                     ConstraintChatMitra.setVisibility(View.GONE);
                     ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 }
                 //if role is Ahli Tani
-                if (role.equals("3")) {
+                if (role.equals("2")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.VISIBLE);
                     ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 }
                 //if role is admin
-                if (role.equals("4")) {
+                if (role.equals("3")) {
                     ConstraintRegister.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.GONE);
@@ -210,7 +210,7 @@ public class HomeFragment extends Fragment {
 //                fragmentTransaction.replace(R.id.container, accountFragment).commit();
 
                 //if pressed, go to profile
-                if (role.equals("2")) {
+                if (role.equals("1")) {
                     Intent mitraProfile = new Intent(getActivity(), MitraProfileActivity.class);
                     startActivity(mitraProfile);
                 }

@@ -44,7 +44,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //database ref
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -57,7 +57,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.hasChild("Nama")) {
+                            if (snapshot.hasChild("name")) {
                                 Intent registeredUserIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
                                 usersRef.removeEventListener(this);
                                 registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

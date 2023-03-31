@@ -65,7 +65,7 @@ public class AccountFragment extends Fragment {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
 
         //init pd
         pd = new ProgressDialog(getActivity());
@@ -91,9 +91,9 @@ public class AccountFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //retrieve user data from database
-                String retrieveImage = snapshot.child("Image").getValue().toString();
-                String retrieveName = snapshot.child("Nama").getValue().toString();
-                String retrieveDate = snapshot.child("Bergabung pada").getValue().toString();
+                String retrieveImage = snapshot.child("image").getValue().toString();
+                String retrieveName = snapshot.child("name").getValue().toString();
+                String retrieveDate = snapshot.child("dateJoined").getValue().toString();
 
                 //set to field
                 DateJoinedTv.setText("Bergabung pada " +retrieveDate);
@@ -101,9 +101,9 @@ public class AccountFragment extends Fragment {
                 Picasso.get().load(retrieveImage).into(AccImageProfile);
 
                 //check role
-                String role = snapshot.child("Role").getValue().toString();
+                String role = snapshot.child("role").getValue().toString();
                 //if role is user(1)
-                if (role.equals("1")) {
+                if (role.equals("0")) {
                     ConstraintGabungKemitraan.setVisibility(View.VISIBLE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.GONE);
@@ -112,7 +112,7 @@ public class AccountFragment extends Fragment {
                     RoleUserTv.setText("Pengguna");
 
                 }
-                if (role.equals("2")) {
+                if (role.equals("1")) {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.VISIBLE);
                     ConstraintChatMitra.setVisibility(View.GONE);
@@ -120,7 +120,7 @@ public class AccountFragment extends Fragment {
 
                     RoleUserTv.setText("Petani Mitra");
                 }
-                if (role.equals("3")) {
+                if (role.equals("2")) {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.VISIBLE);
@@ -129,7 +129,7 @@ public class AccountFragment extends Fragment {
                     RoleUserTv.setText("Ahli Tani");
                 }
 
-                if (role.equals("4")) {
+                if (role.equals("3")) {
                     ConstraintGabungKemitraan.setVisibility(View.GONE);
                     ConstraintKonsultasi.setVisibility(View.GONE);
                     ConstraintChatMitra.setVisibility(View.GONE);

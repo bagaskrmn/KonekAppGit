@@ -96,7 +96,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
 
         //database ref
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
 
         LoginBackAction.setVisibility(View.GONE);
 
@@ -325,12 +325,12 @@ public class LoginPhoneActivity extends AppCompatActivity {
                         String currentUserId = user.getUid();
 
                         //root database reference
-                        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-
-                        DatabaseReference usersRef = rootRef.child("Users");
+//                        rootRef = FirebaseDatabase.getInstance().getReference();
+//
+//                        usersRef = rootRef.child("users");
                         HashMap<String, Object> profileMap = new HashMap<>();
-                        //Hanya untuk memunculkan UserID di child Users
-                        profileMap.put("Nomor HP", phoneNumber);
+                        //Hanya untuk memunculkan userID di child Users
+                        profileMap.put("phoneNumber", phoneNumber);
                         usersRef.child(currentUserId).updateChildren(profileMap).
                                 addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -339,7 +339,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                                 currentUserRef.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        if (snapshot.hasChild("Nama")) {
+                                        if (snapshot.hasChild("name")) {
                                             Intent registeredUserIntent = new Intent(LoginPhoneActivity.this, MainActivity.class);
                                             currentUserRef.removeEventListener(this);
                                             registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

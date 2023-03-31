@@ -68,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
         removedPhoneNumber = phoneNumber.substring(3);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
 
         decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -104,12 +104,12 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
-                String retrieveName = snapshot.child("Nama").getValue().toString();
-                String retrieveAddress = snapshot.child("Domisili").getValue().toString();
-                String retrieveDetailAddress = snapshot.child("Alamat Lengkap").getValue().toString();
+                String retrieveName = snapshot.child("name").getValue().toString();
+                String retrieveAddress = snapshot.child("domicile").getValue().toString();
+                String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
 
                 //profile image
-                String retrieveImage = snapshot.child("Image").getValue().toString();
+                String retrieveImage = snapshot.child("image").getValue().toString();
 
                 ProfName.setText(retrieveName);
                 ProfPhoneNumber.setText(removedPhoneNumber);

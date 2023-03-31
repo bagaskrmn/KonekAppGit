@@ -60,7 +60,7 @@ public class SettingActivity extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
 
         //check role
         usersRef.child(currentUserId).addValueEventListener(listener);
@@ -75,7 +75,7 @@ public class SettingActivity extends AppCompatActivity {
         BtnKelolaAkun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (role.equals("2")) {
+                if (role.equals("1")) {
                     Intent mitraProfileIntent = new Intent(SettingActivity.this, MitraProfileActivity.class);
                     startActivity(mitraProfileIntent);
                 }
@@ -126,7 +126,7 @@ public class SettingActivity extends AppCompatActivity {
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            role = snapshot.child("Role").getValue().toString();
+            role = snapshot.child("role").getValue().toString();
         }
 
         @Override

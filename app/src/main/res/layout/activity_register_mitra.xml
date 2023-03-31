@@ -21,9 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
-            android:contentDescription="Back to Main" />
+            />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -40,7 +40,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:scrollbars="none"
         >
@@ -287,27 +287,14 @@
             </LinearLayout>
 
             <!--      Alamat Lengkap-->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alamat"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="@color/neutral_dark3"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="#D8244E"
-                    android:text="*"
-                    />
-            </LinearLayout>
+                android:text="Alamat"
+                android:fontFamily="@font/outfit_medium"
+                android:textColor="@color/neutral_dark3"
+                android:layout_marginBottom="8dp"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -328,21 +315,18 @@
                     android:paddingRight="16dp"
                     />
 
-                <EditText
-                    android:id="@+id/regMitraDetailAddress"
+                <TextView
+                    android:id="@+id/regMitraFullAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/outfit_regular"
                     android:textColor="@color/neutral_dark3"
-                    android:hint="Masukkan Alamat Lengkap"
-                    android:inputType="textCapWords"
                     android:paddingTop="10dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="10dp"
                     android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck"
                     />
             </LinearLayout>
 
@@ -390,7 +374,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/regMitraKelurahan"
+                    android:id="@+id/regMitraVillage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -449,7 +433,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/regMitraKecamatan"
+                    android:id="@+id/regMitraSubdistrict"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -510,7 +494,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/regMitraKabupaten"
+                    android:id="@+id/regMitraCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -569,7 +553,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/regMitraProvinsi"
+                    android:id="@+id/regMitraProvince"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -622,10 +606,11 @@
                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/regMitraDocumentAdd"
+                android:id="@+id/regMitraDocumentConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_add_image"
                 >
 
                 <ImageView
@@ -696,7 +681,7 @@
                 >
 
                 <EditText
-                    android:id="@+id/regKuisioner1"
+                    android:id="@+id/regMitraQuestion1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -732,7 +717,7 @@
                 >
 
                 <EditText
-                    android:id="@+id/regKuisioner2"
+                    android:id="@+id/regMitraQuestion2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -763,9 +748,5 @@
         </LinearLayout>
 
     </ScrollView>
-
-
-
-
 </LinearLayout>
 

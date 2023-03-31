@@ -81,8 +81,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
         phoneNumber = currentUser.getPhoneNumber();
         removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
-        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+        usersRef = rootRef.child("users");
+        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
 
         decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -102,10 +102,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String retrieveName = snapshot.child("Nama").getValue().toString();
-                String retrieveAddress = snapshot.child("Domisili").getValue().toString();
-                String retrieveDetailAddress = snapshot.child("Alamat Lengkap").getValue().toString();
-                String retrieveImage = snapshot.child("Image").getValue().toString();
+                String retrieveName = snapshot.child("name").getValue().toString();
+                String retrieveAddress = snapshot.child("domicile").getValue().toString();
+                String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
+                String retrieveImage = snapshot.child("image").getValue().toString();
 
                 UpdateProfName.setText(retrieveName);
                 UpdateProfAddress.setText(retrieveAddress);
@@ -189,9 +189,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
             pd.show();
             //hanya diupdate objek selain gambar
             HashMap<String, Object> profileMap = new HashMap<>();
-            profileMap.put("Nama", updatedName);
-            profileMap.put("Domisili", updatedAddress);
-            profileMap.put("Alamat Lengkap", updatedDetailAddress);
+            profileMap.put("name", updatedName);
+            profileMap.put("domicile", updatedAddress);
+            profileMap.put("fullAddress", updatedDetailAddress);
 
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -237,10 +237,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                 pd.show();
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
-                                profileMap.put("Nama", updatedName);
-                                profileMap.put("Domisili", updatedAddress);
-                                profileMap.put("Alamat Lengkap", updatedDetailAddress);
-                                profileMap.put("Image", profileUrl);
+                                profileMap.put("name", updatedName);
+                                profileMap.put("domicile", updatedAddress);
+                                profileMap.put("fullAddress", updatedDetailAddress);
+                                profileMap.put("image", profileUrl);
 
                                 //update child onDatabase from hashmap(profileMap)
                                 usersRef.child(currentUserId).updateChildren(profileMap)

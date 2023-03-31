@@ -71,7 +71,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
         artikelRef = FirebaseDatabase.getInstance().getReference().child("Artikel");
         ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("Artikel Images");
         artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
@@ -97,9 +97,9 @@ public class DetailArtikelActivity extends AppCompatActivity {
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                role = snapshot.child("Role").getValue().toString();
+                role = snapshot.child("role").getValue().toString();
 
-                if (role.equals("3") || role.equals("4")) {
+                if (role.equals("2") || role.equals("3")) {
                     BtnDeleteArtikel.setVisibility(View.VISIBLE);
                     BtnEditArtikel.setVisibility(View.VISIBLE);
                 }

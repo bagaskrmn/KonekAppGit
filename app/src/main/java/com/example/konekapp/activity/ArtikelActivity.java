@@ -66,7 +66,7 @@ public class ArtikelActivity extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
 
         artikelRef = rootRef.child("Artikel");
         list = new ArrayList<>();
@@ -86,9 +86,9 @@ public class ArtikelActivity extends AppCompatActivity {
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                role = snapshot.child("Role").getValue().toString();
+                role = snapshot.child("role").getValue().toString();
 
-                if (role.equals("3") || role.equals("4")) {
+                if (role.equals("2") || role.equals("3")) {
                     BtnAddArtikel.setVisibility(View.VISIBLE);
                     SpaceView.setVisibility(View.GONE);
                 }
