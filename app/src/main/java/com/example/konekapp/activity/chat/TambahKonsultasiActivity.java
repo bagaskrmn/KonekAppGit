@@ -36,7 +36,7 @@ public class TambahKonsultasiActivity extends AppCompatActivity implements UserL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_konsultasi);
 
-        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        userRef = FirebaseDatabase.getInstance().getReference().child("users");
         listUser = new ArrayList<>();
 
         //recyclerView
@@ -65,8 +65,13 @@ public class TambahKonsultasiActivity extends AppCompatActivity implements UserL
                 listUser.clear();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     UserModel user = ds.getValue(UserModel.class);
-                    if (user != null && !user.getUserId().equals(currentUserId)) {
-                        listUser.add(user);
+                    user.setUserId(ds.getKey());
+                    try {
+                        if (!user.getUserId().equals(currentUserId) && user.getRole().equals("2")) {
+                            listUser.add(user);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();

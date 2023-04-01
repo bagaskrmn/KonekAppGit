@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -79,7 +81,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         listenMessages();
 
         //tv name mentor
-        tvNameMentor.setText(userReceiver.getNama());
+        tvNameMentor.setText(userReceiver.getName());
 
         //iv profile
         Picasso.get().load(userReceiver.getImage()).into(ivProfile);
@@ -97,7 +99,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //send message
-                sendMessage(edtMessage.getText().toString());
+                if (edtMessage.getText().toString().trim().length() > 0) {
+                    sendMessage(edtMessage.getText().toString().trim());
+                }
             }
         });
     }
@@ -105,7 +109,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     private void initialization() {
         //Database Reference
         rootRef = FirebaseDatabase.getInstance().getReference();
-        usersRef = rootRef.child("Users");
+        usersRef = rootRef.child("users");
 
         //view initialization
         tvNameMentor = findViewById(R.id.tvNameMentor);
@@ -141,19 +145,19 @@ public class ChatRoomActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //check role
-                String role = snapshot.child("Role").getValue().toString();
+                String role = snapshot.child("role").getValue().toString();
                 //if role is user(1)
                 switch (role) {
-                    case "1":
+                    case "0":
                         tvTitleMentor.setText("Pengguna");
                         break;
-                    case "2":
+                    case "1":
                         tvTitleMentor.setText("Petani Mitra");
                         break;
-                    case "3":
+                    case "2":
                         tvTitleMentor.setText("Ahli Tani");
                         break;
-                    case "4":
+                    case "3":
                         tvTitleMentor.setText("Admin");
                         break;
                 }
@@ -194,14 +198,14 @@ public class ChatRoomActivity extends AppCompatActivity {
         } else {
             //Step 1. Get user information
             FirebaseDatabase.getInstance().getReference()
-                    .child("Users")
+                    .child("users")
                     .child(currentUserId)
                     .addValueEventListener(
                             new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    String retrieveImage = snapshot.child("Image").getValue().toString();
-                                    String retrieveName = snapshot.child("Nama").getValue().toString();
+                                    String retrieveImage = snapshot.child("image").getValue().toString();
+                                    String retrieveName = snapshot.child("name").getValue().toString();
 
                                     //create a new conversation
                                     HashMap <String, Object> conversation = new HashMap<>();
@@ -209,7 +213,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                                     conversation.put(KEY_SENDER_NAME, retrieveName);
                                     conversation.put(KEY_SENDER_IMAGE, retrieveImage);
                                     conversation.put(KEY_RECEIVER_ID, userReceiver.getUserId());
-                                    conversation.put(KEY_RECEIVER_NAME, userReceiver.getNama());
+                                    conversation.put(KEY_RECEIVER_NAME, userReceiver.getName());
                                     conversation.put(KEY_RECEIVER_IMAGE, userReceiver.getImage());
                                     conversation.put(KEY_LAST_MESSAGE, chatMessagesModel.getMessage());
                                     conversation.put(KEY_DATE_TIME, chatMessagesModel.getDateTime());
@@ -374,7 +378,9 @@ public class ChatRoomActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        updateZeroCountConversation();
+        if (conversationId != null) {
+            updateZeroCountConversation();
+        }
         messageRef.removeEventListener(listener);
     }
 }

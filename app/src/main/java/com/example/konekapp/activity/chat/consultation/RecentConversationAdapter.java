@@ -12,14 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
-import com.example.konekapp.activity.chat.addconsultation.UserListener;
 import com.example.konekapp.activity.chat.models.ChatMessagesModel;
 import com.example.konekapp.activity.chat.models.UserModel;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -91,7 +89,7 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
                 public void onClick(View v) {
                     UserModel user = new UserModel();
                     user.setUserId(dataConversation.conversationId);
-                    user.setNama(dataConversation.conversationName);
+                    user.setName(dataConversation.conversationName);
                     user.setImage(dataConversation.conversationImage);
                     conversationListener.onConversationClick(dataConversation, user);
                 }

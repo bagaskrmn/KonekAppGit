@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
-import com.example.konekapp.activity.chat.addconsultation.UserListener;
 import com.example.konekapp.activity.chat.consultation.ConversationListener;
 import com.example.konekapp.activity.chat.consultation.RecentConversationAdapter;
 import com.example.konekapp.activity.chat.models.ChatMessagesModel;

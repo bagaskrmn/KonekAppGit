@@ -41,10 +41,10 @@ public class AddConsultationAdapter extends RecyclerView.Adapter<AddConsultation
     public void onBindViewHolder(@NonNull AddConsultationAdapter.ViewHolder holder, int position) {
         UserModel user = listUserModels.get(position);
         Picasso.get().load(user.getImage()).into(holder.ivProfile);
-        holder.name.setText(user.getNama());
-        if (user.getRole().equals("3")) {
+        holder.name.setText(user.getName());
+        if (user.getRole().equals("2")) {
             try {
-                holder.title.setText("Ahli Tani sejak " + getMonthAndYear(user.getBergabungPada()));
+                holder.title.setText("Ahli Tani sejak " + getMonthAndYear(user.getDateJoined()));
             } catch (ParseException e) {
                 Log.d(AddConsultationAdapter.class.getSimpleName(), "onBindViewHolder: " + e.getMessage());
             }
