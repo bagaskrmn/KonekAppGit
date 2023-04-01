@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,6 +81,10 @@ public class AddObatActivity extends AppCompatActivity {
         obatId = rootRef.push().getKey();
         obatRef = tanamanRef.child(tanamanId).child("drug");
 
+        BtnAddObatDone.setEnabled(false);
+        AddNameObat.addTextChangedListener(textWatcher);
+        AddDescriptionObat.addTextChangedListener(textWatcher);
+
         AddImageObatConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,56 +132,82 @@ public class AddObatActivity extends AppCompatActivity {
         String Name = AddNameObat.getText().toString();
         String Description = AddDescriptionObat.getText().toString();
 
-        pd.setMessage("Mengunggah Obat");
-        pd.show();
+        if (resultUri==null) {
+            Toast.makeText(this, "Gambar belum ditambahkan", Toast.LENGTH_SHORT).show();
+        }
+        else {
 
-        obatPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if (task.isSuccessful()) {
-                    pd.dismiss();
-                    obatPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            obatImageUrl=task.getResult().toString();
+            pd.setMessage("Mengunggah Obat");
+            pd.show();
 
-                            pd.setMessage("Data Obat terunggah");
-                            pd.show();
+            obatPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        pd.dismiss();
+                        obatPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                obatImageUrl=task.getResult().toString();
 
-                            HashMap<String, Object> obatMap = new HashMap<>();
-                            obatMap.put("name", Name);
-                            obatMap.put("description", Description);
-                            obatMap.put("image", obatImageUrl);
+                                pd.setMessage("Data Obat terunggah");
+                                pd.show();
 
-                            obatRef.child(obatId).updateChildren(obatMap)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            pd.dismiss();
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(AddObatActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                                Intent addObatDone = new Intent(AddObatActivity.this, PenyakitDanObatActivity.class);
-                                                addObatDone.putExtra("Key", tanamanId);
-                                                startActivity(addObatDone);
-                                                finish();
+                                HashMap<String, Object> obatMap = new HashMap<>();
+                                obatMap.put("name", Name);
+                                obatMap.put("description", Description);
+                                obatMap.put("image", obatImageUrl);
+
+                                obatRef.child(obatId).updateChildren(obatMap)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                pd.dismiss();
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(AddObatActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                                    Intent addObatDone = new Intent(AddObatActivity.this, PenyakitDanObatActivity.class);
+                                                    addObatDone.putExtra("Key", tanamanId);
+                                                    startActivity(addObatDone);
+                                                    finish();
+                                                }
+                                                else {
+                                                    String message = task.getException().toString();
+                                                    Toast.makeText(AddObatActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                                                }
                                             }
-                                            else {
-                                                String message = task.getException().toString();
-                                                Toast.makeText(AddObatActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                        }
-                    });
+                                        });
+                            }
+                        });
+                    }
+                    else {
+                        pd.dismiss();
+                        String message = task.getException().toString();
+                        Toast.makeText(AddObatActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    pd.dismiss();
-                    String message = task.getException().toString();
-                    Toast.makeText(AddObatActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            });
+        }
     }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String Name = AddNameObat.getText().toString().trim();
+            String Description = AddDescriptionObat.getText().toString().trim();
+            BtnAddObatDone.setEnabled(!Name.isEmpty() && !Description.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

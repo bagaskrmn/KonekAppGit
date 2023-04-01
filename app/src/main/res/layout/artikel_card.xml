@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="220dp"
-    android:layout_height="wrap_content"
+    android:layout_width="240dp"
+    android:layout_height="180dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="10dp"
@@ -9,9 +9,9 @@
     android:layout_margin="10dp"
     >
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         >
 
@@ -19,62 +19,64 @@
             android:id="@+id/imageArtikel"
             android:layout_width="match_parent"
             android:layout_height="108dp"
-            tools:src="@tools:sample/avatars"
             android:scaleType="centerCrop"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/titleArtikel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Ini judul artikel"
+            android:layout_margin="8dp"
+            android:ellipsize="end"
             android:fontFamily="@font/outfit_medium"
+            android:maxLines="2"
             android:textColor="@color/neutral_dark3"
             android:textSize="16sp"
-            android:layout_margin="8dp"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageArtikel"
+            tools:text="Ini judul artikel asjdouashdb jfndjnd fjndsfjds fiosdjfidjf fjsdnam emmer " />
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            >
+            android:layout_margin="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/sourceArtikel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:text="surabaya.net"
                 android:fontFamily="@font/outfit_regular"
                 android:textColor="@color/neutral_dark"
-                android:textSize="10sp"
-                />
+                android:textSize="12sp"
+                tools:text="surabaya.net" />
 
             <View
                 android:layout_width="4dp"
                 android:layout_height="4dp"
                 android:layout_margin="2dp"
-                android:background="@drawable/bg_btn_home"
-                />
+                android:background="@drawable/bg_btn_home" />
 
             <TextView
                 android:id="@+id/dateArtikel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:text="8 Desember 2018"
                 android:fontFamily="@font/outfit_regular"
-                android:textColor="@color/neutral_dark"
-                android:textSize="10sp"
                 android:gravity="end"
-                />
+                android:textColor="@color/neutral_dark"
+                android:textSize="12sp"
+                tools:text="8 Desember 2018" />
 
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

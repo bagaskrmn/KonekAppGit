@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,7 @@ public class AddTanamanActivity extends AppCompatActivity {
     private DatabaseReference rootRef, tanamanRef;
     private ProgressDialog pd;
     private ConstraintLayout AddImageTanamanConstraint;
+    private View decorView;
 
     private String tanamanId, tanamanImageUrl;
 
@@ -54,6 +57,17 @@ public class AddTanamanActivity extends AppCompatActivity {
         BtnAddTanamanDone = findViewById(R.id.btnAddTanamanDone);
         AddTanamanBackAction = findViewById(R.id.addTanamanBackAction);
 
+
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility==0) {
+                    decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            }
+        });
+
         //init progress dialog
         pd = new ProgressDialog(this);
         pd.setTitle("Please wait...");
@@ -63,6 +77,9 @@ public class AddTanamanActivity extends AppCompatActivity {
         tanamanRef = rootRef.child("plant");
         TanamanImagesRef = FirebaseStorage.getInstance().getReference().child("plantImages");
         tanamanId = rootRef.push().getKey();
+
+        BtnAddTanamanDone.setEnabled(false);
+        AddNameTanaman.addTextChangedListener(textWatcher);
 
         AddImageTanamanConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,52 +129,93 @@ public class AddTanamanActivity extends AppCompatActivity {
     private void AddTanamanDone() {
         String Name = AddNameTanaman.getText().toString();
 
-        //add empty checker here
-        pd.setMessage("Mengunggah Tanaman");
-        pd.show();
+        if (resultUri==null) {
+            Toast.makeText(this, "Gambar belum ditambahkan", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            pd.setMessage("Mengunggah Tanaman");
+            pd.show();
 
-        tanamanPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if (task.isSuccessful()) {
-                    pd.dismiss();
-                    tanamanPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            tanamanImageUrl = task.getResult().toString();
+            tanamanPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        pd.dismiss();
+                        tanamanPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                tanamanImageUrl = task.getResult().toString();
 
-                            pd.setMessage("Data tanaman terunggah");
-                            pd.show();
+                                pd.setMessage("Data tanaman terunggah");
+                                pd.show();
 
-                            HashMap<String, Object> tanamanMap = new HashMap<>();
-                            tanamanMap.put("name", Name);
-                            tanamanMap.put("image", tanamanImageUrl);
+                                HashMap<String, Object> tanamanMap = new HashMap<>();
+                                tanamanMap.put("name", Name);
+                                tanamanMap.put("image", tanamanImageUrl);
 
-                            tanamanRef.child(tanamanId).updateChildren(tanamanMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    pd.dismiss();
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(AddTanamanActivity.this, "Tanaman berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                        Intent addTanamanDoneIntent = new Intent(AddTanamanActivity.this, TanamanActivity.class);
-                                        startActivity(addTanamanDoneIntent);
-                                        finish();
+                                tanamanRef.child(tanamanId).updateChildren(tanamanMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        pd.dismiss();
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(AddTanamanActivity.this, "Tanaman berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                            Intent addTanamanDoneIntent = new Intent(AddTanamanActivity.this, TanamanActivity.class);
+                                            startActivity(addTanamanDoneIntent);
+                                            finish();
+                                        }
+                                        else {
+                                            String message = task.getException().toString();
+                                            Toast.makeText(AddTanamanActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                    else {
-                                        String message = task.getException().toString();
-                                        Toast.makeText(AddTanamanActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                        }
-                    });
+                                });
+                            }
+                        });
+                    }
+                    else {
+                        pd.dismiss();
+                        String message = task.getException().toString();
+                        Toast.makeText(AddTanamanActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    pd.dismiss();
-                    String message = task.getException().toString();
-                    Toast.makeText(AddTanamanActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            });
+        }
     }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String NameTanaman = AddNameTanaman.getText().toString().trim();
+            BtnAddTanamanDone.setEnabled(!NameTanaman.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+    private int hideSystemBars() {
+        return
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
 }

@@ -61,7 +61,6 @@ public class CompleteProfileActivity extends AppCompatActivity {
     private StorageReference UserProfileImagesRef, filePath;
 
     //date
-
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
@@ -184,7 +183,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
         if (resultUri == null) {
             Toast.makeText(this, "Unggah foto profil anda", Toast.LENGTH_SHORT).show();
         }
-        else {
+        else
+        {
             pd.setMessage("Mengunggah Data");
             pd.show();
 
@@ -229,14 +229,16 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                pd.dismiss();
+
                                                 if (task.isSuccessful()) {
+                                                    pd.dismiss();
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
                                                     Intent CompleteProfileDoneIntent = new Intent(CompleteProfileActivity.this, CompleteProfileSuccess.class);
                                                     CompleteProfileDoneIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                     startActivity(CompleteProfileDoneIntent);
                                                 }
                                                 else {
+                                                    pd.dismiss();
                                                     String message = task.getException().toString();
                                                     Toast.makeText(CompleteProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }
@@ -254,6 +256,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
             });
 
         }
+
     }
 
     //text Watcher for disable btn if any editText is empty

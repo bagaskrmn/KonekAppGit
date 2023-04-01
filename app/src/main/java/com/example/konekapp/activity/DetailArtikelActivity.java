@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,7 +31,7 @@ import com.squareup.picasso.Picasso;
 public class DetailArtikelActivity extends AppCompatActivity {
 
     private ImageView BackActionDetailArtikel, DetailArtikelImage;
-    private TextView DetailArtikelTitle, DetailArtikelSource, DetailArtikelDate, DetailArtikelDescription;
+    private TextView DetailArtikelTitle, DetailArtikelSource, DetailArtikelDate, DetailArtikelDescription, DetailArtikelSourceImage;
     private Button BtnEditArtikel, BtnDeleteArtikel;
 
     private FirebaseAuth firebaseAuth;
@@ -57,6 +59,8 @@ public class DetailArtikelActivity extends AppCompatActivity {
             }
         });
 
+
+        DetailArtikelSourceImage = findViewById(R.id.detailArtikelSourceImage);
         DetailArtikelImage = findViewById(R.id.detailArtikelImage);
         DetailArtikelTitle = findViewById(R.id.detailArtikelTitle);
         DetailArtikelSource = findViewById(R.id.detailArtikelSource);
@@ -75,6 +79,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
         artikelRef = rootRef.child("article");
         ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
         artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
+
 
         //init progress dialog
         pd = new ProgressDialog(this);
@@ -136,35 +141,59 @@ public class DetailArtikelActivity extends AppCompatActivity {
         BtnDeleteArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pd.setMessage("Menghapus Artikel");
-                pd.show();
-                artikelRef.child(DetailKey).removeEventListener(listener);
-                artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
-                artikelPath.delete();
-                //delete on database
-                artikelRef.child(DetailKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            pd.dismiss();
-                            pd.setMessage("Artikel terhapus");
-                            pd.show();
+                artikelRef.child(DetailKey).addValueEventListener(listener1);
+            }
+        });
+    }
+
+    ValueEventListener listener1 = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            String imageUrl = snapshot.child("image").getValue().toString();
+
+            pd.setMessage("Menghapus Artikel");
+            pd.show();
+
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference imageRefFromUrl = firebaseStorage.getReferenceFromUrl(imageUrl);
+
+            artikelRef.child(DetailKey).removeEventListener(listener);
+            artikelRef.child(DetailKey).removeEventListener(listener1);
+
+            imageRefFromUrl.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    pd.dismiss();
+                    artikelRef.child(DetailKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(DetailArtikelActivity.this, "Artikel Terhapus", Toast.LENGTH_SHORT).show();
                             Intent backToArtikel = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
                             startActivity(backToArtikel);
                             finish();
                         }
-                        else {
-                            pd.dismiss();
-                            String message = task.getException().toString();
-                            Toast.makeText(DetailArtikelActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(DetailArtikelActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    pd.dismiss();
+                    Toast.makeText(DetailArtikelActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
+        }
 
-            }
-        });
-    }
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     ValueEventListener listener = new ValueEventListener() {
         @Override
@@ -175,6 +204,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
             String retrieveSource = snapshot.child("source").getValue().toString();
             String retrieveDate = snapshot.child("date").getValue().toString();
             String retrieveDescription = snapshot.child("description").getValue().toString();
+            String retrieveSourceImage = snapshot.child("sourceImage").getValue().toString();
 
             //set Data to the item
             DetailArtikelTitle.setText(retrieveTitle);
@@ -182,6 +212,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
             DetailArtikelSource.setText(retrieveSource);
             DetailArtikelDate.setText(retrieveDate);
             DetailArtikelDescription.setText(retrieveDescription);
+            DetailArtikelSourceImage.setText(retrieveSourceImage);
         }
 
         @Override

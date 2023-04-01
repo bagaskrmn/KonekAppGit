@@ -102,6 +102,44 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Sumber Gambar Artikel"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editSourceImageArtikel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="14sp"
+                android:padding="8dp"
+                tools:text="Ini Sumber Gambar"
+                android:layout_marginBottom="10dp"
+                android:inputType="textCapWords"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Judul Artikel"
                     android:fontFamily="@font/outfit_semi_bold"
                     android:textColor="@color/neutral_dark3"

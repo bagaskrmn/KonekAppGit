@@ -154,7 +154,7 @@
                     android:textSize="14sp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:paddingRight="16dp"
+                    android:paddingRight="8dp"
                     android:paddingLeft="16dp"
                     />
 
@@ -695,7 +695,7 @@
                     android:paddingRight="16dp"
                     android:paddingBottom="15dp"
                     android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    />
             </LinearLayout>
 
             <TextView
@@ -731,7 +731,7 @@
                     android:paddingRight="16dp"
                     android:paddingBottom="15dp"
                     android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    />
             </LinearLayout>
             <Button
                 android:id="@+id/btnRegMitraDone"

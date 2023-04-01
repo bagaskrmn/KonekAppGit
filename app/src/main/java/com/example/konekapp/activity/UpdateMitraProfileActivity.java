@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -54,6 +56,8 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
     private String currentUserId, phoneNumber, profileUrl, removedPhoneNumber;
     private ProgressDialog pd;
     private StorageReference UserProfileImagesRef, filePath;
+
+    private Boolean isAllFieldsChecked = false;
 
     private Uri resultUri;
 
@@ -84,7 +88,7 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
         currentUserId = currentUser.getUid();
         phoneNumber = currentUser.getPhoneNumber();
         removedPhoneNumber = phoneNumber.substring(3);
-
+        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
 
@@ -199,14 +203,18 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
         String Question1 = UpdateProfMitraQuestion1.getText().toString();
         String Question2 = UpdateProfMitraQuestion2.getText().toString();
 
+        //check empty
         if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(NIK) || TextUtils.isEmpty(Email)
                 || TextUtils.isEmpty(FullAddress) || TextUtils.isEmpty(Village) || TextUtils.isEmpty(Subdistrict)
                 || TextUtils.isEmpty(City) || TextUtils.isEmpty(Province)) {
             Toast.makeText(this, "Data tidak boleh kosong", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        isAllFieldsChecked = checkAllFields();
+
         //jika gambar tidak diganti
-        if (resultUri == null) {
+        if (resultUri == null && isAllFieldsChecked) {
             pd.setMessage("Mengunggah Data");
             pd.show();
 
@@ -239,10 +247,11 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
                             }
                         }
                     });
-
+            return;
         }
+
         //jika gambar diupdate
-        else {
+        if(isAllFieldsChecked) {
             pd.setMessage("Mengunggah data");
             pd.show();
 
@@ -299,8 +308,25 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
                     }
                 }
             });
-
         }
+    }
+
+    private Boolean checkAllFields() {
+        String NIK = UpdateProfMitraNIK.getText().toString().trim();
+        String Email = UpdateProfMitraEmail.getText().toString().trim();
+
+        if (NIK.length() != 16) {
+            UpdateProfMitraNIK.requestFocus();
+            UpdateProfMitraNIK.setError("NIK harus diisi 16 digit");
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+            UpdateProfMitraEmail.requestFocus();
+            UpdateProfMitraEmail.setError("Masukkan alamat email yang tepat");
+            return false;
+        }
+        return true;
     }
 
     @Override

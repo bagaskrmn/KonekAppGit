@@ -87,68 +87,12 @@ public class AccountFragment extends Fragment {
         pd.show();
 
 
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //retrieve user data from database
-                String retrieveImage = snapshot.child("image").getValue().toString();
-                String retrieveName = snapshot.child("name").getValue().toString();
-                String retrieveDate = snapshot.child("dateJoined").getValue().toString();
-
-                //set to field
-                DateJoinedTv.setText("Bergabung pada " +retrieveDate);
-                NameAccountTv.setText(retrieveName);
-                Picasso.get().load(retrieveImage).into(AccImageProfile);
-
-                //check role
-                String role = snapshot.child("role").getValue().toString();
-                //if role is user(1)
-                if (role.equals("0")) {
-                    ConstraintGabungKemitraan.setVisibility(View.VISIBLE);
-                    ConstraintKonsultasi.setVisibility(View.GONE);
-                    ConstraintChatMitra.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
-
-                    RoleUserTv.setText("Pengguna");
-
-                }
-                if (role.equals("1")) {
-                    ConstraintGabungKemitraan.setVisibility(View.GONE);
-                    ConstraintKonsultasi.setVisibility(View.VISIBLE);
-                    ConstraintChatMitra.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
-
-                    RoleUserTv.setText("Petani Mitra");
-                }
-                if (role.equals("2")) {
-                    ConstraintGabungKemitraan.setVisibility(View.GONE);
-                    ConstraintKonsultasi.setVisibility(View.GONE);
-                    ConstraintChatMitra.setVisibility(View.VISIBLE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
-
-                    RoleUserTv.setText("Ahli Tani");
-                }
-
-                if (role.equals("3")) {
-                    ConstraintGabungKemitraan.setVisibility(View.GONE);
-                    ConstraintKonsultasi.setVisibility(View.GONE);
-                    ConstraintChatMitra.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
-
-                    RoleUserTv.setText("Admin");
-                }
-                pd.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        usersRef.child(currentUserId).addValueEventListener(listener);
 
         BtnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                usersRef.child(currentUserId).removeEventListener(listener);
                 Intent settingIntent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(settingIntent);
             }
@@ -194,5 +138,69 @@ public class AccountFragment extends Fragment {
             }
         });
 
+    }
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            pd.dismiss();
+            //retrieve user data from database
+            String retrieveImage = snapshot.child("image").getValue().toString();
+            String retrieveName = snapshot.child("name").getValue().toString();
+            String retrieveDate = snapshot.child("dateJoined").getValue().toString();
+
+            //set to field
+            DateJoinedTv.setText("Bergabung pada " +retrieveDate);
+            NameAccountTv.setText(retrieveName);
+            Picasso.get().load(retrieveImage).into(AccImageProfile);
+
+            //check role
+            String role = snapshot.child("role").getValue().toString();
+            //if role is user(1)
+            if (role.equals("0")) {
+                ConstraintGabungKemitraan.setVisibility(View.VISIBLE);
+                ConstraintKonsultasi.setVisibility(View.GONE);
+                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintKelolaKemitraan.setVisibility(View.GONE);
+
+                RoleUserTv.setText("Pengguna");
+
+            }
+            if (role.equals("1")) {
+                ConstraintGabungKemitraan.setVisibility(View.GONE);
+                ConstraintKonsultasi.setVisibility(View.VISIBLE);
+                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintKelolaKemitraan.setVisibility(View.GONE);
+
+                RoleUserTv.setText("Petani Mitra");
+            }
+            if (role.equals("2")) {
+                ConstraintGabungKemitraan.setVisibility(View.GONE);
+                ConstraintKonsultasi.setVisibility(View.GONE);
+                ConstraintChatMitra.setVisibility(View.VISIBLE);
+                ConstraintKelolaKemitraan.setVisibility(View.GONE);
+
+                RoleUserTv.setText("Ahli Tani");
+            }
+
+            if (role.equals("3")) {
+                ConstraintGabungKemitraan.setVisibility(View.GONE);
+                ConstraintKonsultasi.setVisibility(View.GONE);
+                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
+
+                RoleUserTv.setText("Admin");
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        usersRef.child(currentUserId).removeEventListener(listener);
     }
 }

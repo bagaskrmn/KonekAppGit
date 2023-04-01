@@ -6,17 +6,19 @@ public class ArtikelModel {
     String source;
     String date;
     String description;
+    String sourceImage;
     String key;
 
     public ArtikelModel() {
     }
 
-    public ArtikelModel(String title, String image, String source, String date, String description, String key) {
+    public ArtikelModel(String title, String image, String source, String date, String description, String sourceImage, String key) {
         this.title = title;
         this.image = image;
         this.source = source;
         this.date = date;
         this.description = description;
+        this.sourceImage = sourceImage;
         this.key = key;
     }
 
@@ -58,6 +60,14 @@ public class ArtikelModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSourceImage() {
+        return sourceImage;
+    }
+
+    public void setSourceImage(String sourceImage) {
+        this.sourceImage = sourceImage;
     }
 
     public String getKey() {

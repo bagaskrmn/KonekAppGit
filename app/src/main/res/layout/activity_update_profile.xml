@@ -202,7 +202,7 @@
                 android:textSize="14sp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:paddingLeft="16dp"
+                android:paddingLeft="8dp"
                 android:paddingRight="16dp"
                 />
 

@@ -13,6 +13,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +58,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
     private ProgressDialog pd;
     private Uri resultUri;
 
+    private Boolean isAllFieldsChecked = false;
 
     private View decorView;
 
@@ -200,10 +202,14 @@ public class RegisterMitraActivity extends AppCompatActivity {
         String Question1 = RegMitraQuestion1.getText().toString();
         String Question2 = RegMitraQuestion2.getText().toString();
 
+
         if (resultUri == null) {
             Toast.makeText(this, "Unggah dokumen KTP anda", Toast.LENGTH_SHORT).show();
         }
-        else {
+
+        isAllFieldsChecked = checkAllFields();
+
+        if (isAllFieldsChecked) {
             pd.setMessage("Mengunggah Data");
             pd.show();
 
@@ -261,6 +267,25 @@ public class RegisterMitraActivity extends AppCompatActivity {
                 }
             });
         }
+
+    }
+
+    private Boolean checkAllFields() {
+        String NIK = RegMitraNIK.getText().toString().trim();
+        String Email = RegMitraEmail.getText().toString().trim();
+
+        if (NIK.length() != 16) {
+            RegMitraNIK.requestFocus();
+            RegMitraNIK.setError("NIK harus diisi 16 digit");
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+            RegMitraEmail.requestFocus();
+            RegMitraEmail.setError("Masukkan alamat email yang tepat");
+            return false;
+        }
+        return true;
     }
 
     //text Watcher for disable btn if any editText is empty

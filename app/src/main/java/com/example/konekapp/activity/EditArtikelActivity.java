@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,7 @@ import java.util.HashMap;
 public class EditArtikelActivity extends AppCompatActivity {
 
     private ConstraintLayout EditImageArtikelConstraint;
-    private EditText EditTitleArtikel, EditSourceArtikel, EditDescriptionArtikel;
+    private EditText EditTitleArtikel, EditSourceArtikel, EditDescriptionArtikel, EditSourceImageArtikel;
     private ImageView EditImageArtikel, EditArtikelBackAction;
     private Button BtnEditArtikelDone;
     private StorageReference ArtikelImagesRef, artikelPath;
@@ -70,6 +71,7 @@ public class EditArtikelActivity extends AppCompatActivity {
             }
         });
 
+        EditSourceImageArtikel = findViewById(R.id.editSourceImageArtikel);
         EditImageArtikelConstraint = findViewById(R.id.editImageArtikelConstraint);
         EditTitleArtikel = findViewById(R.id.editTitleArtikel);
         EditSourceArtikel = findViewById(R.id.editSourceArtikel);
@@ -103,6 +105,7 @@ public class EditArtikelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditArtikelActivity.super.onBackPressed();
+                artikelRef.child(DetailKey).removeEventListener(listener);
             }
         });
 
@@ -147,6 +150,13 @@ public class EditArtikelActivity extends AppCompatActivity {
         String EditTitle = EditTitleArtikel.getText().toString();
         String EditSource = EditSourceArtikel.getText().toString();
         String EditDescription = EditDescriptionArtikel.getText().toString();
+        String EditSourceImage = EditSourceImageArtikel.getText().toString();
+
+        if (TextUtils.isEmpty(EditTitle) || TextUtils.isEmpty(EditSource) || TextUtils.isEmpty(EditDescription)
+        || TextUtils.isEmpty(EditSourceImage)) {
+            Toast.makeText(this, "Data tidak boleh kosong", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         //if image artikel not changed
         if (resultUri==null) {
@@ -157,6 +167,7 @@ public class EditArtikelActivity extends AppCompatActivity {
             artikelMap.put("title", EditTitle);
             artikelMap.put("source", EditSource);
             artikelMap.put("description", EditDescription);
+            artikelMap.put("sourceImage", EditSourceImage);
 
             artikelRef.child(DetailKey).updateChildren(artikelMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -199,6 +210,7 @@ public class EditArtikelActivity extends AppCompatActivity {
                                 artikelMap.put("source", EditSource);
                                 artikelMap.put("description", EditDescription);
                                 artikelMap.put("image", artikelImageUrl);
+                                artikelMap.put("sourceImage", EditSourceImage);
 
                                 artikelRef.child(DetailKey).updateChildren(artikelMap)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -236,12 +248,14 @@ public class EditArtikelActivity extends AppCompatActivity {
             String retrieveImage = snapshot.child("image").getValue().toString();
             String retrieveSource = snapshot.child("source").getValue().toString();
             String retrieveDescription = snapshot.child("description").getValue().toString();
+            String retrieveSourceImage = snapshot.child("sourceImage").getValue().toString();
 
             //set Data to the item
             EditTitleArtikel.setText(retrieveTitle);
             Picasso.get().load(retrieveImage).into(EditImageArtikel);
             EditSourceArtikel.setText(retrieveSource);
             EditDescriptionArtikel.setText(retrieveDescription);
+            EditSourceImageArtikel.setText(retrieveSourceImage);
         }
 
         @Override

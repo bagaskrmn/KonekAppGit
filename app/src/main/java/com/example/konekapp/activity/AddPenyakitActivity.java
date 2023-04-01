@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -81,6 +83,10 @@ public class AddPenyakitActivity extends AppCompatActivity {
         penyakitId = rootRef.push().getKey();
         penyakitRef = tanamanRef.child(tanamanId).child("disease");
 
+        BtnAddPenyakitDone.setEnabled(false);
+        AddNamePenyakit.addTextChangedListener(textWatcher);
+        AddDescriptionPenyakit.addTextChangedListener(textWatcher);
+
         AddImagePenyakitConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,57 +135,82 @@ public class AddPenyakitActivity extends AppCompatActivity {
         String Name = AddNamePenyakit.getText().toString();
         String Description = AddDescriptionPenyakit.getText().toString().trim();
 
-        pd.setMessage("Mengunggah Penyakit");
-        pd.show();
+        if (resultUri==null) {
+            Toast.makeText(this, "Gambar belum ditambahkan", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            pd.setMessage("Mengunggah Penyakit");
+            pd.show();
 
-        penyakitPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if (task.isSuccessful()) {
-                    pd.dismiss();
-                    penyakitPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            penyakitImageUrl = task.getResult().toString();
+            penyakitPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        pd.dismiss();
+                        penyakitPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                penyakitImageUrl = task.getResult().toString();
 
-                            pd.setMessage("Data penyakit terunggah");
-                            pd.show();
+                                pd.setMessage("Data penyakit terunggah");
+                                pd.show();
 
-                            HashMap<String, Object> penyakitMap = new HashMap<>();
-                            penyakitMap.put("name", Name);
-                            penyakitMap.put("description", Description);
-                            penyakitMap.put("image", penyakitImageUrl);
+                                HashMap<String, Object> penyakitMap = new HashMap<>();
+                                penyakitMap.put("name", Name);
+                                penyakitMap.put("description", Description);
+                                penyakitMap.put("image", penyakitImageUrl);
 
-                            penyakitRef.child(penyakitId).updateChildren(penyakitMap)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            pd.dismiss();
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(AddPenyakitActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                                Intent addPenyakitDone = new Intent(AddPenyakitActivity.this, PenyakitDanObatActivity.class);
-                                                addPenyakitDone.putExtra("Key", tanamanId);
-                                                //add put string extra?
-                                                startActivity(addPenyakitDone);
-                                                finish();
+                                penyakitRef.child(penyakitId).updateChildren(penyakitMap)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                pd.dismiss();
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(AddPenyakitActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                                    Intent addPenyakitDone = new Intent(AddPenyakitActivity.this, PenyakitDanObatActivity.class);
+                                                    addPenyakitDone.putExtra("Key", tanamanId);
+                                                    //add put string extra?
+                                                    startActivity(addPenyakitDone);
+                                                    finish();
+                                                }
+                                                else {
+                                                    String message = task.getException().toString();
+                                                    Toast.makeText(AddPenyakitActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                                                }
                                             }
-                                            else {
-                                                String message = task.getException().toString();
-                                                Toast.makeText(AddPenyakitActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                        }
-                    });
+                                        });
+                            }
+                        });
+                    }
+                    else {
+                        pd.dismiss();
+                        String message = task.getException().toString();
+                        Toast.makeText(AddPenyakitActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    pd.dismiss();
-                    String message = task.getException().toString();
-                    Toast.makeText(AddPenyakitActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            });
+        }
     }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String Name = AddNamePenyakit.getText().toString().trim();
+            String Description = AddDescriptionPenyakit.getText().toString().trim();
+            BtnAddPenyakitDone.setEnabled(!Name.isEmpty() && !Description.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

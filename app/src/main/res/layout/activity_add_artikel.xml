@@ -44,7 +44,6 @@
         android:layout_height="match_parent"
         android:scrollbars="none"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,6 +91,45 @@
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sumber Gambar Artikel"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/addSourceImageArtikel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:inputType="text"
+                tools:text="Ini Sumber Gambar"
+                android:layout_marginBottom="10dp"
+                />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -210,7 +248,7 @@
                 android:gravity="top"
                 android:lines="8"
                 android:scrollbars="vertical"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="24dp"
                 />
 
             <Button

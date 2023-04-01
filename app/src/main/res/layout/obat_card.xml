@@ -12,6 +12,15 @@
         android:orientation="vertical"
         >
 
+        <ImageView
+            android:id="@+id/detailObatImage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            tools:src="@tools:sample/avatars"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"
+            />
+
         <TextView
             android:id="@+id/detailObatName"
             android:layout_width="match_parent"
@@ -21,23 +30,17 @@
             tools:text="Ini Name Artikeljiefjesifjdsjfnsdjkfnrnfrnfrsrfnfnrrffnrfnrfn fnrfurnfrufnrufn"
             android:fontFamily="@font/outfit_medium"
             android:textColor="@color/neutral_dark3"
-            android:textSize="18sp"
-            android:layout_marginBottom="10dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
             />
-        <ImageView
-            android:id="@+id/detailObatImage"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            tools:src="@tools:sample/avatars"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="10dp"
-            />
+
 
         <TextView
             android:id="@+id/detailObatDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Ini isi/deskripsi artikel"
+            android:textSize="14sp"
             android:fontFamily="@font/outfit_regular"
             android:textColor="@color/neutral_dark4"
             android:layout_marginBottom="20dp"

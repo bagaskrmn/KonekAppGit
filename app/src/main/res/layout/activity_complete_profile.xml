@@ -160,7 +160,6 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingRight="16dp"
-                tools:ignore="TouchTargetSizeCheck"
                 />
 
 
@@ -226,7 +225,7 @@
                 android:textColor="@color/neutral_dark3"
                 android:textSize="14sp"
                 android:paddingRight="16dp"
-                android:paddingLeft="16dp"
+                android:paddingLeft="8dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 />

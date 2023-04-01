@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/fullImageArtikel"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="180dp"
             tools:src="@tools:sample/avatars"
             android:scaleType="centerCrop"
             />
@@ -56,7 +56,7 @@
                 tools:text="surabaya.net"
                 android:fontFamily="@font/outfit_regular"
                 android:textColor="@color/neutral_dark"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 />
 
             <View
@@ -75,7 +75,7 @@
                 tools:text="8 Desember 2018"
                 android:fontFamily="@font/outfit_regular"
                 android:textColor="@color/neutral_dark"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:gravity="end"
                 />
 

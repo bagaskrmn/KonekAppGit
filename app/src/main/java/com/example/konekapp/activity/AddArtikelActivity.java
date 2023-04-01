@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -37,7 +39,7 @@ public class AddArtikelActivity extends AppCompatActivity {
 
     private View decorView;
 
-    private EditText AddTitleArtikel, AddSourceArtikel, AddDescriptionArtikel;
+    private EditText AddTitleArtikel, AddSourceArtikel, AddDescriptionArtikel, AddSourceImageArtikel;
     private ImageView AddImageArtikel, AddArtikelBackAction;
     private Button BtnAddArtikelDone;
     private StorageReference ArtikelImagesRef, artikelPath;
@@ -57,6 +59,7 @@ public class AddArtikelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_artikel);
 
+        AddSourceImageArtikel = findViewById(R.id.addSourceImageArtikel);
         AddImageArtikelConstraint = findViewById(R.id.addImageArtikelConstraint);
         AddTitleArtikel = findViewById(R.id.addTitleArtikel);
         AddSourceArtikel = findViewById(R.id.addSourceArtikel);
@@ -81,6 +84,12 @@ public class AddArtikelActivity extends AppCompatActivity {
         ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
 
         artikelId = rootRef.push().getKey();
+
+        BtnAddArtikelDone.setEnabled(false);
+        AddSourceImageArtikel.addTextChangedListener(textWatcher);
+        AddTitleArtikel.addTextChangedListener(textWatcher);
+        AddSourceArtikel.addTextChangedListener(textWatcher);
+        AddDescriptionArtikel.addTextChangedListener(textWatcher);
 
 
         decorView = getWindow().getDecorView();
@@ -134,7 +143,6 @@ public class AddArtikelActivity extends AppCompatActivity {
                 Picasso.get().load(resultUri).into(AddImageArtikel);
 
                 artikelPath = ArtikelImagesRef.child(artikelId+".jpg");
-                Log.d("AddArtikel", artikelPath.toString());
             }
         }
     }
@@ -143,64 +151,90 @@ public class AddArtikelActivity extends AppCompatActivity {
         String Title = AddTitleArtikel.getText().toString();
         String Source = AddSourceArtikel.getText().toString();
         String Description = AddDescriptionArtikel.getText().toString();
+        String SourceImage = AddSourceImageArtikel.getText().toString();
 
-        //add empty checker here
-        pd.setMessage("Mengunggah Artikel");
-        pd.show();
+        if (resultUri==null) {
+            Toast.makeText(this, "Gambar belum ditambahkan", Toast.LENGTH_SHORT).show();
 
-        //put cropped uri image to storage
-        artikelPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if (task.isSuccessful()) {
-                    pd.dismiss();
-                    artikelPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            artikelImageUrl = task.getResult().toString();
+        }
+        else {
+            //add empty checker here
+            pd.setMessage("Mengunggah Artikel");
+            pd.show();
 
-                            pd.setMessage("Artikel terunggah");
-                            pd.show();
+            //put cropped uri image to storage
+            artikelPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        pd.dismiss();
+                        artikelPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                artikelImageUrl = task.getResult().toString();
 
-                            HashMap<String, Object> artikelMap = new HashMap<>();
-                            artikelMap.put("title", Title);
-                            artikelMap.put("source", Source);
-                            artikelMap.put("date", date);
-                            artikelMap.put("image", artikelImageUrl);
-                            artikelMap.put("description", Description);
+                                HashMap<String, Object> artikelMap = new HashMap<>();
+                                artikelMap.put("title", Title);
+                                artikelMap.put("source", Source);
+                                artikelMap.put("date", date);
+                                artikelMap.put("image", artikelImageUrl);
+                                artikelMap.put("description", Description);
+                                artikelMap.put("sourceImage", SourceImage);
 
 
 
-                            artikelRef.child(artikelId).updateChildren(artikelMap)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            pd.dismiss();
-                                            if(task.isSuccessful()) {
-                                                Toast.makeText(AddArtikelActivity.this, "Artikel Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                                Intent addArtikelDone = new Intent(AddArtikelActivity.this, ArtikelActivity.class);
-                                                startActivity(addArtikelDone);
-                                                finish();
+                                artikelRef.child(artikelId).updateChildren(artikelMap)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                pd.dismiss();
+                                                if(task.isSuccessful()) {
+                                                    Toast.makeText(AddArtikelActivity.this, "Artikel Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                                    Intent addArtikelDone = new Intent(AddArtikelActivity.this, ArtikelActivity.class);
+                                                    startActivity(addArtikelDone);
+                                                    finish();
+                                                }
+                                                else {
+                                                    String message = task.getException().toString();
+                                                    Toast.makeText(AddArtikelActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                                                }
                                             }
-                                            else {
-                                                String message = task.getException().toString();
-                                                Toast.makeText(AddArtikelActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                        }
-                    });
+                                        });
+                            }
+                        });
+                    }
+                    else {
+                        pd.dismiss();
+                        String message = task.getException().toString();
+                        Toast.makeText(AddArtikelActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    pd.dismiss();
-                    String message = task.getException().toString();
-                    Toast.makeText(AddArtikelActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
+            });
+        }
     }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String SourceImage = AddSourceImageArtikel.getText().toString().trim();
+            String Title = AddTitleArtikel.getText().toString().trim();
+            String Source = AddSourceArtikel.getText().toString().trim();
+            String Description = AddDescriptionArtikel.getText().toString().trim();
+            BtnAddArtikelDone.setEnabled(!SourceImage.isEmpty() && !Title.isEmpty() &&
+                    !Source.isEmpty() && !Description.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
