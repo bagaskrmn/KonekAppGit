@@ -205,6 +205,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
 
         if (resultUri == null) {
             Toast.makeText(this, "Unggah dokumen KTP anda", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         isAllFieldsChecked = checkAllFields();

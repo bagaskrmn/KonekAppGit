@@ -23,6 +23,7 @@
             android:id="@+id/btnBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:background="@drawable/bg_back_action"
             android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
             android:contentDescription="Back to Main" />
 

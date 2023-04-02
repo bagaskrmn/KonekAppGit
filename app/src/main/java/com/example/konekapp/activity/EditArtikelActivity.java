@@ -175,6 +175,7 @@ public class EditArtikelActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 pd.dismiss();
+                                artikelRef.child(DetailKey).removeEventListener(listener);
                                 Toast.makeText(EditArtikelActivity.this, "Ubah Artikel Berhasil", Toast.LENGTH_SHORT).show();
                                 Intent EditArtikelDone = new Intent(EditArtikelActivity.this, DetailArtikelActivity.class);
                                 EditArtikelDone.putExtra("Key", DetailKey);
@@ -218,6 +219,7 @@ public class EditArtikelActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     pd.dismiss();
+                                                    artikelRef.child(DetailKey).removeEventListener(listener);
                                                     Toast.makeText(EditArtikelActivity.this, "Ubah Artikel Berhasil", Toast.LENGTH_SHORT).show();
                                                     Intent EditArtikelDone = new Intent(EditArtikelActivity.this, DetailArtikelActivity.class);
                                                     EditArtikelDone.putExtra("Key", DetailKey);

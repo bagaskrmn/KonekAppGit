@@ -33,7 +33,7 @@ import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.TanamanActivity;
 import com.example.konekapp.activity.chat.ConsultationActivity;
 import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
-import com.example.konekapp.databinding.FragmentHomeBinding;
+//import com.example.konekapp.databinding.FragmentHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -114,57 +114,7 @@ public class HomeFragment extends Fragment {
         pd.setMessage("Memuat data anda");
         pd.show();
 
-
-
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String retrieveImage = snapshot.child("image").getValue().toString();
-                Picasso.get().load(retrieveImage).into(AccImageHome);
-
-
-                //chek role
-                role = snapshot.child("role").getValue().toString();
-
-                //if role is user (1)
-                if (role.equals("0")) {
-                    ConstraintRegister.setVisibility(View.VISIBLE);
-                    ConstraintKonsultasi.setVisibility(View.GONE);
-                    ConstraintChatMitra.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
-                }
-                //if role is mitra(2)
-                if (role.equals("1")) {
-                    ConstraintRegister.setVisibility(View.GONE);
-                    ConstraintKonsultasi.setVisibility(View.VISIBLE);
-                    ConstraintChatMitra.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
-                }
-                //if role is Ahli Tani
-                if (role.equals("2")) {
-                    ConstraintRegister.setVisibility(View.GONE);
-                    ConstraintKonsultasi.setVisibility(View.GONE);
-                    ConstraintChatMitra.setVisibility(View.VISIBLE);
-                    ConstraintKelolaKemitraan.setVisibility(View.GONE);
-                }
-                //if role is admin
-                if (role.equals("3")) {
-                    ConstraintRegister.setVisibility(View.GONE);
-                    ConstraintKonsultasi.setVisibility(View.GONE);
-                    ConstraintChatMitra.setVisibility(View.GONE);
-                    ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
-                }
-
-
-                pd.dismiss();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //TOAST error
-//                Toast.makeText(getActivity(), "Error"+ error.getMessage(), Toast.LENGTH_SHORT).show();
-                pd.dismiss();
-            }
-        });
+        usersRef.child(currentUserId).addValueEventListener(listener);
 
         BtnRegisterMitra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,22 +171,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        artikelRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ArtikelModel artikel = dataSnapshot.getValue(ArtikelModel.class);
-                    artikel.setKey(dataSnapshot.getKey());
-                    list.add(artikel);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        artikelRef.addValueEventListener(listener1);
 
         BtnFullArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,5 +196,76 @@ public class HomeFragment extends Fragment {
                 startActivity(tanamanIntent);
             }
         });
+    }
+
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            String retrieveImage = snapshot.child("image").getValue().toString();
+            Picasso.get().load(retrieveImage).into(AccImageHome);
+
+
+            //chek role
+            role = snapshot.child("role").getValue().toString();
+
+            //if role is user (1)
+            if (role.equals("0")) {
+                ConstraintRegister.setVisibility(View.VISIBLE);
+                ConstraintKonsultasi.setVisibility(View.GONE);
+                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintKelolaKemitraan.setVisibility(View.GONE);
+            }
+            //if role is mitra(2)
+            if (role.equals("1")) {
+                ConstraintRegister.setVisibility(View.GONE);
+                ConstraintKonsultasi.setVisibility(View.VISIBLE);
+                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintKelolaKemitraan.setVisibility(View.GONE);
+            }
+            //if role is Ahli Tani
+            if (role.equals("2")) {
+                ConstraintRegister.setVisibility(View.GONE);
+                ConstraintKonsultasi.setVisibility(View.GONE);
+                ConstraintChatMitra.setVisibility(View.VISIBLE);
+                ConstraintKelolaKemitraan.setVisibility(View.GONE);
+            }
+            //if role is admin
+            if (role.equals("3")) {
+                ConstraintRegister.setVisibility(View.GONE);
+                ConstraintKonsultasi.setVisibility(View.GONE);
+                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
+            }
+            pd.dismiss();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            Toast.makeText(getActivity(), ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    ValueEventListener listener1 = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                ArtikelModel artikel = dataSnapshot.getValue(ArtikelModel.class);
+                artikel.setKey(dataSnapshot.getKey());
+                list.add(artikel);
+            }
+            adapter.notifyDataSetChanged();
+        }
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            Toast.makeText(getActivity(), ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        artikelRef.removeEventListener(listener1);
+        usersRef.child(currentUserId).removeEventListener(listener);
+
     }
 }
