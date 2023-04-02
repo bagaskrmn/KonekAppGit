@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,9 +32,8 @@ import com.squareup.picasso.Picasso;
 
 public class DetailArtikelActivity extends AppCompatActivity {
 
-    private ImageView BackActionDetailArtikel, DetailArtikelImage;
+    private ImageView BackActionDetailArtikel, DetailArtikelImage, MenuArtikel;
     private TextView DetailArtikelTitle, DetailArtikelSource, DetailArtikelDate, DetailArtikelDescription, DetailArtikelSourceImage;
-    private Button BtnEditArtikel, BtnDeleteArtikel;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -42,7 +43,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
 
     private ProgressDialog pd;
 
-    private View decorView;
+    private View decorView, spaceViewArtikel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +68,9 @@ public class DetailArtikelActivity extends AppCompatActivity {
         DetailArtikelDate = findViewById(R.id.detailArtikelDate);
         DetailArtikelDescription = findViewById(R.id.detailArtikelDescription);
         BackActionDetailArtikel = findViewById(R.id.backActionDetailArtikel);
-        BtnDeleteArtikel = findViewById(R.id.btnDeleteArtikel);
-        BtnEditArtikel = findViewById(R.id.btnEditArtikel);
 
+        spaceViewArtikel = findViewById(R.id.spaceViewArtikel);
+        MenuArtikel = findViewById(R.id.menuArtikel);
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -105,18 +106,42 @@ public class DetailArtikelActivity extends AppCompatActivity {
                 role = snapshot.child("role").getValue().toString();
 
                 if (role.equals("2") || role.equals("3")) {
-                    BtnDeleteArtikel.setVisibility(View.VISIBLE);
-                    BtnEditArtikel.setVisibility(View.VISIBLE);
+                    spaceViewArtikel.setVisibility(View.GONE);
+                    MenuArtikel.setVisibility(View.VISIBLE);
                 }
                 else {
-                    BtnDeleteArtikel.setVisibility(View.GONE);
-                    BtnEditArtikel.setVisibility(View.GONE);
+                    spaceViewArtikel.setVisibility(View.VISIBLE);
+                    MenuArtikel.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        MenuArtikel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(DetailArtikelActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.artikel_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.editArtikelMenu:
+                                toEditArtikel();
+                                return true;
+                            case R.id.deleteArtikelMenu:
+                                deleteArtikel();
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+                popupMenu.show();
             }
         });
 
@@ -128,22 +153,16 @@ public class DetailArtikelActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
-        BtnEditArtikel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent EditArtikelIntent = new Intent(DetailArtikelActivity.this, EditArtikelActivity.class);
-                EditArtikelIntent.putExtra("Key", DetailKey);
-                startActivity(EditArtikelIntent);
-            }
-        });
+    private void deleteArtikel() {
+        artikelRef.child(DetailKey).addValueEventListener(listener1);
+    }
 
-        BtnDeleteArtikel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                artikelRef.child(DetailKey).addValueEventListener(listener1);
-            }
-        });
+    private void toEditArtikel() {
+        Intent EditArtikelIntent = new Intent(DetailArtikelActivity.this, EditArtikelActivity.class);
+        EditArtikelIntent.putExtra("Key", DetailKey);
+        startActivity(EditArtikelIntent);
     }
 
     ValueEventListener listener1 = new ValueEventListener() {
