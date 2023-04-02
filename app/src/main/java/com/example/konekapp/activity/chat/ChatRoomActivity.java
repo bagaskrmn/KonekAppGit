@@ -43,6 +43,8 @@ import java.util.Locale;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
+    private final String TAG = "ChatRoomActivity";
+
     TextView tvNameMentor, tvTitleMentor;
     ImageView ivProfile, btnBack, btnSend;
     RecyclerView rvChat;
@@ -194,8 +196,10 @@ public class ChatRoomActivity extends AppCompatActivity {
     private void addOrUpdateConversation(ChatMessagesModel chatMessagesModel) {
         //Add new conversation if conversationId is null
         if (conversationId != null) {
+            Log.d(TAG, "addOrUpdateConversation: update conversation");
             updateConversation(chatMessagesModel.getMessage());
         } else {
+            Log.d(TAG, "addOrUpdateConversation: add new conversation");
             //Step 1. Get user information
             FirebaseDatabase.getInstance().getReference()
                     .child("users")
@@ -217,8 +221,11 @@ public class ChatRoomActivity extends AppCompatActivity {
                                     conversation.put(KEY_RECEIVER_IMAGE, userReceiver.getImage());
                                     conversation.put(KEY_LAST_MESSAGE, chatMessagesModel.getMessage());
                                     conversation.put(KEY_DATE_TIME, chatMessagesModel.getDateTime());
-                                    conversation.put(KEY_UNREAD_RECEIVER_COUNT, unReadCount + 1);
+                                    conversation.put(KEY_UNREAD_RECEIVER_COUNT, unReadCount);
                                     conversation.put(KEY_UNREAD_SENDER_COUNT, 0);
+
+                                    senderConversationId = currentUserId;
+
                                     //Step 2. Add new conversation
                                     addConversation(conversation);
                                 }
