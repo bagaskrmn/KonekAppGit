@@ -72,13 +72,13 @@ public class MitraConsultationActivity extends AppCompatActivity implements Conv
             }
         });
 
-//        btnAddNewConsultation.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MitraConsultationMActivity.this, TambahKonsultasiActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnAddNewConsultation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MitraConsultationActivity.this, MitraTambahKonsultasiActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     void init() {
@@ -88,7 +88,6 @@ public class MitraConsultationActivity extends AppCompatActivity implements Conv
         rvConversation = findViewById(R.id.rvConversation);
 
         //initialization
-        btnAddNewConsultation.setVisibility(View.GONE);
         listConversation = new ArrayList<>();
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         recentConversationAdapter = new RecentConversationAdapter(currentUserId, listConversation, this);

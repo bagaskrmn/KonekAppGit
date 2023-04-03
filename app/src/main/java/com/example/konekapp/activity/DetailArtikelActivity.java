@@ -162,6 +162,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
     private void toEditArtikel() {
         Intent EditArtikelIntent = new Intent(DetailArtikelActivity.this, EditArtikelActivity.class);
         EditArtikelIntent.putExtra("Key", DetailKey);
+        artikelRef.child(DetailKey).removeEventListener(listener);
         startActivity(EditArtikelIntent);
     }
 

@@ -48,6 +48,12 @@ public class AddConsultationAdapter extends RecyclerView.Adapter<AddConsultation
             } catch (ParseException e) {
                 Log.d(AddConsultationAdapter.class.getSimpleName(), "onBindViewHolder: " + e.getMessage());
             }
+        } else if (user.getRole().equals("1")) {
+            try {
+                holder.title.setText("Mitra Tani sejak " + getMonthAndYear(user.getDateJoined()));
+            } catch (ParseException e) {
+                Log.d(AddConsultationAdapter.class.getSimpleName(), "onBindViewHolder: " + e.getMessage());
+            }
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
