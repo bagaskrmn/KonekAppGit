@@ -12,14 +12,14 @@ public class ArtikelModel {
     public ArtikelModel() {
     }
 
-    public ArtikelModel(String title, String image, String source, String date, String description, String sourceImage, String key) {
+    public ArtikelModel(String title, String image, String source, String date, String description, String sourceImage) {
         this.title = title;
         this.image = image;
         this.source = source;
         this.date = date;
         this.description = description;
         this.sourceImage = sourceImage;
-        this.key = key;
+//        this.key = key;
     }
 
     public String getTitle() {

@@ -83,28 +83,7 @@ public class ArtikelActivity extends AppCompatActivity {
         pd.setMessage("Memuat data");
         pd.show();
 
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                role = snapshot.child("role").getValue().toString();
-
-                if (role.equals("2") || role.equals("3")) {
-                    BtnAddArtikel.setVisibility(View.VISIBLE);
-                    SpaceView.setVisibility(View.GONE);
-                }
-                else {
-                    BtnAddArtikel.setVisibility(View.GONE);
-                    SpaceView.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
+        usersRef.child(currentUserId).addValueEventListener(listener);
 
         BtnAddArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,23 +101,7 @@ public class ArtikelActivity extends AppCompatActivity {
             }
         });
 
-        artikelRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                pd.dismiss();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ArtikelModel artikel = dataSnapshot.getValue(ArtikelModel.class);
-                    artikel.setKey(dataSnapshot.getKey());
-                    list.add(artikel);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                pd.dismiss();
-            }
-        });
+        artikelRef.addValueEventListener(listener1);
 
     }
 
@@ -156,5 +119,51 @@ public class ArtikelActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            role = snapshot.child("role").getValue().toString();
+
+            if (role.equals("2") || role.equals("3")) {
+                BtnAddArtikel.setVisibility(View.VISIBLE);
+                SpaceView.setVisibility(View.GONE);
+            }
+            else {
+                BtnAddArtikel.setVisibility(View.GONE);
+                SpaceView.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+
+    ValueEventListener listener1 = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            pd.dismiss();
+            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                ArtikelModel artikel = dataSnapshot.getValue(ArtikelModel.class);
+                artikel.setKey(dataSnapshot.getKey());
+                list.add(artikel);
+            }
+            adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        usersRef.child(currentUserId).removeEventListener(listener);
+        artikelRef.removeEventListener(listener1);
     }
 }

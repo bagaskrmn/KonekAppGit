@@ -153,12 +153,10 @@ public class AddObatActivity extends AppCompatActivity {
                                 pd.setMessage("Data Obat terunggah");
                                 pd.show();
 
-                                HashMap<String, Object> obatMap = new HashMap<>();
-                                obatMap.put("name", Name);
-                                obatMap.put("description", Description);
-                                obatMap.put("image", obatImageUrl);
+                                ObatModel obatModel = new ObatModel(obatImageUrl, Name, Description);
 
-                                obatRef.child(obatId).updateChildren(obatMap)
+
+                                obatRef.child(obatId).setValue(obatModel)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {

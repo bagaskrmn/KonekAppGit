@@ -107,6 +107,7 @@ public class TanamanActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pd.dismiss();
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     TanamanModel tanaman = dataSnapshot.getValue(TanamanModel.class);
                     tanaman.setKey(dataSnapshot.getKey());

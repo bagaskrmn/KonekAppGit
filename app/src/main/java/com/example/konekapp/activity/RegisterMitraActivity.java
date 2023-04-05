@@ -179,13 +179,13 @@ public class RegisterMitraActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //result of cropped image into Uri
                 resultUri = result.getUri();
-                Log.d("CompleteProfile", resultUri.toString());
+
                 //retrieve to CircleImage
                 Picasso.get().load(resultUri).into(RegMitraDocument);
 
                 //potong di sini
                 filePath = idCardImagePath.child(currentUserId + "_ktp.jpg");
-                Log.d("CompleteProfile", filePath.toString());
+
             }
         }
 

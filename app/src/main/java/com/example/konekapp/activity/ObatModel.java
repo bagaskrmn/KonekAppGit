@@ -9,11 +9,10 @@ public class ObatModel {
     public ObatModel() {
     }
 
-    public ObatModel(String image, String name, String description, String key) {
+    public ObatModel(String image, String name, String description) {
         this.image = image;
         this.name = name;
         this.description = description;
-        this.key = key;
     }
 
     public String getImage() {

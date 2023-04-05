@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KonekApp</string>
+    <string name="app_name">Konek</string>
     <string name="didn_t_get_otp_resend">Didn\'t get OTP ? <b>Resend</b></string>
     <string name="welcome">Selamat datang di Aplikasi Konek</string>
     <string name="input_phone">Silahkan masukkan nomor ponsel Anda untuk mendapatkan kode OTP</string>

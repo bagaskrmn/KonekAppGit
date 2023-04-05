@@ -173,17 +173,10 @@ public class AddArtikelActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Uri> task) {
                                 artikelImageUrl = task.getResult().toString();
 
-                                HashMap<String, Object> artikelMap = new HashMap<>();
-                                artikelMap.put("title", Title);
-                                artikelMap.put("source", Source);
-                                artikelMap.put("date", date);
-                                artikelMap.put("image", artikelImageUrl);
-                                artikelMap.put("description", Description);
-                                artikelMap.put("sourceImage", SourceImage);
+                                ArtikelModel artikelModel = new ArtikelModel(Title, artikelImageUrl, Source, date, Description, SourceImage);
+                                
 
-
-
-                                artikelRef.child(artikelId).updateChildren(artikelMap)
+                                artikelRef.child(artikelId).setValue(artikelModel)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {

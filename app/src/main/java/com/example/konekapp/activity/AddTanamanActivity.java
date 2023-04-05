@@ -149,11 +149,9 @@ public class AddTanamanActivity extends AppCompatActivity {
                                 pd.setMessage("Data tanaman terunggah");
                                 pd.show();
 
-                                HashMap<String, Object> tanamanMap = new HashMap<>();
-                                tanamanMap.put("name", Name);
-                                tanamanMap.put("image", tanamanImageUrl);
+                                TanamanModel tanamanModel = new TanamanModel(tanamanImageUrl, Name);
 
-                                tanamanRef.child(tanamanId).updateChildren(tanamanMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                tanamanRef.child(tanamanId).setValue(tanamanModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         pd.dismiss();

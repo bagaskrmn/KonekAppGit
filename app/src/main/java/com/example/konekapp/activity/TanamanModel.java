@@ -8,10 +8,9 @@ public class TanamanModel {
     public TanamanModel() {
     }
 
-    public TanamanModel(String image, String name, String key) {
+    public TanamanModel(String image, String name) {
         this.image = image;
         this.name = name;
-        this.key = key;
     }
 
     public String getImage() {

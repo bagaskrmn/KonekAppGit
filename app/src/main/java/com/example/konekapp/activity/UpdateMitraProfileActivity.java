@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.activity.chat.models.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +38,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -53,13 +55,15 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String currentUserId, phoneNumber, profileUrl, removedPhoneNumber;
+    private String currentUserId, phoneNumber, profileUrl, documentUrl, removedPhoneNumber;
     private ProgressDialog pd;
-    private StorageReference UserProfileImagesRef, filePath;
+    private StorageReference UserProfileImagesRef, idCardImagePath, filePathProf, filePathDocument;
+
+    private int a =0;
 
     private Boolean isAllFieldsChecked = false;
 
-    private Uri resultUri;
+    private Uri resultUriProf, resultUriDocument;
 
     private View decorView;
 
@@ -89,8 +93,11 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
         phoneNumber = currentUser.getPhoneNumber();
         removedPhoneNumber = phoneNumber.substring(3);
         UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
+        idCardImagePath = FirebaseStorage.getInstance().getReference().child("idCardImages");
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
+
+
 
         UpdateProfMitraImage = findViewById(R.id.updateProfMitraImage);
         UpdateProfMitraBackAction = findViewById(R.id.updateProfMitraBackAction);
@@ -111,54 +118,35 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
         pd.setMessage("Memuat data anda");
         pd.show();
 
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+        UpdateProfMitraBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                pd.dismiss();
-
-                String Image = snapshot.child("image").getValue().toString();
-                String Name = snapshot.child("name").getValue().toString();
-                String NIK = snapshot.child("nik").getValue().toString();
-                String Email = snapshot.child("email").getValue().toString();
-                String FullAddress = snapshot.child("fullAddress").getValue().toString();
-                String Village = snapshot.child("village").getValue().toString();
-                String Subdistrict = snapshot.child("subdistrict").getValue().toString();
-                String City = snapshot.child("city").getValue().toString();
-                String Province = snapshot.child("province").getValue().toString();
-                String IdCardImage = snapshot.child("idCardImage").getValue().toString();
-                String Question1 = snapshot.child("question1").getValue().toString();
-                String Question2 = snapshot.child("question2").getValue().toString();
-
-                Picasso.get().load(Image).into(UpdateProfMitraImage);
-                UpdateProfMitraName.setText(Name);
-                UpdateProfMitraPhoneNumber.setText(removedPhoneNumber);
-                UpdateProfMitraNIK.setText(NIK);
-                UpdateProfMitraEmail.setText(Email);
-                UpdateProfMitraFullAddress.setText(FullAddress);
-                UpdateProfMitraVillage.setText(Village);
-                UpdateProfMitraSubdistrict.setText(Subdistrict);
-                UpdateProfMitraCity.setText(City);
-                UpdateProfMitraProvince.setText(Province);
-                Picasso.get().load(IdCardImage).into(UpdateProfMitraDocument);
-                UpdateProfMitraQuestion1.setText(Question1);
-                UpdateProfMitraQuestion2.setText(Question2);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                pd.dismiss();
-                Toast.makeText(UpdateMitraProfileActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                UpdateMitraProfileActivity.super.onBackPressed();
             }
         });
+        //retrieve data to field
+        usersRef.child(currentUserId).addValueEventListener(listener);
 
         UpdateProfMitraImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                a=1;
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setAspectRatio(1,1)
                         .start(UpdateMitraProfileActivity.this);
+            }
+        });
+
+        UpdateProfMitraDocument.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a=2;
+                CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(2,1)
+                        .start(UpdateMitraProfileActivity.this);
+
             }
         });
 
@@ -175,18 +163,31 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         //result crop image OK
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && a==1) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
             if (resultCode == RESULT_OK) {
                 //result of cropped image into Uri
-                resultUri = result.getUri();
-                Log.d("CompleteProfile", resultUri.toString());
-                //retrieve to CircleImage
-                Picasso.get().load(resultUri).into(UpdateProfMitraImage);
+                resultUriProf = result.getUri();
 
-                filePath = UserProfileImagesRef.child(currentUserId + ".jpg");
-                Log.d("CompleteProfile", filePath.toString());
+                //retrieve to CircleImage
+                Picasso.get().load(resultUriProf).into(UpdateProfMitraImage);
+
+                filePathProf = UserProfileImagesRef.child(currentUserId + ".jpg");
+
+            }
+        }
+
+        if (requestCode ==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && a==2) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            if (resultCode == RESULT_OK) {
+                resultUriDocument = result.getUri();
+
+                //retrieve to CircleImage
+                Picasso.get().load(resultUriDocument).into(UpdateProfMitraDocument);
+
+                filePathDocument = idCardImagePath.child(currentUserId + "_ktp.jpg");
             }
         }
     }
@@ -213,10 +214,62 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
 
         isAllFieldsChecked = checkAllFields();
 
-        //jika gambar tidak diganti
-        if (resultUri == null && isAllFieldsChecked) {
+        if(isAllFieldsChecked) {
             pd.setMessage("Mengunggah Data");
             pd.show();
+
+            if (resultUriProf != null) {
+                filePathProf.putFile(resultUriProf).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        pd.dismiss();
+                        if (task.isSuccessful()) {
+                            filePathProf.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    profileUrl = task.getResult().toString();
+                                    HashMap<String, Object> profileImageMap = new HashMap<>();
+                                    profileImageMap.put("image", profileUrl);
+                                    usersRef.child(currentUserId).updateChildren(profileImageMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Log.d("ProfileImage", "uploaded");
+                                        }
+                                    });
+
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+
+            if (resultUriDocument != null) {
+                filePathDocument.putFile(resultUriDocument).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        pd.dismiss();
+                        if (task.isSuccessful()) {
+                            filePathDocument.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    documentUrl = task.getResult().toString();
+                                    HashMap<String, Object> documentImageMap = new HashMap<>();
+                                    documentImageMap.put("idCardImage", documentUrl);
+
+                                    usersRef.child(currentUserId).updateChildren(documentImageMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Log.d("IdCardImage", "uploaded");
+                                        }
+                                    });
+
+                                }
+                            });
+                        }
+                    }
+                });
+            }
 
             HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("name", Name);
@@ -230,77 +283,13 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
             profileMap.put("question1", Question1);
             profileMap.put("question2", Question2);
 
-            usersRef.child(currentUserId).updateChildren(profileMap)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            pd.dismiss();
-                            if (task.isSuccessful()) {
-                                Toast.makeText(UpdateMitraProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-                                Intent toProfileIntent = new Intent(UpdateMitraProfileActivity.this, MitraProfileActivity.class);
-                                startActivity(toProfileIntent);
-                                finish();
-                            }
-                            else {
-                                String message = task.getException().toString();
-                                Toast.makeText(UpdateMitraProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-            return;
-        }
-
-        //jika gambar diupdate
-        if(isAllFieldsChecked) {
-            pd.setMessage("Mengunggah data");
-            pd.show();
-
-            filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                public void onComplete(@NonNull Task<Void> task) {
                     pd.dismiss();
                     if (task.isSuccessful()) {
-                        filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                profileUrl = task.getResult().toString();
-
-                                pd.setMessage("Data terunggah");
-                                pd.show();
-
-                                HashMap<String, Object> profileMap = new HashMap<>();
-                                profileMap.put("image", profileUrl);
-                                profileMap.put("name", Name);
-                                profileMap.put("nik", NIK);
-                                profileMap.put("email", Email);
-                                profileMap.put("fullAddress", FullAddress);
-                                profileMap.put("village", Village);
-                                profileMap.put("subdistrict", Subdistrict);
-                                profileMap.put("city", City);
-                                profileMap.put("province", Province);
-                                profileMap.put("question1", Question1);
-                                profileMap.put("question2", Question2);
-
-                                usersRef.child(currentUserId).updateChildren(profileMap)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                pd.dismiss();
-                                                if (task.isSuccessful()) {
-                                                    Toast.makeText(UpdateMitraProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-                                                    Intent toProfileIntent = new Intent(UpdateMitraProfileActivity.this, MitraProfileActivity.class);
-                                                    startActivity(toProfileIntent);
-                                                    finish();
-                                                }
-                                                else {
-                                                    String message = task.getException().toString();
-                                                    Toast.makeText(UpdateMitraProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-
-                            }
-                        });
+                        Toast.makeText(UpdateMitraProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
+                        UpdateMitraProfileActivity.super.onBackPressed();
                     }
                     else {
                         String message = task.getException().toString();
@@ -308,7 +297,104 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
                     }
                 }
             });
+
         }
+        //jika gambar tidak diganti
+//        if (resultUriProf == null && isAllFieldsChecked) {
+//            pd.setMessage("Mengunggah Data");
+//            pd.show();
+//
+//            HashMap<String, Object> profileMap = new HashMap<>();
+//            profileMap.put("name", Name);
+//            profileMap.put("nik", NIK);
+//            profileMap.put("email", Email);
+//            profileMap.put("fullAddress", FullAddress);
+//            profileMap.put("village", Village);
+//            profileMap.put("subdistrict", Subdistrict);
+//            profileMap.put("city", City);
+//            profileMap.put("province", Province);
+//            profileMap.put("question1", Question1);
+//            profileMap.put("question2", Question2);
+//
+//            usersRef.child(currentUserId).updateChildren(profileMap)
+//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            pd.dismiss();
+//                            if (task.isSuccessful()) {
+//                                Toast.makeText(UpdateMitraProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
+//                                Intent toProfileIntent = new Intent(UpdateMitraProfileActivity.this, MitraProfileActivity.class);
+//                                startActivity(toProfileIntent);
+//                                finish();
+//                            }
+//                            else {
+//                                String message = task.getException().toString();
+//                                Toast.makeText(UpdateMitraProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//            return;
+//        }
+
+        //jika gambar diupdate
+//        if(isAllFieldsChecked) {
+//            pd.setMessage("Mengunggah data");
+//            pd.show();
+//
+//            filePathProf.putFile(resultUriProf).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                    pd.dismiss();
+//                    if (task.isSuccessful()) {
+//                        filePathProf.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Uri> task) {
+//                                profileUrl = task.getResult().toString();
+//
+//                                pd.setMessage("Data terunggah");
+//                                pd.show();
+//
+//                                HashMap<String, Object> profileMap = new HashMap<>();
+//                                profileMap.put("image", profileUrl);
+//                                profileMap.put("name", Name);
+//                                profileMap.put("nik", NIK);
+//                                profileMap.put("email", Email);
+//                                profileMap.put("fullAddress", FullAddress);
+//                                profileMap.put("village", Village);
+//                                profileMap.put("subdistrict", Subdistrict);
+//                                profileMap.put("city", City);
+//                                profileMap.put("province", Province);
+//                                profileMap.put("question1", Question1);
+//                                profileMap.put("question2", Question2);
+//
+//                                usersRef.child(currentUserId).updateChildren(profileMap)
+//                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                            @Override
+//                                            public void onComplete(@NonNull Task<Void> task) {
+//                                                pd.dismiss();
+//                                                if (task.isSuccessful()) {
+//                                                    Toast.makeText(UpdateMitraProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
+//                                                    Intent toProfileIntent = new Intent(UpdateMitraProfileActivity.this, MitraProfileActivity.class);
+//                                                    startActivity(toProfileIntent);
+//                                                    finish();
+//                                                }
+//                                                else {
+//                                                    String message = task.getException().toString();
+//                                                    Toast.makeText(UpdateMitraProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+//                                                }
+//                                            }
+//                                        });
+//
+//                            }
+//                        });
+//                    }
+//                    else {
+//                        String message = task.getException().toString();
+//                        Toast.makeText(UpdateMitraProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//        }
     }
 
     private Boolean checkAllFields() {
@@ -328,6 +414,45 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            pd.dismiss();
+
+            String Image = snapshot.child("image").getValue().toString();
+            String Name = snapshot.child("name").getValue().toString();
+            String NIK = snapshot.child("nik").getValue().toString();
+            String Email = snapshot.child("email").getValue().toString();
+            String FullAddress = snapshot.child("fullAddress").getValue().toString();
+            String Village = snapshot.child("village").getValue().toString();
+            String Subdistrict = snapshot.child("subdistrict").getValue().toString();
+            String City = snapshot.child("city").getValue().toString();
+            String Province = snapshot.child("province").getValue().toString();
+            String IdCardImage = snapshot.child("idCardImage").getValue().toString();
+            String Question1 = snapshot.child("question1").getValue().toString();
+            String Question2 = snapshot.child("question2").getValue().toString();
+
+            Picasso.get().load(Image).into(UpdateProfMitraImage);
+            UpdateProfMitraName.setText(Name);
+            UpdateProfMitraPhoneNumber.setText(removedPhoneNumber);
+            UpdateProfMitraNIK.setText(NIK);
+            UpdateProfMitraEmail.setText(Email);
+            UpdateProfMitraFullAddress.setText(FullAddress);
+            UpdateProfMitraVillage.setText(Village);
+            UpdateProfMitraSubdistrict.setText(Subdistrict);
+            UpdateProfMitraCity.setText(City);
+            UpdateProfMitraProvince.setText(Province);
+            Picasso.get().load(IdCardImage).into(UpdateProfMitraDocument);
+            UpdateProfMitraQuestion1.setText(Question1);
+            UpdateProfMitraQuestion2.setText(Question2);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

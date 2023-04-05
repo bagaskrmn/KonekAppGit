@@ -155,23 +155,20 @@ public class AddPenyakitActivity extends AppCompatActivity {
                                 pd.setMessage("Data penyakit terunggah");
                                 pd.show();
 
-                                HashMap<String, Object> penyakitMap = new HashMap<>();
-                                penyakitMap.put("name", Name);
-                                penyakitMap.put("description", Description);
-                                penyakitMap.put("image", penyakitImageUrl);
+                                PenyakitModel penyakitModel = new PenyakitModel(penyakitImageUrl, Name, Description);
 
-                                penyakitRef.child(penyakitId).updateChildren(penyakitMap)
+                                penyakitRef.child(penyakitId).setValue(penyakitModel)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 pd.dismiss();
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(AddPenyakitActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                                    Intent addPenyakitDone = new Intent(AddPenyakitActivity.this, PenyakitDanObatActivity.class);
-                                                    addPenyakitDone.putExtra("Key", tanamanId);
-                                                    //add put string extra?
-                                                    startActivity(addPenyakitDone);
-                                                    finish();
+                                                    AddPenyakitActivity.super.onBackPressed();
+//                                                    Intent addPenyakitDone = new Intent(AddPenyakitActivity.this, PenyakitDanObatActivity.class);
+//                                                    addPenyakitDone.putExtra("Key", tanamanId);
+//                                                    startActivity(addPenyakitDone);
+//                                                    finish();
                                                 }
                                                 else {
                                                     String message = task.getException().toString();

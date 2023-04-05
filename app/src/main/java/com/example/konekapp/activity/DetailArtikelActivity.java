@@ -99,27 +99,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
             artikelRef.child(DetailKey).addValueEventListener(listener);
         }
 
-
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                role = snapshot.child("role").getValue().toString();
-
-                if (role.equals("2") || role.equals("3")) {
-                    spaceViewArtikel.setVisibility(View.GONE);
-                    MenuArtikel.setVisibility(View.VISIBLE);
-                }
-                else {
-                    spaceViewArtikel.setVisibility(View.VISIBLE);
-                    MenuArtikel.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        usersRef.child(currentUserId).addValueEventListener(listener2);
 
         MenuArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +145,32 @@ public class DetailArtikelActivity extends AppCompatActivity {
         artikelRef.child(DetailKey).removeEventListener(listener);
         startActivity(EditArtikelIntent);
     }
+
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            //retrieve Data Artikel
+            String retrieveTitle = snapshot.child("title").getValue().toString();
+            String retrieveImage = snapshot.child("image").getValue().toString();
+            String retrieveSource = snapshot.child("source").getValue().toString();
+            String retrieveDate = snapshot.child("date").getValue().toString();
+            String retrieveDescription = snapshot.child("description").getValue().toString();
+            String retrieveSourceImage = snapshot.child("sourceImage").getValue().toString();
+
+            //set Data to the item
+            DetailArtikelTitle.setText(retrieveTitle);
+            Picasso.get().load(retrieveImage).into(DetailArtikelImage);
+            DetailArtikelSource.setText(retrieveSource);
+            DetailArtikelDate.setText(retrieveDate);
+            DetailArtikelDescription.setText(retrieveDescription);
+            DetailArtikelSourceImage.setText(retrieveSourceImage);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     ValueEventListener listener1 = new ValueEventListener() {
         @Override
@@ -215,24 +221,19 @@ public class DetailArtikelActivity extends AppCompatActivity {
         }
     };
 
-    ValueEventListener listener = new ValueEventListener() {
+    ValueEventListener listener2 = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            //retrieve Data Artikel
-            String retrieveTitle = snapshot.child("title").getValue().toString();
-            String retrieveImage = snapshot.child("image").getValue().toString();
-            String retrieveSource = snapshot.child("source").getValue().toString();
-            String retrieveDate = snapshot.child("date").getValue().toString();
-            String retrieveDescription = snapshot.child("description").getValue().toString();
-            String retrieveSourceImage = snapshot.child("sourceImage").getValue().toString();
+            role = snapshot.child("role").getValue().toString();
 
-            //set Data to the item
-            DetailArtikelTitle.setText(retrieveTitle);
-            Picasso.get().load(retrieveImage).into(DetailArtikelImage);
-            DetailArtikelSource.setText(retrieveSource);
-            DetailArtikelDate.setText(retrieveDate);
-            DetailArtikelDescription.setText(retrieveDescription);
-            DetailArtikelSourceImage.setText(retrieveSourceImage);
+            if (role.equals("2") || role.equals("3")) {
+                spaceViewArtikel.setVisibility(View.GONE);
+                MenuArtikel.setVisibility(View.VISIBLE);
+            }
+            else {
+                spaceViewArtikel.setVisibility(View.VISIBLE);
+                MenuArtikel.setVisibility(View.GONE);
+            }
         }
 
         @Override
@@ -255,5 +256,10 @@ public class DetailArtikelActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

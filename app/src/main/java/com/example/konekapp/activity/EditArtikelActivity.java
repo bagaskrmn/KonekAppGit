@@ -281,4 +281,10 @@ public class EditArtikelActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        artikelRef.child(DetailKey).removeEventListener(listener);
+    }
 }

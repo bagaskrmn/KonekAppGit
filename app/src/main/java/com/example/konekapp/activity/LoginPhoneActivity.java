@@ -59,6 +59,8 @@ public class LoginPhoneActivity extends AppCompatActivity {
     private DatabaseReference rootRef, usersRef, currentUserRef;
     private ProgressDialog pd;
 
+    private CountDownTimer countDownTimer;
+
     public int counter;
 
 
@@ -193,8 +195,14 @@ public class LoginPhoneActivity extends AppCompatActivity {
 
                 //hide resend btn
                 binding.resendOTP.setVisibility(View.GONE);
+
+
                 //show timer
-                new CountDownTimer(60000, 1000) {
+
+                if (countDownTimer !=null) {
+                    countDownTimer.cancel();
+                }
+                countDownTimer = new CountDownTimer(60000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         // Used for formatting digit to be in 2 digits only
                         NumberFormat f = new DecimalFormat("00");
@@ -207,7 +215,24 @@ public class LoginPhoneActivity extends AppCompatActivity {
                         binding.cTimer.setVisibility(View.GONE);
                         binding.resendOTP.setVisibility(View.VISIBLE);
                     }
-                }.start();
+                };
+                countDownTimer.start();
+
+
+//                new CountDownTimer(60000, 1000) {
+//                    public void onTick(long millisUntilFinished) {
+//                        // Used for formatting digit to be in 2 digits only
+//                        NumberFormat f = new DecimalFormat("00");
+//                        long min = (millisUntilFinished / 60000) % 60;
+//                        long sec = (millisUntilFinished / 1000) % 60;
+//                        binding.cTimer.setText(f.format(min) + ":" + f.format(sec));
+//                    }
+//                    // When the task is over
+//                    public void onFinish() {
+//                        binding.cTimer.setVisibility(View.GONE);
+//                        binding.resendOTP.setVisibility(View.VISIBLE);
+//                    }
+//                }.start();
 
                 Toast.makeText(LoginPhoneActivity.this, "Verification code sent", Toast.LENGTH_SHORT).show();
 
@@ -275,9 +300,11 @@ public class LoginPhoneActivity extends AppCompatActivity {
         pd.setMessage("Verifying Phone Number");
         pd.show();
 
+
+
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(firebaseAuth)
                 .setPhoneNumber(phoneNumber)       // Phone number to verify
-                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                .setTimeout(0L, TimeUnit.SECONDS) // Timeout and unit
                 .setActivity(this)                 // Activity (for callback binding)
                 .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                 .build();
