@@ -79,6 +79,15 @@
         android:layout_marginTop="24dp"
         tools:listitem="@layout/item_chat"/>
 
+    <TextView
+        android:id="@+id/tvNoData"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Belum ada chat"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
     LinearLayout btnAddNewConsultation;
     RecyclerView rvConversation;
     String currentUserId;
+    TextView tvNoData;
 
     //recent conversation
     private List<ChatMessagesModel> listConversation;
@@ -74,6 +76,7 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
         btnBack = findViewById(R.id.btnBack);
         btnAddNewConsultation = findViewById(R.id.btnAddNewConsultation);
         rvConversation = findViewById(R.id.rvConversation);
+        tvNoData = findViewById(R.id.tvNoData);
 
         listConversation = new ArrayList<>();
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -127,6 +130,15 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
                     listConversation.add(chatMessagesModel);
                 }
             }
+            //check if list conversation is empty or not
+            if (listConversation.size() > 0) {
+                rvConversation.setVisibility(View.VISIBLE);
+                tvNoData.setVisibility(View.GONE);
+            } else {
+                rvConversation.setVisibility(View.GONE);
+                tvNoData.setVisibility(View.VISIBLE);
+            }
+
             //sorting list conversation by date time
             Collections.sort(listConversation, (obj1, obj2) -> obj2.getDateTime().compareTo(obj1.getDateTime()));
 
