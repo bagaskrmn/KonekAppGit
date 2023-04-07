@@ -1,4 +1,4 @@
-package com.example.konekapp.activity.chat;
+package com.example.konekapp.activity.chat.chatroom;
 
 import static com.example.konekapp.activity.chat.helper.Constants.*;
 

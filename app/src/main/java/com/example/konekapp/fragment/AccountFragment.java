@@ -2,7 +2,6 @@ package com.example.konekapp.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,8 +20,8 @@ import com.example.konekapp.R;
 import com.example.konekapp.activity.KelolaMitra;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.SettingActivity;
-import com.example.konekapp.activity.chat.ConsultationActivity;
-import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
+import com.example.konekapp.activity.chat.consultation.ConsultationActivity;
+import com.example.konekapp.activity.chattomitra.ConsultationToMitraActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,8 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -125,7 +122,7 @@ public class AccountFragment extends Fragment {
         ConstraintChatMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), MitraConsultationActivity.class);
+                Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
                 startActivity(intent);
             }
         });

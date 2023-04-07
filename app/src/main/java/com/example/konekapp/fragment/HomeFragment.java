@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +28,9 @@ import com.example.konekapp.activity.MitraProfileActivity;
 import com.example.konekapp.activity.ProfileActivity;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.TanamanActivity;
-import com.example.konekapp.activity.chat.ConsultationActivity;
-import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
+import com.example.konekapp.activity.chat.consultation.ConsultationActivity;
+import com.example.konekapp.activity.chattomitra.ConsultationToMitraActivity;
 //import com.example.konekapp.databinding.FragmentHomeBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -137,7 +133,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //add chat with mitra activity here
-                Intent intent = new Intent(requireContext(), MitraConsultationActivity.class);
+                Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
                 startActivity(intent);
             }
         });
