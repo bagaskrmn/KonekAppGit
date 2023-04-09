@@ -1,4 +1,4 @@
-package com.example.konekapp.activity.chatmitra;
+package com.example.konekapp.activity.chattomitra;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
-import com.example.konekapp.activity.chat.ChatRoomActivity;
+import com.example.konekapp.activity.chat.chatroom.ChatRoomActivity;
 import com.example.konekapp.activity.chat.addconsultation.AddConsultationAdapter;
 import com.example.konekapp.activity.chat.addconsultation.UserListener;
 import com.example.konekapp.activity.chat.models.UserModel;
@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MitraTambahKonsultasiActivity extends AppCompatActivity implements UserListener {
+public class TambahKonsultasiToMitraActivity extends AppCompatActivity implements UserListener {
 
     private DatabaseReference userRef;
     //Keperluan RecyclerView
@@ -87,7 +87,7 @@ public class MitraTambahKonsultasiActivity extends AppCompatActivity implements 
 
     @Override
     public void onUserClick(UserModel user) {
-        Intent intent  = new Intent(MitraTambahKonsultasiActivity.this, ChatRoomActivity.class);
+        Intent intent  = new Intent(TambahKonsultasiToMitraActivity.this, ChatRoomActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }

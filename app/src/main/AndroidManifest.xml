@@ -76,7 +76,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.chatmitra.MitraConsultationActivity"
+            android:name=".activity.chattomitra.ConsultationToMitraActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -84,7 +84,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.chat.ChatRoomActivity"
+            android:name=".activity.chat.chatroom.ChatRoomActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -109,7 +109,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.chat.ConsultationActivity"
+            android:name=".activity.chat.consultation.ConsultationActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -117,7 +117,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.chat.TambahKonsultasiActivity"
+            android:name=".activity.chat.addconsultation.TambahKonsultasiActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -257,7 +257,7 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
-            android:name=".activity.chatmitra.MitraTambahKonsultasiActivity"
+            android:name=".activity.chattomitra.TambahKonsultasiToMitraActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

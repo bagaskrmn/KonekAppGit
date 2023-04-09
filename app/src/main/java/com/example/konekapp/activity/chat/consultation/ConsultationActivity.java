@@ -1,11 +1,14 @@
-package com.example.konekapp.activity.chat;
+package com.example.konekapp.activity.chat.consultation;
 
 import static com.example.konekapp.activity.chat.helper.Constants.*;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,8 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
-import com.example.konekapp.activity.chat.consultation.ConversationListener;
-import com.example.konekapp.activity.chat.consultation.RecentConversationAdapter;
+import com.example.konekapp.activity.chat.chatroom.ChatRoomActivity;
+import com.example.konekapp.activity.chat.addconsultation.TambahKonsultasiActivity;
 import com.example.konekapp.activity.chat.models.ChatMessagesModel;
 import com.example.konekapp.activity.chat.models.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +42,7 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
     RecyclerView rvConversation;
     String currentUserId;
     TextView tvNoData;
+    EditText edtSearch;
 
     //recent conversation
     private List<ChatMessagesModel> listConversation;
@@ -69,6 +73,19 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
                 startActivity(intent);
             }
         });
+
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                filterList(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
     }
 
     void init() {
@@ -77,10 +94,11 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
         btnAddNewConsultation = findViewById(R.id.btnAddNewConsultation);
         rvConversation = findViewById(R.id.rvConversation);
         tvNoData = findViewById(R.id.tvNoData);
+        edtSearch = findViewById(R.id.edtSearch);
 
         listConversation = new ArrayList<>();
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        recentConversationAdapter = new RecentConversationAdapter(currentUserId, listConversation, this);
+        recentConversationAdapter = new RecentConversationAdapter(currentUserId, this);
         rvConversation.setAdapter(recentConversationAdapter);
         rvConversation.setHasFixedSize(true);
         rvConversation.setLayoutManager(new LinearLayoutManager(this));
@@ -143,13 +161,40 @@ public class ConsultationActivity extends AppCompatActivity implements Conversat
             Collections.sort(listConversation, (obj1, obj2) -> obj2.getDateTime().compareTo(obj1.getDateTime()));
 
             Log.d("ConsultationActivity", "onDataChange: " + listConversation.size() );
-            recentConversationAdapter.notifyDataSetChanged();
+            recentConversationAdapter.setListConversation(listConversation);
             rvConversation.smoothScrollToPosition(0);
         }
 
         @Override
         public void onCancelled(@NonNull DatabaseError error) {}
     };
+
+    public void filterList(String query) {
+        List<ChatMessagesModel> filteredListConversation = new ArrayList<>();
+        filteredListConversation.clear();
+        Log.d("RecentConversationAdapter", "filterList: "+query);
+        if (query.isEmpty()) {
+            filteredListConversation.addAll(listConversation);
+        } else {
+            for (ChatMessagesModel item : listConversation) {
+                if (item.conversationName.toLowerCase().contains(query.toLowerCase())) {
+                    filteredListConversation.add(item);
+                }
+            }
+        }
+
+        if (filteredListConversation.size() > 0) {
+            rvConversation.setVisibility(View.VISIBLE);
+            tvNoData.setVisibility(View.GONE);
+        } else {
+            rvConversation.setVisibility(View.GONE);
+            tvNoData.setVisibility(View.VISIBLE);
+        }
+
+        Log.d("RecentConversationAdapter", "list: "+ listConversation);
+        Log.d("RecentConversationAdapter", "filterList: "+ filteredListConversation);
+        recentConversationAdapter.setListConversation(filteredListConversation);
+    }
 
     private void updateConversationCount(String conversationId, String child, int count) {
         HashMap<String, Object> conversation = new HashMap<>();

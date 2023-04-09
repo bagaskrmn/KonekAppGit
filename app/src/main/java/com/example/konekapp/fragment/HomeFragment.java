@@ -29,8 +29,8 @@ import com.example.konekapp.activity.MitraProfileActivity;
 import com.example.konekapp.activity.ProfileActivity;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.TanamanActivity;
-import com.example.konekapp.activity.chat.ConsultationActivity;
-import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
+import com.example.konekapp.activity.chat.consultation.ConsultationActivity;
+import com.example.konekapp.activity.chattomitra.ConsultationToMitraActivity;
 //import com.example.konekapp.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -136,7 +136,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //add chat with mitra activity here
-                Intent intent = new Intent(requireContext(), MitraConsultationActivity.class);
+                Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
                 startActivity(intent);
             }
         });

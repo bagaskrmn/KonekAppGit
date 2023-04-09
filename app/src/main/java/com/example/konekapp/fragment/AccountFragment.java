@@ -20,8 +20,8 @@ import com.example.konekapp.R;
 import com.example.konekapp.activity.ManageMitra;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.SettingActivity;
-import com.example.konekapp.activity.chat.ConsultationActivity;
-import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
+import com.example.konekapp.activity.chat.consultation.ConsultationActivity;
+import com.example.konekapp.activity.chattomitra.ConsultationToMitraActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -122,7 +122,7 @@ public class AccountFragment extends Fragment {
         ConstraintChatMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), MitraConsultationActivity.class);
+                Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
                 startActivity(intent);
             }
         });

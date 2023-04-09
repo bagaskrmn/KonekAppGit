@@ -18,20 +18,25 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConversationAdapter.ViewHolder> {
-
-    private final List<ChatMessagesModel> listMessage;
+    private List<ChatMessagesModel> filteredListConversation = new ArrayList<>();
     private ConversationListener conversationListener;
     private String currentId;
 
-    public RecentConversationAdapter(String currentId, List<ChatMessagesModel> listMessage, ConversationListener conversationListener) {
+    public RecentConversationAdapter(String currentId, ConversationListener conversationListener) {
         this.currentId = currentId;
-        this.listMessage = listMessage;
         this.conversationListener = conversationListener;
+    }
+
+    public void setListConversation(List<ChatMessagesModel> listConversation) {
+        this.filteredListConversation = listConversation;
+        Log.d("RecentConversationAdapter", "oldList: "+ listConversation.size());
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -43,12 +48,12 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(listMessage.get(position));
+        holder.bind(filteredListConversation.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listMessage.size();
+        return filteredListConversation.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
