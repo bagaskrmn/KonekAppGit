@@ -37,8 +37,8 @@ public class AddPenyakitActivity extends AppCompatActivity {
     private ImageView AddImagePenyakit, AddPenyakitBackAction;
     private EditText AddNamePenyakit, AddDescriptionPenyakit;
     private Button BtnAddPenyakitDone;
-    private StorageReference PenyakitImagesRef, penyakitPath;
-    private DatabaseReference rootRef, tanamanRef, penyakitRef;
+    private StorageReference diseaseImagesRef, penyakitPath;
+    private DatabaseReference diseaseRef, rootRef, plantRef;
     private ProgressDialog pd;
     private ConstraintLayout AddImagePenyakitConstraint;
     private String tanamanId, penyakitId, penyakitImageUrl;
@@ -78,10 +78,10 @@ public class AddPenyakitActivity extends AppCompatActivity {
         tanamanId = intent.getStringExtra("Key");
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("plant");
-        PenyakitImagesRef = FirebaseStorage.getInstance().getReference().child("plantDiseaseImages");
+        plantRef = rootRef.child("plant");
+        diseaseImagesRef = FirebaseStorage.getInstance().getReference().child("plantDiseaseImages");
         penyakitId = rootRef.push().getKey();
-        penyakitRef = tanamanRef.child(tanamanId).child("disease");
+        diseaseRef = plantRef.child(tanamanId).child("disease");
 
         BtnAddPenyakitDone.setEnabled(false);
         AddNamePenyakit.addTextChangedListener(textWatcher);
@@ -126,7 +126,7 @@ public class AddPenyakitActivity extends AppCompatActivity {
                 //set Uri to ImageArtikel
                 Picasso.get().load(resultUri).into(AddImagePenyakit);
 
-                penyakitPath = PenyakitImagesRef.child(penyakitId + ".jpg");
+                penyakitPath = diseaseImagesRef.child(penyakitId + ".jpg");
             }
         }
     }
@@ -157,7 +157,7 @@ public class AddPenyakitActivity extends AppCompatActivity {
 
                                 PenyakitModel penyakitModel = new PenyakitModel(penyakitImageUrl, Name, Description);
 
-                                penyakitRef.child(penyakitId).setValue(penyakitModel)
+                                diseaseRef.child(penyakitId).setValue(penyakitModel)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -165,10 +165,6 @@ public class AddPenyakitActivity extends AppCompatActivity {
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(AddPenyakitActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                                                     AddPenyakitActivity.super.onBackPressed();
-//                                                    Intent addPenyakitDone = new Intent(AddPenyakitActivity.this, PenyakitDanObatActivity.class);
-//                                                    addPenyakitDone.putExtra("Key", tanamanId);
-//                                                    startActivity(addPenyakitDone);
-//                                                    finish();
                                                 }
                                                 else {
                                                     String message = task.getException().toString();

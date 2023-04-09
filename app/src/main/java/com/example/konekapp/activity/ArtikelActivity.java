@@ -28,11 +28,11 @@ public class ArtikelActivity extends AppCompatActivity {
 
     private ImageView ArtikelBackAction, BtnAddArtikel;
     private ProgressDialog pd;
-    private DatabaseReference artikelRef, rootRef, usersRef;
+    private DatabaseReference articleRef, usersRef, rootRef;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
-    private String currentUserId, role;
+    private String role, currentUserId;
 
     //Keperluan RecyclerView
     private ArrayList<ArtikelModel> list;
@@ -68,7 +68,7 @@ public class ArtikelActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
 
-        artikelRef = rootRef.child("article");
+        articleRef = rootRef.child("article");
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.fullArtikelrtikelRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -101,7 +101,7 @@ public class ArtikelActivity extends AppCompatActivity {
             }
         });
 
-        artikelRef.addValueEventListener(listener1);
+        articleRef.addValueEventListener(listener1);
 
     }
 
@@ -146,6 +146,7 @@ public class ArtikelActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             pd.dismiss();
+            list.clear();
             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                 ArtikelModel artikel = dataSnapshot.getValue(ArtikelModel.class);
                 artikel.setKey(dataSnapshot.getKey());
@@ -164,6 +165,6 @@ public class ArtikelActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         usersRef.child(currentUserId).removeEventListener(listener);
-        artikelRef.removeEventListener(listener1);
+        articleRef.removeEventListener(listener1);
     }
 }

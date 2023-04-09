@@ -1,5 +1,6 @@
 package com.example.konekapp.activity;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -25,8 +26,8 @@ public class PenyakitDanObatActivity extends AppCompatActivity {
 
     private ImageView PenyakitDanObatBackAction;
     private TextView JenisTanaman;
-    private String TanamanKey, nameTanaman;
-    private DatabaseReference tanamanRef, rootRef;
+    private String plantId, nameTanaman;
+    private DatabaseReference plantRef, rootRef;
     private View decorView;
 
     @Override
@@ -50,7 +51,7 @@ public class PenyakitDanObatActivity extends AppCompatActivity {
         JenisTanaman = findViewById(R.id.jenisTanaman);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("plant");
+        plantRef = rootRef.child("plant");
 
         PenyakitDanObatBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +62,9 @@ public class PenyakitDanObatActivity extends AppCompatActivity {
 
         //retrieve Key for tanaman from Tanaman Adapter
         Intent intent = getIntent();
-        TanamanKey = intent.getStringExtra("Key");
+        plantId = intent.getStringExtra("Key");
 
-        tanamanRef.child(TanamanKey).addValueEventListener(new ValueEventListener() {
+        plantRef.child(plantId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 nameTanaman = snapshot.child("name").getValue().toString();
@@ -75,8 +76,6 @@ public class PenyakitDanObatActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
         tabLayout.addTab(tabLayout.newTab().setText("Penyakit"));

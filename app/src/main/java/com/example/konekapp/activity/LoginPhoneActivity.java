@@ -56,7 +56,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
     private String mVerificationId;
     private static final String TAG = "MAIN_TAG";
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference rootRef, usersRef, currentUserRef;
+    private DatabaseReference rootRef, usersRef;
     private ProgressDialog pd;
 
     private CountDownTimer countDownTimer;
@@ -218,22 +218,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 };
                 countDownTimer.start();
 
-
-//                new CountDownTimer(60000, 1000) {
-//                    public void onTick(long millisUntilFinished) {
-//                        // Used for formatting digit to be in 2 digits only
-//                        NumberFormat f = new DecimalFormat("00");
-//                        long min = (millisUntilFinished / 60000) % 60;
-//                        long sec = (millisUntilFinished / 1000) % 60;
-//                        binding.cTimer.setText(f.format(min) + ":" + f.format(sec));
-//                    }
-//                    // When the task is over
-//                    public void onFinish() {
-//                        binding.cTimer.setVisibility(View.GONE);
-//                        binding.resendOTP.setVisibility(View.VISIBLE);
-//                    }
-//                }.start();
-
                 Toast.makeText(LoginPhoneActivity.this, "Verification code sent", Toast.LENGTH_SHORT).show();
 
                 String phone = binding.loginPhoneNo.getText().toString().trim();
@@ -258,11 +242,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
 
                 String phoneNumber = "+62" + phone;
                 startPhoneNumberVerification(phoneNumber);
-//                if (TextUtils.isEmpty(phone)) {
-//                    Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    startPhoneNumberVerification(phoneNumber);
-//                }
             }
         });
 
@@ -272,11 +251,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 String phone = binding.loginPhoneNo.getText().toString().trim();
                 String phoneNumber = "+62" + phone;
                 resendVerificationCode(phoneNumber, forceResendingToken);
-//                if (TextUtils.isEmpty(phone)) {
-//                    Toast.makeText(LoginPhoneActivity.this, "Masukkan nomor HP anda", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    resendVerificationCode(phoneNumber, forceResendingToken);
-//                }
             }
         });
 
@@ -286,11 +260,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 binding.enterOTPCode.requestFocus();
                 String code = binding.enterOTPCode.getText().toString().trim();
                 verifyPhoneNumberWithCode(mVerificationId, code);
-//                if (TextUtils.isEmpty(code)) {
-//                    Toast.makeText(LoginPhoneActivity.this, "Masukkan kode OTP yang telah dikirim", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    verifyPhoneNumberWithCode(mVerificationId, code);
-//                }
             }
         });
     }
@@ -351,10 +320,6 @@ public class LoginPhoneActivity extends AppCompatActivity {
 
                         String currentUserId = user.getUid();
 
-                        //root database reference
-//                        rootRef = FirebaseDatabase.getInstance().getReference();
-//
-//                        usersRef = rootRef.child("users");
                         HashMap<String, Object> profileMap = new HashMap<>();
                         //Hanya untuk memunculkan userID di child Users
                         profileMap.put("phoneNumber", phoneNumber);

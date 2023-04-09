@@ -1,5 +1,6 @@
 package com.example.konekapp.fragment;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +24,7 @@ import com.example.konekapp.R;
 import com.example.konekapp.activity.ArtikelActivity;
 import com.example.konekapp.activity.ArtikelAdapter;
 import com.example.konekapp.activity.ArtikelModel;
-import com.example.konekapp.activity.KelolaMitra;
+import com.example.konekapp.activity.ManageMitra;
 import com.example.konekapp.activity.MitraProfileActivity;
 import com.example.konekapp.activity.ProfileActivity;
 import com.example.konekapp.activity.RegisterMitraActivity;
@@ -34,7 +32,6 @@ import com.example.konekapp.activity.TanamanActivity;
 import com.example.konekapp.activity.chat.ConsultationActivity;
 import com.example.konekapp.activity.chatmitra.MitraConsultationActivity;
 //import com.example.konekapp.databinding.FragmentHomeBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,12 +51,12 @@ public class HomeFragment extends Fragment {
     private Button BtnRegisterMitra, BtnKonsultasi, BtnChatMitra, BtnKelolaKemitraan;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
-    private DatabaseReference rootRef, usersRef, artikelRef;
-    private String currentUserId, role;
+    private DatabaseReference rootRef, usersRef, articleRef;
+    private String role, currentUserId;
     private ConstraintLayout ConstraintRegister, ConstraintKonsultasi, ConstraintChatMitra, ConstraintKelolaKemitraan;
     private LinearLayout BtnPenyakitTanaman, BtnObatTanaman;
     private ProgressDialog pd;
-    private TextView BtnFullArtikel;
+    private TextView BtnFullArtikel, TvWaitingConfirmation;
 
     //Keperluan RecyclerView
     private ArrayList<ArtikelModel> list;
@@ -83,7 +80,9 @@ public class HomeFragment extends Fragment {
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
-        artikelRef = rootRef.child("article");
+        articleRef = rootRef.child("article");
+
+        TvWaitingConfirmation = (TextView)getView().findViewById(R.id.tvWaitingConfirmation);
 
         AccImageHome = (CircleImageView)getView().findViewById(R.id.accImageHome);
         BtnRegisterMitra= (Button)getView().findViewById(R.id.btnRegisterMitra);
@@ -145,7 +144,7 @@ public class HomeFragment extends Fragment {
         BtnKelolaKemitraan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), KelolaMitra.class);
+                Intent intent = new Intent(requireContext(), ManageMitra.class);
                 startActivity(intent);
             }
         });
@@ -171,7 +170,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        artikelRef.addValueEventListener(listener1);
+        articleRef.addValueEventListener(listener1);
 
         BtnFullArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,6 +213,20 @@ public class HomeFragment extends Fragment {
                 ConstraintKonsultasi.setVisibility(View.GONE);
                 ConstraintChatMitra.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
+
+
+                BtnRegisterMitra.setVisibility(View.VISIBLE);
+                TvWaitingConfirmation.setVisibility(View.GONE);
+            }
+
+            if (role.equals("4")) {
+                ConstraintRegister.setVisibility(View.VISIBLE);
+                ConstraintKonsultasi.setVisibility(View.GONE);
+                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintKelolaKemitraan.setVisibility(View.GONE);
+
+                BtnRegisterMitra.setVisibility(View.GONE);
+                TvWaitingConfirmation.setVisibility(View.VISIBLE);
             }
             //if role is mitra(2)
             if (role.equals("1")) {
@@ -264,8 +277,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        artikelRef.removeEventListener(listener1);
+        articleRef.removeEventListener(listener1);
         usersRef.child(currentUserId).removeEventListener(listener);
-
     }
 }

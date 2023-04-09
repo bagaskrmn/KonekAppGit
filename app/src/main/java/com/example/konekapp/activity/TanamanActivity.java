@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class TanamanActivity extends AppCompatActivity {
     private ImageView TanamanBackAction, BtnAddTanaman;
     private ProgressDialog pd;
-    private DatabaseReference tanamanRef, rootRef, usersRef;
+    private DatabaseReference plantRef, rootRef, usersRef;
 
     private ArrayList<TanamanModel> list;
     private TanamanAdapter adapter;
@@ -59,7 +59,7 @@ public class TanamanActivity extends AppCompatActivity {
         SpaceViewTanaman = findViewById(R.id.spaceViewTanaman);
         BtnAddTanaman = findViewById(R.id.btnAddTanaman);
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("plant");
+        plantRef = rootRef.child("plant");
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.tanamanRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,7 +71,6 @@ public class TanamanActivity extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
         usersRef = rootRef.child("users");
-
 
         //init ProgressDialog
         pd = new ProgressDialog(this);
@@ -103,7 +102,7 @@ public class TanamanActivity extends AppCompatActivity {
         });
 
 
-        tanamanRef.addValueEventListener(new ValueEventListener() {
+        plantRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pd.dismiss();

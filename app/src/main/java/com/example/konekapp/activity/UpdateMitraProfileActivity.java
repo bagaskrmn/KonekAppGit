@@ -55,15 +55,15 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String currentUserId, phoneNumber, profileUrl, documentUrl, removedPhoneNumber;
+    private String currentUserId, phoneNumber, removedPhoneNumber, imageProfileUrl, idCardImageUrl;
     private ProgressDialog pd;
-    private StorageReference UserProfileImagesRef, idCardImagePath, filePathProf, filePathDocument;
+    private StorageReference userProfileImagesRef, imageProfilePath, idCardImagesRef, idCardImagePath;
 
     private int a =0;
 
     private Boolean isAllFieldsChecked = false;
 
-    private Uri resultUriProf, resultUriDocument;
+    private Uri resultUriImageProfile, resultUriIdCard;
 
     private View decorView;
 
@@ -92,8 +92,8 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
         currentUserId = currentUser.getUid();
         phoneNumber = currentUser.getPhoneNumber();
         removedPhoneNumber = phoneNumber.substring(3);
-        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
-        idCardImagePath = FirebaseStorage.getInstance().getReference().child("idCardImages");
+        userProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
+        idCardImagesRef = FirebaseStorage.getInstance().getReference().child("idCardImages");
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
 
@@ -168,12 +168,12 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 //result of cropped image into Uri
-                resultUriProf = result.getUri();
+                resultUriImageProfile = result.getUri();
 
                 //retrieve to CircleImage
-                Picasso.get().load(resultUriProf).into(UpdateProfMitraImage);
+                Picasso.get().load(resultUriImageProfile).into(UpdateProfMitraImage);
 
-                filePathProf = UserProfileImagesRef.child(currentUserId + ".jpg");
+                imageProfilePath = userProfileImagesRef.child(currentUserId + ".jpg");
 
             }
         }
@@ -182,12 +182,12 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
             if (resultCode == RESULT_OK) {
-                resultUriDocument = result.getUri();
+                resultUriIdCard = result.getUri();
 
                 //retrieve to CircleImage
-                Picasso.get().load(resultUriDocument).into(UpdateProfMitraDocument);
+                Picasso.get().load(resultUriIdCard).into(UpdateProfMitraDocument);
 
-                filePathDocument = idCardImagePath.child(currentUserId + "_ktp.jpg");
+                idCardImagePath = idCardImagesRef.child(currentUserId + "_ktp.jpg");
             }
         }
     }
@@ -218,18 +218,18 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
             pd.setMessage("Mengunggah Data");
             pd.show();
 
-            if (resultUriProf != null) {
-                filePathProf.putFile(resultUriProf).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            if (resultUriImageProfile != null) {
+                imageProfilePath.putFile(resultUriImageProfile).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         pd.dismiss();
                         if (task.isSuccessful()) {
-                            filePathProf.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            imageProfilePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
-                                    profileUrl = task.getResult().toString();
+                                    imageProfileUrl = task.getResult().toString();
                                     HashMap<String, Object> profileImageMap = new HashMap<>();
-                                    profileImageMap.put("image", profileUrl);
+                                    profileImageMap.put("image", imageProfileUrl);
                                     usersRef.child(currentUserId).updateChildren(profileImageMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -244,18 +244,18 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
                 });
             }
 
-            if (resultUriDocument != null) {
-                filePathDocument.putFile(resultUriDocument).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            if (resultUriIdCard != null) {
+                idCardImagePath.putFile(resultUriIdCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         pd.dismiss();
                         if (task.isSuccessful()) {
-                            filePathDocument.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            idCardImagePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
-                                    documentUrl = task.getResult().toString();
+                                    idCardImageUrl = task.getResult().toString();
                                     HashMap<String, Object> documentImageMap = new HashMap<>();
-                                    documentImageMap.put("idCardImage", documentUrl);
+                                    documentImageMap.put("idCardImage", idCardImageUrl);
 
                                     usersRef.child(currentUserId).updateChildren(documentImageMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -299,102 +299,6 @@ public class UpdateMitraProfileActivity extends AppCompatActivity {
             });
 
         }
-        //jika gambar tidak diganti
-//        if (resultUriProf == null && isAllFieldsChecked) {
-//            pd.setMessage("Mengunggah Data");
-//            pd.show();
-//
-//            HashMap<String, Object> profileMap = new HashMap<>();
-//            profileMap.put("name", Name);
-//            profileMap.put("nik", NIK);
-//            profileMap.put("email", Email);
-//            profileMap.put("fullAddress", FullAddress);
-//            profileMap.put("village", Village);
-//            profileMap.put("subdistrict", Subdistrict);
-//            profileMap.put("city", City);
-//            profileMap.put("province", Province);
-//            profileMap.put("question1", Question1);
-//            profileMap.put("question2", Question2);
-//
-//            usersRef.child(currentUserId).updateChildren(profileMap)
-//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            pd.dismiss();
-//                            if (task.isSuccessful()) {
-//                                Toast.makeText(UpdateMitraProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-//                                Intent toProfileIntent = new Intent(UpdateMitraProfileActivity.this, MitraProfileActivity.class);
-//                                startActivity(toProfileIntent);
-//                                finish();
-//                            }
-//                            else {
-//                                String message = task.getException().toString();
-//                                Toast.makeText(UpdateMitraProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//            return;
-//        }
-
-        //jika gambar diupdate
-//        if(isAllFieldsChecked) {
-//            pd.setMessage("Mengunggah data");
-//            pd.show();
-//
-//            filePathProf.putFile(resultUriProf).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-//                    pd.dismiss();
-//                    if (task.isSuccessful()) {
-//                        filePathProf.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Uri> task) {
-//                                profileUrl = task.getResult().toString();
-//
-//                                pd.setMessage("Data terunggah");
-//                                pd.show();
-//
-//                                HashMap<String, Object> profileMap = new HashMap<>();
-//                                profileMap.put("image", profileUrl);
-//                                profileMap.put("name", Name);
-//                                profileMap.put("nik", NIK);
-//                                profileMap.put("email", Email);
-//                                profileMap.put("fullAddress", FullAddress);
-//                                profileMap.put("village", Village);
-//                                profileMap.put("subdistrict", Subdistrict);
-//                                profileMap.put("city", City);
-//                                profileMap.put("province", Province);
-//                                profileMap.put("question1", Question1);
-//                                profileMap.put("question2", Question2);
-//
-//                                usersRef.child(currentUserId).updateChildren(profileMap)
-//                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                pd.dismiss();
-//                                                if (task.isSuccessful()) {
-//                                                    Toast.makeText(UpdateMitraProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-//                                                    Intent toProfileIntent = new Intent(UpdateMitraProfileActivity.this, MitraProfileActivity.class);
-//                                                    startActivity(toProfileIntent);
-//                                                    finish();
-//                                                }
-//                                                else {
-//                                                    String message = task.getException().toString();
-//                                                    Toast.makeText(UpdateMitraProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-//                                                }
-//                                            }
-//                                        });
-//
-//                            }
-//                        });
-//                    }
-//                    else {
-//                        String message = task.getException().toString();
-//                        Toast.makeText(UpdateMitraProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        }
     }
 
     private Boolean checkAllFields() {

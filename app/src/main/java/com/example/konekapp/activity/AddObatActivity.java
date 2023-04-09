@@ -1,5 +1,6 @@
 package com.example.konekapp.activity;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,8 +36,8 @@ public class AddObatActivity extends AppCompatActivity {
     private ImageView AddImageObat, AddObatBackAction;
     private EditText AddNameObat, AddDescriptionObat;
     private Button BtnAddObatDone;
-    private StorageReference ObatImagesRef, obatPath;
-    private DatabaseReference rootRef, tanamanRef, obatRef;
+    private StorageReference drugImagesRef, obatPath;
+    private DatabaseReference drugRef, rootRef, plantRef;
     private ProgressDialog pd;
     private ConstraintLayout AddImageObatConstraint;
     private String tanamanId, obatId, obatImageUrl;
@@ -76,10 +77,11 @@ public class AddObatActivity extends AppCompatActivity {
         tanamanId = intent.getStringExtra("Key");
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("plant");
-        ObatImagesRef = FirebaseStorage.getInstance().getReference().child("plantDrugImages");
+        plantRef= rootRef.child("plant");
+
+        drugImagesRef = FirebaseStorage.getInstance().getReference().child("plantDrugImages");
         obatId = rootRef.push().getKey();
-        obatRef = tanamanRef.child(tanamanId).child("drug");
+        drugRef = plantRef.child(tanamanId).child("drug");
 
         BtnAddObatDone.setEnabled(false);
         AddNameObat.addTextChangedListener(textWatcher);
@@ -123,7 +125,7 @@ public class AddObatActivity extends AppCompatActivity {
                 //set Uri to ImageArtikel
                 Picasso.get().load(resultUri).into(AddImageObat);
 
-                obatPath = ObatImagesRef.child(obatId + ".jpg");
+                obatPath = drugImagesRef.child(obatId + ".jpg");
             }
         }
     }
@@ -156,17 +158,14 @@ public class AddObatActivity extends AppCompatActivity {
                                 ObatModel obatModel = new ObatModel(obatImageUrl, Name, Description);
 
 
-                                obatRef.child(obatId).setValue(obatModel)
+                                drugRef.child(obatId).setValue(obatModel)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 pd.dismiss();
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(AddObatActivity.this, "Penyakit berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                                    Intent addObatDone = new Intent(AddObatActivity.this, PenyakitDanObatActivity.class);
-                                                    addObatDone.putExtra("Key", tanamanId);
-                                                    startActivity(addObatDone);
-                                                    finish();
+                                                    AddObatActivity.super.onBackPressed();
                                                 }
                                                 else {
                                                     String message = task.getException().toString();

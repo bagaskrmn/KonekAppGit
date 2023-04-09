@@ -1,5 +1,6 @@
 package com.example.konekapp.activity;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,9 +38,9 @@ public class DetailArtikelActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
-    private String currentUserId, role, DetailKey;
-    private DatabaseReference artikelRef, rootRef, usersRef;
-    private StorageReference ArtikelImagesRef, artikelPath;
+    private String role, DetailKey, currentUserId;
+    private DatabaseReference articleRef, rootRef, usersRef;
+    private StorageReference articlePath, articleImagesRef;
 
     private ProgressDialog pd;
 
@@ -60,7 +61,6 @@ public class DetailArtikelActivity extends AppCompatActivity {
             }
         });
 
-
         DetailArtikelSourceImage = findViewById(R.id.detailArtikelSourceImage);
         DetailArtikelImage = findViewById(R.id.detailArtikelImage);
         DetailArtikelTitle = findViewById(R.id.detailArtikelTitle);
@@ -77,9 +77,9 @@ public class DetailArtikelActivity extends AppCompatActivity {
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
-        artikelRef = rootRef.child("article");
-        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
-        artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
+        articleRef = rootRef.child("article");
+        articleImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
+        articlePath = articleImagesRef.child(DetailKey+".jpg");
 
 
         //init progress dialog
@@ -96,7 +96,7 @@ public class DetailArtikelActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         } else {
-            artikelRef.child(DetailKey).addValueEventListener(listener);
+            articleRef.child(DetailKey).addValueEventListener(listener);
         }
 
         usersRef.child(currentUserId).addValueEventListener(listener2);
@@ -128,21 +128,19 @@ public class DetailArtikelActivity extends AppCompatActivity {
         BackActionDetailArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent BackActionDetailIntent = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
-                startActivity(BackActionDetailIntent);
-                finish();
+                DetailArtikelActivity.super.onBackPressed();
             }
         });
     }
 
     private void deleteArtikel() {
-        artikelRef.child(DetailKey).addValueEventListener(listener1);
+        articleRef.child(DetailKey).addValueEventListener(listener1);
     }
 
     private void toEditArtikel() {
         Intent EditArtikelIntent = new Intent(DetailArtikelActivity.this, EditArtikelActivity.class);
         EditArtikelIntent.putExtra("Key", DetailKey);
-        artikelRef.child(DetailKey).removeEventListener(listener);
+        articleRef.child(DetailKey).removeEventListener(listener);
         startActivity(EditArtikelIntent);
     }
 
@@ -183,14 +181,14 @@ public class DetailArtikelActivity extends AppCompatActivity {
             FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
             StorageReference imageRefFromUrl = firebaseStorage.getReferenceFromUrl(imageUrl);
 
-            artikelRef.child(DetailKey).removeEventListener(listener);
-            artikelRef.child(DetailKey).removeEventListener(listener1);
+            articleRef.child(DetailKey).removeEventListener(listener);
+            articleRef.child(DetailKey).removeEventListener(listener1);
 
             imageRefFromUrl.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
                     pd.dismiss();
-                    artikelRef.child(DetailKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    articleRef.child(DetailKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(DetailArtikelActivity.this, "Artikel Terhapus", Toast.LENGTH_SHORT).show();

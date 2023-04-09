@@ -49,9 +49,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String currentUserId, phoneNumber, profileUrl, removedPhoneNumber;
+    private String profileUrl, currentUserId, phoneNumber, removedPhoneNumber;
     private ProgressDialog pd;
-    private StorageReference UserProfileImagesRef, filePath;
+    private StorageReference userProfileImagesRef, imageProfilePath;
 
     private Uri resultUri;
 
@@ -82,7 +82,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
-        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
+        userProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
 
         decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -163,12 +163,11 @@ public class UpdateProfileActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //result of cropped image into Uri
                 resultUri = result.getUri();
-                Log.d("CompleteProfile", resultUri.toString());
                 //retrieve to CircleImage
                 Picasso.get().load(resultUri).into(UpdateProfImage);
 
-                filePath = UserProfileImagesRef.child(currentUserId + ".jpg");
-                Log.d("CompleteProfile", filePath.toString());
+                imageProfilePath = userProfileImagesRef.child(currentUserId+".jpg");
+
             }
         }
     }
@@ -199,9 +198,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                     pd.dismiss();
                     if (task.isSuccessful()) {
                         Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-                        Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
-                        startActivity(toProfileIntent);
-                        finish();
+                        UpdateProfileActivity.super.onBackPressed();
                     }
                     else {
                         String message = task.getException().toString();
@@ -216,15 +213,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
             pd.show();
 
             //put Uri into firebaseStorage
-            filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            imageProfilePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     pd.dismiss();
                     if (task.isSuccessful()) {
-                        Log.d("UpdateProfileFilePath", filePath.toString());
 
                         //get download Url from the storage path(filePath)
-                        filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        imageProfilePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
 
 
                             @Override
@@ -250,9 +246,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                                 pd.dismiss();
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-                                                    Intent toProfileIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
-                                                    startActivity(toProfileIntent);
-                                                    finish();
+                                                    UpdateProfileActivity.super.onBackPressed();
                                                 }
                                                 else {
                                                     String message = task.getException().toString();

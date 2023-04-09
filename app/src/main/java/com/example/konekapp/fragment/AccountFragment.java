@@ -2,7 +2,6 @@ package com.example.konekapp.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.konekapp.R;
-import com.example.konekapp.activity.KelolaMitra;
+import com.example.konekapp.activity.ManageMitra;
 import com.example.konekapp.activity.RegisterMitraActivity;
 import com.example.konekapp.activity.SettingActivity;
 import com.example.konekapp.activity.chat.ConsultationActivity;
@@ -31,8 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -133,7 +130,7 @@ public class AccountFragment extends Fragment {
         ConstraintKelolaKemitraan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), KelolaMitra.class);
+                Intent intent = new Intent(requireContext(), ManageMitra.class);
                 startActivity(intent);
             }
         });
@@ -155,7 +152,7 @@ public class AccountFragment extends Fragment {
 
             //check role
             String role = snapshot.child("role").getValue().toString();
-            //if role is user(1)
+
             if (role.equals("0")) {
                 ConstraintGabungKemitraan.setVisibility(View.VISIBLE);
                 ConstraintKonsultasi.setVisibility(View.GONE);
@@ -163,8 +160,17 @@ public class AccountFragment extends Fragment {
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Pengguna");
-
             }
+
+            if (role.equals("4")) {
+                ConstraintGabungKemitraan.setVisibility(View.GONE);
+                ConstraintKonsultasi.setVisibility(View.GONE);
+                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintKelolaKemitraan.setVisibility(View.GONE);
+
+                RoleUserTv.setText("Pengguna");
+            }
+
             if (role.equals("1")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
                 ConstraintKonsultasi.setVisibility(View.VISIBLE);

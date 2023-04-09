@@ -42,13 +42,13 @@ public class AddArtikelActivity extends AppCompatActivity {
     private EditText AddTitleArtikel, AddSourceArtikel, AddDescriptionArtikel, AddSourceImageArtikel;
     private ImageView AddImageArtikel, AddArtikelBackAction;
     private Button BtnAddArtikelDone;
-    private StorageReference ArtikelImagesRef, artikelPath;
-    private DatabaseReference rootRef, artikelRef;
+    private StorageReference articlePath, articleImagesRef;
+    private DatabaseReference rootRef, articleRef;
     private ProgressDialog pd;
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    private String date, artikelId, artikelImageUrl;
+    private String date, artikelId, articleImageUrl;
 
     private Uri resultUri;
 
@@ -80,8 +80,8 @@ public class AddArtikelActivity extends AppCompatActivity {
 
         //database and storage
         rootRef = FirebaseDatabase.getInstance().getReference();
-        artikelRef = rootRef.child("article");
-        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
+        articleRef = rootRef.child("article");
+        articleImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
 
         artikelId = rootRef.push().getKey();
 
@@ -142,7 +142,7 @@ public class AddArtikelActivity extends AppCompatActivity {
                 //set Uri to ImageArtikel
                 Picasso.get().load(resultUri).into(AddImageArtikel);
 
-                artikelPath = ArtikelImagesRef.child(artikelId+".jpg");
+                articlePath = articleImagesRef.child(artikelId+".jpg");
             }
         }
     }
@@ -163,29 +163,27 @@ public class AddArtikelActivity extends AppCompatActivity {
             pd.show();
 
             //put cropped uri image to storage
-            artikelPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            articlePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
                         pd.dismiss();
-                        artikelPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        articlePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
-                                artikelImageUrl = task.getResult().toString();
+                                articleImageUrl = task.getResult().toString();
 
-                                ArtikelModel artikelModel = new ArtikelModel(Title, artikelImageUrl, Source, date, Description, SourceImage);
+                                ArtikelModel artikelModel = new ArtikelModel(Title, articleImageUrl, Source, date, Description, SourceImage);
                                 
 
-                                artikelRef.child(artikelId).setValue(artikelModel)
+                                articleRef.child(artikelId).setValue(artikelModel)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 pd.dismiss();
                                                 if(task.isSuccessful()) {
                                                     Toast.makeText(AddArtikelActivity.this, "Artikel Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                                    Intent addArtikelDone = new Intent(AddArtikelActivity.this, ArtikelActivity.class);
-                                                    startActivity(addArtikelDone);
-                                                    finish();
+                                                    AddArtikelActivity.super.onBackPressed();
                                                 }
                                                 else {
                                                     String message = task.getException().toString();
@@ -227,6 +225,7 @@ public class AddArtikelActivity extends AppCompatActivity {
 
         }
     };
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

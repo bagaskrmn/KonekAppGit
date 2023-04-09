@@ -56,9 +56,9 @@ public class CompleteProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String phoneNumber, currentUserId, profileUrl, removedPhoneNumber;
+    private String currentUserId,phoneNumber, removedPhoneNumber, profileUrl;
     private ProgressDialog pd;
-    private StorageReference UserProfileImagesRef, filePath;
+    private StorageReference userProfileImagesRef, imageProfilePath;
 
     //date
     private Calendar calendar;
@@ -98,7 +98,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
-        UserProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
+        userProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
 
         PhoneNumberTV.setText(removedPhoneNumber);
 
@@ -160,16 +160,12 @@ public class CompleteProfileActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //result of cropped image into Uri
                 resultUri = result.getUri();
-                Log.d("CompleteProfile", resultUri.toString());
+
                 //retrieve to CircleImage
                 Picasso.get().load(resultUri).into(CompleteProfImage);
-
-                //potong di sini
-                filePath = UserProfileImagesRef.child(currentUserId + ".jpg");
-                Log.d("CompleteProfile", filePath.toString());
+                imageProfilePath = userProfileImagesRef.child(currentUserId + ".jpg");
             }
         }
-
     }
 
 
@@ -189,13 +185,13 @@ public class CompleteProfileActivity extends AppCompatActivity {
             pd.show();
 
             //put cropped uri to firebase storage
-            filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            imageProfilePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     pd.dismiss();
                     if (task.isSuccessful()) {
                         //get download Url from the storage with the path
-                        filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        imageProfilePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
 
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
@@ -229,7 +225,6 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-
                                                 if (task.isSuccessful()) {
                                                     pd.dismiss();
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();

@@ -122,6 +122,16 @@
                         android:textSize="14sp"
                         app:backgroundTint="@null" />
 
+                    <TextView
+                        android:id="@+id/tvWaitingConfirmation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Menunggu Konfirmasi"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
                 </LinearLayout>
 
                 <ImageView

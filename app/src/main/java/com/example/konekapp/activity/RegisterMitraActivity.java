@@ -52,9 +52,9 @@ public class RegisterMitraActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private StorageReference idCardImagePath, filePath;
+    private StorageReference idCardImagePath, idCardImagesRef;
 
-    private String currentUserId, phoneNumber, removedPhoneNumber, idCardImageUrl;
+    private String idCardImageUrl, currentUserId, phoneNumber, removedPhoneNumber;
     private ProgressDialog pd;
     private Uri resultUri;
 
@@ -113,7 +113,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
         removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
-        idCardImagePath = FirebaseStorage.getInstance().getReference().child("idCardImages");
+        idCardImagesRef = FirebaseStorage.getInstance().getReference().child("idCardImages");
 
 
         pd.setMessage("Memuat data anda");
@@ -183,8 +183,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
                 //retrieve to CircleImage
                 Picasso.get().load(resultUri).into(RegMitraDocument);
 
-                //potong di sini
-                filePath = idCardImagePath.child(currentUserId + "_ktp.jpg");
+                idCardImagePath = idCardImagesRef.child(currentUserId + "_ktp.jpg");
 
             }
         }
@@ -215,12 +214,12 @@ public class RegisterMitraActivity extends AppCompatActivity {
             pd.show();
 
             //put croppedImage to firebase storage with filePath
-            filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            idCardImagePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     pd.dismiss();
                     if (task.isSuccessful()) {
-                        filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        idCardImagePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
                                 idCardImageUrl = task.getResult().toString();
@@ -238,7 +237,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
                                 profileMap.put("idCardImage", idCardImageUrl);
                                 profileMap.put("question1", Question1);
                                 profileMap.put("question2", Question2);
-                                profileMap.put("role", "1");
+                                profileMap.put("role", "4");
 
                                 usersRef.child(currentUserId).updateChildren(profileMap)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -24,7 +24,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference rootRef, usersRef;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

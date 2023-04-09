@@ -1,5 +1,6 @@
 package com.example.konekapp.fragment;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,10 +31,10 @@ import java.util.ArrayList;
 
 public class ObatFragment extends Fragment {
     private Button BtnAddObat;
-    private String tanamanId;
+    private String plantId;
 
     private ProgressDialog pd;
-    private DatabaseReference tanamanRef, rootRef, obatRef;
+    private DatabaseReference drugRef, plantRef, rootRef;
 
     private ArrayList<ObatModel> list;
     private ObatAdapter adapter;
@@ -59,16 +60,16 @@ public class ObatFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddObatActivity.class);
-                intent.putExtra("Key", tanamanId);
+                intent.putExtra("Key", plantId);
                 startActivity(intent);
             }
         });
 
-        tanamanId = getActivity().getIntent().getStringExtra("Key");
+        plantId = getActivity().getIntent().getStringExtra("Key");
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("plant");
-        obatRef = tanamanRef.child(tanamanId).child("drug");
+        plantRef = rootRef.child("plant");
+        drugRef = plantRef.child(plantId).child("drug");
         list = new ArrayList<>();
         recyclerView = (RecyclerView)getView().findViewById(R.id.obatRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -83,7 +84,7 @@ public class ObatFragment extends Fragment {
         pd.setMessage("Memuat data");
         pd.show();
 
-        obatRef.addValueEventListener(new ValueEventListener() {
+        drugRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pd.dismiss();

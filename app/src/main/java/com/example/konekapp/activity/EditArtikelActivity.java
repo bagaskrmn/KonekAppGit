@@ -44,13 +44,13 @@ public class EditArtikelActivity extends AppCompatActivity {
     private EditText EditTitleArtikel, EditSourceArtikel, EditDescriptionArtikel, EditSourceImageArtikel;
     private ImageView EditImageArtikel, EditArtikelBackAction;
     private Button BtnEditArtikelDone;
-    private StorageReference ArtikelImagesRef, artikelPath;
-    private DatabaseReference rootRef, artikelRef;
+    private StorageReference articlePath, articleImagesRef;
+    private DatabaseReference rootRef, articleRef;
     private ProgressDialog pd;
 
 //    private Calendar calendar;
 //    private SimpleDateFormat dateFormat;
-    private String date, artikelImageUrl, DetailKey;
+    private String date, articleImageUrl, DetailKey;
 
     private Uri resultUri;
 
@@ -92,20 +92,20 @@ public class EditArtikelActivity extends AppCompatActivity {
 
         //database and storage
         rootRef = FirebaseDatabase.getInstance().getReference();
-        artikelRef = rootRef.child("article");
-        ArtikelImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
+        articleRef = rootRef.child("article");
+        articleImagesRef = FirebaseStorage.getInstance().getReference().child("articleImages");
 
         //recieve StringExtra from previous Activity via Intent
         Intent intent = getIntent();
         DetailKey = intent.getStringExtra("Key");
         //listener for retrieve data from database
-        artikelRef.child(DetailKey).addValueEventListener(listener);
+        articleRef.child(DetailKey).addValueEventListener(listener);
 
         EditArtikelBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditArtikelActivity.super.onBackPressed();
-                artikelRef.child(DetailKey).removeEventListener(listener);
+                articleRef.child(DetailKey).removeEventListener(listener);
             }
         });
 
@@ -141,7 +141,7 @@ public class EditArtikelActivity extends AppCompatActivity {
                 //set Uri to ImageArtikel
                 Picasso.get().load(resultUri).into(EditImageArtikel);
 
-                artikelPath = ArtikelImagesRef.child(DetailKey+".jpg");
+                articlePath = articleImagesRef.child(DetailKey+".jpg");
             }
         }
     }
@@ -169,18 +169,15 @@ public class EditArtikelActivity extends AppCompatActivity {
             artikelMap.put("description", EditDescription);
             artikelMap.put("sourceImage", EditSourceImage);
 
-            artikelRef.child(DetailKey).updateChildren(artikelMap)
+            articleRef.child(DetailKey).updateChildren(artikelMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 pd.dismiss();
-                                artikelRef.child(DetailKey).removeEventListener(listener);
+                                articleRef.child(DetailKey).removeEventListener(listener);
                                 Toast.makeText(EditArtikelActivity.this, "Ubah Artikel Berhasil", Toast.LENGTH_SHORT).show();
-                                Intent EditArtikelDone = new Intent(EditArtikelActivity.this, DetailArtikelActivity.class);
-                                EditArtikelDone.putExtra("Key", DetailKey);
-                                startActivity(EditArtikelDone);
-                                finish();
+                                EditArtikelActivity.super.onBackPressed();
                             }
                             else {
                                 pd.dismiss();
@@ -194,15 +191,15 @@ public class EditArtikelActivity extends AppCompatActivity {
         else {
             pd.setMessage("Mengubah Artikel");
             pd.show();
-            artikelPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            articlePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
                         pd.dismiss();
-                        artikelPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        articlePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
-                                artikelImageUrl = task.getResult().toString();
+                                articleImageUrl = task.getResult().toString();
 
                                 pd.setMessage("Artikel Terubah");
                                 pd.show();
@@ -210,21 +207,18 @@ public class EditArtikelActivity extends AppCompatActivity {
                                 artikelMap.put("title", EditTitle);
                                 artikelMap.put("source", EditSource);
                                 artikelMap.put("description", EditDescription);
-                                artikelMap.put("image", artikelImageUrl);
+                                artikelMap.put("image", articleImageUrl);
                                 artikelMap.put("sourceImage", EditSourceImage);
 
-                                artikelRef.child(DetailKey).updateChildren(artikelMap)
+                                articleRef.child(DetailKey).updateChildren(artikelMap)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     pd.dismiss();
-                                                    artikelRef.child(DetailKey).removeEventListener(listener);
+                                                    articleRef.child(DetailKey).removeEventListener(listener);
                                                     Toast.makeText(EditArtikelActivity.this, "Ubah Artikel Berhasil", Toast.LENGTH_SHORT).show();
-                                                    Intent EditArtikelDone = new Intent(EditArtikelActivity.this, DetailArtikelActivity.class);
-                                                    EditArtikelDone.putExtra("Key", DetailKey);
-                                                    startActivity(EditArtikelDone);
-                                                    finish();
+                                                    EditArtikelActivity.super.onBackPressed();
                                                 }
                                                 else {
                                                     pd.dismiss();
@@ -285,6 +279,6 @@ public class EditArtikelActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        artikelRef.child(DetailKey).removeEventListener(listener);
+        articleRef.child(DetailKey).removeEventListener(listener);
     }
 }

@@ -36,10 +36,10 @@ import java.util.ArrayList;
 public class PenyakitFragment extends Fragment {
 
     private Button BtnAddPenyakit;
-    private String tanamanId;
+    private String plantId;
 
     private ProgressDialog pd;
-    private DatabaseReference tanamanRef, rootRef, penyakitRef;
+    private DatabaseReference diseaseRef, plantRef, rootRef;
 
     private ArrayList<PenyakitModel> list;
     private PenyakitAdapter adapter;
@@ -66,16 +66,17 @@ public class PenyakitFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddPenyakitActivity.class);
-                intent.putExtra("Key", tanamanId);
+                intent.putExtra("Key", plantId);
                 startActivity(intent);
             }
         });
 
-        tanamanId = getActivity().getIntent().getStringExtra("Key");
+
+        plantId = getActivity().getIntent().getStringExtra("Key");
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("plant");
-        penyakitRef = tanamanRef.child(tanamanId).child("disease");
+        plantRef = rootRef.child("plant");
+        diseaseRef = plantRef.child(plantId).child("disease");
         list = new ArrayList<>();
         recyclerView = (RecyclerView)getView().findViewById(R.id.penyakitRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -90,7 +91,7 @@ public class PenyakitFragment extends Fragment {
         pd.setMessage("Memuat data");
         pd.show();
 
-        penyakitRef.addValueEventListener(new ValueEventListener() {
+        diseaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pd.dismiss();

@@ -1,5 +1,6 @@
 package com.example.konekapp.activity;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,13 +37,13 @@ public class AddTanamanActivity extends AppCompatActivity {
     private ImageView AddImageTanaman, AddTanamanBackAction;
     private EditText AddNameTanaman;
     private Button BtnAddTanamanDone;
-    private StorageReference TanamanImagesRef, tanamanPath;
-    private DatabaseReference rootRef, tanamanRef;
+    private StorageReference plantPath, plantImagesRef;
+    private DatabaseReference rootRef, plantRef;
     private ProgressDialog pd;
     private ConstraintLayout AddImageTanamanConstraint;
     private View decorView;
 
-    private String tanamanId, tanamanImageUrl;
+    private String plantId, tanamanImageUrl;
 
     private Uri resultUri;
 
@@ -74,9 +75,9 @@ public class AddTanamanActivity extends AppCompatActivity {
         pd.setCanceledOnTouchOutside(false);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        tanamanRef = rootRef.child("plant");
-        TanamanImagesRef = FirebaseStorage.getInstance().getReference().child("plantImages");
-        tanamanId = rootRef.push().getKey();
+        plantRef = rootRef.child("plant");
+        plantImagesRef = FirebaseStorage.getInstance().getReference().child("plantImages");
+        plantId = rootRef.push().getKey();
 
         BtnAddTanamanDone.setEnabled(false);
         AddNameTanaman.addTextChangedListener(textWatcher);
@@ -120,7 +121,7 @@ public class AddTanamanActivity extends AppCompatActivity {
                 //set Uri to ImageArtikel
                 Picasso.get().load(resultUri).into(AddImageTanaman);
 
-                tanamanPath = TanamanImagesRef.child(tanamanId+".jpg");
+                plantPath = plantImagesRef.child(plantId+".jpg");
             }
         }
 
@@ -136,12 +137,12 @@ public class AddTanamanActivity extends AppCompatActivity {
             pd.setMessage("Mengunggah Tanaman");
             pd.show();
 
-            tanamanPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            plantPath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
                         pd.dismiss();
-                        tanamanPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        plantPath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
                                 tanamanImageUrl = task.getResult().toString();
@@ -151,15 +152,13 @@ public class AddTanamanActivity extends AppCompatActivity {
 
                                 TanamanModel tanamanModel = new TanamanModel(tanamanImageUrl, Name);
 
-                                tanamanRef.child(tanamanId).setValue(tanamanModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                plantRef.child(plantId).setValue(tanamanModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         pd.dismiss();
                                         if (task.isSuccessful()) {
                                             Toast.makeText(AddTanamanActivity.this, "Tanaman berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                            Intent addTanamanDoneIntent = new Intent(AddTanamanActivity.this, TanamanActivity.class);
-                                            startActivity(addTanamanDoneIntent);
-                                            finish();
+                                            AddTanamanActivity.super.onBackPressed();
                                         }
                                         else {
                                             String message = task.getException().toString();
