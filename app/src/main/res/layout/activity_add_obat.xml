@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".activity.AddObatActivity">
+    tools:context=".ui.dashboard.home.plant.drug.adddrug.AddObatActivity">
 
     <!--    add artikel action bar-->
     <LinearLayout

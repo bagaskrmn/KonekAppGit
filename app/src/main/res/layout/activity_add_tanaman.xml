@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".activity.AddTanamanActivity">
+    tools:context=".ui.dashboard.home.plant.addplant.AddTanamanActivity">
 
     <!--    add artikel action bar-->
     <LinearLayout

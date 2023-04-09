@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ProfileActivity"
+    tools:context=".ui.dashboard.account.setting.accountsetting.ProfileActivity"
     android:padding="16dp">
 
     <LinearLayout

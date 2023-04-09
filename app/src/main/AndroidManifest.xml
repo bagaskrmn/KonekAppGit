@@ -18,14 +18,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".activity.DetailManageMitra"
+            android:name=".ui.dashboard.home.managemitra.DetailManageMitra"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.AddObatActivity"
+            android:name=".ui.dashboard.home.plant.drug.adddrug.AddObatActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -34,7 +34,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.AddPenyakitActivity"
+            android:name=".ui.dashboard.home.plant.disease.adddisease.AddPenyakitActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -43,7 +43,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.ManageMitra"
+            android:name=".ui.dashboard.home.managemitra.ManageMitra"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -51,7 +51,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.AddTanamanActivity"
+            android:name=".ui.dashboard.home.plant.addplant.AddTanamanActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -60,7 +60,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.TanamanActivity"
+            android:name=".ui.dashboard.home.plant.TanamanActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -68,7 +68,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.PenyakitDanObatActivity"
+            android:name=".ui.dashboard.home.plant.PenyakitDanObatActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -76,7 +76,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.chattomitra.ConsultationToMitraActivity"
+            android:name=".ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -84,7 +84,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.chat.chatroom.ChatRoomActivity"
+            android:name=".ui.dashboard.home.consultation.chatroom.ChatRoomActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -92,7 +92,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.AddArtikelActivity"
+            android:name=".ui.dashboard.home.article.addarticle.AddArtikelActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -101,7 +101,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.DetailArtikelActivity"
+            android:name=".ui.dashboard.home.article.DetailArtikelActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -109,7 +109,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.chat.consultation.ConsultationActivity"
+            android:name=".ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -117,7 +117,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.chat.addconsultation.TambahKonsultasiActivity"
+            android:name=".ui.dashboard.home.consultation.addconsultation.mitra.TambahKonsultasiToAhliTaniActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -125,7 +125,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.EditArtikelActivity"
+            android:name=".ui.dashboard.home.article.editarticle.EditArtikelActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -134,7 +134,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.ArtikelActivity"
+            android:name=".ui.dashboard.home.article.ArtikelActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -142,7 +142,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.UpdateMitraProfileActivity"
+            android:name=".ui.dashboard.account.setting.accountsetting.editaccount.EditMitraProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -150,7 +150,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.MitraProfileActivity"
+            android:name=".ui.dashboard.account.setting.accountsetting.MitraProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -158,7 +158,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.SettingActivity"
+            android:name=".ui.dashboard.account.setting.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -166,7 +166,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.KonsultasiActivity"
+            android:name=".ui.login.completeprofile.CompleteProfileSuccess"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -174,15 +174,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.CompleteProfileSuccess"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.SplashScreenActivity"
+            android:name=".ui.splashscreen.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -196,7 +188,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.RegisterSuccessActivity"
+            android:name=".ui.dashboard.home.registermitra.RegisterSuccessActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -204,7 +196,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.RegisterMitraActivity"
+            android:name=".ui.dashboard.home.registermitra.RegisterMitraActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -213,7 +205,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.UpdateProfileActivity"
+            android:name=".ui.dashboard.account.setting.accountsetting.editaccount.EditProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -222,7 +214,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.ProfileActivity"
+            android:name=".ui.dashboard.account.setting.accountsetting.ProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -230,7 +222,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.CompleteProfileActivity"
+            android:name=".ui.login.completeprofile.CompleteProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -238,7 +230,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.LoginPhoneActivity"
+            android:name=".ui.login.LoginPhoneActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -246,7 +238,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.dashboard.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -257,7 +249,7 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
-            android:name=".activity.chattomitra.TambahKonsultasiToMitraActivity"
+            android:name=".ui.dashboard.home.consultation.addconsultation.ahlitani.TambahKonsultasiToMitraActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
