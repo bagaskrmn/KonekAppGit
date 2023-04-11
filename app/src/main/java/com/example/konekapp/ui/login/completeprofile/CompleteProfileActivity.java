@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.model.NotificationModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,10 +52,11 @@ public class CompleteProfileActivity extends AppCompatActivity {
     private Button BtnCompleteProfileDone;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
-    private DatabaseReference rootRef, usersRef;
-    private String currentUserId,phoneNumber, removedPhoneNumber, profileUrl;
+    private DatabaseReference rootRef, usersRef, notificationRef;
+    private String currentUserId,phoneNumber, removedPhoneNumber, profileUrl, systemNotificationImageUrl, notificationKey;
     private ProgressDialog pd;
-    private StorageReference userProfileImagesRef, imageProfilePath;
+    private StorageReference userProfileImagesRef, imageProfilePath, systemNotificationImageRef;
+//    private boolean isNotificationRead = false;
 
     //date
     private Calendar calendar;
@@ -95,6 +97,16 @@ public class CompleteProfileActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
         userProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
+        notificationRef = rootRef.child("notification");
+        notificationKey = rootRef.push().getKey();
+        systemNotificationImageRef = FirebaseStorage.getInstance().getReference().child("systemNotificationImage").child("konek_icon.png");
+
+        systemNotificationImageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                systemNotificationImageUrl = task.getResult().toString();
+            }
+        });
 
         PhoneNumberTV.setText(removedPhoneNumber);
 
@@ -223,6 +235,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     pd.dismiss();
+                                                    completeProfileNotification();
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
                                                     Intent CompleteProfileDoneIntent = new Intent(CompleteProfileActivity.this, CompleteProfileSuccess.class);
                                                     CompleteProfileDoneIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -287,5 +300,30 @@ public class CompleteProfileActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
+    private void completeProfileNotification() {
+        String title = "Selamat bergabung dengan Konek!";
+        String description = "Anda telah terdaftar sebagai pengguna aplikasi Konek";
+        String kind = "0";
+
+        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl, false );
+
+        notificationRef.child(notificationKey).setValue(notificationModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                //
+            }
+        });
+//
+//        HashMap<String, Object> notificationMap = new HashMap<>();
+//        notificationMap.put("title", title);
+//        notificationMap.put("descriptioin", description);
+//        notificationMap.put("targetId", currentUserId);
+//        notificationMap.put("kind", "0");
+//        notificationMap.put("date", date);
+//        notificationMap.put("image", systemNotificationImageUrl);
+
+
     }
 }

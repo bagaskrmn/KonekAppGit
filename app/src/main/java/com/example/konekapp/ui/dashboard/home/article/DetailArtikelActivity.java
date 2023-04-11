@@ -257,6 +257,6 @@ public class DetailArtikelActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        usersRef.child(currentUserId).removeEventListener(listener2);
+//        usersRef.child(currentUserId).removeEventListener(listener2);
     }
 }
