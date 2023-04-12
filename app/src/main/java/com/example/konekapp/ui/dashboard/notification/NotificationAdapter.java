@@ -2,6 +2,7 @@ package com.example.konekapp.ui.dashboard.notification;
 
 import android.content.Context;
 import android.media.Image;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.NotificationModel;
+import com.example.konekapp.ui.dashboard.home.article.FullArtikelAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,7 +30,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @NonNull
     @Override
     public NotificationAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View v = LayoutInflater.from(context).inflate(R.layout.notification_card, parent, false);
+        return new NotificationAdapter.MyViewHolder(v);
     }
 
     @Override
@@ -58,8 +61,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView ImageNotification;
         TextView TitleNotification, DescriptionNotification, DateNotification;
-
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 

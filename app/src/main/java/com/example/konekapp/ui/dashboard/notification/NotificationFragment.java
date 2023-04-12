@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.NotificationModel;
@@ -37,6 +38,7 @@ public class NotificationFragment extends Fragment {
     private String currentUserId, notificationId;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
+    private TextView TvNoNotification;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +56,7 @@ public class NotificationFragment extends Fragment {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
         notificationRef = rootRef.child("notification");
+        TvNoNotification = (TextView) getView().findViewById(R.id.tvNoNotification);
 
         RecyclerViewNotification = (RecyclerView) getView().findViewById(R.id.recyclerViewNotification);
         list = new ArrayList<>();
@@ -68,18 +71,43 @@ public class NotificationFragment extends Fragment {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             list.clear();
+
+
+
             for (DataSnapshot ds : snapshot.getChildren()) {
                 NotificationModel notification = ds.getValue(NotificationModel.class);
                 notification.setKey(ds.getKey());
                 try {
-                    if (!notification.getTargetId().equals(currentUserId)) {
+                    if (notification.getTargetId().equals(currentUserId)) {
                         list.add(notification);
                     }
+                    usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String role = snapshot.child("role").getValue().toString();
+                            if (role.equals("3")) {
+                                if (notification.getKind().equals("4")) {
+                                    list.add(notification);
+                                }
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             RecyclerViewNotification.getAdapter().notifyDataSetChanged();
+
+            if (list.size() > 0) {
+                RecyclerViewNotification.setVisibility(View.VISIBLE);
+                TvNoNotification.setVisibility(View.GONE);
+            } else {
+                RecyclerViewNotification.setVisibility(View.GONE);
+                TvNoNotification.setVisibility(View.VISIBLE);
+            }
         }
 
         @Override

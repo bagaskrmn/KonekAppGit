@@ -22,6 +22,7 @@
                 android:layout_height="60dp"
                 tools:src="@tools:sample/avatars"
                 android:layout_marginRight="12dp"
+                android:layout_gravity="center"
                 />
 
             <LinearLayout
@@ -36,7 +37,7 @@
                     tools:text="Judul Notifikasi"
                     android:fontFamily="@font/outfit_medium"
                     android:textColor="@color/neutral_dark3"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:layout_marginBottom="6dp"
                     />
 
@@ -47,7 +48,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/outfit_regular"
                     android:textColor="@color/neutral_dark4"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     tools:text="Deskripsi notifikasi" />
 
                 <TextView
@@ -57,7 +58,7 @@
                     tools:text="date notification"
                     android:fontFamily="@font/outfit_medium"
                     android:textColor="@color/neutral_dark4"
-                    android:textSize="14sp"
+                    android:textSize="11sp"
                     />
             </LinearLayout>
 

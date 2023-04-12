@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.model.NotificationModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +38,8 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class RegisterMitraActivity extends AppCompatActivity {
@@ -47,16 +51,21 @@ public class RegisterMitraActivity extends AppCompatActivity {
     private ImageView RegMitraBackAction, RegMitraDocument;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
-    private DatabaseReference rootRef, usersRef;
-    private StorageReference idCardImagePath, idCardImagesRef;
+    private DatabaseReference rootRef, usersRef, notificationRef;
+    private StorageReference idCardImagePath, idCardImagesRef, systemNotificationImageRef;
 
-    private String idCardImageUrl, currentUserId, phoneNumber, removedPhoneNumber;
+    private String idCardImageUrl, currentUserId, phoneNumber, removedPhoneNumber, systemNotificationImageUrl;
     private ProgressDialog pd;
     private Uri resultUri;
 
     private Boolean isAllFieldsChecked = false;
 
     private View decorView;
+
+    //date
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +120,21 @@ public class RegisterMitraActivity extends AppCompatActivity {
         usersRef = rootRef.child("users");
         idCardImagesRef = FirebaseStorage.getInstance().getReference().child("idCardImages");
 
+        //calendar
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date = dateFormat.format(calendar.getTime());
+
+        notificationRef = rootRef.child("notification");
+//        notificationKey = rootRef.push().getKey();
+        systemNotificationImageRef = FirebaseStorage.getInstance().getReference().child("systemNotificationImage").child("konek_icon.png");
+
+        systemNotificationImageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                systemNotificationImageUrl = task.getResult().toString();
+            }
+        });
 
         pd.setMessage("Memuat data anda");
         pd.show();
@@ -241,6 +265,8 @@ public class RegisterMitraActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 pd.dismiss();
                                                 if (task.isSuccessful()) {
+                                                    registerMitraNotification();
+                                                    registerNotifToAdmin();
                                                     Toast.makeText(RegisterMitraActivity.this, "Registrasi selesai", Toast.LENGTH_SHORT).show();
                                                     Intent registerMitraSuccess = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
                                                     startActivity(registerMitraSuccess);
@@ -325,5 +351,40 @@ public class RegisterMitraActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
+    private void registerMitraNotification() {
+        String title = "Registrasi Mitra Berhasil!";
+        String description = "Mohon tunggu. Admin akan meninjau data anda";
+        String kind = "1";
+        String notificationKey = rootRef.push().getKey();
+
+        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl,false);
+
+        notificationRef.child(notificationKey).setValue(notificationModel)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        //
+                    }
+                });
+
+    }
+
+    private void registerNotifToAdmin() {
+        String title = "Pendaftaran Mitra Baru";
+        String description = "Terdapat mitra baru untuk ditinjau";
+        String kind = "4";
+        String notificationKey = rootRef.push().getKey();
+
+        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl,false);
+
+        notificationRef.child(notificationKey).setValue(notificationModel)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        //
+                    }
+                });
     }
 }

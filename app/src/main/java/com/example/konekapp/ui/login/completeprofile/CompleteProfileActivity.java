@@ -97,6 +97,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
         userProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
+
         notificationRef = rootRef.child("notification");
         notificationKey = rootRef.push().getKey();
         systemNotificationImageRef = FirebaseStorage.getInstance().getReference().child("systemNotificationImage").child("konek_icon.png");
@@ -315,15 +316,5 @@ public class CompleteProfileActivity extends AppCompatActivity {
                 //
             }
         });
-//
-//        HashMap<String, Object> notificationMap = new HashMap<>();
-//        notificationMap.put("title", title);
-//        notificationMap.put("descriptioin", description);
-//        notificationMap.put("targetId", currentUserId);
-//        notificationMap.put("kind", "0");
-//        notificationMap.put("date", date);
-//        notificationMap.put("image", systemNotificationImageUrl);
-
-
     }
 }

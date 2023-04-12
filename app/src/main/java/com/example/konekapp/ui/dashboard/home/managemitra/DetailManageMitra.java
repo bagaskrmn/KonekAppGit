@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.model.NotificationModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -21,8 +23,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -41,6 +47,15 @@ public class DetailManageMitra extends AppCompatActivity {
     private DatabaseReference usersRef, rootRef;
 
     private View decorView;
+
+    //date
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date;
+
+    private StorageReference systemNotificationImageRef;
+    private String systemNotificationImageUrl, notificationKey;
+    private DatabaseReference notificationRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +94,22 @@ public class DetailManageMitra extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
 
+        notificationRef = rootRef.child("notification");
+        notificationKey = rootRef.push().getKey();
+        systemNotificationImageRef = FirebaseStorage.getInstance().getReference().child("systemNotificationImage").child("konek_icon.png");
+
+        systemNotificationImageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                systemNotificationImageUrl = task.getResult().toString();
+            }
+        });
+
+        //calendar
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date = dateFormat.format(calendar.getTime());
+
         DetailManageMitraBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +142,7 @@ public class DetailManageMitra extends AppCompatActivity {
                 usersRef.child(SelectedUserId).updateChildren(declineMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        declineNotification();
                         DetailManageMitra.super.onBackPressed();
                         Toast.makeText(DetailManageMitra.this, "Pengguna ditolak", Toast.LENGTH_SHORT).show();
                     }
@@ -127,6 +159,7 @@ public class DetailManageMitra extends AppCompatActivity {
                 usersRef.child(SelectedUserId).updateChildren(declineMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        approvedNotification();
                         DetailManageMitra.super.onBackPressed();
                         Toast.makeText(DetailManageMitra.this, "Pengguna disetujui", Toast.LENGTH_SHORT).show();
                     }
@@ -192,6 +225,38 @@ public class DetailManageMitra extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
+    private void declineNotification() {
+        String title = "Mohon Maaf";
+        String description ="Pengajuan mitra anda ditolak";
+        String kind = "3";
+
+        NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl,false);
+
+        notificationRef.child(notificationKey).setValue(notificationModel)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        //
+                    }
+                });
+    }
+
+    private void approvedNotification() {
+        String title = "Selamat";
+        String description ="Pengajuan mitra anda disetujui. Anda telah tergabung sebagai Petani Mitra";
+        String kind = "2";
+
+        NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl,false);
+
+        notificationRef.child(notificationKey).setValue(notificationModel)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        //
+                    }
+                });
     }
 
 }
