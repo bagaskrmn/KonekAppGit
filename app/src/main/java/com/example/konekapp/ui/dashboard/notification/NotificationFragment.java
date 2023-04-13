@@ -39,6 +39,7 @@ public class NotificationFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private TextView TvNoNotification;
+    private String role;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,16 +64,28 @@ public class NotificationFragment extends Fragment {
         RecyclerViewNotification.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new NotificationAdapter(getContext(), list);
         RecyclerViewNotification.setAdapter(adapter);
+//
+//        notificationRef.addValueEventListener(notifListener);
 
-        notificationRef.addValueEventListener(notifListener);
+        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                role = snapshot.child("role").getValue().toString();
+
+                notificationRef.addValueEventListener(notifListener);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
     }
 
     ValueEventListener notifListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             list.clear();
-
-
 
             for (DataSnapshot ds : snapshot.getChildren()) {
                 NotificationModel notification = ds.getValue(NotificationModel.class);
@@ -81,20 +94,13 @@ public class NotificationFragment extends Fragment {
                     if (notification.getTargetId().equals(currentUserId)) {
                         list.add(notification);
                     }
-                    usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String role = snapshot.child("role").getValue().toString();
-                            if (role.equals("3")) {
-                                if (notification.getKind().equals("4")) {
-                                    list.add(notification);
-                                }
-                            }
+
+                    if (role.equals("3")) {
+                        if (notification.getKind().equals("4")) {
+                            list.add(notification);
                         }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                    });
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

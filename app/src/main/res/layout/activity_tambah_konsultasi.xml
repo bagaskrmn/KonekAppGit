@@ -55,14 +55,14 @@
             />
 
         <EditText
-            android:id="@+id/loginPhoneNo"
+            android:id="@+id/edtSearchUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:fontFamily="@font/outfit_regular"
             android:textColor="@color/neutral_dark3"
             android:hint="Cari mentor disini ..."
-            android:inputType="phone"
+            android:inputType="text"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:textSize="16sp"
@@ -77,5 +77,15 @@
         android:layout_weight="1"
         android:layout_marginTop="24dp"
         tools:listitem="@layout/item_mentor"/>
+
+    <TextView
+        android:id="@+id/tvNoDataUser"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        tools:visibility="visible"
+        android:text="Tidak ada data"/>
 
 </LinearLayout>

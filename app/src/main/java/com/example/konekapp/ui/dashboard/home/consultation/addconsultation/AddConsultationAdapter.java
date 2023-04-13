@@ -18,15 +18,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class AddConsultationAdapter extends RecyclerView.Adapter<AddConsultationAdapter.ViewHolder> {
 
-    private ArrayList<UserModel> listUserModels;
+    private ArrayList<UserModel> listUserModels = new ArrayList<>();
     private UserListener userListener;
 
-    public AddConsultationAdapter(ArrayList<UserModel> listUserModels, UserListener userListener) {
-        this.listUserModels = listUserModels;
+    public void setListUserModels(List<UserModel> listUserModels) {
+        this.listUserModels.clear();
+        this.listUserModels.addAll(listUserModels);
+        notifyDataSetChanged();
+    }
+
+    public AddConsultationAdapter(UserListener userListener) {
         this.userListener = userListener;
     }
 

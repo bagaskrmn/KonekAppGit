@@ -3,8 +3,13 @@ package com.example.konekapp.ui.dashboard.home.consultation.addconsultation.mitr
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TambahKonsultasiToAhliTaniActivity extends AppCompatActivity implements UserListener {
 
@@ -31,23 +37,30 @@ public class TambahKonsultasiToAhliTaniActivity extends AppCompatActivity implem
     private ArrayList<UserModel> listUser;
     private RecyclerView recyclerView;
     ImageView btnBack;
+    TextView tvNoData;
+    EditText edtSearch;
+
+    private AddConsultationAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_konsultasi);
 
+        tvNoData = findViewById(R.id.tvNoDataUser);
+        edtSearch = findViewById(R.id.edtSearchUser);
+
         userRef = FirebaseDatabase.getInstance().getReference().child("users");
         listUser = new ArrayList<>();
 
         //recyclerView
+        adapter = new AddConsultationAdapter(this);
         recyclerView = findViewById(R.id.recyclerViewMentor);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new AddConsultationAdapter(listUser, this));
+        recyclerView.setAdapter(adapter);
 
         listenUserFromDatabase();
-
 
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +69,20 @@ public class TambahKonsultasiToAhliTaniActivity extends AppCompatActivity implem
                 onBackPressed();
             }
         });
+
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                filterList(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
     }
 
     private void listenUserFromDatabase() {
@@ -75,7 +102,7 @@ public class TambahKonsultasiToAhliTaniActivity extends AppCompatActivity implem
                         e.printStackTrace();
                     }
                 }
-                recyclerView.getAdapter().notifyDataSetChanged();
+                adapter.setListUserModels(listUser);
             }
 
             @Override
@@ -83,6 +110,33 @@ public class TambahKonsultasiToAhliTaniActivity extends AppCompatActivity implem
 
             }
         });
+    }
+
+    private void filterList(String query) {
+        List<UserModel> filteredListUser = new ArrayList<>();
+        filteredListUser.clear();
+        Log.d("RecentConversationAdapter", "filterList: "+query);
+        if (query.isEmpty()) {
+            filteredListUser.addAll(listUser);
+        } else {
+            for (UserModel item : listUser) {
+                if (item.name.toLowerCase().contains(query.toLowerCase())) {
+                    filteredListUser.add(item);
+                }
+            }
+        }
+
+        if (filteredListUser.size() > 0) {
+            recyclerView.setVisibility(View.VISIBLE);
+            tvNoData.setVisibility(View.GONE);
+        } else {
+            recyclerView.setVisibility(View.GONE);
+            tvNoData.setVisibility(View.VISIBLE);
+        }
+
+        Log.d("AddConsultationAdapter", "list: "+ listUser);
+        Log.d("AddConsultationAdapter", "filterList: "+ filteredListUser);
+        adapter.setListUserModels(filteredListUser);
     }
 
     @Override
