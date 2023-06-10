@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class NotificationFragment extends Fragment {
 
@@ -64,8 +65,6 @@ public class NotificationFragment extends Fragment {
         RecyclerViewNotification.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new NotificationAdapter(getContext(), list);
         RecyclerViewNotification.setAdapter(adapter);
-//
-//        notificationRef.addValueEventListener(notifListener);
 
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -91,16 +90,18 @@ public class NotificationFragment extends Fragment {
                 NotificationModel notification = ds.getValue(NotificationModel.class);
                 notification.setKey(ds.getKey());
                 try {
+
                     if (notification.getTargetId().equals(currentUserId)) {
                         list.add(notification);
                     }
-
                     if (role.equals("3")) {
                         if (notification.getKind().equals("4")) {
                             list.add(notification);
                         }
                     }
-
+                    if (notification.getKind().equals("6")) {
+                        list.add(notification);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -114,6 +115,9 @@ public class NotificationFragment extends Fragment {
                 RecyclerViewNotification.setVisibility(View.GONE);
                 TvNoNotification.setVisibility(View.VISIBLE);
             }
+
+            //sorting list
+            Collections.sort(list, (obj1, obj2) -> obj2.getDate().compareTo(obj1.getDate()));
         }
 
         @Override

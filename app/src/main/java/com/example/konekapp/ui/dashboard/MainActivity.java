@@ -6,25 +6,40 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.ui.dashboard.Consultation.ConsultationToAhliTaniFragment;
+import com.example.konekapp.ui.dashboard.Consultation.ConsultationToMitraFragment;
 import com.example.konekapp.ui.dashboard.account.AccountFragment;
-import com.example.konekapp.ui.dashboard.forum.ForumFragment;
 import com.example.konekapp.ui.dashboard.home.HomeFragment;
 import com.example.konekapp.ui.dashboard.notification.NotificationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     private View decorView;
+    private DatabaseReference rootRef, usersRef;
+    private FirebaseUser currentUser;
+    private FirebaseAuth firebaseAuth;
+    private String role, currentUserId;
 
     BottomNavigationView BottomNav;
 
     HomeFragment homeFragment = new HomeFragment();
-    ForumFragment forumFragment = new ForumFragment();
     NotificationFragment notificationFragment = new NotificationFragment();
     AccountFragment accountFragment = new AccountFragment();
+
+    ConsultationToMitraFragment consultationToMitraFragment = new ConsultationToMitraFragment();
+    ConsultationToAhliTaniFragment consultationToAhliTaniFragment = new ConsultationToAhliTaniFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +56,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        rootRef= FirebaseDatabase.getInstance().getReference();
+        usersRef= rootRef.child("users");
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        currentUserId = currentUser.getUid();
+
         BottomNav = findViewById(R.id.bottomNav);
 
         BottomNav.setItemIconTintList(null);
+
+        usersRef.child(currentUserId).addValueEventListener(listener);
+
+
 
         //replace FrameLayout in main_activity.xml (id : container) with fragment_home.xml
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
@@ -56,8 +81,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         return true;
-                    case R.id.forum:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, forumFragment).commit();
+                    case R.id.chat:
+                        if (role.equals("1")) {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToAhliTaniFragment).commit();
+                        }
+                        else if (role.equals("2")){
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToMitraFragment).commit();
+                        }
                         return true;
                     case R.id.notification:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, notificationFragment).commit();
@@ -71,6 +101,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            role = snapshot.child("role").getValue().toString();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            Toast.makeText(getApplicationContext(), ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

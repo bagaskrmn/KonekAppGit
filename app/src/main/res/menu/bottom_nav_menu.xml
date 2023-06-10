@@ -4,8 +4,8 @@
         android:title="Beranda"
         android:icon="@drawable/home_selector"
         />
-    <item android:id="@+id/forum"
-        android:title="Forum"
+    <item android:id="@+id/chat"
+        android:title="Pesan"
         android:icon="@drawable/message_selector"
         />
     <item android:id="@+id/notification"

@@ -122,15 +122,15 @@
                         android:textSize="14sp"
                         app:backgroundTint="@null" />
 
-                    <TextView
-                        android:id="@+id/tvWaitingConfirmation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="30dp"
-                        android:fontFamily="@font/outfit_semi_bold"
-                        android:text="Menunggu Konfirmasi"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvWaitingConfirmation"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="30dp"-->
+<!--                        android:fontFamily="@font/outfit_semi_bold"-->
+<!--                        android:text="Menunggu Konfirmasi"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="14sp" />-->
 
                 </LinearLayout>
 
@@ -145,6 +145,83 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    card unregister-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintUnregister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="30dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear_layout6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Makin untung dengan"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Kemitraan Perusahaan"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnWaitingReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_bg_white"
+                        android:backgroundTint="@null"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Menunggu Tinjauan"
+                        android:textAllCaps="false"
+                        android:textColor="@color/light_green"
+                        android:textSize="14sp"
+                        app:backgroundTint="@null" />
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/tvWaitingConfirmation"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginBottom="30dp"-->
+                    <!--                        android:fontFamily="@font/outfit_semi_bold"-->
+                    <!--                        android:text="Menunggu Konfirmasi"-->
+                    <!--                        android:textColor="@color/white"-->
+                    <!--                        android:textSize="14sp" />-->
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/people"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout6"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <!--    card konsultasi-->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -358,47 +435,16 @@
                 >
                 <!--        Penyakit Tanaman-->
                 <LinearLayout
-                    android:id="@+id/btnPenyakitTanaman"
+                    android:id="@+id/btnDiseaseAndDrug"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_btn_home"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:paddingTop="14dp"
-                    android:paddingBottom="14dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
                     android:layout_marginRight="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/health"
-                        android:layout_marginBottom="8dp"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Penyakit Tanaman"
-                        android:fontFamily="@font/outfit_medium"
-                        android:textColor="@color/neutral_dark3"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
-
-                <!--        Obat Tanaman-->
-                <LinearLayout
-                    android:id="@+id/btnObatTanaman"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_btn_home"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:paddingTop="14dp"
-                    android:paddingBottom="14dp"
-                    android:layout_marginLeft="8dp"
                     android:clickable="true"
                     android:focusable="true"
                     >
@@ -411,10 +457,41 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Obat Tanaman"
+                        android:text="Penyakit dan Obat"
                         android:fontFamily="@font/outfit_medium"
                         android:textColor="@color/neutral_dark3"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+                <!--        Obat Tanaman-->
+                <LinearLayout
+                    android:id="@+id/btnCrops"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_home"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/monitoring"
+                        android:layout_marginBottom="8dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Monitoring"
+                        android:fontFamily="@font/outfit_medium"
+                        android:textColor="@color/neutral_dark3"
+                        android:textSize="14sp"
                         />
                 </LinearLayout>
 

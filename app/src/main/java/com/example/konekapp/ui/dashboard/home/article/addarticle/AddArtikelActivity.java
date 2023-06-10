@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.ArtikelModel;
+import com.example.konekapp.model.NotificationModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -41,12 +42,12 @@ public class AddArtikelActivity extends AppCompatActivity {
     private ImageView AddImageArtikel, AddArtikelBackAction;
     private Button BtnAddArtikelDone;
     private StorageReference articlePath, articleImagesRef;
-    private DatabaseReference rootRef, articleRef;
+    private DatabaseReference rootRef, articleRef, notificationRef;
     private ProgressDialog pd;
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    private String date, artikelId, articleImageUrl;
+    private String date, artikelId, articleImageUrl, notificationKey, Title;
 
     private Uri resultUri;
 
@@ -100,6 +101,17 @@ public class AddArtikelActivity extends AppCompatActivity {
             }
         });
 
+        notificationRef = rootRef.child("notification");
+        notificationKey = rootRef.push().getKey();
+//        systemNotificationImageRef = FirebaseStorage.getInstance().getReference().child("systemNotificationImage").child("konek_icon.png");
+//
+//        systemNotificationImageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Uri> task) {
+//                systemNotificationImageUrl = task.getResult().toString();
+//            }
+//        });
+
         AddArtikelBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +158,7 @@ public class AddArtikelActivity extends AppCompatActivity {
     }
 
     private void AddActivityDone() {
-        String Title = AddTitleArtikel.getText().toString();
+        Title = AddTitleArtikel.getText().toString();
         String Source = AddSourceArtikel.getText().toString();
         String Description = AddDescriptionArtikel.getText().toString();
         String SourceImage = AddSourceImageArtikel.getText().toString();
@@ -180,6 +192,7 @@ public class AddArtikelActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 pd.dismiss();
                                                 if(task.isSuccessful()) {
+                                                    notifArticle();
                                                     Toast.makeText(AddArtikelActivity.this, "Artikel Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                                                     AddArtikelActivity.super.onBackPressed();
                                                 }
@@ -240,6 +253,20 @@ public class AddArtikelActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
+    private void notifArticle() {
+        String title = "Artikel Baru";
+        String kind = "6";
+
+        NotificationModel notificationModel = new NotificationModel(title, Title, null, kind, date, articleImageUrl, true );
+
+        notificationRef.child(notificationKey).setValue(notificationModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                //
+            }
+        });
     }
 
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".ui.login.completeprofile.CompleteProfileSuccess">
+    tools:context=".ui.dashboard.home.waitingreview.WaitingReviewActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,24 +21,25 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/celebrate"
+            android:src="@drawable/waiting_review"
             android:layout_marginBottom="30dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selamat Bergabung!"
+            android:text="Sedang Menunggu Tinjauan"
             android:textColor="@color/neutral_dark3"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:fontFamily="@font/outfit_bold"
             android:layout_marginBottom="20dp"
+            android:textAlignment="center"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_greetings"
+            android:text="@string/waiting_review"
             android:textColor="@color/neutral_dark4"
             android:textAlignment="center"
             android:fontFamily="@font/outfit_regular"
@@ -49,7 +50,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/nextCompleteSuccess"
+        android:id="@+id/nextWaitingReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

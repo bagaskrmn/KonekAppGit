@@ -6,7 +6,23 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".ui.login.completeprofile.CompleteProfileSuccess">
+    tools:context=".ui.dashboard.home.crops.PreMitraCropsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/preMitraCropsBackAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_back_action"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,16 +37,17 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/celebrate"
+            android:src="@drawable/isi_monitoring"
             android:layout_marginBottom="30dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selamat Bergabung!"
+            android:text="Yuk Mulai Monitoring Tanaman Kamu!"
             android:textColor="@color/neutral_dark3"
-            android:textSize="24sp"
+            android:textSize="28sp"
+            android:textAlignment="center"
             android:fontFamily="@font/outfit_bold"
             android:layout_marginBottom="20dp"
             />
@@ -38,18 +55,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_greetings"
+            android:text="@string/pre_monitoring_mitra"
             android:textColor="@color/neutral_dark4"
             android:textAlignment="center"
             android:fontFamily="@font/outfit_regular"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:lineSpacingExtra="4dp"
             />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/nextCompleteSuccess"
+        android:id="@+id/btnNextPreMitraCrops"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +75,7 @@
         android:background="@drawable/btn_bg"
         app:backgroundTint="@null"
         android:backgroundTint="@null"
-        android:text="Kembali ke Halaman Utama"
+        android:text="Isi Data"
         android:fontFamily="@font/outfit_semi_bold"
         android:textAllCaps="false"
         />
