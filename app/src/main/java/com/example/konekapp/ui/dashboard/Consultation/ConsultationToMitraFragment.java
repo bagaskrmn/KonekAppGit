@@ -232,6 +232,7 @@ public class ConsultationToMitraFragment extends Fragment implements Conversatio
         conversationRef.updateChildren(conversation);
 
     }
+
     @Override
     public void onConversationClick(ChatMessagesModel chatMessage, UserModel user) {
         //updating unread count
