@@ -70,6 +70,7 @@
                 android:textSize="16sp"
                 android:layout_marginBottom="30dp"
                 />
+
             <!--Komoditi-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,20 +116,15 @@
                     android:paddingRight="16dp"
                     />
 
-                <EditText
-                    android:id="@+id/CropsCommodity"
+                <Spinner
+                    android:id="@+id/cropsCommodity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
                     android:fontFamily="@font/outfit_regular"
                     android:textColor="@color/neutral_dark3"
-                    android:paddingTop="10dp"
                     android:paddingRight="16dp"
-                    android:paddingBottom="10dp"
                     android:textSize="14sp"
-                    android:hint="Kentang"
-                    tools:ignore="TouchTargetSizeCheck"
                     />
 
             </LinearLayout>
@@ -178,20 +174,15 @@
                     android:paddingRight="16dp"
                     />
 
-                <EditText
-                    android:id="@+id/CropsPeriod"
+                <Spinner
+                    android:id="@+id/cropsPeriod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
                     android:fontFamily="@font/outfit_regular"
                     android:textColor="@color/neutral_dark3"
-                    android:paddingTop="10dp"
                     android:paddingRight="16dp"
-                    android:paddingBottom="10dp"
                     android:textSize="14sp"
-                    android:hint="Periode Pertama / Kedua"
-                    tools:ignore="TouchTargetSizeCheck"
                     />
 
             </LinearLayout>
@@ -241,8 +232,8 @@
                     android:paddingRight="16dp"
                     />
 
-                <EditText
-                    android:id="@+id/CropsDate"
+                <TextView
+                    android:id="@+id/cropsDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -283,44 +274,58 @@
                     android:text="*"
                     />
             </LinearLayout>
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
                 android:background="@drawable/bg_edit_text"
-                android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 >
+
                 <ImageView
+                    android:id="@+id/imageView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/crops_qty"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:paddingLeft="16dp"
+                    android:paddingTop="10dp"
                     android:paddingRight="16dp"
-                    />
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/crops_qty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/CropsQty"
-                    android:layout_width="match_parent"
+                    android:id="@+id/cropsQty"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
+                    android:hint="Masukkan jumlah bibit"
+                    android:inputType="number"
                     android:paddingTop="10dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="10dp"
+                    android:textColor="@color/neutral_dark3"
                     android:textSize="14sp"
-                    android:hint="500"
-                    tools:ignore="TouchTargetSizeCheck"
-                    />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView17"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:text="Biji"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--Location-->
             <LinearLayout
@@ -368,7 +373,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/CropsLocation"
+                    android:id="@+id/cropsLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -381,6 +386,7 @@
                     android:textSize="14sp"
                     android:hint="Lereng Gunung Merbabu"
                     tools:ignore="TouchTargetSizeCheck"
+                    android:inputType="textCapWords"
                     />
 
             </LinearLayout>
@@ -430,20 +436,16 @@
                     android:paddingRight="16dp"
                     />
 
-                <EditText
-                    android:id="@+id/CropsFertilizer"
+                <Spinner
+                    android:id="@+id/cropsFertilizer"
+                    android:hint="Kimia / Organik"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
                     android:fontFamily="@font/outfit_regular"
                     android:textColor="@color/neutral_dark3"
-                    android:paddingTop="10dp"
                     android:paddingRight="16dp"
-                    android:paddingBottom="10dp"
                     android:textSize="14sp"
-                    android:hint="Kimia / Organik"
-                    tools:ignore="TouchTargetSizeCheck"
                     />
 
             </LinearLayout>
@@ -472,44 +474,58 @@
                     android:text="*"
                     />
             </LinearLayout>
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
                 android:background="@drawable/bg_edit_text"
-                android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 >
+
                 <ImageView
+                    android:id="@+id/imageView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/calculator"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:paddingLeft="16dp"
+                    android:paddingTop="10dp"
                     android:paddingRight="16dp"
-                    />
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/calculator"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/CropsResult"
-                    android:layout_width="match_parent"
+                    android:id="@+id/cropsResult"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
+                    android:hint="Masukkan hasil perkiraan panen"
+                    android:inputType="number"
                     android:paddingTop="10dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="10dp"
+                    android:textColor="@color/neutral_dark3"
                     android:textSize="14sp"
-                    android:hint="Perkiraan Hasil Panen Periode Tanam"
-                    tools:ignore="TouchTargetSizeCheck"
-                    />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView18"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:text="Kg"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--Notes-->
             <LinearLayout
@@ -546,7 +562,7 @@
                 android:paddingBottom="8dp"
                 >
                 <EditText
-                    android:id="@+id/addDescriptionArtikel"
+                    android:id="@+id/cropsNotes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
@@ -577,6 +593,7 @@
                 android:fontFamily="@font/outfit_semi_bold"
                 android:textAllCaps="false"
                 />
+
         </LinearLayout>
 
     </ScrollView>

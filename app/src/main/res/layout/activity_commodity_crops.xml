@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.dashboard.home.plant.PenyakitDanObatActivity">
+    android:orientation="vertical"
+    tools:context=".ui.dashboard.home.crops.CommodityCropsActivity">
 
-    <!--    Penyakit dan Tanaman ActionBar-->
+    <!--    Tanaman ActionBar-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,18 +16,17 @@
         android:layout_marginBottom="20dp"
         >
         <ImageView
-            android:id="@+id/penyakitDanObatBackAction"
+            android:id="@+id/commodityCropsBackAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_back_action"
             android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
             />
         <TextView
-            android:id="@+id/jenisTanaman"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            tools:text="Kentang"
+            android:text="Monitoring"
             android:fontFamily="@font/outfit_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"
@@ -39,18 +38,24 @@
             />
     </LinearLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:text="role anda :"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cekRole"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commodityCropsRv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
 
 
 </LinearLayout>

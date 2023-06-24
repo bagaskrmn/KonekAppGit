@@ -21,11 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.model.CropsModel;
 import com.example.konekapp.ui.dashboard.home.article.ArtikelActivity;
 import com.example.konekapp.model.ArtikelModel;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
-import com.example.konekapp.ui.dashboard.home.crops.AhliTaniCropsActivity;
-import com.example.konekapp.ui.dashboard.home.crops.MitraCropsActivity;
+import com.example.konekapp.ui.dashboard.home.crops.CommodityCropsActivity;
+import com.example.konekapp.ui.dashboard.home.crops.MitraCropsStatusActivity;
 import com.example.konekapp.ui.dashboard.home.crops.PreMitraCropsActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.account.setting.accountsetting.MitraProfileActivity;
@@ -56,12 +57,13 @@ public class HomeFragment extends Fragment {
     private Button BtnRegisterMitra, BtnKonsultasi, BtnChatMitra, BtnKelolaKemitraan, BtnWaitingReview;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
-    private DatabaseReference rootRef, usersRef, articleRef;
+    private DatabaseReference rootRef, usersRef, articleRef, cropsRef;
     private String role, currentUserId;
     private ConstraintLayout ConstraintRegister, ConstraintKonsultasi, ConstraintChatMitra, ConstraintKelolaKemitraan, ConstraintUnregister;
     private LinearLayout BtnDiseaseAndDrug, BtnCrops;
     private ProgressDialog pd;
     private TextView BtnFullArtikel;
+    private ArrayList<CropsModel> listCrops;
 
     //Keperluan RecyclerView
     private ArrayList<ArtikelModel> list;
@@ -86,6 +88,7 @@ public class HomeFragment extends Fragment {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
         articleRef = rootRef.child("article");
+        cropsRef = rootRef.child("crops");
 
         AccImageHome = (CircleImageView)getView().findViewById(R.id.accImageHome);
         BtnRegisterMitra= (Button)getView().findViewById(R.id.btnRegisterMitra);
@@ -109,6 +112,8 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         adapter = new ArtikelAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);
+
+        listCrops = new ArrayList<>();
 
         //init ProgressDialog
         pd = new ProgressDialog(getActivity());
@@ -173,25 +178,64 @@ public class HomeFragment extends Fragment {
         BtnCrops.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pd.setMessage("Memuat data");
+                pd.show();
                 if (role.equals("0")) {
                     Intent intent = new Intent(getActivity(), ToRegistMitraActivity.class);
                     startActivity(intent);
+                    pd.dismiss();
                 }
 
                 if (role.equals("4")) {
                     Intent intent = new Intent(getActivity(), WaitingReviewActivity.class);
                     startActivity(intent);
+                    pd.dismiss();
                 }
 
                 //if role is petani mitra
                 if (role.equals("1")) {
-                    Intent intent = new Intent(getActivity(), PreMitraCropsActivity.class);
-                    startActivity(intent);
+
+                    cropsRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            listCrops.clear();
+
+                            for (DataSnapshot ds : snapshot.getChildren()) {
+                                CropsModel cropsModel = ds.getValue(CropsModel.class);
+                                cropsModel.setCropsId(ds.getKey());
+                                try {
+                                    if (cropsModel.getUserId().equals(currentUserId)) {
+                                        listCrops.add(cropsModel);
+                                        if (listCrops.size()>0) {
+                                            Intent i = new Intent(getActivity(), MitraCropsStatusActivity.class);
+                                            startActivity(i);
+                                            pd.dismiss();
+                                        }
+                                        else {
+                                            Intent i = new Intent(getActivity(), PreMitraCropsActivity.class);
+                                            startActivity(i);
+                                            pd.dismiss();
+                                        }
+                                    }
+
+                                }
+                                catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
                 //if role is ahli tani or admin
                 if (role.equals("2") || role.equals("3")) {
-                    Intent intent = new Intent(getActivity(), AhliTaniCropsActivity.class);
+                    Intent intent = new Intent(getActivity(), CommodityCropsActivity.class);
                     startActivity(intent);
+                    pd.dismiss();
                 }
             }
         });

@@ -89,6 +89,7 @@ public class NotificationFragment extends Fragment {
             for (DataSnapshot ds : snapshot.getChildren()) {
                 NotificationModel notification = ds.getValue(NotificationModel.class);
                 notification.setKey(ds.getKey());
+                //ini fungsinya buat apa
                 try {
 
                     if (notification.getTargetId().equals(currentUserId)) {

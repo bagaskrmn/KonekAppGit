@@ -37,6 +37,7 @@ public class PreMitraCropsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PreMitraCropsActivity.this, MitraCropsActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

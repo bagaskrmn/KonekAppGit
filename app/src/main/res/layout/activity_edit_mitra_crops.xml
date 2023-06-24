@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.home.registermitra.RegisterMitraActivity"
     android:padding="16dp"
     android:orientation="vertical"
->
+    tools:context=".ui.dashboard.home.crops.EditMitraCropsActivity">
+
     <!--    ActionBar-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +16,7 @@
         android:layout_marginBottom="20dp"
         >
         <ImageView
-            android:id="@+id/regMitraBackAction"
+            android:id="@+id/editMitraCropsBackAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_back_action"
@@ -28,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Gabung Mitra"
+            android:text="Monitoring"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"
             android:fontFamily="@font/outfit_bold"
@@ -39,28 +38,43 @@
             />
     </LinearLayout>
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scrollbars="none"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <!--      Nama Lengkap-->
-            <TextView
-                android:layout_width="wrap_content"
+
+            <!--Komoditi-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Lengkap"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Komoditi yang Ditanam"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,12 +82,130 @@
                 android:orientation="horizontal"
                 android:background="@drawable/bg_edit_text"
                 android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 >
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/profile_dark"
+                    android:src="@drawable/crops"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/editCropsCommodity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark3"
+                    android:paddingRight="16dp"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+            <!--Periode-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Periode Penanaman"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/note"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/editCropsPeriod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark3"
+                    android:paddingRight="16dp"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+            <!--Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Penanaman"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/calendar"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:paddingLeft="16dp"
@@ -81,7 +213,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/regMitraName"
+                    android:id="@+id/editCropsDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -97,72 +229,7 @@
 
             </LinearLayout>
 
-            <!--      Nomor Ponsel-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nomor Ponsel"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/call"
-                    android:layout_gravity="center"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="+62"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="14sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="16dp" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/neutral_dark"
-                    />
-
-                <TextView
-                    android:id="@+id/regMitraPhoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="14sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="8dp"
-                    android:paddingLeft="16dp"
-                    />
-
-            </LinearLayout>
-
-            <!--      NIK-->
-
+            <!--Qty-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -171,7 +238,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NIK"
+                    android:text="Jumlah Bibit yang Ditanam"
                     android:fontFamily="@font/outfit_medium"
                     android:textColor="@color/neutral_dark3"
                     android:textSize="14sp"
@@ -185,568 +252,325 @@
                     android:textColor="#D8244E"
                     android:text="*"
                     />
-
             </LinearLayout>
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
                 android:background="@drawable/bg_edit_text"
-                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 >
 
                 <ImageView
+                    android:id="@+id/imageView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="16dp"
                     android:paddingBottom="10dp"
-                    android:src="@drawable/personalcard" />
+                    android:src="@drawable/crops_qty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/regMitraNIK"
-                    android:layout_width="match_parent"
+                    android:id="@+id/editCropsQty"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:hint="16 digit nomor KTP"
                     android:inputType="number"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="16dp"
-                    android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-            </LinearLayout>
-
-            <!--      Email-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="#D8244E"
-                    android:text="*"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/mail"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <EditText
-                    android:id="@+id/regMitraEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:hint="Masukkan alamat email"
-                    android:inputType="textEmailAddress"
-                    android:paddingTop="14dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="10dp"
+                    android:textColor="@color/neutral_dark3"
                     android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck" />
-            </LinearLayout>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView17"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <!--      Alamat Lengkap-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Alamat"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:layout_marginBottom="8dp"
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
+                <TextView
+                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/location"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    />
-
-                <TextView
-                    android:id="@+id/regMitraFullAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
+                    android:text="Biji"
                     android:textColor="@color/neutral_dark3"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="10dp"
                     android:textSize="14sp"
-                    />
-            </LinearLayout>
-
-            <!--      Kelurahan/Desa-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kelurahan/Desa"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="@color/neutral_dark3"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="#D8244E"
-                    android:text="*"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/location"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <EditText
-                    android:id="@+id/regMitraVillage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:hint="Masukkan Kelurahan/Desa"
-                    android:inputType="textCapWords"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck"
-                    />
-            </LinearLayout>
-
-            <!--      Kecamatan-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kecamatan"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="@color/neutral_dark3"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="#D8244E"
-                    android:text="*"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/location"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <EditText
-                    android:id="@+id/regMitraSubdistrict"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:hint="Masukkan Kecamatan"
-                    android:inputType="textCapWords"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck"
-                    />
-            </LinearLayout>
-
-            <!--      Kabupaten/Kota-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kabupaten/Kota"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="@color/neutral_dark3"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="#D8244E"
-                    android:text="*"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/location"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <EditText
-                    android:id="@+id/regMitraCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:hint="Masukkan Kabupaten/Kota"
-                    android:inputType="textCapWords"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck"
-                    />
-            </LinearLayout>
-
-            <!--      Provinsi-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Provinsi"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="@color/neutral_dark3"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="#D8244E"
-                    android:text="*"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/location"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <EditText
-                    android:id="@+id/regMitraProvince"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:hint="Masukkan Provinsi"
-                    android:inputType="textCapWords"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="14sp"
-                    tools:ignore="TouchTargetSizeCheck"
-                    />
-            </LinearLayout>
-
-<!--            Kelengkapan Dokumen-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Foto kelengkapan Dokumen"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/outfit_semi_bold"
-                    android:textColor="@color/neutral_dark3"
-                    android:layout_marginBottom="8dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="#D8244E"
-                    android:text="*"
-                    />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unggah foto KTP anda"
-                android:textSize="14sp"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark4"
-                android:layout_marginBottom="8dp"
-                />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/regMitraDocumentConstraint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_add_image"
-                >
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/document_upload"
-                    app:layout_constraintBottom_toBottomOf="@+id/regiMitraDocument"
-                    app:layout_constraintEnd_toEndOf="@+id/regiMitraDocument"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/regiMitraDocument"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/outfit_regular"
-                    android:text="Unggah Dokumen"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/regiMitraDocument"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView9"
-                    android:layout_marginTop="8dp"
-                    />
-
-                <ImageView
-                    android:id="@+id/regiMitraDocument"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-            <!--      Kuisioner-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kuisioner"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="18sp"
-                android:layout_marginBottom="16dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/kuisioner_1"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
-
+            <!--Location-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
                 >
-
-                <EditText
-                    android:id="@+id/regMitraQuestion1"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
+                    android:text="Lokasi Lahan Penanaman"
+                    android:fontFamily="@font/outfit_medium"
                     android:textColor="@color/neutral_dark3"
-                    android:hint="Boleh lebih dari 1 komoditas"
-                    android:inputType="text"
-                    android:paddingLeft="16dp"
-                    android:paddingTop="15dp"
-                    android:paddingRight="16dp"
-                    android:paddingBottom="15dp"
                     android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
                     />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/kuisioner_2"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 android:background="@drawable/bg_edit_text"
                 android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/location"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    />
 
                 <EditText
-                    android:id="@+id/regMitraQuestion2"
+                    android:id="@+id/editCropsLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/outfit_regular"
                     android:textColor="@color/neutral_dark3"
-                    android:hint="Tuliskan lokasi lahan utama anda"
+                    android:paddingTop="10dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck"
                     android:inputType="textCapWords"
+                    />
+
+            </LinearLayout>
+
+            <!--Fertilizer-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Penggunaan Pupuk"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/organic"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="16dp"
-                    android:paddingTop="15dp"
                     android:paddingRight="16dp"
-                    android:paddingBottom="15dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/editCropsFertilizer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark3"
+                    android:paddingRight="16dp"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+            <!--Result-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hasil Perkiraan Panen"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_edit_text"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/calculator"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editCropsResult"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:inputType="number"
+                    android:paddingTop="10dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView18"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:text="Kg"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Notes-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catatan Selama Penanaman"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="#D8244E"
+                    android:text="*"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                >
+                <EditText
+                    android:id="@+id/editCropsNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    android:lines="8"
+                    android:scrollbars="vertical"
+                    android:layout_marginBottom="8dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark3"
+                    android:paddingTop="10dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="12dp"
                     android:textSize="14sp"
                     />
             </LinearLayout>
+
             <Button
-                android:id="@+id/btnRegMitraDone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gabung Sekarang"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textAllCaps="false"
+                android:id="@+id/btnEditMitraCropsDone"
                 android:background="@drawable/btn_bg"
                 android:backgroundTint="@null"
                 app:backgroundTint="@null"
+                android:text="Simpan"
+                android:fontFamily="@font/outfit_semi_bold"
+                android:textAllCaps="false"
                 />
 
         </LinearLayout>
 
-    </ScrollView>
-</LinearLayout>
 
+    </ScrollView>
+
+</LinearLayout>
