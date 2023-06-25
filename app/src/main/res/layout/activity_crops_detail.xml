@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".ui.dashboard.home.crops.CropsDetail">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -287,7 +288,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnApproveCrops"
+            android:id="@+id/btnApproveDetailCrops"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_bg"
@@ -296,12 +297,12 @@
             android:textAllCaps="false"
             android:textSize="16sp"
             app:backgroundTint="@null"
-            app:layout_constraintBottom_toTopOf="@+id/btnCropsChat"
+            app:layout_constraintBottom_toTopOf="@+id/btnChatDetailCrops"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginBottom="12dp"/>
 
         <Button
-            android:id="@+id/btnCropsChat"
+            android:id="@+id/btnChatDetailCrops"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_bg"

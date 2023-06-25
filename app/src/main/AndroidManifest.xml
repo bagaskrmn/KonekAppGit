@@ -17,6 +17,14 @@
         android:theme="@style/Theme.KonekApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ui.dashboard.home.crops.CropsDetail"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ui.dashboard.home.crops.CommodityCropsActivity"
             android:exported="false">
@@ -32,28 +40,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.home.crops.AhliTaniKentangActivity"
+            android:name=".ui.dashboard.home.crops.mitracrops.EditMitraCropsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.home.crops.EditMitraCropsActivity"
+            android:name=".ui.dashboard.home.crops.mitracrops.MitraCropsStatusActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.home.crops.MitraCropsStatusActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.dashboard.home.crops.PreMitraCropsActivity"
+            android:name=".ui.dashboard.home.crops.mitracrops.PreMitraCropsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -74,7 +75,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.home.crops.MitraCropsActivity"
+            android:name=".ui.dashboard.home.crops.mitracrops.MitraCropsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">

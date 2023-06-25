@@ -1,6 +1,8 @@
 package com.example.konekapp.ui.dashboard.home.crops;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +45,11 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
         holder.BtnDetailCropsMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(context, CropsDetail.class);
+                i.putExtra("CropsId", crops.cropsId);
+                i.putExtra("Commodity", crops.commodity);
+                context.startActivity(i);
+                ((Activity)context).finish();
             }
         });
 

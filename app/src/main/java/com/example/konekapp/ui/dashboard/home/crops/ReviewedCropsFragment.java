@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,8 @@ public class ReviewedCropsFragment extends Fragment {
     private ArrayList<CropsModel> list;
     private ReviewedCropsAdapter adapter;
     private RecyclerView ReviewedCropsRv;
+
+    BottomSheetDialog dialog;
 
     public ReviewedCropsFragment() {
         // Required empty public constructor
