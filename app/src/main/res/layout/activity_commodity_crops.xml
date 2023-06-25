@@ -38,17 +38,6 @@
             />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="role anda :"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cekRole"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commodityCropsRv"
         android:layout_width="match_parent"

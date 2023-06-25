@@ -3,6 +3,7 @@ package com.example.konekapp.ui.dashboard.home.crops;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,6 +55,37 @@ public class AhliTaniCropsActivity extends AppCompatActivity {
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         cropsRef = rootRef.child("crops");
+
+        //retrieve nameCommodity from CommodityCropsAdapter
+        Intent intent = getIntent();
+        nameCommodity = intent.getStringExtra("Commodity");
+        CommodityAhliTaniCrops.setText(nameCommodity);
+
+
+        tlCropsAhliTani.addTab(tlCropsAhliTani.newTab().setText("Belum Selesai"));
+        tlCropsAhliTani.addTab(tlCropsAhliTani.newTab().setText("Selesai"));
+        //gravity fill?
+        tlCropsAhliTani.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final AhliTaniCropsAdapter adapter = new AhliTaniCropsAdapter(getSupportFragmentManager(),this, tlCropsAhliTani.getTabCount());
+        vpCropsAhliTani.setAdapter(adapter);
+
+        vpCropsAhliTani.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tlCropsAhliTani));
+
+        tlCropsAhliTani.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                vpCropsAhliTani.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
 

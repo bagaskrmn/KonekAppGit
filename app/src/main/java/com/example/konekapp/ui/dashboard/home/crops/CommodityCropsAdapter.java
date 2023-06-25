@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
-import com.example.konekapp.model.ChatMessagesModel;
 import com.example.konekapp.model.CommodityCropsModel;
 import com.example.konekapp.ui.dashboard.MainActivity;
 import com.squareup.picasso.Picasso;
@@ -26,9 +25,8 @@ public class CommodityCropsAdapter extends RecyclerView.Adapter<CommodityCropsAd
     List<CommodityCropsModel> list = new ArrayList<>();
     String role;
 
-    public CommodityCropsAdapter(Context context, String role) {
+    public CommodityCropsAdapter(Context context) {
         this.context = context;
-        this.role = role;
     }
 
 
@@ -37,6 +35,12 @@ public class CommodityCropsAdapter extends RecyclerView.Adapter<CommodityCropsAd
         Log.d("CommodityCrops", "listCommodity: "+ listCommodity.size());
         notifyDataSetChanged();
     }
+    public void setRoleUser(String roleUser) {
+        this.role = roleUser;
+        Log.d("CommodityCrops", "RoleUser: " + role);
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override

@@ -22,8 +22,6 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
-import com.example.konekapp.ui.dashboard.MainActivity;
-import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +33,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class MitraCropsActivity extends AppCompatActivity {
     private Spinner SpinnerCommodity, SpinnerPeriod, SpinnerFertilizer;
@@ -172,7 +169,7 @@ public class MitraCropsActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                CropsDate.setText(dayOfMonth + "-" + (month +1) + "-" + year);
+                                CropsDate.setText(dayOfMonth + "/" + (month +1) + "/" + year);
                             }
                         },
                         year, month, day);
@@ -212,7 +209,6 @@ public class MitraCropsActivity extends AppCompatActivity {
         CropsModel cropsModel = new CropsModel(currentUserId, currentUserName, Commodity, Period, Date,
                 Qty, Location, Fertilizer, Result, Notes, "0" );
 
-//        if (Commodity.equals("Kentang")) {
             cropsRef.child(cropsId).setValue(cropsModel)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

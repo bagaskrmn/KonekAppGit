@@ -64,6 +64,7 @@ public class PenyakitDanObatActivity extends AppCompatActivity {
         Intent intent = getIntent();
         plantId = intent.getStringExtra("Key");
 
+        //getPlantData
         plantRef.child(plantId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

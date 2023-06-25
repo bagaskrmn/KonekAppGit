@@ -1,7 +1,8 @@
 package com.example.konekapp.model;
 
 public class CropsModel {
-    String userId, name, commodity, period, date, qty, location, fertilizer, result, notes, status, cropsId;
+    public String userId, name, commodity, period, date, qty, location,
+    fertilizer, result, notes, status, cropsId;
 
     public CropsModel() {
     }
@@ -19,6 +20,7 @@ public class CropsModel {
         this.notes = notes;
         this.status = status;
     }
+
 
     public String getUserId() {
         return userId;

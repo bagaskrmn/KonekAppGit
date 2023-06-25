@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
-import com.example.konekapp.model.NotificationModel;
 import com.example.konekapp.ui.dashboard.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,8 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import javax.xml.transform.Result;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

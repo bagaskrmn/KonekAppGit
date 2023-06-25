@@ -65,7 +65,6 @@ public class ObatFragment extends Fragment {
 
         plantId = getActivity().getIntent().getStringExtra("Key");
 
-        rootRef = FirebaseDatabase.getInstance().getReference();
         plantRef = rootRef.child("plant");
         drugRef = plantRef.child(plantId).child("drug");
         list = new ArrayList<>();

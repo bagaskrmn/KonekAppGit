@@ -34,8 +34,6 @@ public class CommodityCropsActivity extends AppCompatActivity {
     private ProgressDialog pd;
     private View decorView;
 
-    private TextView cekRole;
-
     private DatabaseReference commodityRef, rootRef, usersRef;
     private ArrayList<CommodityCropsModel> list;
     private CommodityCropsAdapter adapter;
@@ -80,7 +78,6 @@ public class CommodityCropsActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
         commodityRef = rootRef.child("commodity");
-        cekRole = findViewById(R.id.cekRole);
 
         //init ProgressDialog
         pd = new ProgressDialog(this);
@@ -91,46 +88,25 @@ public class CommodityCropsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.commodityCropsRv);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CommodityCropsAdapter(this, role);
+        adapter = new CommodityCropsAdapter(this);
         recyclerView.setAdapter(adapter);
+
+
 
         //check role
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 role = snapshot.child("role").getValue().toString();
-                cekRole.setText(role);
+                adapter.setRoleUser(role);
 
                 commodityRef.addValueEventListener(listenerData);
-
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-
-
-        //get data
-//        commodityRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                list.clear();
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    CommodityCropsModel commodity = dataSnapshot.getValue(CommodityCropsModel.class);
-//                    commodity.setKey(dataSnapshot.getKey());
-//                    list.add(commodity);
-//                }
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
     }
 
     ValueEventListener listenerData = new ValueEventListener() {
