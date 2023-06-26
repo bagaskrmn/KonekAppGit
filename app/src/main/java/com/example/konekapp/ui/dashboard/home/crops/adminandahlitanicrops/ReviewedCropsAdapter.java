@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.home.crops;
+package com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -26,6 +25,7 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
         this.context = context;
         this.list = list;
     }
+
 
     @NonNull
     @Override
@@ -49,7 +49,7 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
                 i.putExtra("CropsId", crops.cropsId);
                 i.putExtra("Commodity", crops.commodity);
                 context.startActivity(i);
-                ((Activity)context).finish();
+//                ((Activity)context).finish();
             }
         });
 

@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
     private View decorView;
     private ProgressDialog pd;
     private DatabaseReference usersRef, rootRef, cropsRef;
-    private String currentUserId;
+    private String currentUserId, cropsId;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private CardView ReviewedStatus, ApprovedStatus;
@@ -93,6 +94,7 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MitraCropsStatusActivity.this, EditMitraCropsActivity.class);
+                i.putExtra("CropsId", cropsId);
                 startActivity(i);
             }
         });
@@ -120,10 +122,14 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
 
             for (DataSnapshot ds : snapshot.getChildren()) {
                 CropsModel cropsModel = ds.getValue(CropsModel.class);
+//                cropsId = ds.getKey();
+//                Log.d("MitraCropsStatus", "cropsId: "+cropsId);
                 cropsModel.setCropsId(ds.getKey());
                 try {
                     if (cropsModel.getUserId().equals(currentUserId)) {
                         list.add(cropsModel);
+                        cropsId = cropsModel.getCropsId();
+                        Log.d("MitraCropsStatus", "cropsId: "+cropsId);
 
                         NameStatus.setText(cropsModel.getName());
                         CommodityStatus.setText(cropsModel.getCommodity());

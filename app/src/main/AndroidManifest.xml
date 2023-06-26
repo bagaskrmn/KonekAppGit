@@ -17,23 +17,29 @@
         android:theme="@style/Theme.KonekApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <activity
-            android:name=".ui.dashboard.home.crops.CropsDetail"
+            android:name=".ui.dashboard.home.crops.adminandahlitanicrops.AdminEditMitraCrops"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.home.crops.CommodityCropsActivity"
+            android:name=".ui.dashboard.home.crops.adminandahlitanicrops.CropsDetail"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.home.crops.AhliTaniCropsActivity"
+            android:name=".ui.dashboard.home.crops.adminandahlitanicrops.CommodityCropsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.dashboard.home.crops.adminandahlitanicrops.AhliTaniAndAdminCropsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

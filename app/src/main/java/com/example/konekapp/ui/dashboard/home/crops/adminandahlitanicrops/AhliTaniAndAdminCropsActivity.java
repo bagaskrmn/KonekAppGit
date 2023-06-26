@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.home.crops;
+package com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -14,7 +14,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AhliTaniCropsActivity extends AppCompatActivity {
+public class AhliTaniAndAdminCropsActivity extends AppCompatActivity {
 
     private View decorView;
     private ImageView BackAction;
@@ -29,13 +29,13 @@ public class AhliTaniCropsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ahli_tani_crops);
+        setContentView(R.layout.activity_ahli_tani_and_admin_crops);
 
         BackAction = findViewById(R.id.backAction);
         BackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AhliTaniCropsActivity.super.onBackPressed();
+                AhliTaniAndAdminCropsActivity.super.onBackPressed();
             }
         });
 
@@ -67,7 +67,7 @@ public class AhliTaniCropsActivity extends AppCompatActivity {
         //gravity fill?
         tlCropsAhliTani.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final AhliTaniCropsAdapter adapter = new AhliTaniCropsAdapter(getSupportFragmentManager(),this, tlCropsAhliTani.getTabCount());
+        final AhliTaniAndAdminCropsAdapter adapter = new AhliTaniAndAdminCropsAdapter(getSupportFragmentManager(),this, tlCropsAhliTani.getTabCount());
         vpCropsAhliTani.setAdapter(adapter);
 
         vpCropsAhliTani.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tlCropsAhliTani));

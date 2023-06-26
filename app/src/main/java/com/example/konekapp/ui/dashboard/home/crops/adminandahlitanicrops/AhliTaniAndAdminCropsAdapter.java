@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.home.crops;
+package com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops;
 
 import android.content.Context;
 
@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-public class AhliTaniCropsAdapter extends FragmentPagerAdapter {
+public class AhliTaniAndAdminCropsAdapter extends FragmentPagerAdapter {
     private final Context context;
     int totalTabs;
 
-    public AhliTaniCropsAdapter(@NonNull FragmentManager fm, Context context, int totalTabs) {
+    public AhliTaniAndAdminCropsAdapter(@NonNull FragmentManager fm, Context context, int totalTabs) {
         super(fm);
         this.context = context;
         this.totalTabs = totalTabs;

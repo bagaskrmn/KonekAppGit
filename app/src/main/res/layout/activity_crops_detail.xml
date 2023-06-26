@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.dashboard.home.crops.CropsDetail">
+    tools:context=".ui.dashboard.home.crops.adminandahlitanicrops.CropsDetail">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -287,31 +287,126 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnApproveDetailCrops"
+<!--        constraintForBtnAhliTani-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintDetailAhliTani"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:fontFamily="@font/outfit_semi_bold"
-            android:text="Selesai"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toTopOf="@+id/btnChatDetailCrops"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="12dp"/>
-
-        <Button
-            android:id="@+id/btnChatDetailCrops"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:fontFamily="@font/outfit_semi_bold"
-            android:text="Chat"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
+            <Button
+                android:id="@+id/btnApproveDetailCrops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+                android:fontFamily="@font/outfit_semi_bold"
+                android:text="Selesai"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toTopOf="@+id/btnChatDetailCrops"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout
+                android:id="@+id/btnChatDetailCrops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_crops"
+                android:gravity="center"
+                android:padding="12dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:src="@drawable/message" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_medium"
+                    android:text="Chat Mitra"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        constraintForBtnAdmin-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintDetailAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
+<!--            btnEditForAdmin-->
+            <LinearLayout
+                android:id="@+id/btnEditDetailCrops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_btn_crops"
+                android:gravity="center"
+                android:padding="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/btnDeleteDetailCrops"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:src="@drawable/edit__2_" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_medium"
+                    android:text="Edit"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+<!--            btnDeleteForAdmin-->
+            <LinearLayout
+                android:id="@+id/btnDeleteDetailCrops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_logout"
+                android:gravity="center"
+                android:padding="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:src="@drawable/trash" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_medium"
+                    android:text="Delete"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

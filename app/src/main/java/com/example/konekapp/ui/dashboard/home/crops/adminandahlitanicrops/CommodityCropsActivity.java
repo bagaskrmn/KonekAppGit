@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.home.crops;
+package com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CommodityCropsModel;
-import com.example.konekapp.model.TanamanModel;
-import com.example.konekapp.ui.dashboard.home.plant.TanamanAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -84,6 +81,9 @@ public class CommodityCropsActivity extends AppCompatActivity {
         pd.setTitle("Please Wait...");
         pd.setCanceledOnTouchOutside(false);
 
+        pd.setMessage("Memuat data");
+        pd.show();
+
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.commodityCropsRv);
         recyclerView.setHasFixedSize(true);
@@ -91,22 +91,7 @@ public class CommodityCropsActivity extends AppCompatActivity {
         adapter = new CommodityCropsAdapter(this);
         recyclerView.setAdapter(adapter);
 
-
-
-        //check role
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                role = snapshot.child("role").getValue().toString();
-                adapter.setRoleUser(role);
-
-                commodityRef.addValueEventListener(listenerData);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        commodityRef.addValueEventListener(listenerData);
     }
 
     ValueEventListener listenerData = new ValueEventListener() {
@@ -117,6 +102,7 @@ public class CommodityCropsActivity extends AppCompatActivity {
                 CommodityCropsModel commodity = dataSnapshot.getValue(CommodityCropsModel.class);
                 commodity.setKey(dataSnapshot.getKey());
                 list.add(commodity);
+                pd.dismiss();
                 Log.d("commodityCropsActvty", Arrays.toString(new ArrayList[]{list}));
 
             }

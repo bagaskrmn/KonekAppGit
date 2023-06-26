@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.home.crops.mitracrops;
+package com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
+import com.example.konekapp.ui.dashboard.home.crops.mitracrops.EditMitraCropsActivity;
+import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsStatusActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,10 +38,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class EditMitraCropsActivity extends AppCompatActivity {
-
+public class AdminEditMitraCrops extends AppCompatActivity {
     private ArrayList<CropsModel> list;
-    private ImageView EditMitraCropsBackAction;
+    private ImageView AdminEditMitraCropsBackAction;
     private View decorView;
     private ProgressDialog pd;
 
@@ -52,29 +52,37 @@ public class EditMitraCropsActivity extends AppCompatActivity {
     private String Commodity, Period, Date, Qty, Location, Fertilizer, Result, Notes;
     private EditText CropsQty, CropsLocation, CropsResult, CropsNotes;
     private TextView CropsDate;
-    private Button BtnEditMitraCropsDone;
+    private Button BtnAdminEditMitraCropsDone;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef, cropsRef;
 
     private String currentUserId, cropsId, currentUserName;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_mitra_crops);
+        setContentView(R.layout.activity_admin_edit_mitra_crops);
 
-        SpinnerCommodity = findViewById(R.id.editCropsCommodity);
-        SpinnerPeriod = findViewById(R.id.editCropsPeriod);
-        SpinnerFertilizer = findViewById(R.id.editCropsFertilizer);
-        CropsDate = findViewById(R.id.editCropsDate);
-        CropsQty = findViewById(R.id.editCropsQty);
-        CropsLocation = findViewById(R.id.editCropsLocation);
-        CropsResult = findViewById(R.id.editCropsResult);
-        CropsNotes = findViewById(R.id.editCropsNotes);
-        BtnEditMitraCropsDone = findViewById(R.id.btnEditMitraCropsDone);
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility==0) {
+                    decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            }
+        });
+
+        SpinnerCommodity = findViewById(R.id.adminEditCropsCommodity);
+        SpinnerPeriod = findViewById(R.id.adminEditCropsPeriod);
+        SpinnerFertilizer = findViewById(R.id.adminEditCropsFertilizer);
+        CropsDate = findViewById(R.id.adminEditCropsDate);
+        CropsQty = findViewById(R.id.adminEditCropsQty);
+        CropsLocation = findViewById(R.id.adminEditCropsLocation);
+        CropsResult = findViewById(R.id.adminEditCropsResult);
+        CropsNotes = findViewById(R.id.adminEditCropsNotes);
+        BtnAdminEditMitraCropsDone = findViewById(R.id.btnAdminEditMitraCropsDone);
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -87,46 +95,35 @@ public class EditMitraCropsActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         cropsId = i.getStringExtra("CropsId");
-        Log.d("EditMitraCrops", "cropsId: "+ cropsId);
 
-        EditMitraCropsBackAction = findViewById(R.id.editMitraCropsBackAction);
-        EditMitraCropsBackAction.setOnClickListener(new View.OnClickListener() {
+        AdminEditMitraCropsBackAction = findViewById(R.id.adminEditMitraCropsBackAction);
+        AdminEditMitraCropsBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditMitraCropsActivity.super.onBackPressed();
+                AdminEditMitraCrops.super.onBackPressed();
             }
         });
 
         //init pd
-        pd = new ProgressDialog(EditMitraCropsActivity.this);
+        pd = new ProgressDialog(AdminEditMitraCrops.this);
         pd.setTitle("Please Wait...");
         pd.setCanceledOnTouchOutside(false);
 
-        decorView = getWindow().getDecorView();
-        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if (visibility==0) {
-                    decorView.setSystemUiVisibility(hideSystemBars());
-                }
-            }
-        });
-
-        BtnEditMitraCropsDone.setEnabled(false);
+        BtnAdminEditMitraCropsDone.setEnabled(false);
         CropsQty.addTextChangedListener(textWatcher);
         CropsLocation.addTextChangedListener(textWatcher);
         CropsResult.addTextChangedListener(textWatcher);
         CropsDate.addTextChangedListener(textWatcher);
 
-        ArrayAdapter<String> adapterCommodity=new ArrayAdapter<String>(EditMitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, commodity);
+        ArrayAdapter<String> adapterCommodity=new ArrayAdapter<String>(AdminEditMitraCrops.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, commodity);
         adapterCommodity.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerCommodity.setAdapter(adapterCommodity);
 
-        ArrayAdapter<String> adapterPeriod=new ArrayAdapter<String>(EditMitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, period);
+        ArrayAdapter<String> adapterPeriod=new ArrayAdapter<String>(AdminEditMitraCrops.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, period);
         adapterPeriod.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerPeriod.setAdapter(adapterPeriod);
 
-        ArrayAdapter<String> adapterFertilizer=new ArrayAdapter<String>(EditMitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, fertilizer);
+        ArrayAdapter<String> adapterFertilizer=new ArrayAdapter<String>(AdminEditMitraCrops.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, fertilizer);
         adapterFertilizer.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerFertilizer.setAdapter(adapterFertilizer);
 
@@ -175,7 +172,7 @@ public class EditMitraCropsActivity extends AppCompatActivity {
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        EditMitraCropsActivity.this,
+                        AdminEditMitraCrops.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -190,18 +187,17 @@ public class EditMitraCropsActivity extends AppCompatActivity {
         //getData
         pd.setMessage("Memuat Data Monitoring");
         pd.show();
-        cropsRef.addValueEventListener(listener);
+        cropsRef.child(cropsId).addValueEventListener(listener);
 
-        //uploadData
-        BtnEditMitraCropsDone.setOnClickListener(new View.OnClickListener() {
+        BtnAdminEditMitraCropsDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditMitraCropsDone();
+                AdminEditMitraCropsDone();
             }
         });
     }
 
-    private void EditMitraCropsDone() {
+    private void AdminEditMitraCropsDone() {
         Date = CropsDate.getText().toString();
         Qty = CropsQty.getText().toString();
         Location = CropsLocation.getText().toString();
@@ -223,13 +219,12 @@ public class EditMitraCropsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(EditMitraCropsActivity.this, "Data berhasil diubah", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(EditMitraCropsActivity.this, MitraCropsStatusActivity.class);
-                            startActivity(i);
-                            finish();
+                            AdminEditMitraCrops.super.onBackPressed();
+                            Toast.makeText(AdminEditMitraCrops.this, "Data berhasil diubah", Toast.LENGTH_SHORT).show();
+
                         } else {
                             String message = task.getException().toString();
-                            Toast.makeText(EditMitraCropsActivity.this, " : "+message, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminEditMitraCrops.this, " : "+message, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -238,49 +233,41 @@ public class EditMitraCropsActivity extends AppCompatActivity {
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            list.clear();
+            String commodity = snapshot.child("commodity").getValue().toString();
+            String period = snapshot.child("period").getValue().toString();
+            String date = snapshot.child("date").getValue().toString();
+            String qty = snapshot.child("qty").getValue().toString();
+            String location = snapshot.child("location").getValue().toString();
+            String fertilizer = snapshot.child("fertilizer").getValue().toString();
+            String result = snapshot.child("result").getValue().toString();
+            String notes = snapshot.child("notes").getValue().toString();
 
-            for (DataSnapshot ds : snapshot.getChildren()) {
-
-                CropsModel cropsModel = ds.getValue(CropsModel.class);
-                cropsModel.setCropsId(ds.getKey());
-                //ini
-                try {
-                    if (cropsModel.getCropsId().equals(cropsId)) {
-                        list.add(cropsModel);
-
-                        if (cropsModel.getCommodity().equals("Kentang")) {
-                            SpinnerCommodity.setSelection(0);
-                        } else {
-                            SpinnerCommodity.setSelection(1);
-                        }
-
-                        if (cropsModel.getPeriod().equals("Pertama")) {
-                            SpinnerPeriod.setSelection(0);
-                        }else {
-                            SpinnerPeriod.setSelection(1);
-                        }
-
-                        if (cropsModel.getFertilizer().equals("Kimia")) {
-                            SpinnerFertilizer.setSelection(0);
-                        }else {
-                            SpinnerFertilizer.setSelection(1);
-                        }
-
-                        CropsDate.setText(cropsModel.getDate());
-                        CropsQty.setText(cropsModel.getQty());
-                        CropsLocation.setText(cropsModel.getLocation());
-                        CropsResult.setText(cropsModel.getResult());
-                        CropsNotes.setText(cropsModel.getNotes());
-
-                    }
-                    pd.dismiss();
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+            //setData
+            if (period.equals("Pertama")) {
+                SpinnerPeriod.setSelection(0);
+            } else{
+                SpinnerPeriod.setSelection(1);
             }
+
+            if (commodity.equals("Kentang")) {
+                SpinnerCommodity.setSelection(0);
+            } else {
+                SpinnerCommodity.setSelection(1);
+            }
+
+            if (fertilizer.equals("Kimia")) {
+                SpinnerFertilizer.setSelection(0);
+            } else {
+                SpinnerFertilizer.setSelection(1);
+            }
+
+            CropsQty.setText(qty);
+            CropsLocation.setText(location);
+            CropsResult.setText(result);
+            CropsNotes.setText(notes);
+            CropsDate.setText(date);
+
+            pd.dismiss();
         }
 
         @Override
@@ -302,7 +289,7 @@ public class EditMitraCropsActivity extends AppCompatActivity {
             String Location = CropsLocation.getText().toString();
             String Result = CropsResult.getText().toString();
 
-            BtnEditMitraCropsDone.setEnabled(!Date.isEmpty() && !Qty.isEmpty() && !Location.isEmpty() && !Result.isEmpty());
+            BtnAdminEditMitraCropsDone.setEnabled(!Date.isEmpty() && !Qty.isEmpty() && !Location.isEmpty() && !Result.isEmpty());
         }
 
         @Override

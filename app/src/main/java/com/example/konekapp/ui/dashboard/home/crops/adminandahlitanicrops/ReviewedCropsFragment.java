@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.home.crops;
+package com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -16,7 +16,10 @@ import android.view.ViewGroup;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
+import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.ReviewedCropsAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,11 +34,15 @@ public class ReviewedCropsFragment extends Fragment {
     private String commodity;
 
     private ProgressDialog pd;
-    private DatabaseReference cropsRef, rootRef;
+    private DatabaseReference cropsRef, rootRef, usersRef;
 
     private ArrayList<CropsModel> list;
     private ReviewedCropsAdapter adapter;
     private RecyclerView ReviewedCropsRv;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
+    private String currentUserId;
 
     BottomSheetDialog dialog;
 
@@ -55,7 +62,14 @@ public class ReviewedCropsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //getString Commodity from Activity
         commodity = getActivity().getIntent().getStringExtra("Commodity");
+
+
+        //users
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
+        usersRef = rootRef.child("users");
         cropsRef = rootRef.child("crops");
 
         list = new ArrayList<>();
@@ -69,10 +83,13 @@ public class ReviewedCropsFragment extends Fragment {
         pd.setTitle("Please Wait...");
         pd.setCanceledOnTouchOutside(false);
 
+        pd.setMessage("Memuat data");
+        pd.show();
+
         cropsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                pd.dismiss();
+
                 list.clear();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     CropsModel crops= ds.getValue(CropsModel.class);
@@ -80,8 +97,10 @@ public class ReviewedCropsFragment extends Fragment {
 
                     if (crops.getCommodity().equals(commodity) && crops.getStatus().equals("0")) {
                         list.add(crops);
+
                         Log.d("DataReviewed", Arrays.toString(new ArrayList[]{list}));
                     }
+                    pd.dismiss();
                 }
                 adapter.notifyDataSetChanged();
             }
