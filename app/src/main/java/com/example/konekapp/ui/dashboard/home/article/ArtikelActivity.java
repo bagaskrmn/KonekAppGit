@@ -97,8 +97,9 @@ public class ArtikelActivity extends AppCompatActivity {
         ArtikelBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ArtikelBackAction = new Intent(ArtikelActivity.this, MainActivity.class);
-                startActivity(ArtikelBackAction);
+                ArtikelActivity.super.onBackPressed();
+//                Intent ArtikelBackAction = new Intent(ArtikelActivity.this, MainActivity.class);
+//                startActivity(ArtikelBackAction);
             }
         });
 

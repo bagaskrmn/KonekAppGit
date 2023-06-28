@@ -89,6 +89,9 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
         usersRef = rootRef.child("users");
         cropsRef = rootRef.child("crops");
         list = new ArrayList<>();
+        //getStringExtra from Intent put extra
+        Intent i = getIntent();
+        cropsId = i.getStringExtra("CropsId");
 
         EditCropsStatus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,59 +114,50 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
 
         usersRef.child(currentUserId).addValueEventListener(listener1);
 
-        cropsRef.addValueEventListener(listener);
+        cropsRef.child(cropsId).addValueEventListener(cropsStatusListener);
+
+//        cropsRef.addValueEventListener(listener);
 
     }
 
-    ValueEventListener listener = new ValueEventListener() {
+    ValueEventListener cropsStatusListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            list.clear();
+            String name = snapshot.child("name").getValue().toString();
+            String commodity = snapshot.child("commodity").getValue().toString();
+            String period = snapshot.child("period").getValue().toString();
+            String date = snapshot.child("date").getValue().toString();
+            String qty = snapshot.child("qty").getValue().toString();
+            String location = snapshot.child("location").getValue().toString();
+            String fertilizer = snapshot.child("fertilizer").getValue().toString();
+            String result = snapshot.child("result").getValue().toString();
+            String notes = snapshot.child("notes").getValue().toString();
+            String status = snapshot.child("status").getValue().toString();
 
-            for (DataSnapshot ds : snapshot.getChildren()) {
-                CropsModel cropsModel = ds.getValue(CropsModel.class);
-//                cropsId = ds.getKey();
-//                Log.d("MitraCropsStatus", "cropsId: "+cropsId);
-                cropsModel.setCropsId(ds.getKey());
-                try {
-                    if (cropsModel.getUserId().equals(currentUserId)) {
-                        list.add(cropsModel);
-                        cropsId = cropsModel.getCropsId();
-                        Log.d("MitraCropsStatus", "cropsId: "+cropsId);
+            if (status.equals("0")) {
+                ReviewedStatus.setVisibility(View.VISIBLE);
+                ApprovedStatus.setVisibility(View.GONE);
 
-                        NameStatus.setText(cropsModel.getName());
-                        CommodityStatus.setText(cropsModel.getCommodity());
-                        PeriodStatus.setText(cropsModel.getPeriod());
-                        DateStatus.setText(cropsModel.getDate());
-                        QtyStatus.setText(cropsModel.getQty());
-                        LocationStatus.setText(cropsModel.getLocation());
-                        FertilizerStatus.setText(cropsModel.getFertilizer());
-                        ResultStatus.setText(cropsModel.getResult());
-                        NotesStatus.setText(cropsModel.getNotes());
-
-                        if (cropsModel.getStatus().equals("0")) {
-                            ReviewedStatus.setVisibility(View.VISIBLE);
-                            ApprovedStatus.setVisibility(View.GONE);
-
-                            ImageEditCropsStatus.setVisibility(View.VISIBLE);
-                            EditCropsStatus.setVisibility(View.VISIBLE);
-                        }
-                        else {
-                            ReviewedStatus.setVisibility(View.GONE);
-                            ApprovedStatus.setVisibility(View.VISIBLE);
-
-                            ImageEditCropsStatus.setVisibility(View.GONE);
-                            EditCropsStatus.setVisibility(View.GONE);
-                        }
-
-                    }
-                    pd.dismiss();
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
+                ImageEditCropsStatus.setVisibility(View.VISIBLE);
+                EditCropsStatus.setVisibility(View.VISIBLE);
+            } else {
+                ReviewedStatus.setVisibility(View.GONE);
+                ApprovedStatus.setVisibility(View.VISIBLE);
+                ImageEditCropsStatus.setVisibility(View.GONE);
+                EditCropsStatus.setVisibility(View.GONE);
             }
 
+            NameStatus.setText(name);
+            CommodityStatus.setText(commodity);
+            PeriodStatus.setText(period);
+            DateStatus.setText(date);
+            QtyStatus.setText(qty);
+            LocationStatus.setText(location);
+            FertilizerStatus.setText(fertilizer);
+            ResultStatus.setText(result);
+            NotesStatus.setText(notes);
+
+            pd.dismiss();
         }
 
         @Override
@@ -171,6 +165,62 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
 
         }
     };
+
+//    ValueEventListener listener = new ValueEventListener() {
+//        @Override
+//        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//            list.clear();
+//            //change get data method
+//
+//            for (DataSnapshot ds : snapshot.getChildren()) {
+//                CropsModel cropsModel = ds.getValue(CropsModel.class);
+//                cropsModel.setCropsId(ds.getKey());
+//                try {
+//                    if (cropsModel.getUserId().equals(currentUserId)) {
+//                        list.add(cropsModel);
+//                        cropsId = cropsModel.getCropsId();
+//                        Log.d("MitraCropsStatus", "cropsId: "+cropsId);
+//
+//                        NameStatus.setText(cropsModel.getName());
+//                        CommodityStatus.setText(cropsModel.getCommodity());
+//                        PeriodStatus.setText(cropsModel.getPeriod());
+//                        DateStatus.setText(cropsModel.getDate());
+//                        QtyStatus.setText(cropsModel.getQty());
+//                        LocationStatus.setText(cropsModel.getLocation());
+//                        FertilizerStatus.setText(cropsModel.getFertilizer());
+//                        ResultStatus.setText(cropsModel.getResult());
+//                        NotesStatus.setText(cropsModel.getNotes());
+//
+//                        if (cropsModel.getStatus().equals("0")) {
+//                            ReviewedStatus.setVisibility(View.VISIBLE);
+//                            ApprovedStatus.setVisibility(View.GONE);
+//
+//                            ImageEditCropsStatus.setVisibility(View.VISIBLE);
+//                            EditCropsStatus.setVisibility(View.VISIBLE);
+//                        }
+//                        else {
+//                            ReviewedStatus.setVisibility(View.GONE);
+//                            ApprovedStatus.setVisibility(View.VISIBLE);
+//
+//                            ImageEditCropsStatus.setVisibility(View.GONE);
+//                            EditCropsStatus.setVisibility(View.GONE);
+//                        }
+//
+//                    }
+//                    pd.dismiss();
+//                }
+//                catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//        }
+//
+//        @Override
+//        public void onCancelled(@NonNull DatabaseError error) {
+//
+//        }
+//    };
 
     ValueEventListener listener1 = new ValueEventListener() {
         @Override

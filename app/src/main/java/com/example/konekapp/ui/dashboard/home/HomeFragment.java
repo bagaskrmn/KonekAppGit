@@ -26,6 +26,7 @@ import com.example.konekapp.ui.dashboard.home.article.ArtikelActivity;
 import com.example.konekapp.model.ArtikelModel;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.CommodityCropsActivity;
+import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsList;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsStatusActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.PreMitraCropsActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
@@ -207,7 +208,7 @@ public class HomeFragment extends Fragment {
                                     if (cropsModel.getUserId().equals(currentUserId)) {
                                         listCrops.add(cropsModel);
                                         if (listCrops.size()>0) {
-                                            Intent i = new Intent(getActivity(), MitraCropsStatusActivity.class);
+                                            Intent i = new Intent(getActivity(), MitraCropsList.class);
                                             startActivity(i);
                                             pd.dismiss();
                                         }

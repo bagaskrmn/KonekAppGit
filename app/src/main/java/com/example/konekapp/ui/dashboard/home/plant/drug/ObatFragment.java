@@ -19,6 +19,9 @@ import android.widget.Button;
 import com.example.konekapp.R;
 import com.example.konekapp.ui.dashboard.home.plant.drug.adddrug.AddObatActivity;
 import com.example.konekapp.model.ObatModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,15 +31,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class ObatFragment extends Fragment {
-    private Button BtnAddObat;
+    private FloatingActionButton BtnAddObat;
     private String plantId;
 
     private ProgressDialog pd;
-    private DatabaseReference drugRef, plantRef, rootRef;
+    private DatabaseReference drugRef, plantRef, rootRef, usersRef;
 
     private ArrayList<ObatModel> list;
     private ObatAdapter adapter;
     private RecyclerView recyclerView;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
+    private String currentUserId, role;
 
     public ObatFragment() {
         // Required empty public constructor
@@ -52,18 +59,14 @@ public class ObatFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        BtnAddObat = (Button)getView().findViewById(R.id.btnAddObat);
-
-        BtnAddObat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddObatActivity.class);
-                intent.putExtra("Key", plantId);
-                startActivity(intent);
-            }
-        });
 
         plantId = getActivity().getIntent().getStringExtra("Key");
+
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        currentUserId = currentUser.getUid();
+        usersRef = rootRef.child("users");
 
         plantRef = rootRef.child("plant");
         drugRef = plantRef.child(plantId).child("drug");
@@ -80,6 +83,35 @@ public class ObatFragment extends Fragment {
 
         pd.setMessage("Memuat data");
         pd.show();
+
+        BtnAddObat = (FloatingActionButton) getView().findViewById(R.id.btnAddObat);
+
+        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                role = snapshot.child("role").getValue().toString();
+                if (role.equals("2") || role.equals("3")) {
+                    BtnAddObat.setVisibility(View.VISIBLE);
+                }
+                else {
+                    BtnAddObat.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        BtnAddObat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddObatActivity.class);
+                intent.putExtra("Key", plantId);
+                startActivity(intent);
+            }
+        });
 
         drugRef.addValueEventListener(new ValueEventListener() {
             @Override

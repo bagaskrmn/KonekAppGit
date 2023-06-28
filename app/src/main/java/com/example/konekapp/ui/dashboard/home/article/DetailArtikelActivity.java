@@ -189,10 +189,11 @@ public class DetailArtikelActivity extends AppCompatActivity {
                     articleRef.child(DetailKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
+                            DetailArtikelActivity.super.onBackPressed();
                             Toast.makeText(DetailArtikelActivity.this, "Artikel Terhapus", Toast.LENGTH_SHORT).show();
-                            Intent backToArtikel = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
-                            startActivity(backToArtikel);
-                            finish();
+//                            Intent backToArtikel = new Intent(DetailArtikelActivity.this, ArtikelActivity.class);
+//                            startActivity(backToArtikel);
+//                            finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

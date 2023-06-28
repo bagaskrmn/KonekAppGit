@@ -3,7 +3,9 @@ package com.example.konekapp.ui.dashboard;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import com.example.konekapp.ui.dashboard.Consultation.ConsultationToMitraFragmen
 import com.example.konekapp.ui.dashboard.account.AccountFragment;
 import com.example.konekapp.ui.dashboard.home.HomeFragment;
 import com.example.konekapp.ui.dashboard.notification.NotificationFragment;
+import com.example.konekapp.ui.toregistmitra.ToRegistMitraActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         usersRef.child(currentUserId).addValueEventListener(listener);
 
 
-
         //replace FrameLayout in main_activity.xml (id : container) with fragment_home.xml
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 
@@ -106,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             role = snapshot.child("role").getValue().toString();
+            if (role.equals("0") || role.equals("4") || role.equals("3")) {
+                Log.d("MainActivity", "Role: "+role);
+            BottomNav.getMenu().findItem(R.id.chat).setVisible(false);
+            }
         }
 
         @Override

@@ -18,6 +18,9 @@ import android.widget.Button;
 import com.example.konekapp.R;
 import com.example.konekapp.ui.dashboard.home.plant.disease.adddisease.AddPenyakitActivity;
 import com.example.konekapp.model.PenyakitModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,15 +31,19 @@ import java.util.ArrayList;
 
 public class PenyakitFragment extends Fragment {
 
-    private Button BtnAddPenyakit;
+    private FloatingActionButton BtnAddPenyakit;
     private String plantId;
 
     private ProgressDialog pd;
-    private DatabaseReference diseaseRef, plantRef, rootRef;
+    private DatabaseReference diseaseRef, plantRef, rootRef, usersRef;
 
     private ArrayList<PenyakitModel> list;
     private PenyakitAdapter adapter;
     private RecyclerView recyclerView;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
+    private String currentUserId, role;
 
     public PenyakitFragment() {
         // Required empty public constructor
@@ -53,21 +60,15 @@ public class PenyakitFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        BtnAddPenyakit = (Button)getView().findViewById(R.id.btnAddPenyakit);
-
-        BtnAddPenyakit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddPenyakitActivity.class);
-                intent.putExtra("Key", plantId);
-                startActivity(intent);
-            }
-        });
-
+        //users
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        currentUserId = currentUser.getUid();
+        usersRef = rootRef.child("users");
 
         plantId = getActivity().getIntent().getStringExtra("Key");
 
-        rootRef = FirebaseDatabase.getInstance().getReference();
         plantRef = rootRef.child("plant");
         diseaseRef = plantRef.child(plantId).child("disease");
         list = new ArrayList<>();
@@ -83,6 +84,35 @@ public class PenyakitFragment extends Fragment {
 
         pd.setMessage("Memuat data");
         pd.show();
+
+        BtnAddPenyakit = (FloatingActionButton) getView().findViewById(R.id.btnAddPenyakit);
+
+        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                role = snapshot.child("role").getValue().toString();
+                if (role.equals("2") || role.equals("3")) {
+                    BtnAddPenyakit.setVisibility(View.VISIBLE);
+                }
+                else {
+                    BtnAddPenyakit.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        BtnAddPenyakit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddPenyakitActivity.class);
+                intent.putExtra("Key", plantId);
+                startActivity(intent);
+            }
+        });
 
         diseaseRef.addValueEventListener(new ValueEventListener() {
             @Override
