@@ -91,7 +91,6 @@ public class NotificationFragment extends Fragment {
                 notification.setKey(ds.getKey());
                 //ini fungsinya buat apa
                 try {
-
                     if (notification.getTargetId().equals(currentUserId)) {
                         list.add(notification);
                     }
