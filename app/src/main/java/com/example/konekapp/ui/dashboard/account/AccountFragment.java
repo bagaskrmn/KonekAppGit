@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.konekapp.R;
+import com.example.konekapp.ui.dashboard.account.setting.accountsetting.MitraProfileActivity;
+import com.example.konekapp.ui.dashboard.account.setting.accountsetting.ProfileActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
@@ -36,15 +38,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AccountFragment extends Fragment {
 
     private CircleImageView AccImageProfile;
-    private Button BtnBuatForum;
-    private ConstraintLayout ConstraintGabungKemitraan, ConstraintKelolaKemitraan, ConstraintKonsultasi, ConstraintChatMitra;
+    private ConstraintLayout ConstraintGabungKemitraan, ConstraintKelolaKemitraan, ConstraintKonsultasi, ConstraintChatMitra
+            , BtnKelolaAkun, BtnKelolaNotifikasi, BtnPrivacyPolicy;
     private TextView NameAccountTv, RoleUserTv, DateJoinedTv;
-    private ImageView BtnSetting;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef;
-    private String currentUserId;
+    private String currentUserId, role;
     private ProgressDialog pd;
 
     @Override
@@ -70,12 +71,13 @@ public class AccountFragment extends Fragment {
         pd.setCanceledOnTouchOutside(false);
 
         AccImageProfile = (CircleImageView) getView().findViewById(R.id.accImageProfile);
-        BtnBuatForum = (Button) getView().findViewById(R.id.btnBuatForum);
-        BtnSetting = (ImageView) getView().findViewById(R.id.btnSetting);
         ConstraintGabungKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintGabungKemitraan);
         ConstraintKelolaKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintKelolaKemitraan);
         ConstraintKonsultasi = (ConstraintLayout) getView().findViewById(R.id.constraintKonsultasi);
         ConstraintChatMitra = (ConstraintLayout)getView().findViewById(R.id.constraintChatMitra);
+        BtnKelolaAkun = (ConstraintLayout)getView().findViewById(R.id.btnKelolaAkun);
+        BtnKelolaNotifikasi = (ConstraintLayout)getView().findViewById(R.id.btnKelolaNotifikasi);
+        BtnPrivacyPolicy = (ConstraintLayout)getView().findViewById(R.id.btnPrivacyPolicy);
         NameAccountTv = (TextView) getView().findViewById(R.id.nameAccountTv);
         RoleUserTv = (TextView) getView().findViewById(R.id.roleUserTv);
         DateJoinedTv = (TextView) getView().findViewById(R.id.dateJoinedTv);
@@ -85,22 +87,6 @@ public class AccountFragment extends Fragment {
 
 
         usersRef.child(currentUserId).addValueEventListener(listener);
-
-        BtnSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                usersRef.child(currentUserId).removeEventListener(listener);
-                Intent settingIntent = new Intent(getActivity(), SettingActivity.class);
-                startActivity(settingIntent);
-            }
-        });
-
-        BtnBuatForum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //add forum activity here
-            }
-        });
 
         ConstraintGabungKemitraan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +121,23 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        BtnKelolaAkun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (role!=null) {
+                    if (role.equals("1")) {
+                        Intent mitraProfileIntent = new Intent(getContext(), MitraProfileActivity.class);
+                        startActivity(mitraProfileIntent);
+                    }
+
+                    else {
+                        Intent userProfileIntent = new Intent(getContext(), ProfileActivity.class);
+                        startActivity(userProfileIntent);
+                    }
+                }
+            }
+        });
+
     }
     ValueEventListener listener = new ValueEventListener() {
         @Override
@@ -144,6 +147,8 @@ public class AccountFragment extends Fragment {
             String retrieveImage = snapshot.child("image").getValue().toString();
             String retrieveName = snapshot.child("name").getValue().toString();
             String retrieveDate = snapshot.child("dateJoined").getValue().toString();
+
+            role = snapshot.child("role").getValue().toString();
 
             //set to field
             DateJoinedTv.setText("Bergabung pada " +retrieveDate);

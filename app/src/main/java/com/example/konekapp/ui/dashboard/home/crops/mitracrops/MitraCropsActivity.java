@@ -214,10 +214,8 @@ public class MitraCropsActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                MitraCropsActivity.super.onBackPressed();
                                 Toast.makeText(MitraCropsActivity.this, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(MitraCropsActivity.this, MitraCropsStatusActivity.class);
-                                startActivity(i);
-                                finish();
                             } else {
                                 String message = task.getException().toString();
                                 Toast.makeText(MitraCropsActivity.this, "Error : " + message, Toast.LENGTH_SHORT).show();

@@ -13,6 +13,7 @@
     <string name="forum_baru">Yuk bagikan pengalamanmu ke sesama petani Konek untuk kemajuan bersama!</string>
     <string name="waiting_review">Akun kamu sedang ditinjau oleh admin. Sambil menunggu, yuk lihat Artikel terbaru tentang tanaman kamu</string>
     <string name="pre_monitoring_mitra">Isi data komoditas anda. Data penanaman anda akan tersimpan dan dievaluasi oleh Ahli Tani</string>
+    <string name="register_succes">Admin akan segera memverifikasi data diri anda. Jika ada pertanyaan lebih lanjut dapat hubungi Admin</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

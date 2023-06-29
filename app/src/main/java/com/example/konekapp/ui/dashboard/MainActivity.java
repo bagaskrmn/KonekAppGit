@@ -15,8 +15,10 @@ import com.example.konekapp.ui.dashboard.Consultation.ConsultationToAhliTaniFrag
 import com.example.konekapp.ui.dashboard.Consultation.ConsultationToMitraFragment;
 import com.example.konekapp.ui.dashboard.account.AccountFragment;
 import com.example.konekapp.ui.dashboard.home.HomeFragment;
+import com.example.konekapp.ui.dashboard.home.waitingreview.WaitingReviewActivity;
 import com.example.konekapp.ui.dashboard.notification.NotificationFragment;
 import com.example.konekapp.ui.toregistmitra.ToRegistMitraActivity;
+import com.example.konekapp.ui.toregistmitra.UserChatToRegistMitraActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -90,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
                         else if (role.equals("2")){
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToMitraFragment).commit();
                         }
+                        else if (role.equals("0")) {
+                            Intent i = new Intent(MainActivity.this, UserChatToRegistMitraActivity.class);
+                            startActivity(i);
+                        }
+                        else if (role.equals("4")) {
+                            Intent i =new Intent(MainActivity.this, WaitingReviewActivity.class);
+                            startActivity(i);
+                        }
                         return true;
                     case R.id.notification:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, notificationFragment).commit();
@@ -108,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             role = snapshot.child("role").getValue().toString();
-            if (role.equals("0") || role.equals("4") || role.equals("3")) {
+            if (role.equals("3")) {
                 Log.d("MainActivity", "Role: "+role);
             BottomNav.getMenu().findItem(R.id.chat).setVisible(false);
             }

@@ -76,9 +76,10 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
         MitraCropsStatusBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MitraCropsStatusActivity.this, MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
+                MitraCropsStatusActivity.super.onBackPressed();
+//                Intent i = new Intent(MitraCropsStatusActivity.this, MainActivity.class);
+//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(i);
             }
         });
 

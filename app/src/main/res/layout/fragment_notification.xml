@@ -18,6 +18,13 @@
         android:layout_marginBottom="16dp"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/neutral"
+        android:layout_marginBottom="20dp"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNotification"
         android:layout_width="match_parent"

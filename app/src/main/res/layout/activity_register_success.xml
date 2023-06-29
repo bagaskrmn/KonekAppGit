@@ -21,28 +21,29 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/celebrate"
+            android:src="@drawable/register_succes"
             android:layout_marginBottom="30dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selamat Bergabung!"
+            android:text="Terimakasih telah mengisi data diri anda!"
             android:textColor="@color/neutral_dark3"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:fontFamily="@font/outfit_bold"
             android:layout_marginBottom="20dp"
+            android:textAlignment="center"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_greetings"
+            android:text="@string/register_succes"
             android:textColor="@color/neutral_dark4"
             android:textAlignment="center"
             android:fontFamily="@font/outfit_regular"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:lineSpacingExtra="4dp"
             />
 
@@ -58,7 +59,7 @@
         android:background="@drawable/btn_bg"
         app:backgroundTint="@null"
         android:backgroundTint="@null"
-        android:text="Lanjutkan"
+        android:text="Kembali ke Halaman Utama"
         android:fontFamily="@font/outfit_semi_bold"
         android:textAllCaps="false"
         />

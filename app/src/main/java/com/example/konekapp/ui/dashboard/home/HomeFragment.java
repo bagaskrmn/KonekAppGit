@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,7 @@ public class HomeFragment extends Fragment {
     private ProgressDialog pd;
     private TextView BtnFullArtikel;
     private ArrayList<CropsModel> listCrops;
+    private int cropsSize;
 
     //Keperluan RecyclerView
     private ArrayList<ArtikelModel> list;
@@ -200,29 +202,27 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             listCrops.clear();
-
+                            pd.dismiss();
                             for (DataSnapshot ds : snapshot.getChildren()) {
                                 CropsModel cropsModel = ds.getValue(CropsModel.class);
                                 cropsModel.setCropsId(ds.getKey());
                                 try {
                                     if (cropsModel.getUserId().equals(currentUserId)) {
                                         listCrops.add(cropsModel);
-                                        if (listCrops.size()>0) {
-                                            Intent i = new Intent(getActivity(), MitraCropsList.class);
-                                            startActivity(i);
-                                            pd.dismiss();
-                                        }
-                                        else {
-                                            Intent i = new Intent(getActivity(), PreMitraCropsActivity.class);
-                                            startActivity(i);
-                                            pd.dismiss();
-                                        }
+                                        Log.d("Crops", "Jml array data monitoring: " +list.size());
+                                        cropsSize = listCrops.size();
                                     }
-
                                 }
                                 catch (Exception e) {
                                     e.printStackTrace();
                                 }
+                            }
+                            if (cropsSize>0) {
+                                Intent i = new Intent(getActivity(),MitraCropsList.class);
+                                startActivity(i);
+                            } else {
+                                Intent i = new Intent(getActivity(), PreMitraCropsActivity.class);
+                                startActivity(i);
                             }
                         }
 

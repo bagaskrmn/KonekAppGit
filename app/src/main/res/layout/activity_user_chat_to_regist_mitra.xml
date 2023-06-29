@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".ui.toregistmitra.UserChatToRegistMitraActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:text="Pesan Masuk"
+        android:textColor="@color/neutral_dark3"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/neutral"
+        android:layout_marginBottom="28dp"
+        />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/chat_regist_mitra"
+        android:layout_marginBottom="24dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Belum Ada Pesan"
+        android:fontFamily="@font/outfit_bold"
+        android:textSize="28sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gabung sebagai mitra untuk memulai pesan"
+        android:fontFamily="@font/outfit_semi_bold"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/btnChatToRegistMitra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gabung Mitra"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_bg"
+        app:backgroundTint = "@null"
+        />
+
+
+
+
+</LinearLayout>

@@ -32,10 +32,14 @@
             android:textSize="18sp"
             android:fontFamily="@font/outfit_bold"
             />
-        <View
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+
+        <ImageView
+            android:id="@+id/btnAddMitraCrops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_24"
             />
+
     </LinearLayout>
 
     <!--    ProfileCard-->

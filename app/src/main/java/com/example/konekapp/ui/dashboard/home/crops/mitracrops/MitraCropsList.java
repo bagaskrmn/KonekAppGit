@@ -6,12 +6,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
+import com.example.konekapp.ui.dashboard.home.article.DetailArtikelActivity;
 import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.ApprovedCropsAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +48,8 @@ public class MitraCropsList extends AppCompatActivity {
     private ProgressDialog pd;
     private String currentUserId, cropsId, currentUserName;
 
+    private ImageView MitraCropsListBackAction, BtnAddMitraCrops;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +62,38 @@ public class MitraCropsList extends AppCompatActivity {
                 if (visibility==0) {
                     decorView.setSystemUiVisibility(hideSystemBars());
                 }
+            }
+        });
+
+        MitraCropsListBackAction = findViewById(R.id.mitraCropsListBackAction);
+        BtnAddMitraCrops = findViewById(R.id.btnAddMitraCrops);
+
+        MitraCropsListBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MitraCropsList.super.onBackPressed();
+            }
+        });
+
+        //menu add
+        BtnAddMitraCrops.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(MitraCropsList.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.add_mitra_crops_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.addMonitoring:
+                                toAddMonitoring();
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+                popupMenu.show();
             }
         });
 
@@ -86,6 +125,11 @@ public class MitraCropsList extends AppCompatActivity {
 
         cropsRef.addValueEventListener(cropsListener);
 
+    }
+
+    private void toAddMonitoring() {
+        Intent i = new Intent(MitraCropsList.this, MitraCropsActivity.class);
+        startActivity(i);
     }
 
     ValueEventListener userListener = new ValueEventListener() {

@@ -27,15 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/btnSetting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/setting"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -140,7 +131,7 @@
                     android:text="Gabung Kemitraan"
                     android:fontFamily="@font/outfit_medium"
                     android:textColor="@color/neutral_dark3"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:layout_marginLeft="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -183,7 +174,7 @@
                     android:text="Kelola Kemitraan"
                     android:fontFamily="@font/outfit_medium"
                     android:textColor="@color/neutral_dark3"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:layout_marginLeft="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -226,7 +217,7 @@
                     android:text="Konsultasi Petani"
                     android:fontFamily="@font/outfit_medium"
                     android:textColor="@color/neutral_dark3"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:layout_marginLeft="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -269,7 +260,7 @@
                     android:text="Konsultasi Petani"
                     android:fontFamily="@font/outfit_medium"
                     android:textColor="@color/neutral_dark3"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:layout_marginLeft="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -285,60 +276,157 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Forum Saya"
-                android:textColor="@color/neutral_dark3"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textSize="20sp"
-                android:layout_marginBottom="24dp"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/forum_3"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yuk buat Forum pertamamu!"
-                android:fontFamily="@font/outfit_bold"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/outfit_regular"
-                android:text="@string/forum_baru"
-                android:textSize="14sp"
-                android:lineSpacingExtra="2dp"
-                android:textAlignment="center"
-                android:textColor="@color/neutral_dark4"
-                android:layout_marginBottom="20dp"
-                />
-
-            <Button
-                android:id="@+id/btnBuatForum"
+            <!--    Kelola Akun-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnKelolaAkun"
+                android:padding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_bg"
-                android:backgroundTint="@null"
-                app:backgroundTint="@null"
-                android:text="+ Buat Forum Baru"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textAllCaps="false"
-                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_btn_setting"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/kelola_akun"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kelola Akun"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView6"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="8dp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_circle_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/neutral"
+                android:layout_marginBottom="12dp"
                 />
+
+<!--            Kelola Notifikasi-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnKelolaNotifikasi"
+                android:layout_below="@id/btnKelolaAkun"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_setting"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/kelola_notifikasi"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kelola Notifikasi"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="8dp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_circle_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/neutral"
+                android:layout_marginBottom="12dp"
+                />
+
+            <!--    Syarat&Ketentuan-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnPrivacyPolicy"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_setting"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/snk"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy Policy"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="8dp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_circle_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         </LinearLayout>
 

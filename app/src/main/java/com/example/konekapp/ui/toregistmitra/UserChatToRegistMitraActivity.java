@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.home.waitingreview;
+package com.example.konekapp.ui.toregistmitra;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,20 +8,17 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.konekapp.R;
-import com.example.konekapp.ui.dashboard.MainActivity;
+import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
 
-public class WaitingReviewActivity extends AppCompatActivity {
+public class UserChatToRegistMitraActivity extends AppCompatActivity {
 
-    private Button NextWaitingReview;
+    private Button BtnChatToRegistMitra;
     private View decorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_waiting_review);
-
-        NextWaitingReview = findViewById(R.id.nextWaitingReview);
-
+        setContentView(R.layout.activity_user_chat_to_regist_mitra);
         decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
@@ -32,17 +29,16 @@ public class WaitingReviewActivity extends AppCompatActivity {
             }
         });
 
-        NextWaitingReview.setOnClickListener(new View.OnClickListener() {
+        BtnChatToRegistMitra = findViewById(R.id.btnChatToRegistMitra);
+        BtnChatToRegistMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WaitingReviewActivity.super.onBackPressed();
-//                Intent nextWaitingReviewIntent = new Intent(WaitingReviewActivity.this, MainActivity.class);
-//                nextWaitingReviewIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(nextWaitingReviewIntent);
+                Intent i = new Intent(UserChatToRegistMitraActivity.this, RegisterMitraActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }
-
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
