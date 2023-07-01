@@ -34,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -45,9 +46,13 @@ public class EditMitraCropsActivity extends AppCompatActivity {
     private ProgressDialog pd;
 
     private Spinner SpinnerCommodity, SpinnerPeriod, SpinnerFertilizer;
-    private String[] commodity = {"Kentang", "Cabai"};
-    private String[] period = {"Pertama", "Kedua"};
-    private String[] fertilizer = {"Kimia", "Organik"};
+    private String[] commodity = {"Pilih Komoditi", "Kentang", "Cabai"};
+    private String[] period = {"Pilih Periode", "Pertama", "Kedua"};
+    private String[] fertilizer = {"Pilih Pupuk", "Kimia", "Organik"};
+
+    private ArrayList listCommodity = new ArrayList();
+    private ArrayList listPeriod = new ArrayList();
+    private ArrayList listFertilizer = new ArrayList();
 
     private String Commodity, Period, Date, Qty, Location, Fertilizer, Result, Notes;
     private EditText CropsQty, CropsLocation, CropsResult, CropsNotes;
@@ -75,6 +80,10 @@ public class EditMitraCropsActivity extends AppCompatActivity {
         CropsResult = findViewById(R.id.editCropsResult);
         CropsNotes = findViewById(R.id.editCropsNotes);
         BtnEditMitraCropsDone = findViewById(R.id.btnEditMitraCropsDone);
+
+        listCommodity.addAll(Arrays.asList(commodity));
+        listPeriod.addAll(Arrays.asList(period));
+        listFertilizer.addAll(Arrays.asList(fertilizer));
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -118,15 +127,15 @@ public class EditMitraCropsActivity extends AppCompatActivity {
         CropsResult.addTextChangedListener(textWatcher);
         CropsDate.addTextChangedListener(textWatcher);
 
-        ArrayAdapter<String> adapterCommodity=new ArrayAdapter<String>(EditMitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, commodity);
+        ArrayAdapter<String> adapterCommodity=new SpinnerAdapter(this, listCommodity);
         adapterCommodity.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerCommodity.setAdapter(adapterCommodity);
 
-        ArrayAdapter<String> adapterPeriod=new ArrayAdapter<String>(EditMitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, period);
+        ArrayAdapter<String> adapterPeriod=new SpinnerAdapter(this, listPeriod);
         adapterPeriod.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerPeriod.setAdapter(adapterPeriod);
 
-        ArrayAdapter<String> adapterFertilizer=new ArrayAdapter<String>(EditMitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, fertilizer);
+        ArrayAdapter<String> adapterFertilizer=new SpinnerAdapter(this, listFertilizer);
         adapterFertilizer.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerFertilizer.setAdapter(adapterFertilizer);
 
@@ -190,7 +199,7 @@ public class EditMitraCropsActivity extends AppCompatActivity {
         //getData
         pd.setMessage("Memuat Data Monitoring");
         pd.show();
-        cropsRef.addValueEventListener(listener);
+        cropsRef.addListenerForSingleValueEvent(listener);
 
         //uploadData
         BtnEditMitraCropsDone.setOnClickListener(new View.OnClickListener() {
@@ -223,10 +232,8 @@ public class EditMitraCropsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            EditMitraCropsActivity.super.onBackPressed();
                             Toast.makeText(EditMitraCropsActivity.this, "Data berhasil diubah", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(EditMitraCropsActivity.this, MitraCropsStatusActivity.class);
-                            startActivity(i);
-                            finish();
                         } else {
                             String message = task.getException().toString();
                             Toast.makeText(EditMitraCropsActivity.this, " : "+message, Toast.LENGTH_SHORT).show();
@@ -250,21 +257,21 @@ public class EditMitraCropsActivity extends AppCompatActivity {
                         list.add(cropsModel);
 
                         if (cropsModel.getCommodity().equals("Kentang")) {
-                            SpinnerCommodity.setSelection(0);
-                        } else {
                             SpinnerCommodity.setSelection(1);
+                        } else {
+                            SpinnerCommodity.setSelection(2);
                         }
 
                         if (cropsModel.getPeriod().equals("Pertama")) {
-                            SpinnerPeriod.setSelection(0);
-                        }else {
                             SpinnerPeriod.setSelection(1);
+                        }else {
+                            SpinnerPeriod.setSelection(2);
                         }
 
                         if (cropsModel.getFertilizer().equals("Kimia")) {
-                            SpinnerFertilizer.setSelection(0);
-                        }else {
                             SpinnerFertilizer.setSelection(1);
+                        }else {
+                            SpinnerFertilizer.setSelection(2);
                         }
 
                         CropsDate.setText(cropsModel.getDate());

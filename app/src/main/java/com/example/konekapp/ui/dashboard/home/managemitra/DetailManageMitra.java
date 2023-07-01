@@ -107,7 +107,7 @@ public class DetailManageMitra extends AppCompatActivity {
 
         //calendar
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         date = dateFormat.format(calendar.getTime());
 
         DetailManageMitraBackAction.setOnClickListener(new View.OnClickListener() {

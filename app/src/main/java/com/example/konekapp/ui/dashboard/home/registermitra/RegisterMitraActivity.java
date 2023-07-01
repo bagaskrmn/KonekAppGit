@@ -123,7 +123,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
 
         //calendar
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         date = dateFormat.format(calendar.getTime());
 
         notificationRef = rootRef.child("notification");

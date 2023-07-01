@@ -24,6 +24,7 @@ import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.EditMitraCropsActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsStatusActivity;
+import com.example.konekapp.ui.dashboard.home.crops.mitracrops.SpinnerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -45,9 +47,13 @@ public class AdminEditMitraCrops extends AppCompatActivity {
     private ProgressDialog pd;
 
     private Spinner SpinnerCommodity, SpinnerPeriod, SpinnerFertilizer;
-    private String[] commodity = {"Kentang", "Cabai"};
-    private String[] period = {"Pertama", "Kedua"};
-    private String[] fertilizer = {"Kimia", "Organik"};
+    private String[] commodity = {"Pilih Komoditi", "Kentang", "Cabai"};
+    private String[] period = {"Pilih Periode", "Pertama", "Kedua"};
+    private String[] fertilizer = {"Pilih Pupuk", "Kimia", "Organik"};
+
+    private ArrayList listCommodity = new ArrayList();
+    private ArrayList listPeriod = new ArrayList();
+    private ArrayList listFertilizer = new ArrayList();
 
     private String Commodity, Period, Date, Qty, Location, Fertilizer, Result, Notes;
     private EditText CropsQty, CropsLocation, CropsResult, CropsNotes;
@@ -84,6 +90,10 @@ public class AdminEditMitraCrops extends AppCompatActivity {
         CropsNotes = findViewById(R.id.adminEditCropsNotes);
         BtnAdminEditMitraCropsDone = findViewById(R.id.btnAdminEditMitraCropsDone);
 
+        listCommodity.addAll(Arrays.asList(commodity));
+        listPeriod.addAll(Arrays.asList(period));
+        listFertilizer.addAll(Arrays.asList(fertilizer));
+
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
@@ -115,15 +125,15 @@ public class AdminEditMitraCrops extends AppCompatActivity {
         CropsResult.addTextChangedListener(textWatcher);
         CropsDate.addTextChangedListener(textWatcher);
 
-        ArrayAdapter<String> adapterCommodity=new ArrayAdapter<String>(AdminEditMitraCrops.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, commodity);
+        ArrayAdapter<String> adapterCommodity=new SpinnerAdapter(this, listCommodity);
         adapterCommodity.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerCommodity.setAdapter(adapterCommodity);
 
-        ArrayAdapter<String> adapterPeriod=new ArrayAdapter<String>(AdminEditMitraCrops.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, period);
+        ArrayAdapter<String> adapterPeriod=new SpinnerAdapter(this, listPeriod);
         adapterPeriod.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerPeriod.setAdapter(adapterPeriod);
 
-        ArrayAdapter<String> adapterFertilizer=new ArrayAdapter<String>(AdminEditMitraCrops.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, fertilizer);
+        ArrayAdapter<String> adapterFertilizer=new SpinnerAdapter(this, listFertilizer);
         adapterFertilizer.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerFertilizer.setAdapter(adapterFertilizer);
 
@@ -244,21 +254,21 @@ public class AdminEditMitraCrops extends AppCompatActivity {
 
             //setData
             if (period.equals("Pertama")) {
-                SpinnerPeriod.setSelection(0);
-            } else{
                 SpinnerPeriod.setSelection(1);
+            } else{
+                SpinnerPeriod.setSelection(2);
             }
 
             if (commodity.equals("Kentang")) {
-                SpinnerCommodity.setSelection(0);
-            } else {
                 SpinnerCommodity.setSelection(1);
+            } else {
+                SpinnerCommodity.setSelection(2);
             }
 
             if (fertilizer.equals("Kimia")) {
-                SpinnerFertilizer.setSelection(0);
-            } else {
                 SpinnerFertilizer.setSelection(1);
+            } else {
+                SpinnerFertilizer.setSelection(2);
             }
 
             CropsQty.setText(qty);

@@ -74,7 +74,7 @@ public class AddArtikelActivity extends AppCompatActivity {
 
         //date
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         date = dateFormat.format(calendar.getTime());
 
         //database and storage

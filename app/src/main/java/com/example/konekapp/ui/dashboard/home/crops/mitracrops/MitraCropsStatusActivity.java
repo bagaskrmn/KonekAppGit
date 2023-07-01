@@ -77,9 +77,6 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MitraCropsStatusActivity.super.onBackPressed();
-//                Intent i = new Intent(MitraCropsStatusActivity.this, MainActivity.class);
-//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(i);
             }
         });
 
@@ -93,6 +90,7 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
         //getStringExtra from Intent put extra
         Intent i = getIntent();
         cropsId = i.getStringExtra("CropsId");
+        Log.d("MitraCropsStatus", "selectedCropsId: "+cropsId);
 
         EditCropsStatus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,9 +111,9 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
             }
         });
 
-        usersRef.child(currentUserId).addValueEventListener(listener1);
+        usersRef.child(currentUserId).addListenerForSingleValueEvent(listener1);
 
-        cropsRef.child(cropsId).addValueEventListener(cropsStatusListener);
+        cropsRef.child(cropsId).addListenerForSingleValueEvent(cropsStatusListener);
 
 //        cropsRef.addValueEventListener(listener);
 

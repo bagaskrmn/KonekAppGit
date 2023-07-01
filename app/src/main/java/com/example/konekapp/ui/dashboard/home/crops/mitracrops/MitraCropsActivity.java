@@ -38,11 +38,13 @@ import java.util.Calendar;
 
 public class MitraCropsActivity extends AppCompatActivity {
     private Spinner SpinnerCommodity, SpinnerPeriod, SpinnerFertilizer;
-    private String[] commodity = {"Pilih komoditas", "Kentang", "Cabai"};
-    private String[] period = {"Pertama", "Kedua"};
-    private String[] fertilizer = {"Kimia", "Organik"};
+    private String[] commodity = {"Pilih Komoditi", "Kentang", "Cabai"};
+    private String[] period = {"Pilih Periode", "Pertama", "Kedua"};
+    private String[] fertilizer = {"Pilih Pupuk", "Kimia", "Organik"};
 
     private ArrayList listCommodity = new ArrayList();
+    private ArrayList listPeriod = new ArrayList();
+    private ArrayList listFertilizer = new ArrayList();
 
     private String Commodity, Period, Date, Qty, Location, Fertilizer, Result, Notes;
 
@@ -65,6 +67,8 @@ public class MitraCropsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mitra_crops);
 
         listCommodity.addAll(Arrays.asList(commodity));
+        listPeriod.addAll(Arrays.asList(period));
+        listFertilizer.addAll(Arrays.asList(fertilizer));
 
         SpinnerCommodity = findViewById(R.id.cropsCommodity);
         SpinnerPeriod = findViewById(R.id.cropsPeriod);
@@ -119,11 +123,11 @@ public class MitraCropsActivity extends AppCompatActivity {
         adapterCommodity.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerCommodity.setAdapter(adapterCommodity);
 
-        ArrayAdapter<String> adapterPeriod=new ArrayAdapter<String>(MitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, period);
+        ArrayAdapter<String> adapterPeriod=new SpinnerAdapter(this, listPeriod);
         adapterPeriod.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerPeriod.setAdapter(adapterPeriod);
 
-        ArrayAdapter<String> adapterFertilizer=new ArrayAdapter<String>(MitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, fertilizer);
+        ArrayAdapter<String> adapterFertilizer=new SpinnerAdapter(this, listFertilizer);
         adapterFertilizer.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerFertilizer.setAdapter(adapterFertilizer);
 
@@ -224,8 +228,8 @@ public class MitraCropsActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                MitraCropsActivity.super.onBackPressed();
                                 Toast.makeText(MitraCropsActivity.this, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                MitraCropsActivity.super.onBackPressed();
                             } else {
                                 String message = task.getException().toString();
                                 Toast.makeText(MitraCropsActivity.this, "Error : " + message, Toast.LENGTH_SHORT).show();

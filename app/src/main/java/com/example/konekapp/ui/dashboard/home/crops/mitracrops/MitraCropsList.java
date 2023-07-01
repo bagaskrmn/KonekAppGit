@@ -121,15 +121,16 @@ public class MitraCropsList extends AppCompatActivity {
         pd.setMessage("Memuat data anda");
         pd.show();
 
-        usersRef.child(currentUserId).addValueEventListener(userListener);
+        usersRef.child(currentUserId).addListenerForSingleValueEvent(userListener);
 
-        cropsRef.addValueEventListener(cropsListener);
+        cropsRef.addListenerForSingleValueEvent(cropsListener);
 
     }
 
     private void toAddMonitoring() {
         Intent i = new Intent(MitraCropsList.this, MitraCropsActivity.class);
         startActivity(i);
+        finish();
     }
 
     ValueEventListener userListener = new ValueEventListener() {

@@ -126,7 +126,7 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
 
         //calendar
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         date = dateFormat.format(calendar.getTime());
 
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
@@ -212,6 +212,7 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
         BtnEditDetailCrops.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bottomSheetDialog.cancel();
                 Intent i = new Intent(context, AdminEditMitraCrops.class);
                 i.putExtra("CropsId", crops.cropsId);
                 context.startActivity(i);

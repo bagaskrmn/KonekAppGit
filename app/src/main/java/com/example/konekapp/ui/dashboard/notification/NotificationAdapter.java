@@ -42,7 +42,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.TitleNotification.setText(notification.title);
         Picasso.get().load(notification.image).into(holder.ImageNotification);
         holder.DescriptionNotification.setText(notification.description);
-        holder.DateNotification.setText(notification.date);
+        holder.DateNotification.setText(notification.date.substring(0, 10));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
