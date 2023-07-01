@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,8 @@ public class NotificationFragment extends Fragment {
             }
         });
 
+        Log.d("Notification", "role: "+role);
+
     }
 
     ValueEventListener notifListener = new ValueEventListener() {
@@ -91,15 +94,22 @@ public class NotificationFragment extends Fragment {
                 notification.setKey(ds.getKey());
                 //ini fungsinya buat apa
                 try {
-                    if (notification.getTargetId().equals(currentUserId)) {
+                    if (notification.getKind().equals("0")) {
                         list.add(notification);
                     }
-                    if (role.equals("3")) {
-                        if (notification.getKind().equals("4")) {
-                            list.add(notification);
-                        }
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind().equals("1")) {
+                        list.add(notification);
                     }
-                    if (notification.getKind().equals("6")) {
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind().equals("2")) {
+                        list.add(notification);
+                    }
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind().equals("3")) {
+                        list.add(notification);
+                    }
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind().equals("4")) {
+                        list.add(notification);
+                    }
+                    if (role.equals("3") && notification.getKind().equals("5")){
                         list.add(notification);
                     }
                 } catch (Exception e) {

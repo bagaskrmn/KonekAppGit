@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.ui.dashboard.account.setting.accountsetting.MitraProfileActivity;
@@ -24,6 +26,7 @@ import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
 import com.example.konekapp.ui.dashboard.account.setting.SettingActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity;
+import com.example.konekapp.ui.login.LoginPhoneActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +43,7 @@ public class AccountFragment extends Fragment {
     private CircleImageView AccImageProfile;
     private ConstraintLayout ConstraintGabungKemitraan, ConstraintKelolaKemitraan, ConstraintKonsultasi, ConstraintChatMitra
             , BtnKelolaAkun, BtnKelolaNotifikasi, BtnPrivacyPolicy;
+    private LinearLayout BtnLogout;
     private TextView NameAccountTv, RoleUserTv, DateJoinedTv;
 
     private FirebaseAuth firebaseAuth;
@@ -81,6 +85,20 @@ public class AccountFragment extends Fragment {
         NameAccountTv = (TextView) getView().findViewById(R.id.nameAccountTv);
         RoleUserTv = (TextView) getView().findViewById(R.id.roleUserTv);
         DateJoinedTv = (TextView) getView().findViewById(R.id.dateJoinedTv);
+        BtnLogout=(LinearLayout)getView().findViewById(R.id.btnLogout);
+
+        BtnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                usersRef.child(currentUserId).removeEventListener(listener);
+                firebaseAuth.signOut();
+
+                Intent signOutIntent = new Intent(getContext(), LoginPhoneActivity.class);
+                signOutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(signOutIntent);
+                Toast.makeText(getContext(), "Logout Berhasil", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         pd.setMessage("Memuat data anda");
         pd.show();

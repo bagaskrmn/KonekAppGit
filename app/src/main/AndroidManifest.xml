@@ -39,13 +39,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.home.crops.adminandahlitanicrops.CropsDetail"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ui.dashboard.home.crops.adminandahlitanicrops.CommodityCropsActivity"
             android:exported="false">
             <meta-data

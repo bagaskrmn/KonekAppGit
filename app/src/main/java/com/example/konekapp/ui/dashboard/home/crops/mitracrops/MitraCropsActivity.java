@@ -32,13 +32,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class MitraCropsActivity extends AppCompatActivity {
     private Spinner SpinnerCommodity, SpinnerPeriod, SpinnerFertilizer;
-    private String[] commodity = {"Kentang", "Cabai"};
+    private String[] commodity = {"Pilih komoditas", "Kentang", "Cabai"};
     private String[] period = {"Pertama", "Kedua"};
     private String[] fertilizer = {"Kimia", "Organik"};
+
+    private ArrayList listCommodity = new ArrayList();
 
     private String Commodity, Period, Date, Qty, Location, Fertilizer, Result, Notes;
 
@@ -59,6 +63,9 @@ public class MitraCropsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mitra_crops);
+
+        listCommodity.addAll(Arrays.asList(commodity));
+
         SpinnerCommodity = findViewById(R.id.cropsCommodity);
         SpinnerPeriod = findViewById(R.id.cropsPeriod);
         SpinnerFertilizer = findViewById(R.id.cropsFertilizer);
@@ -108,7 +115,7 @@ public class MitraCropsActivity extends AppCompatActivity {
         pd.setCanceledOnTouchOutside(false);
 
 
-        ArrayAdapter<String> adapterCommodity=new ArrayAdapter<String>(MitraCropsActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, commodity);
+        ArrayAdapter<String> adapterCommodity= new SpinnerAdapter(this, listCommodity);
         adapterCommodity.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         SpinnerCommodity.setAdapter(adapterCommodity);
 
@@ -205,9 +212,12 @@ public class MitraCropsActivity extends AppCompatActivity {
         Result = CropsResult.getText().toString();
         Notes = CropsNotes.getText().toString();
 
-        //using model
-        CropsModel cropsModel = new CropsModel(currentUserId, currentUserName, Commodity, Period, Date,
-                Qty, Location, Fertilizer, Result, Notes, "0" );
+        if (SpinnerCommodity.getSelectedItemPosition()==0) {
+            Toast.makeText(this, "Data belum terisi", Toast.LENGTH_SHORT).show();
+        } else {
+            //using model
+            CropsModel cropsModel = new CropsModel(currentUserId, currentUserName, Commodity, Period, Date,
+                    Qty, Location, Fertilizer, Result, Notes, "0" );
 
             cropsRef.child(cropsId).setValue(cropsModel)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -222,6 +232,9 @@ public class MitraCropsActivity extends AppCompatActivity {
                             }
                         }
                     });
+        }
+
+
 
     }
 

@@ -39,12 +39,30 @@
             />
     </LinearLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-    </com.google.android.material.tabs.TabLayout>
+        android:orientation="vertical"
+        android:background="@drawable/bg_btn_home"
+        android:clickable="false"
+        android:gravity="center"
+        android:layout_marginBottom="12dp"
+        >
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:tabBackground="@drawable/tab_indicator"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/black"
+            app:tabIndicatorAnimationMode="elastic"
+            android:layout_margin="8dp"
+            app:tabIndicatorHeight="0dp"
+            >
+        </com.google.android.material.tabs.TabLayout>
+    </LinearLayout>
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"

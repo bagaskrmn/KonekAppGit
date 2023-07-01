@@ -236,7 +236,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     pd.dismiss();
-                                                    completeProfileNotification();
+                                                    askToJoinMitraNotification();
                                                     Toast.makeText(CompleteProfileActivity.this, "Profil selesai", Toast.LENGTH_SHORT).show();
                                                     Intent CompleteProfileDoneIntent = new Intent(CompleteProfileActivity.this, CompleteProfileSuccess.class);
                                                     CompleteProfileDoneIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -303,10 +303,10 @@ public class CompleteProfileActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 
-    private void completeProfileNotification() {
-        String title = "Selamat bergabung dengan Konek!";
-        String description = "Anda telah terdaftar sebagai pengguna aplikasi Konek";
-        String kind = "0";
+    private void askToJoinMitraNotification() {
+        String title = "Yuk Gabung sebagai Mitra Konek!";
+        String description = "Daftarkan diri anda sebagai Mitra Konek dan dapatkan manfaatnya!";
+        String kind = "1";
 
         NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl, false );
 

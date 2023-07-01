@@ -22,7 +22,7 @@
 
             <TextView
                 android:id="@+id/commodityCropsMitraList"
-                android:layout_width="80dp"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:fontFamily="@font/outfit_semi_bold"
@@ -32,12 +32,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 tools:text="Kentang" />
 
             <TextView
                 android:id="@+id/periodCropsMitraList"
-                android:layout_width="66dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:fontFamily="@font/outfit_semi_bold"
@@ -47,7 +47,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/commodityCropsMitraList"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 tools:text="Pertama" />
 
             <TextView
@@ -62,13 +62,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/periodCropsMitraList"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 tools:text="06-12-22" />
 
             <Button
                 android:id="@+id/btnDetailCropsMitraList"
-                android:layout_width="74dp"
-                android:layout_height="30dp"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
                 android:background="@drawable/bg_btn_crops"
                 android:backgroundTint="@null"
                 android:fontFamily="@font/outfit_semi_bold"
@@ -80,7 +80,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="8dp"/>
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".ui.dashboard.home.crops.adminandahlitanicrops.CropsDetail">
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -280,36 +279,37 @@
                 android:id="@+id/notesDetailCrops"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="22dp"
                 android:fontFamily="@font/outfit_medium"
                 android:textSize="14sp"
                 tools:text="Ini catatannya" />
 
         </LinearLayout>
 
-<!--        constraintForBtnAhliTani-->
+        <!--        constraintForBtnAhliTani-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintDetailAhliTani"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
             <Button
                 android:id="@+id/btnApproveDetailCrops"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/btn_bg"
                 android:fontFamily="@font/outfit_semi_bold"
                 android:text="Selesai"
                 android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toTopOf="@+id/btnChatDetailCrops"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="12dp"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
                 android:id="@+id/btnChatDetailCrops"
@@ -317,8 +317,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_btn_crops"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="12dp"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -340,17 +340,17 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        constraintForBtnAdmin-->
+        <!--        constraintForBtnAdmin-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintDetailAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-<!--            btnEditForAdmin-->
+            <!--            btnEditForAdmin-->
             <LinearLayout
                 android:id="@+id/btnEditDetailCrops"
                 android:layout_width="match_parent"
@@ -358,6 +358,7 @@
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/bg_btn_crops"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="12dp"
                 app:layout_constraintBottom_toTopOf="@+id/btnDeleteDetailCrops"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -378,13 +379,14 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-<!--            btnDeleteForAdmin-->
+            <!--            btnDeleteForAdmin-->
             <LinearLayout
                 android:id="@+id/btnDeleteDetailCrops"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_btn_logout"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -409,4 +411,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

@@ -54,7 +54,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
     private DatabaseReference rootRef, usersRef, notificationRef;
     private StorageReference idCardImagePath, idCardImagesRef, systemNotificationImageRef;
 
-    private String idCardImageUrl, currentUserId, phoneNumber, removedPhoneNumber, systemNotificationImageUrl;
+    private String idCardImageUrl, currentUserId, phoneNumber, removedPhoneNumber, systemNotificationImageUrl, notificationKey;
     private ProgressDialog pd;
     private Uri resultUri;
 
@@ -119,6 +119,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
         idCardImagesRef = FirebaseStorage.getInstance().getReference().child("idCardImages");
+        notificationKey = rootRef.push().getKey();
 
         //calendar
         calendar = Calendar.getInstance();
@@ -126,7 +127,6 @@ public class RegisterMitraActivity extends AppCompatActivity {
         date = dateFormat.format(calendar.getTime());
 
         notificationRef = rootRef.child("notification");
-//        notificationKey = rootRef.push().getKey();
         systemNotificationImageRef = FirebaseStorage.getInstance().getReference().child("systemNotificationImage").child("konek_icon.png");
 
         systemNotificationImageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -265,7 +265,6 @@ public class RegisterMitraActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 pd.dismiss();
                                                 if (task.isSuccessful()) {
-                                                    registerMitraNotification();
                                                     registerNotifToAdmin();
                                                     Toast.makeText(RegisterMitraActivity.this, "Registrasi selesai", Toast.LENGTH_SHORT).show();
                                                     Intent registerMitraSuccess = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
@@ -353,29 +352,12 @@ public class RegisterMitraActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 
-    private void registerMitraNotification() {
-        String title = "Registrasi Mitra Berhasil!";
-        String description = "Mohon tunggu. Admin akan meninjau data anda";
-        String kind = "1";
-        String notificationKey = rootRef.push().getKey();
-
-        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl,false);
-
-        notificationRef.child(notificationKey).setValue(notificationModel)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        //
-                    }
-                });
-
-    }
 
     private void registerNotifToAdmin() {
         String title = "Pendaftaran Mitra Baru";
         String description = "Terdapat mitra baru untuk ditinjau";
-        String kind = "4";
-        String notificationKey = rootRef.push().getKey();
+        String kind = "5";
+
 
         NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl,false);
 

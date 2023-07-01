@@ -7,13 +7,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -44,14 +58,121 @@ public class ApprovedCropsAdapter extends RecyclerView.Adapter<ApprovedCropsAdap
         holder.BtnDetailCropsMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, CropsDetail.class);
-                i.putExtra("CropsId", crops.cropsId);
-                i.putExtra("Commodity", crops.commodity);
-                context.startActivity(i);
-//                ((Activity)context).finish();
+                showBottomSheetDialog(crops);
+            }
+        });
+    }
+    private void showBottomSheetDialog(CropsModel crops) {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
+        bottomSheetDialog.setContentView(R.layout.detail_crops_bs);
+        DatabaseReference rootRef, usersRef, cropsRef;
+        String currentUserId;
+        FirebaseAuth firebaseAuth;
+        FirebaseUser currentUser;
+
+
+        TextView NameDetailCrops, PeriodDetailCrops, DateDetailCrops, QtyDetailCrops, LocationDetailCrops,
+                FertilizerDetailCrops, ResultDetailCrops, NotesDetailCrops;
+
+        ImageView DetailCropsClose;
+
+        LinearLayout BtnDeleteDetailCrops, BtnEditDetailCrops, BtnChatDetailCrops;
+        ConstraintLayout ConstraintDetailAdmin, ConstraintDetailAhliTani;
+        Button BtnApproveDetailCrops;
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        currentUserId = currentUser.getUid();
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        usersRef=rootRef.child("users");
+        cropsRef = rootRef.child("crops");
+
+
+        ConstraintDetailAdmin = bottomSheetDialog.findViewById(R.id.constraintDetailAdmin);
+        ConstraintDetailAhliTani =bottomSheetDialog.findViewById(R.id.constraintDetailAhliTani);
+
+        BtnDeleteDetailCrops = bottomSheetDialog.findViewById(R.id.btnDeleteDetailCrops);
+        BtnEditDetailCrops = bottomSheetDialog.findViewById(R.id.btnEditDetailCrops);
+        BtnApproveDetailCrops = bottomSheetDialog.findViewById(R.id.btnApproveDetailCrops);
+        BtnChatDetailCrops = bottomSheetDialog.findViewById(R.id.btnChatDetailCrops);
+
+        NameDetailCrops = bottomSheetDialog.findViewById(R.id.nameDetailCrops);
+        PeriodDetailCrops = bottomSheetDialog.findViewById(R.id.periodDetailCrops);
+        DateDetailCrops = bottomSheetDialog.findViewById(R.id.dateDetailCrops);
+        QtyDetailCrops =bottomSheetDialog.findViewById(R.id.qtyDetailCrops);
+        LocationDetailCrops =bottomSheetDialog.findViewById(R.id.locationDetailCrops);
+        FertilizerDetailCrops = bottomSheetDialog.findViewById(R.id.fertilizerDetailCrops);
+        ResultDetailCrops = bottomSheetDialog.findViewById(R.id.resultDetailCrops);
+        NotesDetailCrops = bottomSheetDialog.findViewById(R.id.notesDetailCrops);
+
+        DetailCropsClose = bottomSheetDialog.findViewById(R.id.detailCropsClose);
+
+        BtnApproveDetailCrops.setVisibility(View.GONE);
+
+        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String role=snapshot.child("role").getValue().toString();
+                if (role.equals("2")) {
+                    ConstraintDetailAdmin.setVisibility(View.GONE);
+                    ConstraintDetailAhliTani.setVisibility(View.VISIBLE);
+                } else {
+                    ConstraintDetailAdmin.setVisibility(View.VISIBLE);
+                    ConstraintDetailAhliTani.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
+        DetailCropsClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.cancel();
+            }
+        });
+
+
+        //edit by admin
+        BtnEditDetailCrops.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, AdminEditMitraCrops.class);
+                i.putExtra("CropsId", crops.cropsId);
+                context.startActivity(i);
+            }
+        });
+
+        //delete by admin
+        BtnDeleteDetailCrops.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cropsRef.child(crops.cropsId).removeValue()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    bottomSheetDialog.cancel();
+                                    Toast.makeText(context, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
+        NameDetailCrops.setText(crops.name);
+        PeriodDetailCrops.setText(crops.period);
+        DateDetailCrops.setText(crops.date);
+        QtyDetailCrops.setText(crops.qty);
+        LocationDetailCrops.setText(crops.location);
+        FertilizerDetailCrops.setText(crops.fertilizer);
+        ResultDetailCrops.setText(crops.result);
+        NotesDetailCrops.setText(crops.notes);
+
+        bottomSheetDialog.show();
     }
 
     @Override

@@ -257,7 +257,7 @@ public class AddArtikelActivity extends AppCompatActivity {
 
     private void notifArticle() {
         String title = "Artikel Baru";
-        String kind = "6";
+        String kind = "0";
 
         NotificationModel notificationModel = new NotificationModel(title, Title, null, kind, date, articleImageUrl, true );
 
