@@ -18,7 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
-import com.example.konekapp.ui.dashboard.account.setting.accountsetting.ProfileActivity;
+import com.example.konekapp.ui.dashboard.account.privacypolicy.PrivacyPolicyActivity;
+import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
@@ -154,6 +155,14 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showBottomSheetDialog();
+            }
+        });
+
+        BtnPrivacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), PrivacyPolicyActivity.class);
+                startActivity(i);
             }
         });
 

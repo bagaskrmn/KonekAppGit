@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.account.setting.accountsetting.editaccount;
+package com.example.konekapp.ui.dashboard.account.profile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

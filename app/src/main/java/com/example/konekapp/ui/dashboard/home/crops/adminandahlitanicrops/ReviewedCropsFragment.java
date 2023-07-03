@@ -95,7 +95,7 @@ public class ReviewedCropsFragment extends Fragment {
                     CropsModel crops= ds.getValue(CropsModel.class);
                     crops.setCropsId(ds.getKey());
 
-                    if (crops.getCommodity().equals(commodity) && crops.getStatus().equals("0")) {
+                    if (crops.getCommodity().equals(commodity) && crops.getStatus()==0) {
                         list.add(crops);
 
                         Log.d("DataReviewed", Arrays.toString(new ArrayList[]{list}));

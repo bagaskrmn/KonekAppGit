@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.account.setting.accountsetting;
+package com.example.konekapp.ui.dashboard.account.profile;
 
 
 import androidx.annotation.NonNull;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.ui.dashboard.account.AccountFragment;
-import com.example.konekapp.ui.dashboard.account.setting.accountsetting.editaccount.EditProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

@@ -89,7 +89,7 @@ public class ApprovedCropsFragment extends Fragment {
                     CropsModel crops= ds.getValue(CropsModel.class);
                     crops.setCropsId(ds.getKey());
 
-                    if (crops.getCommodity().equals(commodity) && crops.getStatus().equals("1")) {
+                    if (crops.getCommodity().equals(commodity) && crops.getStatus()==1) {
                         list.add(crops);
 
                         Log.d("DataApproved", Arrays.toString(new ArrayList[]{list}));

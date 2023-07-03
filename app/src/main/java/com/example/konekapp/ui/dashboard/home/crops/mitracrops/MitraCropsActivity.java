@@ -221,7 +221,7 @@ public class MitraCropsActivity extends AppCompatActivity {
         } else {
             //using model
             CropsModel cropsModel = new CropsModel(currentUserId, currentUserName, Commodity, Period, Date,
-                    Qty, Location, Fertilizer, Result, Notes, "0" );
+                    Qty, Location, Fertilizer, Result, Notes, 0 );
 
             cropsRef.child(cropsId).setValue(cropsModel)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

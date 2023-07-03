@@ -160,7 +160,7 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
             @Override
             public void onClick(View v) {
                 HashMap<String, Object> cropsMaps = new HashMap<>();
-                cropsMaps.put("status", "1");
+                cropsMaps.put("status", 1);
 
                 cropsRef.child(crops.cropsId).updateChildren(cropsMaps)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {

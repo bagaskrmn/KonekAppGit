@@ -2,12 +2,13 @@ package com.example.konekapp.model;
 
 public class CropsModel {
     public String userId, name, commodity, period, date, qty, location,
-    fertilizer, result, notes, status, cropsId;
+    fertilizer, result, notes, cropsId;
+    public int status;
 
     public CropsModel() {
     }
 
-    public CropsModel(String userId, String name, String commodity, String period, String date, String qty, String location, String fertilizer, String result, String notes, String status) {
+    public CropsModel(String userId, String name, String commodity, String period, String date, String qty, String location, String fertilizer, String result, String notes, int status) {
         this.userId = userId;
         this.name = name;
         this.commodity = commodity;
@@ -102,11 +103,11 @@ public class CropsModel {
         this.notes = notes;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

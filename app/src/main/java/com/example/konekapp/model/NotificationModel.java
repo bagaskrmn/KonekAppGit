@@ -2,7 +2,7 @@ package com.example.konekapp.model;
 
 public class NotificationModel {
     public String title, description, targetId, date, image, key;
-    int kind;
+    public int kind;
     public boolean isNotificationRead;
 
     public NotificationModel() {

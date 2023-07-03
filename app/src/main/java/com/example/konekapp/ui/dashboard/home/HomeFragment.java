@@ -30,7 +30,7 @@ import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.Commod
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsList;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.PreMitraCropsActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
-import com.example.konekapp.ui.dashboard.account.setting.accountsetting.ProfileActivity;
+import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
 import com.example.konekapp.ui.dashboard.home.plant.TanamanActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity;
 //import com.example.konekapp.databinding.FragmentHomeBinding;

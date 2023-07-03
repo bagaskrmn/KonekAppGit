@@ -52,7 +52,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.DateNotification.setText(notification.date.substring(0, 10));
 
         //notification for new article
-        if (notification.getKind()==0) {
+        if (notification.kind==0) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -63,7 +63,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         }
 
         //notification for register to mitra
-        if (notification.getKind()==1) {
+        if (notification.kind==1) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,7 +73,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        if (notification.getKind()==2) {
+        if (notification.kind==2) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,7 +83,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        if (notification.getKind()==3) {
+        if (notification.kind==3) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -93,7 +93,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        if (notification.getKind()==4) {
+        if (notification.kind==4) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,7 +103,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        if (notification.getKind()==5) {
+        if (notification.kind==5) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
