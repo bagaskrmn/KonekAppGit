@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ArtikelActivity extends AppCompatActivity {
 
@@ -155,6 +156,8 @@ public class ArtikelActivity extends AppCompatActivity {
                 list.add(artikel);
             }
             adapter.notifyDataSetChanged();
+
+            Collections.sort(list, (obj1, obj2) -> obj2.getDate().compareTo(obj1.getDate()));
         }
 
         @Override

@@ -17,8 +17,7 @@ import com.example.konekapp.ui.dashboard.account.AccountFragment;
 import com.example.konekapp.ui.dashboard.home.HomeFragment;
 import com.example.konekapp.ui.dashboard.home.waitingreview.WaitingReviewActivity;
 import com.example.konekapp.ui.dashboard.notification.NotificationFragment;
-import com.example.konekapp.ui.toregistmitra.ToRegistMitraActivity;
-import com.example.konekapp.ui.toregistmitra.UserChatToRegistMitraActivity;
+import com.example.konekapp.ui.toregistmitra.UserChatToRegistMitraFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment = new HomeFragment();
     NotificationFragment notificationFragment = new NotificationFragment();
     AccountFragment accountFragment = new AccountFragment();
+    UserChatToRegistMitraFragment userChatToRegistMitraFragment= new UserChatToRegistMitraFragment();
 
     ConsultationToMitraFragment consultationToMitraFragment = new ConsultationToMitraFragment();
     ConsultationToAhliTaniFragment consultationToAhliTaniFragment = new ConsultationToAhliTaniFragment();
@@ -93,11 +93,10 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToMitraFragment).commit();
                         }
                         else if (role.equals("0")) {
-                            Intent i = new Intent(MainActivity.this, UserChatToRegistMitraActivity.class);
-                            startActivity(i);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, userChatToRegistMitraFragment).commit();
                         }
                         else if (role.equals("4")) {
-                            Intent i =new Intent(MainActivity.this, WaitingReviewActivity.class);
+                            Intent i = new Intent(MainActivity.this, WaitingReviewActivity.class);
                             startActivity(i);
                         }
                         return true;

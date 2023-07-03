@@ -184,7 +184,7 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
                 String targetId = crops.userId;
                 String title = "Data Monitoring Disetujui";
                 String description = "Data monitoring hasil panen anda telah disetujui";
-                String kind = "4";
+                int kind = 4;
 
                 StorageReference systemNotificationImageRef;
                 systemNotificationImageRef = FirebaseStorage.getInstance().getReference().child("systemNotificationImage").child("konek_icon.png");

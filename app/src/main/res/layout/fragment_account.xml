@@ -11,9 +11,11 @@
     >
 
     <!--    Akun n setting-->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp"
         >
         <TextView
             android:id="@+id/textView"
@@ -23,11 +25,15 @@
             android:text="Akun"
             android:textColor="@color/neutral_dark3"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginBottom="16dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/neutral"
+            />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,7 +49,7 @@
 
             <!--    ProfileCard-->
             <LinearLayout
-                android:layout_marginTop="20dp"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -111,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:background="@drawable/bg_account_btn"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="30dp"
                 android:clickable="true"
                 android:focusable="true"
                 >
@@ -388,7 +394,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_btn_setting"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="40dp"
                 android:clickable="true"
                 android:focusable="true"
                 >
@@ -426,7 +432,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <LinearLayout
                 android:id="@+id/btnLogout"
                 android:layout_alignParentBottom="true"
@@ -435,7 +440,7 @@
                 android:background="@drawable/bg_btn_logout"
                 android:gravity="center"
                 android:padding="8dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="12dp"
                 >
 
                 <ImageView

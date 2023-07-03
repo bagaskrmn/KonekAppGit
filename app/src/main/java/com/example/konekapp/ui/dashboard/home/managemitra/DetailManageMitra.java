@@ -230,7 +230,7 @@ public class DetailManageMitra extends AppCompatActivity {
     private void declineNotification() {
         String title = "Mohon Maaf";
         String description ="Pengajuan mitra anda ditolak";
-        String kind = "3";
+        int kind = 3;
 
         NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl,false);
 
@@ -246,7 +246,7 @@ public class DetailManageMitra extends AppCompatActivity {
     private void approvedNotification() {
         String title = "Selamat";
         String description ="Pengajuan mitra anda disetujui. Anda telah tergabung sebagai Petani Mitra";
-        String kind = "2";
+        int kind = 2;
 
         NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl,false);
 

@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -121,7 +122,7 @@ public class MitraCropsList extends AppCompatActivity {
         pd.setMessage("Memuat data anda");
         pd.show();
 
-        usersRef.child(currentUserId).addListenerForSingleValueEvent(userListener);
+        usersRef.child(currentUserId).addValueEventListener(userListener);
 
         cropsRef.addListenerForSingleValueEvent(cropsListener);
 
@@ -164,6 +165,8 @@ public class MitraCropsList extends AppCompatActivity {
                     list.add(crops);
                 }
             }
+
+//            Collections.sort(list, (obj1, obj2) -> obj2.getDate().compareTo(obj1.getDate()));
         }
 
         @Override

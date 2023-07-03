@@ -1,13 +1,14 @@
 package com.example.konekapp.model;
 
 public class NotificationModel {
-    public String title, description, targetId, kind, date, image, key;
+    public String title, description, targetId, date, image, key;
+    int kind;
     public boolean isNotificationRead;
 
     public NotificationModel() {
     }
 
-    public NotificationModel(String title, String description, String targetId, String kind, String date, String image,  boolean isNotificationRead) {
+    public NotificationModel(String title, String description, String targetId, int kind, String date, String image, boolean isNotificationRead) {
         this.title = title;
         this.description = description;
         this.targetId = targetId;
@@ -41,11 +42,11 @@ public class NotificationModel {
         this.targetId = targetId;
     }
 
-    public String getKind() {
+    public int getKind() {
         return kind;
     }
 
-    public void setKind(String kind) {
+    public void setKind(int kind) {
         this.kind = kind;
     }
 

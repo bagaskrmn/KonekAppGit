@@ -41,7 +41,7 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.MyViewHo
         holder.TitleArtikel.setText(artikel.title);
         Picasso.get().load(artikel.image).into(holder.ImageArtikel);
         holder.SourceArtikel.setText(artikel.source);
-        holder.DateArtikel.setText(artikel.date);
+        holder.DateArtikel.setText(artikel.date.substring(0,10));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,20 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
-import com.example.konekapp.ui.dashboard.account.setting.accountsetting.MitraProfileActivity;
 import com.example.konekapp.ui.dashboard.account.setting.accountsetting.ProfileActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
-import com.example.konekapp.ui.dashboard.account.setting.SettingActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity;
 import com.example.konekapp.ui.login.LoginPhoneActivity;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +49,7 @@ public class AccountFragment extends Fragment {
     private DatabaseReference rootRef, usersRef;
     private String currentUserId, role;
     private ProgressDialog pd;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -118,6 +117,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Add konsultasiActivity here
+                //ganti ke fragment
                 Intent intentKonsultasi = new Intent(requireContext(), ConsultationToAhliTaniActivity.class);
                 startActivity(intentKonsultasi);
             }
@@ -126,6 +126,7 @@ public class AccountFragment extends Fragment {
         ConstraintChatMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //ganti ke fragment
                 Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
                 startActivity(intent);
             }
@@ -143,20 +144,37 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (role!=null) {
-                    if (role.equals("1")) {
-                        Intent mitraProfileIntent = new Intent(getContext(), MitraProfileActivity.class);
-                        startActivity(mitraProfileIntent);
-                    }
-
-                    else {
-                        Intent userProfileIntent = new Intent(getContext(), ProfileActivity.class);
-                        startActivity(userProfileIntent);
-                    }
+                    Intent userProfileIntent = new Intent(getContext(), ProfileActivity.class);
+                    startActivity(userProfileIntent);
                 }
             }
         });
 
+        BtnKelolaNotifikasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showBottomSheetDialog();
+            }
+        });
+
     }
+
+    private void showBottomSheetDialog() {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
+        bottomSheetDialog.setContentView(R.layout.setting_notification_bs);
+
+        Button BtnCloseBs = bottomSheetDialog.findViewById(R.id.btnCloseBs);
+
+        BtnCloseBs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.cancel();
+            }
+        });
+
+        bottomSheetDialog.show();
+    }
+
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -169,7 +187,7 @@ public class AccountFragment extends Fragment {
             role = snapshot.child("role").getValue().toString();
 
             //set to field
-            DateJoinedTv.setText("Bergabung pada " +retrieveDate);
+            DateJoinedTv.setText("Bergabung pada " +retrieveDate.substring(0,10));
             NameAccountTv.setText(retrieveName);
             Picasso.get().load(retrieveImage).into(AccImageProfile);
 

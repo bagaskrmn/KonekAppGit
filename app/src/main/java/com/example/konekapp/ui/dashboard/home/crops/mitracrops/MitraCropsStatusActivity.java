@@ -111,9 +111,9 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
             }
         });
 
-        usersRef.child(currentUserId).addListenerForSingleValueEvent(listener1);
+        usersRef.child(currentUserId).addValueEventListener(listener1);
 
-        cropsRef.child(cropsId).addListenerForSingleValueEvent(cropsStatusListener);
+        cropsRef.child(cropsId).addValueEventListener(cropsStatusListener);
 
 //        cropsRef.addValueEventListener(listener);
 

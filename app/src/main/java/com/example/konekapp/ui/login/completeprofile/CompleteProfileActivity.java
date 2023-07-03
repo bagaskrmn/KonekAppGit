@@ -60,7 +60,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
     //date
     private Calendar calendar;
-    private SimpleDateFormat dateFormat;
+    private SimpleDateFormat dateFormat, dateNotifFormat;
     private String date;
 
     private Uri resultUri;
@@ -84,7 +84,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         pd.setTitle("Please wait...");
         pd.setCanceledOnTouchOutside(false);
 
-        //calendar
+        //date for userJoin
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         date = dateFormat.format(calendar.getTime());
@@ -306,7 +306,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
     private void askToJoinMitraNotification() {
         String title = "Yuk Gabung sebagai Mitra Konek!";
         String description = "Daftarkan diri anda sebagai Mitra Konek dan dapatkan manfaatnya!";
-        String kind = "1";
+        int kind = 1;
 
         NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl, false );
 

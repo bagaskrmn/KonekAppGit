@@ -18,7 +18,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.toregistmitra.UserChatToRegistMitraActivity"
+            android:name=".ui.dashboard.home.registermitra.RegisterMitraDeclinedActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.dashboard.home.registermitra.RegisterMitraApprovedActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -214,30 +221,6 @@
         </activity>
         <activity
             android:name=".ui.dashboard.home.article.ArtikelActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.dashboard.account.setting.accountsetting.editaccount.EditMitraProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.dashboard.account.setting.accountsetting.MitraProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.dashboard.account.setting.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

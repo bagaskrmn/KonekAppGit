@@ -28,12 +28,9 @@ import com.example.konekapp.model.ArtikelModel;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.CommodityCropsActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsList;
-import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsStatusActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.PreMitraCropsActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
-import com.example.konekapp.ui.dashboard.account.setting.accountsetting.MitraProfileActivity;
 import com.example.konekapp.ui.dashboard.account.setting.accountsetting.ProfileActivity;
-import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
 import com.example.konekapp.ui.dashboard.home.plant.TanamanActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity;
 //import com.example.konekapp.databinding.FragmentHomeBinding;
@@ -50,6 +47,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -131,7 +129,7 @@ public class HomeFragment extends Fragment {
         BtnRegisterMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerMitraIntent = new Intent(getActivity(), RegisterMitraActivity.class);
+                Intent registerMitraIntent = new Intent(getActivity(), ToRegistMitraActivity.class);
                 startActivity(registerMitraIntent);
             }
         });
@@ -252,8 +250,8 @@ public class HomeFragment extends Fragment {
 
                 //if pressed, go to profile
                 if (role.equals("1")) {
-                    Intent mitraProfile = new Intent(getActivity(), MitraProfileActivity.class);
-                    startActivity(mitraProfile);
+//                    Intent mitraProfile = new Intent(getActivity(), MitraProfileActivity.class);
+//                    startActivity(mitraProfile);
                 }
                 else {
                     Intent profileIntent = new Intent(getActivity(), ProfileActivity.class);
@@ -337,12 +335,17 @@ public class HomeFragment extends Fragment {
     ValueEventListener listener1 = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
+            list.clear();
+
             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                 ArtikelModel artikel = dataSnapshot.getValue(ArtikelModel.class);
                 artikel.setKey(dataSnapshot.getKey());
                 list.add(artikel);
             }
             adapter.notifyDataSetChanged();
+
+            //sorting list
+            Collections.sort(list, (obj1, obj2) -> obj2.getDate().compareTo(obj1.getDate()));
         }
         @Override
         public void onCancelled(@NonNull DatabaseError error) {

@@ -29,7 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView ProfName, ProfPhoneNumber, ProfAddress, ProfDetailAddress;
+    private TextView ProfName, ProfPhoneNumber, ProfAddress, ProfDetailAddress, ProfNameTop, ProfDateJoined;
     private ImageView ProfBackAction;
     private Button BtnUpdateProfile;
     private CircleImageView ProfImage;
@@ -56,6 +56,8 @@ public class ProfileActivity extends AppCompatActivity {
         ProfDetailAddress = findViewById(R.id.profDetailAddress);
         ProfPhoneNumber = findViewById(R.id.profPhoneNumber);
         BtnUpdateProfile = findViewById(R.id.btnUpdateProfile);
+        ProfNameTop = findViewById(R.id.profNameTop);
+        ProfDateJoined = findViewById(R.id.profDateJoined);
 
         //init progress dialog
         pd = new ProgressDialog(this);
@@ -109,16 +111,19 @@ public class ProfileActivity extends AppCompatActivity {
                 String retrieveName = snapshot.child("name").getValue().toString();
                 String retrieveAddress = snapshot.child("domicile").getValue().toString();
                 String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
+                String retrieveDateJoined = snapshot.child("dateJoined").getValue().toString();
 
                 //profile image
                 String retrieveImage = snapshot.child("image").getValue().toString();
 
                 ProfName.setText(retrieveName);
+                ProfNameTop.setText(retrieveName);
                 ProfPhoneNumber.setText(removedPhoneNumber);
                 ProfAddress.setText(retrieveAddress);
                 ProfDetailAddress.setText(retrieveDetailAddress);
                 //profile image
                 Picasso.get().load(retrieveImage).into(ProfImage);
+                ProfDateJoined.setText("Bergabung sejak "+retrieveDateJoined.substring(0,10));
 
                 pd.dismiss();
             }

@@ -40,7 +40,7 @@ public class FullArtikelAdapter extends RecyclerView.Adapter<FullArtikelAdapter.
         Picasso.get().load(artikel.image).into(holder.FullImageArtikel);
         holder.FullTitleArtikel.setText(artikel.title);
         holder.FullSourceArtikel.setText(artikel.source);
-        holder.FullDateArtikel.setText(artikel.date);
+        holder.FullDateArtikel.setText(artikel.date.substring(0,10));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.example.konekapp.ui.dashboard.notification;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.NotificationModel;
+import com.example.konekapp.ui.dashboard.home.article.ArtikelActivity;
 import com.example.konekapp.ui.dashboard.home.article.FullArtikelAdapter;
+import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsList;
+import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
+import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraApprovedActivity;
+import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraDeclinedActivity;
+import com.example.konekapp.ui.toregistmitra.ToRegistMitraActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,13 +51,67 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.DescriptionNotification.setText(notification.description);
         holder.DateNotification.setText(notification.date.substring(0, 10));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //if item clicked
-            }
-        });
+        //notification for new article
+        if (notification.getKind()==0) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, ArtikelActivity.class);
+                    context.startActivity(i);
+                }
+            });
+        }
 
+        //notification for register to mitra
+        if (notification.getKind()==1) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, ToRegistMitraActivity.class);
+                    context.startActivity(i);
+                }
+            });
+        }
+
+        if (notification.getKind()==2) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, RegisterMitraApprovedActivity.class);
+                    context.startActivity(i);
+                }
+            });
+        }
+
+        if (notification.getKind()==3) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, RegisterMitraDeclinedActivity.class);
+                    context.startActivity(i);
+                }
+            });
+        }
+
+        if (notification.getKind()==4) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, MitraCropsList.class);
+                    context.startActivity(i);
+                }
+            });
+        }
+
+        if (notification.getKind()==5) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, ManageMitra.class);
+                    context.startActivity(i);
+                }
+            });
+        }
     }
 
     @Override

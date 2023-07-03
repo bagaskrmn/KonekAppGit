@@ -199,7 +199,7 @@ public class EditMitraCropsActivity extends AppCompatActivity {
         //getData
         pd.setMessage("Memuat Data Monitoring");
         pd.show();
-        cropsRef.addListenerForSingleValueEvent(listener);
+        cropsRef.addValueEventListener(listener);
 
         //uploadData
         BtnEditMitraCropsDone.setOnClickListener(new View.OnClickListener() {

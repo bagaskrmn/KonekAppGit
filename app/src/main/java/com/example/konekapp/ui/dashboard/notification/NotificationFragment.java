@@ -41,7 +41,7 @@ public class NotificationFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private TextView TvNoNotification;
-    private String role;
+    private String role, dateNTimeUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,18 +67,7 @@ public class NotificationFragment extends Fragment {
         adapter = new NotificationAdapter(getContext(), list);
         RecyclerViewNotification.setAdapter(adapter);
 
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                role = snapshot.child("role").getValue().toString();
-
-                notificationRef.addValueEventListener(notifListener);
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        usersRef.child(currentUserId).addValueEventListener(userListener);
 
         Log.d("Notification", "role: "+role);
 
@@ -93,23 +82,27 @@ public class NotificationFragment extends Fragment {
                 NotificationModel notification = ds.getValue(NotificationModel.class);
                 notification.setKey(ds.getKey());
                 //ini fungsinya buat apa
+
+                //userDate, notifArticleDate
                 try {
-                    if (notification.getKind().equals("0")) {
+//
+
+                    if (notification.getKind() ==0 && dateNTimeUser.compareTo(notification.getDate()) >0 ) {
                         list.add(notification);
                     }
-                    if (notification.getTargetId().equals(currentUserId) && notification.getKind().equals("1")) {
+                    if (role.equals("0") && notification.getTargetId().equals(currentUserId) && notification.getKind()==1) {
                         list.add(notification);
                     }
-                    if (notification.getTargetId().equals(currentUserId) && notification.getKind().equals("2")) {
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind()==2) {
                         list.add(notification);
                     }
-                    if (notification.getTargetId().equals(currentUserId) && notification.getKind().equals("3")) {
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind()==3) {
                         list.add(notification);
                     }
-                    if (notification.getTargetId().equals(currentUserId) && notification.getKind().equals("4")) {
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind()==4) {
                         list.add(notification);
                     }
-                    if (role.equals("3") && notification.getKind().equals("5")){
+                    if (role.equals("3") && notification.getKind()==5){
                         list.add(notification);
                     }
                 } catch (Exception e) {
@@ -135,4 +128,27 @@ public class NotificationFragment extends Fragment {
 
         }
     };
+
+    ValueEventListener userListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            role= snapshot.child("role").getValue().toString();
+            dateNTimeUser=snapshot.child("dateJoined").getValue().toString();
+
+
+            notificationRef.addValueEventListener(notifListener);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        usersRef.child(currentUserId).removeEventListener(userListener);
+        notificationRef.removeEventListener(notifListener);
+    }
 }

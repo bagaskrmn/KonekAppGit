@@ -356,7 +356,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
     private void registerNotifToAdmin() {
         String title = "Pendaftaran Mitra Baru";
         String description = "Terdapat mitra baru untuk ditinjau";
-        String kind = "5";
+        int kind = 5;
 
 
         NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl,false);

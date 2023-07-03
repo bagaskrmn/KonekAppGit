@@ -58,7 +58,7 @@
         android:background="@drawable/btn_bg"
         app:backgroundTint="@null"
         android:backgroundTint="@null"
-        android:text="Kembali ke Halaman Utama"
+        android:text="Lanjutkan"
         android:fontFamily="@font/outfit_semi_bold"
         android:textAllCaps="false"
         />

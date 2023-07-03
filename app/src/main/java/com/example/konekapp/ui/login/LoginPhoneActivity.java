@@ -136,10 +136,10 @@ public class LoginPhoneActivity extends AppCompatActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().equals("")) {
-                    binding.btnVerifyOTP.setEnabled(false);
-                } else {
+                if (s.toString().length() ==6) {
                     binding.btnVerifyOTP.setEnabled(true);
+                } else {
+                    binding.btnVerifyOTP.setEnabled(false);
                 }
             }
             @Override
@@ -327,7 +327,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 DatabaseReference currentUserRef = usersRef.child(currentUserId);
-                                currentUserRef.addValueEventListener(new ValueEventListener() {
+                                currentUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if (snapshot.hasChild("name")) {
