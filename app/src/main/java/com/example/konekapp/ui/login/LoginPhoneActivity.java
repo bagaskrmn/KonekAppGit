@@ -327,7 +327,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 DatabaseReference currentUserRef = usersRef.child(currentUserId);
-                                currentUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                currentUserRef.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if (snapshot.hasChild("name")) {
@@ -347,7 +347,7 @@ public class LoginPhoneActivity extends AppCompatActivity {
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError error) {
                                         pd.dismiss();
-                                        Toast.makeText(LoginPhoneActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(LoginPhoneActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }

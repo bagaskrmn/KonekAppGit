@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -56,27 +57,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 if (currentUser!=null) {
 
                     String currentUserId = currentUser.getUid();
-                    usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.hasChild("name")) {
-                                Intent registeredUserIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                                usersRef.removeEventListener(this);
-                                registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(registeredUserIntent);
-                            } else {
-
-                                Intent newUserIntent = new Intent(SplashScreenActivity.this, CompleteProfileActivity.class);
-                                usersRef.removeEventListener(this);
-                                newUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(newUserIntent);
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(SplashScreenActivity.this, "Error :" + error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    usersRef.child(currentUserId).addValueEventListener(checkUser);
                 }
                 else {
                     Intent toLogin = new Intent(SplashScreenActivity.this, LoginPhoneActivity.class);
@@ -86,6 +67,28 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         },1500);
     }
+
+    ValueEventListener checkUser = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            if (snapshot.hasChild("name")) {
+                Intent registeredUserIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                usersRef.removeEventListener(this);
+                registeredUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(registeredUserIntent);
+            } else {
+
+                Intent newUserIntent = new Intent(SplashScreenActivity.this, CompleteProfileActivity.class);
+                usersRef.removeEventListener(this);
+                newUserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(newUserIntent);
+            }
+        }
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+//            Toast.makeText(SplashScreenActivity.this, "Error :" + error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
