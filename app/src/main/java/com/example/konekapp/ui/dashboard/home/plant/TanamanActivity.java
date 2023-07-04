@@ -8,8 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.ui.dashboard.home.plant.addplant.AddTanamanActivity;
@@ -23,13 +28,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TanamanActivity extends AppCompatActivity {
     private ImageView TanamanBackAction, BtnAddTanaman;
     private ProgressDialog pd;
     private DatabaseReference plantRef, rootRef, usersRef;
+    private EditText SearchTanaman;
 
-    private ArrayList<TanamanModel> list;
+    private List<TanamanModel> list;
     private TanamanAdapter adapter;
     private RecyclerView recyclerView;
 
@@ -38,6 +45,7 @@ public class TanamanActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private String currentUserId, role;
+    private TextView TanamanNoData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +63,17 @@ public class TanamanActivity extends AppCompatActivity {
         });
 
         TanamanBackAction = findViewById(R.id.tanamanBackAction);
-
+        SearchTanaman = findViewById(R.id.searchTanaman);
         SpaceViewTanaman = findViewById(R.id.spaceViewTanaman);
         BtnAddTanaman = findViewById(R.id.btnAddTanaman);
+        TanamanNoData = findViewById(R.id.tanamanNoData);
         rootRef = FirebaseDatabase.getInstance().getReference();
         plantRef = rootRef.child("plant");
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.tanamanRecyclerView);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TanamanAdapter(this, list);
+        adapter = new TanamanAdapter(this);
         recyclerView.setAdapter(adapter);
 
         //users
@@ -80,6 +90,10 @@ public class TanamanActivity extends AppCompatActivity {
         pd.setMessage("Memuat data");
         pd.show();
 
+        //getAllData
+        plantRef.addValueEventListener(allPlantListener);
+
+        //getRole
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -102,22 +116,19 @@ public class TanamanActivity extends AppCompatActivity {
         });
 
 
-        plantRef.addValueEventListener(new ValueEventListener() {
+        SearchTanaman.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                pd.dismiss();
-                list.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    TanamanModel tanaman = dataSnapshot.getValue(TanamanModel.class);
-                    tanaman.setKey(dataSnapshot.getKey());
-                    list.add(tanaman);
-                }
-                adapter.notifyDataSetChanged();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterList(s.toString());
+            }
 
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 
@@ -129,7 +140,6 @@ public class TanamanActivity extends AppCompatActivity {
             }
         });
 
-
         TanamanBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,11 +148,61 @@ public class TanamanActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    //getAllData
+    ValueEventListener allPlantListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            pd.dismiss();
+            list.clear();
+            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                TanamanModel tanaman = dataSnapshot.getValue(TanamanModel.class);
+                tanaman.setKey(dataSnapshot.getKey());
+                list.add(tanaman);
+            }
+
+
+            if (list.size() > 0) {
+                TanamanNoData.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            } else {
+                TanamanNoData.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            }
+            adapter.setListTanaman(list);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+
+    public void filterList(String text){
+        List<TanamanModel> filteredListTanaman = new ArrayList<>();
+        filteredListTanaman.clear();
+        if (text.isEmpty()) {
+            filteredListTanaman.addAll(list);
+        } else {
+            for (TanamanModel tanamanModel : list) {
+                if (tanamanModel.name.toLowerCase().contains(text.toLowerCase())) {
+                    filteredListTanaman.add(tanamanModel);
+                }
+            }
+        }
+
+        if (filteredListTanaman.size() > 0) {
+            TanamanNoData.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            TanamanNoData.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+
+        adapter.setListTanaman(filteredListTanaman);
 
     }
+
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

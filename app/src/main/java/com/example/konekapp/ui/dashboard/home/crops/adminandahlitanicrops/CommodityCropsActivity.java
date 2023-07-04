@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CommodityCropsModel;
@@ -23,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CommodityCropsActivity extends AppCompatActivity {
 
@@ -32,7 +37,7 @@ public class CommodityCropsActivity extends AppCompatActivity {
     private View decorView;
 
     private DatabaseReference commodityRef, rootRef, usersRef;
-    private ArrayList<CommodityCropsModel> list;
+    private List<CommodityCropsModel> list;
     private CommodityCropsAdapter adapter;
     private RecyclerView recyclerView;
 
@@ -40,10 +45,16 @@ public class CommodityCropsActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private String currentUserId, role;
 
+    private EditText SearchCommodity;
+    private TextView CommodityNoData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commodity_crops);
+
+        CommodityNoData = findViewById(R.id.commodityNoData);
+        SearchCommodity = findViewById(R.id.searchCommodity);
 
         //backAction
         CommodityCropsBackAction = findViewById(R.id.commodityCropsBackAction);
@@ -81,8 +92,8 @@ public class CommodityCropsActivity extends AppCompatActivity {
         pd.setTitle("Please Wait...");
         pd.setCanceledOnTouchOutside(false);
 
-        pd.setMessage("Memuat data");
-        pd.show();
+//        pd.setMessage("Memuat data");
+//        pd.show();
 
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.commodityCropsRv);
@@ -92,6 +103,23 @@ public class CommodityCropsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         commodityRef.addValueEventListener(listenerData);
+
+        SearchCommodity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterListCommodity(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     ValueEventListener listenerData = new ValueEventListener() {
@@ -102,9 +130,15 @@ public class CommodityCropsActivity extends AppCompatActivity {
                 CommodityCropsModel commodity = dataSnapshot.getValue(CommodityCropsModel.class);
                 commodity.setKey(dataSnapshot.getKey());
                 list.add(commodity);
-                pd.dismiss();
-                Log.d("commodityCropsActvty", Arrays.toString(new ArrayList[]{list}));
+//                pd.dismiss();
+            }
 
+            if (list.size() > 0) {
+                CommodityNoData.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            } else {
+                CommodityNoData.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             }
             adapter.setListCommodity(list);
         }
@@ -114,6 +148,30 @@ public class CommodityCropsActivity extends AppCompatActivity {
 
         }
     };
+
+    public void filterListCommodity(String text){
+        List<CommodityCropsModel> filteredListCommodity = new ArrayList<>();
+        filteredListCommodity.clear();
+        if (text.isEmpty()) {
+            filteredListCommodity.addAll(list);
+        } else {
+            for (CommodityCropsModel cropsModel : list) {
+                if (cropsModel.name.toLowerCase().contains(text.toLowerCase())) {
+                    filteredListCommodity.add(cropsModel);
+                }
+            }
+        }
+
+        if (filteredListCommodity.size() > 0) {
+            CommodityNoData.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            CommodityNoData.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+
+        adapter.setListCommodity(filteredListCommodity);
+    }
 
     //decorView
     @Override

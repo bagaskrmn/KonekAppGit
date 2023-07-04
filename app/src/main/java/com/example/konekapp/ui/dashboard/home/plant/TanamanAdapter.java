@@ -16,14 +16,20 @@ import com.example.konekapp.model.TanamanModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TanamanAdapter extends RecyclerView.Adapter<TanamanAdapter.MyViewHolder> {
     Context context;
-    ArrayList<TanamanModel> list;
+    List<TanamanModel> filteredTanaman = new ArrayList<>();
 
-    public TanamanAdapter(Context context, ArrayList<TanamanModel> list) {
+    public TanamanAdapter(Context context) {
         this.context = context;
-        this.list = list;
+//        this.list = list;
+    }
+
+    public void setListTanaman(List<TanamanModel> listTanaman) {
+        this.filteredTanaman = listTanaman;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -35,7 +41,7 @@ public class TanamanAdapter extends RecyclerView.Adapter<TanamanAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull TanamanAdapter.MyViewHolder holder, int position) {
-        TanamanModel tanaman = list.get(position);
+        TanamanModel tanaman = filteredTanaman.get(position);
 
         holder.NameTanamanTv.setText(tanaman.name);
         Picasso.get().load(tanaman.image).into(holder.ImageTanamanImg);
@@ -52,7 +58,7 @@ public class TanamanAdapter extends RecyclerView.Adapter<TanamanAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return filteredTanaman.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

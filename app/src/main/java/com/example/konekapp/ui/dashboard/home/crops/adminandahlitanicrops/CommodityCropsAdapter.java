@@ -21,7 +21,7 @@ import java.util.List;
 
 public class CommodityCropsAdapter extends RecyclerView.Adapter<CommodityCropsAdapter.MyViewHolder> {
     Context context;
-    List<CommodityCropsModel> list = new ArrayList<>();
+    List<CommodityCropsModel> filteredCommodity = new ArrayList<>();
 //    String role;
 
     public CommodityCropsAdapter(Context context) {
@@ -30,7 +30,7 @@ public class CommodityCropsAdapter extends RecyclerView.Adapter<CommodityCropsAd
 
 
     public void setListCommodity(List<CommodityCropsModel> listCommodity) {
-        this.list = listCommodity;
+        this.filteredCommodity = listCommodity;
         Log.d("CommodityCrops", "listCommodity: "+ listCommodity.size());
         notifyDataSetChanged();
     }
@@ -45,7 +45,7 @@ public class CommodityCropsAdapter extends RecyclerView.Adapter<CommodityCropsAd
 
     @Override
     public void onBindViewHolder(@NonNull CommodityCropsAdapter.MyViewHolder holder, int position) {
-        CommodityCropsModel commodity = list.get(position);
+        CommodityCropsModel commodity = filteredCommodity.get(position);
 
         holder.NameCommodityCrops.setText(commodity.name);
         Picasso.get().load(commodity.image).into(holder.ImageCommodityCrops);
@@ -63,7 +63,7 @@ public class CommodityCropsAdapter extends RecyclerView.Adapter<CommodityCropsAd
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return filteredCommodity.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
