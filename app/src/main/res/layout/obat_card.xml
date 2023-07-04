@@ -21,18 +21,35 @@
             android:layout_marginBottom="16dp"
             />
 
-        <TextView
-            android:id="@+id/detailObatName"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:ellipsize="end"
-            tools:text="Ini Name Artikeljiefjesifjdsjfnsdjkfnrnfrnfrsrfnfnrrffnrfnrfn fnrfurnfrufnrufn"
-            android:fontFamily="@font/outfit_medium"
-            android:textColor="@color/neutral_dark3"
-            android:textSize="16sp"
             android:layout_marginBottom="16dp"
-            />
+            >
+            <TextView
+                android:id="@+id/detailObatName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/outfit_medium"
+                android:maxLines="2"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="8dp"
+                tools:text="Ini Name" />
+
+            <ImageView
+                android:id="@+id/btnDeleteObat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/trash"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <TextView

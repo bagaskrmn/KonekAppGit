@@ -27,7 +27,7 @@ import com.example.konekapp.ui.dashboard.home.article.ArtikelActivity;
 import com.example.konekapp.model.ArtikelModel;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.CommodityCropsActivity;
-import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsList;
+import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsListActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.PreMitraCropsActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
@@ -216,7 +216,7 @@ public class HomeFragment extends Fragment {
                                 }
                             }
                             if (cropsSize>0) {
-                                Intent i = new Intent(getActivity(),MitraCropsList.class);
+                                Intent i = new Intent(getActivity(), MitraCropsListActivity.class);
                                 startActivity(i);
                             } else {
                                 Intent i = new Intent(getActivity(), PreMitraCropsActivity.class);

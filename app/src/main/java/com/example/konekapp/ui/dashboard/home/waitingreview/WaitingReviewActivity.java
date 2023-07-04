@@ -35,10 +35,9 @@ public class WaitingReviewActivity extends AppCompatActivity {
         NextWaitingReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WaitingReviewActivity.super.onBackPressed();
-//                Intent nextWaitingReviewIntent = new Intent(WaitingReviewActivity.this, MainActivity.class);
-//                nextWaitingReviewIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(nextWaitingReviewIntent);
+                Intent nextWaitingReviewIntent = new Intent(WaitingReviewActivity.this, MainActivity.class);
+                nextWaitingReviewIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(nextWaitingReviewIntent);
             }
         });
     }

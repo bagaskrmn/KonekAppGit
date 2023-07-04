@@ -16,8 +16,6 @@ import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
-import com.example.konekapp.ui.dashboard.home.article.DetailArtikelActivity;
-import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.ApprovedCropsAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,11 +26,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MitraCropsList extends AppCompatActivity {
+public class MitraCropsListActivity extends AppCompatActivity {
 
     private ArrayList<CropsModel> list;
     private MitraCropsListAdapter adapter;
@@ -72,29 +69,7 @@ public class MitraCropsList extends AppCompatActivity {
         MitraCropsListBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MitraCropsList.super.onBackPressed();
-            }
-        });
-
-        //menu add
-        BtnAddMitraCrops.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(MitraCropsList.this, v);
-                popupMenu.getMenuInflater().inflate(R.menu.add_mitra_crops_menu, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.addMonitoring:
-                                toAddMonitoring();
-                                return true;
-                            default:
-                                return false;
-                        }
-                    }
-                });
-                popupMenu.show();
+                MitraCropsListActivity.super.onBackPressed();
             }
         });
 
@@ -115,12 +90,34 @@ public class MitraCropsList extends AppCompatActivity {
         MitraCropsListRv.setAdapter(adapter);
 
         //init pd
-        pd = new ProgressDialog(MitraCropsList.this);
+        pd = new ProgressDialog(MitraCropsListActivity.this);
         pd.setTitle("Please Wait...");
         pd.setCanceledOnTouchOutside(false);
 
         pd.setMessage("Memuat data anda");
         pd.show();
+
+        //menu add
+        BtnAddMitraCrops.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(MitraCropsListActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.add_mitra_crops_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.addMonitoring:
+                                toAddMonitoring();
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+                popupMenu.show();
+            }
+        });
 
         usersRef.child(currentUserId).addValueEventListener(userListener);
 
@@ -129,7 +126,7 @@ public class MitraCropsList extends AppCompatActivity {
     }
 
     private void toAddMonitoring() {
-        Intent i = new Intent(MitraCropsList.this, MitraCropsActivity.class);
+        Intent i = new Intent(MitraCropsListActivity.this, MitraCropsActivity.class);
         startActivity(i);
         finish();
     }

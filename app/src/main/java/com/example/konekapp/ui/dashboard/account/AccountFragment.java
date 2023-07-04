@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.ui.dashboard.Consultation.ConsultationToAhliTaniFragment;
+import com.example.konekapp.ui.dashboard.Consultation.ConsultationToMitraFragment;
+import com.example.konekapp.ui.dashboard.MainActivity;
 import com.example.konekapp.ui.dashboard.account.privacypolicy.PrivacyPolicyActivity;
 import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
@@ -25,6 +29,7 @@ import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity;
 import com.example.konekapp.ui.login.LoginPhoneActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,7 +55,8 @@ public class AccountFragment extends Fragment {
     private DatabaseReference rootRef, usersRef;
     private String currentUserId, role;
     private ProgressDialog pd;
-
+    private BottomNavigationView BottomNav;
+    private MainActivity mainActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +74,9 @@ public class AccountFragment extends Fragment {
         currentUserId = currentUser.getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
+
+        mainActivity = (MainActivity)requireActivity();
+        BottomNav = mainActivity.findViewById(R.id.bottomNav);
 
         //init pd
         pd = new ProgressDialog(getActivity());
@@ -117,10 +126,8 @@ public class AccountFragment extends Fragment {
         ConstraintKonsultasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Add konsultasiActivity here
-                //ganti ke fragment
-                Intent intentKonsultasi = new Intent(requireContext(), ConsultationToAhliTaniActivity.class);
-                startActivity(intentKonsultasi);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new ConsultationToAhliTaniFragment()).commit();
+                BottomNav.setSelectedItemId(R.id.chat);
             }
         });
 
@@ -128,6 +135,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //ganti ke fragment
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new ConsultationToMitraFragment()).commit();
                 Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
                 startActivity(intent);
             }

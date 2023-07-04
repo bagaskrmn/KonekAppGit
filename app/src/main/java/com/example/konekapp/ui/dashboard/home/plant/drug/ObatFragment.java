@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,8 @@ public class ObatFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         plantId = getActivity().getIntent().getStringExtra("Key");
+        Log.d("ObatFragment", "PlantId: "+plantId);
+
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -76,6 +79,8 @@ public class ObatFragment extends Fragment {
         adapter = new ObatAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);
 
+        adapter.setPlantId(plantId);
+
         //init ProgressDialog
         pd = new ProgressDialog(getContext());
         pd.setTitle("Please Wait...");
@@ -90,8 +95,10 @@ public class ObatFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 role = snapshot.child("role").getValue().toString();
+                adapter.setRole(role);
                 if (role.equals("2") || role.equals("3")) {
                     BtnAddObat.setVisibility(View.VISIBLE);
+
                 }
                 else {
                     BtnAddObat.setVisibility(View.GONE);
@@ -117,6 +124,8 @@ public class ObatFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pd.dismiss();
+
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ObatModel obat = dataSnapshot.getValue(ObatModel.class);
                     obat.setKey(dataSnapshot.getKey());

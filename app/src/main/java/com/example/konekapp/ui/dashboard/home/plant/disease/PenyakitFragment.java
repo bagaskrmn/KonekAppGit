@@ -77,6 +77,8 @@ public class PenyakitFragment extends Fragment {
         adapter = new PenyakitAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);
 
+        adapter.setPlantId(plantId);
+
         //init ProgressDialog
         pd = new ProgressDialog(getContext());
         pd.setTitle("Please Wait...");
@@ -91,8 +93,10 @@ public class PenyakitFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 role = snapshot.child("role").getValue().toString();
+                adapter.setRole(role);
                 if (role.equals("2") || role.equals("3")) {
                     BtnAddPenyakit.setVisibility(View.VISIBLE);
+
                 }
                 else {
                     BtnAddPenyakit.setVisibility(View.GONE);
@@ -118,6 +122,7 @@ public class PenyakitFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pd.dismiss();
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     PenyakitModel penyakit = dataSnapshot.getValue(PenyakitModel.class);
                     penyakit.setKey(dataSnapshot.getKey());

@@ -2,7 +2,6 @@ package com.example.konekapp.ui.dashboard.notification;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.konekapp.R;
 import com.example.konekapp.model.NotificationModel;
 import com.example.konekapp.ui.dashboard.home.article.ArtikelActivity;
-import com.example.konekapp.ui.dashboard.home.article.FullArtikelAdapter;
-import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsList;
+import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsListActivity;
 import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraApprovedActivity;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraDeclinedActivity;
@@ -97,7 +95,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(context, MitraCropsList.class);
+                    Intent i = new Intent(context, MitraCropsListActivity.class);
                     context.startActivity(i);
                 }
             });
