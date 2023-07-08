@@ -1,6 +1,8 @@
 package com.example.konekapp.ui.dashboard.notification;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class NotificationFragment extends Fragment {
 
@@ -42,6 +45,8 @@ public class NotificationFragment extends Fragment {
     private FirebaseUser currentUser;
     private TextView TvNoNotification;
     private String role, dateNTimeUser;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +71,8 @@ public class NotificationFragment extends Fragment {
         RecyclerViewNotification.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new NotificationAdapter(getContext(), list);
         RecyclerViewNotification.setAdapter(adapter);
+
+        sharedPreferences = requireActivity().getSharedPreferences("notifPreferences", Context.MODE_PRIVATE);
 
         //init ProgressDialog
         pd = new ProgressDialog(getActivity());
@@ -93,7 +100,6 @@ public class NotificationFragment extends Fragment {
                 //userDate, notifArticleDate
                 try {
 //
-
                     if (notification.getKind() ==0 && dateNTimeUser.compareTo(notification.getDate()) >0 ) {
                         list.add(notification);
                     }
@@ -125,6 +131,14 @@ public class NotificationFragment extends Fragment {
                 RecyclerViewNotification.setVisibility(View.GONE);
                 TvNoNotification.setVisibility(View.VISIBLE);
             }
+
+            //edit sharedPreferences
+            //set recentNotifCount == newest list.size
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("notifCount", list.size());
+            editor.apply();
+            Log.d("NotifFragment", "int in sharedPreferences: "+sharedPreferences.getInt("notifCount", 0));
+
 
             //sorting list
             Collections.sort(list, (obj1, obj2) -> obj2.getDate().compareTo(obj1.getDate()));

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
+import com.example.konekapp.model.NotificationModel;
 import com.example.konekapp.ui.dashboard.Consultation.ConsultationToAhliTaniFragment;
 import com.example.konekapp.ui.dashboard.Consultation.ConsultationToMitraFragment;
 import com.example.konekapp.ui.dashboard.account.AccountFragment;
@@ -28,13 +30,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class MainActivity extends AppCompatActivity {
 
     private View decorView;
-    private DatabaseReference rootRef, usersRef;
+    private DatabaseReference rootRef, usersRef, notificationRef;
     private FirebaseUser currentUser;
     private FirebaseAuth firebaseAuth;
-    private String role, currentUserId;
+    private String role, currentUserId, dateNTimeUser;
+    private ArrayList<NotificationModel> list;
+
+    SharedPreferences sharedPreferences;
 
     BottomNavigationView BottomNav;
 
@@ -66,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
+        notificationRef = rootRef.child("notification");
+        list = new ArrayList<>();
+
+        sharedPreferences = getSharedPreferences("notifPreferences", MODE_PRIVATE);
 
         BottomNav = findViewById(R.id.bottomNav);
 
@@ -117,15 +129,65 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             role = snapshot.child("role").getValue().toString();
+            dateNTimeUser= snapshot.child("dateJoined").getValue().toString();
             if (role.equals("3")) {
                 Log.d("MainActivity", "Role: "+role);
             BottomNav.getMenu().findItem(R.id.chat).setVisible(false);
             }
+
+            notificationRef.addValueEventListener(notifListener);
         }
 
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
 //            Toast.makeText(getApplicationContext(), ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    ValueEventListener notifListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            list.clear();
+            for (DataSnapshot ds : snapshot.getChildren()) {
+                NotificationModel notification = ds.getValue(NotificationModel.class);
+                notification.setKey(ds.getKey());
+
+                try {
+                    if (notification.getKind() ==0 && dateNTimeUser.compareTo(notification.getDate()) >0 ) {
+                        list.add(notification);
+                    }
+                    if (role.equals("0") && notification.getTargetId().equals(currentUserId) && notification.getKind()==1) {
+                        list.add(notification);
+                    }
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind()==2) {
+                        list.add(notification);
+                    }
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind()==3) {
+                        list.add(notification);
+                    }
+                    if (notification.getTargetId().equals(currentUserId) && notification.getKind()==4) {
+                        list.add(notification);
+                    }
+                    if (role.equals("3") && notification.getKind()==5){
+                        list.add(notification);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            int recentNotificationCount = list.size();
+            int notifCount = sharedPreferences.getInt("notifCount", 0);
+            Log.d("mainActivityCekNotif", "jumlah notif terbaru: "+recentNotificationCount);
+            Log.d("MainActivity", "data di notifCount: " + notifCount);
+
+            if (notifCount<recentNotificationCount) {
+                Toast.makeText(MainActivity.this, "Ada notif baru", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
         }
     };
 
