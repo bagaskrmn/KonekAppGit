@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
 import com.example.konekapp.model.NotificationModel;
+import com.example.konekapp.model.UserModel;
+import com.example.konekapp.ui.dashboard.home.consultation.chatroom.ChatRoomActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -233,6 +235,19 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
                                 }
                             }
                         });
+            }
+        });
+
+        BtnChatDetailCrops.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserModel user = new UserModel();
+                user.setUserId(crops.userId);
+                user.setName(crops.name);
+                user.setImage(crops.userImage);
+                Intent i = new Intent(context, ChatRoomActivity.class);
+                i.putExtra("user", user);
+                context.startActivity(i);
             }
         });
 

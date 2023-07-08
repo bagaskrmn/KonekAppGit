@@ -131,7 +131,7 @@ public class MitraCropsStatusActivity extends AppCompatActivity {
             String fertilizer = snapshot.child("fertilizer").getValue().toString();
             String result = snapshot.child("result").getValue().toString();
             String notes = snapshot.child("notes").getValue().toString();
-            int status = (int) snapshot.child("status").getValue();
+            long status = (long) snapshot.child("status").getValue();
 
             if (status==0) {
                 ReviewedStatus.setVisibility(View.VISIBLE);
