@@ -28,8 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class NotificationFragment extends Fragment {
@@ -100,7 +104,11 @@ public class NotificationFragment extends Fragment {
                 //userDate, notifArticleDate
                 try {
 //
-                    if (notification.getKind() ==0 && dateNTimeUser.compareTo(notification.getDate()) >0 ) {
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", new Locale("id", "ID"));
+                    Date userDate = dateFormat.parse(dateNTimeUser);
+                    Date notifDate = dateFormat.parse(notification.getDate());
+
+                    if (notification.getKind() ==0 && userDate.before(notifDate) ) {
                         list.add(notification);
                     }
                     if (role.equals("0") && notification.getTargetId().equals(currentUserId) && notification.getKind()==1) {
