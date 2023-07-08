@@ -59,7 +59,7 @@ public class MitraCropsActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef, cropsRef;
     private ProgressDialog pd;
-    private String currentUserId, cropsId, currentUserName;
+    private String currentUserId, cropsId, currentUserName, userImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +192,7 @@ public class MitraCropsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 currentUserName = snapshot.child("name").getValue().toString();
+                userImage = snapshot.child("image").getValue().toString();
             }
 
             @Override
@@ -220,7 +221,7 @@ public class MitraCropsActivity extends AppCompatActivity {
             Toast.makeText(this, "Data belum terisi", Toast.LENGTH_SHORT).show();
         } else {
             //using model
-            CropsModel cropsModel = new CropsModel(currentUserId, currentUserName, Commodity, Period, Date,
+            CropsModel cropsModel = new CropsModel(currentUserId, currentUserName, userImage, Commodity, Period, Date,
                     Qty, Location, Fertilizer, Result, Notes, 0 );
 
             cropsRef.child(cropsId).setValue(cropsModel)

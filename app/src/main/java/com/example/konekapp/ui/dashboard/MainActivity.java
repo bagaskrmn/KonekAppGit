@@ -182,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
 
             if (notifCount - recentNotificationCount != 0) {
                 BottomNav.getMenu().getItem(2).setIcon(R.drawable.new_notification_selector);
-                Toast.makeText(MainActivity.this, "Ada notif baru", Toast.LENGTH_SHORT).show();
             } else {
                 BottomNav.getMenu().getItem(2).setIcon(R.drawable.notification_selector);
             }
