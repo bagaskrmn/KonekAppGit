@@ -11,15 +11,6 @@ public class ChatMessagesModel {
     public ChatMessagesModel() {
     }
 
-    public ChatMessagesModel(String senderId, String receiverId, String message, String dateTime, Boolean isSenderRead, Boolean isReceiverRead) {
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.message = message;
-        this.dateTime = dateTime;
-        this.isSenderRead = isSenderRead;
-        this.isReceiverRead = isReceiverRead;
-    }
-
     public String getSenderId() {
         return senderId;
     }

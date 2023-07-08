@@ -176,23 +176,26 @@ public class ChatRoomActivity extends AppCompatActivity {
         chatMessagesModel.setIsSenderRead(true);
         chatMessagesModel.setIsReceiverRead(false);
 
-        //save message to firebase
-        FirebaseDatabase.getInstance().getReference()
-                .child(KEY_COLLECTION_CHAT)
-                .push()
-                .setValue(chatMessagesModel);
-
         //add or update conversation
         addOrUpdateConversation(chatMessagesModel);
 
         edtMessage.setText("");
     }
 
+    private void saveMessageToFirebase(ChatMessagesModel chatMessagesModel) {
+        //save message to firebase
+        FirebaseDatabase.getInstance().getReference()
+                .child(KEY_COLLECTION_CHAT)
+                .push()
+                .setValue(chatMessagesModel);
+
+    }
+
     private void addOrUpdateConversation(ChatMessagesModel chatMessagesModel) {
         //Add new conversation if conversationId is null
         if (conversationId != null) {
             Log.d(TAG, "addOrUpdateConversation: update conversation");
-            updateConversation(chatMessagesModel.getMessage());
+            updateConversation(chatMessagesModel);
         } else {
             Log.d(TAG, "addOrUpdateConversation: add new conversation");
             //Step 1. Get user information
@@ -222,7 +225,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                                     senderConversationId = currentUserId;
 
                                     //Step 2. Add new conversation
-                                    addConversation(conversation);
+                                    addConversation(conversation, chatMessagesModel);
                                 }
 
                                 @Override
@@ -327,17 +330,23 @@ public class ChatRoomActivity extends AppCompatActivity {
     };
 
     //add new conversation
-    private void addConversation(HashMap<String, Object> conversation) {
+    private void addConversation(HashMap<String, Object> conversation, ChatMessagesModel chatMessagesModel) {
         DatabaseReference conversationRef = FirebaseDatabase.getInstance().getReference()
                 .child(KEY_COLLECTION_CONVERSATION).push();
         conversationId = conversationRef.getKey();
         conversationRef.setValue(conversation);
+
+        // add conversationId to chatMessagesModel
+        chatMessagesModel.conversationId = conversationId;
+        //save chat message
+        saveMessageToFirebase(chatMessagesModel);
+
     }
 
     //update conversation
-    private void updateConversation(String message) {
+    private void updateConversation(ChatMessagesModel chatMessagesModel) {
         HashMap<String, Object> conversation = new HashMap<>();
-        conversation.put(KEY_LAST_MESSAGE, message);
+        conversation.put(KEY_LAST_MESSAGE, chatMessagesModel.getMessage());
         conversation.put(KEY_DATE_TIME, getDateTime());
 
         if (currentUser.getUid().equals(senderConversationId)) {
@@ -352,6 +361,12 @@ public class ChatRoomActivity extends AppCompatActivity {
                 .child(KEY_COLLECTION_CONVERSATION)
                 .child(conversationId)
                 .updateChildren(conversation);
+
+        // add conversationId to chatMessagesModel
+        chatMessagesModel.conversationId = conversationId;
+        //save chat message
+        saveMessageToFirebase(chatMessagesModel);
+
     }
 
     private void updateZeroCountConversation() {
