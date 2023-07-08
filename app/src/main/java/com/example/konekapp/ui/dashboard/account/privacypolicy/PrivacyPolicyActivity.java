@@ -58,7 +58,21 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
 
     private void loadWebView() {
         pd.dismiss();
-        WvPrivacyPolicy.setWebViewClient(new WebViewClient());
+        WvPrivacyPolicy.setWebViewClient(new WebViewClient() {
+            // Load the URL
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return false;
+            }
+
+            // ProgressBar will disappear once the page is loaded
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                pd.dismiss();
+            }
+        });
         WvPrivacyPolicy.loadUrl("https://www.privacypolicies.com/live/569fdf74-19a6-4ca5-90bd-9a63f5d42193");
     }
 
@@ -77,4 +91,5 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
+
 }
