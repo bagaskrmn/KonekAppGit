@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
         usersRef.child(currentUserId).addValueEventListener(listener);
 
-
         //replace FrameLayout in main_activity.xml (id : container) with fragment_home.xml
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 
@@ -113,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         return true;
                     case R.id.notification:
+                        BottomNav.getMenu().getItem(2).setIcon(R.drawable.notification_selector);
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, notificationFragment).commit();
                         return true;
                     case R.id.account:
@@ -180,8 +180,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d("mainActivityCekNotif", "jumlah notif terbaru: "+recentNotificationCount);
             Log.d("MainActivity", "data di notifCount: " + notifCount);
 
-            if (notifCount<recentNotificationCount) {
+            if (notifCount - recentNotificationCount != 0) {
+                BottomNav.getMenu().getItem(2).setIcon(R.drawable.new_notification_selector);
                 Toast.makeText(MainActivity.this, "Ada notif baru", Toast.LENGTH_SHORT).show();
+            } else {
+                BottomNav.getMenu().getItem(2).setIcon(R.drawable.notification_selector);
             }
 
         }

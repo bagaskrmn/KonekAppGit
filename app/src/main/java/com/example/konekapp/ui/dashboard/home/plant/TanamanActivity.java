@@ -46,6 +46,7 @@ public class TanamanActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private String currentUserId, role;
     private TextView TanamanNoData;
+    private List<TanamanModel> filteredListTanaman;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +169,13 @@ public class TanamanActivity extends AppCompatActivity {
                 TanamanNoData.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
             }
-            adapter.setListTanaman(list);
+
+            // check if filteredListTanaman is null or not
+            if (filteredListTanaman != null) {
+                adapter.setListTanaman(filteredListTanaman);
+            } else {
+                adapter.setListTanaman(list);
+            }
         }
 
         @Override
@@ -178,7 +185,7 @@ public class TanamanActivity extends AppCompatActivity {
     };
 
     public void filterList(String text){
-        List<TanamanModel> filteredListTanaman = new ArrayList<>();
+        filteredListTanaman = new ArrayList<>();
         filteredListTanaman.clear();
         if (text.isEmpty()) {
             filteredListTanaman.addAll(list);
