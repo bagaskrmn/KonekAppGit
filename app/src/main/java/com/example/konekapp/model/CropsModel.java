@@ -11,6 +11,7 @@ public class CropsModel {
     public CropsModel(String userId, String name, String userImage, String commodity, String period, String date, String qty, String location, String fertilizer, String result, String notes, int status) {
         this.userId = userId;
         this.name = name;
+        this.userImage = userImage;
         this.commodity = commodity;
         this.period = period;
         this.date = date;
