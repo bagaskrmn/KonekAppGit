@@ -2,6 +2,7 @@ package com.example.konekapp.ui.dashboard.account.privacypolicy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -15,6 +16,8 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     private ImageView PrivacyPolicyBackAction;
     private WebView WvPrivacyPolicy;
     private View decorView;
+    private ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,14 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         PrivacyPolicyBackAction = findViewById(R.id.privacyPolicyBackAction);
         WvPrivacyPolicy = findViewById(R.id.wvPrivacyPolicy);
 
+        //init progress dialog
+        pd = new ProgressDialog(this);
+        pd.setTitle("Please wait...");
+        pd.setCanceledOnTouchOutside(false);
+
+        pd.setMessage("Memuat");
+        pd.show();
+
         PrivacyPolicyBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +51,13 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
             }
         });
 
+        loadWebView();
+
+
+    }
+
+    private void loadWebView() {
+        pd.dismiss();
         WvPrivacyPolicy.setWebViewClient(new WebViewClient());
         WvPrivacyPolicy.loadUrl("https://www.privacypolicies.com/live/569fdf74-19a6-4ca5-90bd-9a63f5d42193");
     }

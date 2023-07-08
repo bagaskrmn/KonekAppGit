@@ -86,6 +86,8 @@ public class ProfileActivity extends AppCompatActivity {
         pd.setMessage("Memuat data anda");
         pd.show();
 
+        voidLoadData();
+
         ProfBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,41 +102,39 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(UpdateProfileIntent);
             }
         });
-
-
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                String retrieveName = snapshot.child("name").getValue().toString();
-                String retrieveAddress = snapshot.child("domicile").getValue().toString();
-                String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
-                String retrieveDateJoined = snapshot.child("dateJoined").getValue().toString();
-
-                //profile image
-                String retrieveImage = snapshot.child("image").getValue().toString();
-
-                ProfName.setText(retrieveName);
-                ProfNameTop.setText(retrieveName);
-                ProfPhoneNumber.setText(removedPhoneNumber);
-                ProfAddress.setText(retrieveAddress);
-                ProfDetailAddress.setText(retrieveDetailAddress);
-                //profile image
-                Picasso.get().load(retrieveImage).into(ProfImage);
-                ProfDateJoined.setText("Bergabung sejak "+retrieveDateJoined.substring(0,10));
-
-                pd.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                pd.dismiss();
-//                Toast.makeText(ProfileActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
+
+    private void voidLoadData() {
+        usersRef.child(currentUserId).addValueEventListener(userListener);
+        pd.dismiss();
+    }
+
+    ValueEventListener userListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            String retrieveName = snapshot.child("name").getValue().toString();
+            String retrieveAddress = snapshot.child("domicile").getValue().toString();
+            String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
+            String retrieveDateJoined = snapshot.child("dateJoined").getValue().toString();
+
+            //profile image
+            String retrieveImage = snapshot.child("image").getValue().toString();
+
+            ProfName.setText(retrieveName);
+            ProfNameTop.setText(retrieveName);
+            ProfPhoneNumber.setText(removedPhoneNumber);
+            ProfAddress.setText(retrieveAddress);
+            ProfDetailAddress.setText(retrieveDetailAddress);
+            //profile image
+            Picasso.get().load(retrieveImage).into(ProfImage);
+            ProfDateJoined.setText("Bergabung sejak "+retrieveDateJoined.substring(0,10));
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+        }
+    };
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

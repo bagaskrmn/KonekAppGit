@@ -97,34 +97,7 @@ public class EditProfileActivity extends AppCompatActivity {
         pd.show();
 
         //retrieve data to field
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                String retrieveName = snapshot.child("name").getValue().toString();
-                String retrieveAddress = snapshot.child("domicile").getValue().toString();
-                String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
-                String retrieveImage = snapshot.child("image").getValue().toString();
-
-                UpdateProfName.setText(retrieveName);
-                UpdateProfAddress.setText(retrieveAddress);
-                UpdateProfDetailAddress.setText(retrieveDetailAddress);
-                UpdatePhoneNumber.setText(removedPhoneNumber);
-                Picasso.get().load(retrieveImage).into(UpdateProfImage);
-
-                //retrieveImage is Url from database which is linked to storage
-                //transform retrieveImage into Uri
-                //or just make condition where filePath is null, doesn't have to put resultUri to filePath in Database
-
-                pd.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                pd.dismiss();
-//                Toast.makeText(EditProfileActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        voidLoadData();
 
         UpdateProfImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +123,32 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void voidLoadData() {
+        usersRef.child(currentUserId).addValueEventListener(userDataListener);
+        pd.dismiss();
+    }
+
+    ValueEventListener userDataListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            String retrieveName = snapshot.child("name").getValue().toString();
+            String retrieveAddress = snapshot.child("domicile").getValue().toString();
+            String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
+            String retrieveImage = snapshot.child("image").getValue().toString();
+
+            UpdateProfName.setText(retrieveName);
+            UpdateProfAddress.setText(retrieveAddress);
+            UpdateProfDetailAddress.setText(retrieveDetailAddress);
+            UpdatePhoneNumber.setText(removedPhoneNumber);
+            Picasso.get().load(retrieveImage).into(UpdateProfImage);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

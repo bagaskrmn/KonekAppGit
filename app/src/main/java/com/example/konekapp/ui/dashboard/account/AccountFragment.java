@@ -58,6 +58,9 @@ public class AccountFragment extends Fragment {
     private BottomNavigationView BottomNav;
     private MainActivity mainActivity;
 
+    ConsultationToMitraFragment consultationToMitraFragment = new ConsultationToMitraFragment();
+    ConsultationToAhliTaniFragment consultationToAhliTaniFragment = new ConsultationToAhliTaniFragment();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,9 +88,9 @@ public class AccountFragment extends Fragment {
 
         AccImageProfile = (CircleImageView) getView().findViewById(R.id.accImageProfile);
         ConstraintGabungKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintGabungKemitraan);
-        ConstraintKelolaKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintKelolaKemitraan);
-        ConstraintKonsultasi = (ConstraintLayout) getView().findViewById(R.id.constraintKonsultasi);
-        ConstraintChatMitra = (ConstraintLayout)getView().findViewById(R.id.constraintChatMitra);
+        ConstraintKelolaKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintAccKelolaKemitraan);
+        ConstraintKonsultasi = (ConstraintLayout) getView().findViewById(R.id.constraintAccKonsultasi);
+        ConstraintChatMitra = (ConstraintLayout)getView().findViewById(R.id.constraintAccChatMitra);
         BtnKelolaAkun = (ConstraintLayout)getView().findViewById(R.id.btnKelolaAkun);
         BtnKelolaNotifikasi = (ConstraintLayout)getView().findViewById(R.id.btnKelolaNotifikasi);
         BtnPrivacyPolicy = (ConstraintLayout)getView().findViewById(R.id.btnPrivacyPolicy);
@@ -95,6 +98,8 @@ public class AccountFragment extends Fragment {
         RoleUserTv = (TextView) getView().findViewById(R.id.roleUserTv);
         DateJoinedTv = (TextView) getView().findViewById(R.id.dateJoinedTv);
         BtnLogout=(LinearLayout)getView().findViewById(R.id.btnLogout);
+
+        voidLoadData();
 
         BtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,12 +114,6 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        pd.setMessage("Memuat data anda");
-        pd.show();
-
-
-        usersRef.child(currentUserId).addValueEventListener(listener);
-
         ConstraintGabungKemitraan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,21 +122,26 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        //konsultasi dari Mitra ke Ahli Tani
         ConstraintKonsultasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new ConsultationToAhliTaniFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToAhliTaniFragment).commit();
                 BottomNav.setSelectedItemId(R.id.chat);
             }
         });
 
+        //Chat Ahli Tani Ke Mitra
         ConstraintChatMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //ganti ke fragment
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new ConsultationToMitraFragment()).commit();
-                Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
-                startActivity(intent);
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToMitraFragment).commit();
+                BottomNav.setSelectedItemId(R.id.chat);
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new ConsultationToMitraFragment()).commit();
+//                Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -174,6 +178,13 @@ public class AccountFragment extends Fragment {
             }
         });
 
+
+
+    }
+
+    private void voidLoadData() {
+        usersRef.child(currentUserId).addValueEventListener(listener);
+        pd.dismiss();
     }
 
     private void showBottomSheetDialog() {
@@ -195,7 +206,6 @@ public class AccountFragment extends Fragment {
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            pd.dismiss();
             //retrieve user data from database
             String retrieveImage = snapshot.child("image").getValue().toString();
             String retrieveName = snapshot.child("name").getValue().toString();

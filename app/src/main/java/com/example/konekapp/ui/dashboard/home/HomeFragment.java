@@ -124,7 +124,10 @@ public class HomeFragment extends Fragment {
         pd.setMessage("Memuat data anda");
         pd.show();
 
-        usersRef.child(currentUserId).addValueEventListener(listener);
+        voidLoadData();
+
+//        usersRef.child(currentUserId).addValueEventListener(listener);
+//        articleRef.addValueEventListener(listener1);
 
         BtnRegisterMitra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,18 +182,16 @@ public class HomeFragment extends Fragment {
         BtnCrops.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pd.setMessage("Memuat data");
-                pd.show();
+//                pd.setMessage("Memuat data");
+//                pd.show();
                 if (role.equals("0")) {
                     Intent intent = new Intent(getActivity(), ToRegistMitraActivity.class);
                     startActivity(intent);
-                    pd.dismiss();
                 }
 
                 if (role.equals("4")) {
                     Intent intent = new Intent(getActivity(), WaitingReviewActivity.class);
                     startActivity(intent);
-                    pd.dismiss();
                 }
 
                 //if role is petani mitra
@@ -200,7 +201,6 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             listCrops.clear();
-                            pd.dismiss();
                             for (DataSnapshot ds : snapshot.getChildren()) {
                                 CropsModel cropsModel = ds.getValue(CropsModel.class);
                                 cropsModel.setCropsId(ds.getKey());
@@ -234,7 +234,6 @@ public class HomeFragment extends Fragment {
                 if (role.equals("2") || role.equals("3")) {
                     Intent intent = new Intent(getActivity(), CommodityCropsActivity.class);
                     startActivity(intent);
-                    pd.dismiss();
                 }
             }
         });
@@ -242,25 +241,15 @@ public class HomeFragment extends Fragment {
         AccImageHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent profileIntent = new Intent(getActivity(), ProfileActivity.class);
+                startActivity(profileIntent);
                 //if pressed, go to account fragment
 //                BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottomNav);
 //                bottomNav.setSelectedItemId(R.id.account);
 //                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                fragmentTransaction.replace(R.id.container, accountFragment).commit();
-
-                //if pressed, go to profile
-                if (role.equals("1")) {
-//                    Intent mitraProfile = new Intent(getActivity(), MitraProfileActivity.class);
-//                    startActivity(mitraProfile);
-                }
-                else {
-                    Intent profileIntent = new Intent(getActivity(), ProfileActivity.class);
-                    startActivity(profileIntent);
-                }
             }
         });
-
-        articleRef.addValueEventListener(listener1);
 
         BtnFullArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,13 +260,17 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    private void voidLoadData() {
+        articleRef.addValueEventListener(listener1);
+        usersRef.child(currentUserId).addValueEventListener(listener);
+        pd.dismiss();
+    }
+
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             String retrieveImage = snapshot.child("image").getValue().toString();
             Picasso.get().load(retrieveImage).into(AccImageHome);
-
-
             //chek role
             role = snapshot.child("role").getValue().toString();
 
@@ -323,7 +316,7 @@ public class HomeFragment extends Fragment {
                 ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
                 ConstraintUnregister.setVisibility(View.GONE);
             }
-            pd.dismiss();
+
         }
 
         @Override

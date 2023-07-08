@@ -67,6 +67,13 @@ public class NotificationFragment extends Fragment {
         adapter = new NotificationAdapter(getContext(), list);
         RecyclerViewNotification.setAdapter(adapter);
 
+        //init ProgressDialog
+        pd = new ProgressDialog(getActivity());
+        pd.setTitle("Please Wait...");
+        pd.setCanceledOnTouchOutside(false);
+
+        pd.setMessage("Memuat data anda");
+        pd.show();
         usersRef.child(currentUserId).addValueEventListener(userListener);
 
         Log.d("Notification", "role: "+role);
@@ -76,8 +83,8 @@ public class NotificationFragment extends Fragment {
     ValueEventListener notifListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            list.clear();
 
+            list.clear();
             for (DataSnapshot ds : snapshot.getChildren()) {
                 NotificationModel notification = ds.getValue(NotificationModel.class);
                 notification.setKey(ds.getKey());
@@ -121,6 +128,7 @@ public class NotificationFragment extends Fragment {
 
             //sorting list
             Collections.sort(list, (obj1, obj2) -> obj2.getDate().compareTo(obj1.getDate()));
+            pd.dismiss();
         }
 
         @Override
@@ -134,7 +142,6 @@ public class NotificationFragment extends Fragment {
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             role= snapshot.child("role").getValue().toString();
             dateNTimeUser=snapshot.child("dateJoined").getValue().toString();
-
 
             notificationRef.addValueEventListener(notifListener);
         }
