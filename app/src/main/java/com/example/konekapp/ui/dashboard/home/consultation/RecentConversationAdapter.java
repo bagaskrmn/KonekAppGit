@@ -110,7 +110,7 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
     }
 
     private static String getTime(String stringDate) throws ParseException {
-        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat originalFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = originalFormat.parse(stringDate);
 
         SimpleDateFormat targetFormatDate = new SimpleDateFormat("dd MMM", new Locale("id", "ID"));
