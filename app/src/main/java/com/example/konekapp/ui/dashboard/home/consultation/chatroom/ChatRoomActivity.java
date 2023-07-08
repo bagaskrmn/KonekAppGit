@@ -238,7 +238,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     private String getDateTime() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", new Locale("id", "ID"));
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", new Locale("id", "ID"));
         Date date = new Date();
 
         return dateFormat.format(date);
@@ -297,7 +297,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     };
 
     private String setSimpleDate(String dateTime) throws ParseException {
-        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat originalFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date1 = originalFormat.parse(dateTime);
 
         SimpleDateFormat targetFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm", new Locale("id", "ID"));
