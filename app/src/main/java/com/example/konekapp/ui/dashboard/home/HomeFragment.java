@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef, articleRef, cropsRef;
     private String role, currentUserId;
-    private ConstraintLayout ConstraintRegister, ConstraintKonsultasi, ConstraintChatMitra, ConstraintKelolaKemitraan, ConstraintUnregister;
+    private ConstraintLayout ConstraintRegister, ConstraintAsMitra, ConstraintAsAhliTani, ConstraintKelolaKemitraan, ConstraintUnregister;
     private LinearLayout BtnDiseaseAndDrug, BtnCrops;
     private ProgressDialog pd;
     private TextView BtnFullArtikel;
@@ -103,8 +103,8 @@ public class HomeFragment extends Fragment {
 
         ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
         ConstraintUnregister = (ConstraintLayout)getView().findViewById(R.id.constraintUnregister);
-        ConstraintKonsultasi = (ConstraintLayout)getView().findViewById(R.id.constraintKonsultasi);
-        ConstraintChatMitra = (ConstraintLayout)getView().findViewById(R.id.constraintChatMitra);
+        ConstraintAsAhliTani = (ConstraintLayout)getView().findViewById(R.id.constraintAsAhliTani);
+        ConstraintAsMitra = (ConstraintLayout)getView().findViewById(R.id.constraintAsMitra);
         ConstraintKelolaKemitraan = (ConstraintLayout)getView().findViewById(R.id.constraintKelolaKemitraan);
 
         //RecyclerView
@@ -124,6 +124,10 @@ public class HomeFragment extends Fragment {
         pd.setMessage("Memuat data anda");
         pd.show();
 
+        BtnChatMitra.setEnabled(false);
+        BtnKonsultasi.setEnabled(false);
+
+
         voidLoadData();
 
 //        usersRef.child(currentUserId).addValueEventListener(listener);
@@ -142,24 +146,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent waitingReviewIntent = new Intent(getActivity(), WaitingReviewActivity.class);
                 startActivity(waitingReviewIntent);
-            }
-        });
-
-        BtnKonsultasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //add konsultasi activity here
-                Intent intent = new Intent(requireContext(), ConsultationToAhliTaniActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        BtnChatMitra.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //add chat with mitra activity here
-                Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -273,12 +259,15 @@ public class HomeFragment extends Fragment {
             Picasso.get().load(retrieveImage).into(AccImageHome);
             //chek role
             role = snapshot.child("role").getValue().toString();
+            String name = snapshot.child("name").getValue().toString();
+            String[] cutName =name.split(" ", 2);
+            String firstName =  cutName[0];
 
             //if role is user (1)
             if (role.equals("0")) {
                 ConstraintRegister.setVisibility(View.VISIBLE);
-                ConstraintKonsultasi.setVisibility(View.GONE);
-                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintAsAhliTani.setVisibility(View.GONE);
+                ConstraintAsMitra.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 ConstraintUnregister.setVisibility(View.GONE);
             }
@@ -286,33 +275,36 @@ public class HomeFragment extends Fragment {
             //if role is waiting review from admin
             if (role.equals("4")) {
                 ConstraintRegister.setVisibility(View.GONE);
-                ConstraintKonsultasi.setVisibility(View.GONE);
-                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintAsMitra.setVisibility(View.GONE);
+                ConstraintAsAhliTani.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 ConstraintUnregister.setVisibility(View.VISIBLE);
 
             }
-            //if role is mitra(2)
+            //if role is mitra
             if (role.equals("1")) {
                 ConstraintRegister.setVisibility(View.GONE);
-                ConstraintKonsultasi.setVisibility(View.VISIBLE);
-                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintAsMitra.setVisibility(View.VISIBLE);
+                ConstraintAsAhliTani.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 ConstraintUnregister.setVisibility(View.GONE);
+                BtnKonsultasi.setText("Halo, Mitra "+firstName);
             }
             //if role is Ahli Tani
             if (role.equals("2")) {
                 ConstraintRegister.setVisibility(View.GONE);
-                ConstraintKonsultasi.setVisibility(View.GONE);
-                ConstraintChatMitra.setVisibility(View.VISIBLE);
+                ConstraintAsMitra.setVisibility(View.GONE);
+                ConstraintAsAhliTani.setVisibility(View.VISIBLE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 ConstraintUnregister.setVisibility(View.GONE);
+                ConstraintUnregister.setVisibility(View.GONE);
+                BtnChatMitra.setText("Hi, Ahli Tani "+firstName);
             }
             //if role is admin
             if (role.equals("3")) {
                 ConstraintRegister.setVisibility(View.GONE);
-                ConstraintKonsultasi.setVisibility(View.GONE);
-                ConstraintChatMitra.setVisibility(View.GONE);
+                ConstraintAsMitra.setVisibility(View.GONE);
+                ConstraintAsAhliTani.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
                 ConstraintUnregister.setVisibility(View.GONE);
             }

@@ -224,7 +224,7 @@
 
             <!--    card konsultasi-->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintKonsultasi"
+                android:id="@+id/constraintAsMitra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card"
@@ -267,7 +267,6 @@
                         android:background="@drawable/btn_bg_white"
                         android:backgroundTint="@null"
                         android:fontFamily="@font/outfit_semi_bold"
-                        android:text="Konsultasi"
                         android:textAllCaps="false"
                         android:textColor="@color/light_green"
                         android:textSize="14sp"
@@ -287,7 +286,7 @@
 
             <!--    card konsultasi-->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintChatMitra"
+                android:id="@+id/constraintAsAhliTani"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card"
@@ -330,7 +329,6 @@
                         android:background="@drawable/btn_bg_white"
                         android:backgroundTint="@null"
                         android:fontFamily="@font/outfit_semi_bold"
-                        android:text="Konsultasi"
                         android:textAllCaps="false"
                         android:textColor="@color/light_green"
                         android:textSize="14sp"

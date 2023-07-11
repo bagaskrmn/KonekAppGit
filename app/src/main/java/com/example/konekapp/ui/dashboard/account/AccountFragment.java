@@ -45,8 +45,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AccountFragment extends Fragment {
 
     private CircleImageView AccImageProfile;
-    private ConstraintLayout ConstraintGabungKemitraan, ConstraintKelolaKemitraan, ConstraintKonsultasi, ConstraintChatMitra
-            , BtnKelolaAkun, BtnKelolaNotifikasi, BtnPrivacyPolicy;
+    private ConstraintLayout ConstraintGabungKemitraan, ConstraintKelolaKemitraan, BtnKelolaAkun, BtnKelolaNotifikasi, BtnPrivacyPolicy;
     private LinearLayout BtnLogout;
     private TextView NameAccountTv, RoleUserTv, DateJoinedTv;
 
@@ -57,9 +56,6 @@ public class AccountFragment extends Fragment {
     private ProgressDialog pd;
     private BottomNavigationView BottomNav;
     private MainActivity mainActivity;
-
-    ConsultationToMitraFragment consultationToMitraFragment = new ConsultationToMitraFragment();
-    ConsultationToAhliTaniFragment consultationToAhliTaniFragment = new ConsultationToAhliTaniFragment();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,8 +85,6 @@ public class AccountFragment extends Fragment {
         AccImageProfile = (CircleImageView) getView().findViewById(R.id.accImageProfile);
         ConstraintGabungKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintGabungKemitraan);
         ConstraintKelolaKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintAccKelolaKemitraan);
-        ConstraintKonsultasi = (ConstraintLayout) getView().findViewById(R.id.constraintAccKonsultasi);
-        ConstraintChatMitra = (ConstraintLayout)getView().findViewById(R.id.constraintAccChatMitra);
         BtnKelolaAkun = (ConstraintLayout)getView().findViewById(R.id.btnKelolaAkun);
         BtnKelolaNotifikasi = (ConstraintLayout)getView().findViewById(R.id.btnKelolaNotifikasi);
         BtnPrivacyPolicy = (ConstraintLayout)getView().findViewById(R.id.btnPrivacyPolicy);
@@ -119,29 +113,6 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 Intent gabungKemitraanIntent = new Intent(getActivity(), RegisterMitraActivity.class);
                 startActivity(gabungKemitraanIntent);
-            }
-        });
-
-        //konsultasi dari Mitra ke Ahli Tani
-        ConstraintKonsultasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToAhliTaniFragment).commit();
-                BottomNav.setSelectedItemId(R.id.chat);
-            }
-        });
-
-        //Chat Ahli Tani Ke Mitra
-        ConstraintChatMitra.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //ganti ke fragment
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToMitraFragment).commit();
-                BottomNav.setSelectedItemId(R.id.chat);
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new ConsultationToMitraFragment()).commit();
-//                Intent intent = new Intent(requireContext(), ConsultationToMitraActivity.class);
-//                startActivity(intent);
             }
         });
 
@@ -223,8 +194,6 @@ public class AccountFragment extends Fragment {
 
             if (role.equals("0")) {
                 ConstraintGabungKemitraan.setVisibility(View.VISIBLE);
-                ConstraintKonsultasi.setVisibility(View.GONE);
-                ConstraintChatMitra.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Pengguna");
@@ -232,8 +201,6 @@ public class AccountFragment extends Fragment {
 
             if (role.equals("4")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
-                ConstraintKonsultasi.setVisibility(View.GONE);
-                ConstraintChatMitra.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Pengguna");
@@ -241,16 +208,12 @@ public class AccountFragment extends Fragment {
 
             if (role.equals("1")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
-                ConstraintKonsultasi.setVisibility(View.VISIBLE);
-                ConstraintChatMitra.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Petani Mitra");
             }
             if (role.equals("2")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
-                ConstraintKonsultasi.setVisibility(View.GONE);
-                ConstraintChatMitra.setVisibility(View.VISIBLE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Ahli Tani");
@@ -258,8 +221,6 @@ public class AccountFragment extends Fragment {
 
             if (role.equals("3")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
-                ConstraintKonsultasi.setVisibility(View.GONE);
-                ConstraintChatMitra.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
 
                 RoleUserTv.setText("Admin");
@@ -275,6 +236,6 @@ public class AccountFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        usersRef.child(currentUserId).removeEventListener(listener);
+//        usersRef.child(currentUserId).removeEventListener(listener);
     }
 }

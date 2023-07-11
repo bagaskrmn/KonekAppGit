@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,8 +94,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        pd.setMessage("Memuat data Anda");
-        pd.show();
+
 
         //retrieve data to field
         voidLoadData();
@@ -125,17 +125,21 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void voidLoadData() {
+//        pd.setMessage("Memuat data anda..");
+//        pd.show();
         usersRef.child(currentUserId).addValueEventListener(userDataListener);
-        pd.dismiss();
     }
 
     ValueEventListener userDataListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
+//            pd.dismiss();
             String retrieveName = snapshot.child("name").getValue().toString();
             String retrieveAddress = snapshot.child("domicile").getValue().toString();
             String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
             String retrieveImage = snapshot.child("image").getValue().toString();
+
+            Log.d("EditProfile", "ImageUrl: "+retrieveImage);
 
             UpdateProfName.setText(retrieveName);
             UpdateProfAddress.setText(retrieveAddress);
@@ -190,37 +194,35 @@ public class EditProfileActivity extends AppCompatActivity {
             profileMap.put("domicile", updatedAddress);
             profileMap.put("fullAddress", updatedDetailAddress);
 
+
+
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     pd.dismiss();
                     if (task.isSuccessful()) {
+//                        pd.dismiss();
                         Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                         EditProfileActivity.super.onBackPressed();
                     }
                     else {
+//                        pd.dismiss();
                         String message = task.getException().toString();
                         Toast.makeText(EditProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                     }
+
                 }
             });
         }
 
         else {
-            pd.setMessage("Mengunggah Data");
-            pd.show();
-
             //put Uri into firebaseStorage
             imageProfilePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    pd.dismiss();
                     if (task.isSuccessful()) {
-
                         //get download Url from the storage path(filePath)
                         imageProfilePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-
-
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
 
@@ -241,12 +243,14 @@ public class EditProfileActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                pd.dismiss();
+
                                                 if (task.isSuccessful()) {
+                                                    pd.dismiss();
                                                     Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                                                     EditProfileActivity.super.onBackPressed();
                                                 }
                                                 else {
+                                                    pd.dismiss();
                                                     String message = task.getException().toString();
                                                     Toast.makeText(EditProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }
