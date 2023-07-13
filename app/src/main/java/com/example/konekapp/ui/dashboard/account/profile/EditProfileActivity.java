@@ -203,9 +203,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
 //                        pd.dismiss();
                         Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-//                        EditProfileActivity.super.onBackPressed();
-                        Log.d(TAG, "onComplete: 1");
-//                        finish();
+                        EditProfileActivity.super.onBackPressed();
                     }
                     else {
 //                        pd.dismiss();
@@ -249,9 +247,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                                 if (task.isSuccessful()) {
                                                     pd.dismiss();
                                                     Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-//                                                    EditProfileActivity.super.onBackPressed();
-                                                    Log.d(TAG, "onComplete: 2");
-//                                                    finish();
+                                                    EditProfileActivity.super.onBackPressed();
                                                 }
                                                 else {
                                                     pd.dismiss();
@@ -288,6 +284,4 @@ public class EditProfileActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
-
-    private String TAG = "EditProfileActivity";
 }
