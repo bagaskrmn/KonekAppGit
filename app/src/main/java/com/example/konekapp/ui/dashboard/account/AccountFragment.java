@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,15 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
-import com.example.konekapp.ui.dashboard.Consultation.ConsultationToAhliTaniFragment;
-import com.example.konekapp.ui.dashboard.Consultation.ConsultationToMitraFragment;
 import com.example.konekapp.ui.dashboard.MainActivity;
 import com.example.konekapp.ui.dashboard.account.privacypolicy.PrivacyPolicyActivity;
 import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
-import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
-import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
+import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
-import com.example.konekapp.ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity;
 import com.example.konekapp.ui.login.LoginPhoneActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;

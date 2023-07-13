@@ -18,6 +18,7 @@ import com.example.konekapp.ui.dashboard.Consultation.ConsultationToMitraFragmen
 import com.example.konekapp.ui.dashboard.account.AccountFragment;
 import com.example.konekapp.ui.dashboard.home.HomeFragment;
 import com.example.konekapp.ui.dashboard.home.waitingreview.WaitingReviewActivity;
+import com.example.konekapp.ui.dashboard.manageuser.ManageUserFragment;
 import com.example.konekapp.ui.dashboard.notification.NotificationFragment;
 import com.example.konekapp.ui.toregistmitra.UserChatToRegistMitraFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     NotificationFragment notificationFragment = new NotificationFragment();
     AccountFragment accountFragment = new AccountFragment();
     UserChatToRegistMitraFragment userChatToRegistMitraFragment= new UserChatToRegistMitraFragment();
+    ManageUserFragment manageUserFragment = new ManageUserFragment();
 
     ConsultationToMitraFragment consultationToMitraFragment = new ConsultationToMitraFragment();
     ConsultationToAhliTaniFragment consultationToAhliTaniFragment = new ConsultationToAhliTaniFragment();
@@ -100,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         return true;
+                    case R.id.manage:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, manageUserFragment).commit();
+                        return true;
                     case R.id.chat:
                         if (role.equals("1")) {
                             getSupportFragmentManager().beginTransaction().replace(R.id.container, consultationToAhliTaniFragment).commit();
@@ -137,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
             if (role.equals("3")) {
                 Log.d("MainActivity", "Role: "+role);
             BottomNav.getMenu().findItem(R.id.chat).setVisible(false);
+            }
+            else {
+                BottomNav.getMenu().findItem(R.id.manage).setVisible(false);
             }
 
             notificationRef.addValueEventListener(notifListener);
@@ -190,9 +198,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MainActivity", "data di notifCount: " + notifCount);
 
             if (notifCount - recentNotificationCount != 0) {
-                BottomNav.getMenu().getItem(2).setIcon(R.drawable.new_notification_selector);
+                BottomNav.getMenu().getItem(3).setIcon(R.drawable.new_notification_selector);
             } else {
-                BottomNav.getMenu().getItem(2).setIcon(R.drawable.notification_selector);
+                BottomNav.getMenu().getItem(3).setIcon(R.drawable.notification_selector);
             }
 
         }

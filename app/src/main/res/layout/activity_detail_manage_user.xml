@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.dashboard.account.profile.EditProfileActivity"
-    >
+    tools:context=".ui.dashboard.manageuser.manageuser.DetailManageUserActivity">
+
     <!--        ActionBar-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +16,7 @@
         android:layout_marginBottom="20dp"
         >
         <ImageView
-            android:id="@+id/updateProfBackAction"
+            android:id="@+id/detailManageUserBackAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_back_action"
@@ -27,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Ubah Informasi Akun"
+            android:text="Ubah Informasi Pengguna"
             android:fontFamily="@font/outfit_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"
@@ -59,7 +58,7 @@
                 android:layout_marginBottom="20dp"
                 >
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/updateProfImage"
+                    android:id="@+id/detailManageUserImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="left"
@@ -131,7 +130,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/updateProfName"
+                    android:id="@+id/detailManageUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -197,7 +196,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/updatePhoneNumber"
+                    android:id="@+id/detailManageUserPhoneNumber"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -243,7 +242,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/updateProfAddress"
+                    android:id="@+id/detailManageUserAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -289,7 +288,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/updateProfDetailAddress"
+                    android:id="@+id/detailManageUserDetailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -307,13 +306,26 @@
 
             <!--        ButtonSave-->
             <Button
-                android:id="@+id/btnUpdateProfileDone"
+                android:id="@+id/btnDetailManageUserDone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Simpan Perubahan"
                 android:fontFamily="@font/outfit_semi_bold"
                 android:textAllCaps="false"
                 android:background="@drawable/btn_bg"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:layout_marginBottom="16dp"
+                />
+
+            <Button
+                android:id="@+id/btnDeleteUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hapus Pengguna"
+                android:fontFamily="@font/outfit_semi_bold"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_btn_logout"
                 android:backgroundTint="@null"
                 app:backgroundTint="@null"
                 />
@@ -323,6 +335,3 @@
     </ScrollView>
 
 </LinearLayout>
-
-
-

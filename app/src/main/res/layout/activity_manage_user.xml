@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".ui.dashboard.manageuser.managemitra.ManageMitra">
+    tools:context=".ui.dashboard.manageuser.manageuser.ManageUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:layout_marginBottom="20dp"
         >
         <ImageView
-            android:id="@+id/manageMitraBackAction"
+            android:id="@+id/manageUserBackAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_back_action"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Kelola Mitra"
+            android:text="Kelola Pengguna"
             android:fontFamily="@font/outfit_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"
@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/manageMitraRecyclerView"
+        android:id="@+id/manageUserRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

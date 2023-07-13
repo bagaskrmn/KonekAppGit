@@ -19,22 +19,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
 import com.example.konekapp.ui.dashboard.home.article.ArtikelActivity;
 import com.example.konekapp.model.ArtikelModel;
-import com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.CommodityCropsActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsListActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.PreMitraCropsActivity;
-import com.example.konekapp.ui.dashboard.home.managemitra.ManageMitra;
+import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
 import com.example.konekapp.ui.dashboard.home.plant.TanamanActivity;
-import com.example.konekapp.ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity;
 //import com.example.konekapp.databinding.FragmentHomeBinding;
-import com.example.konekapp.ui.dashboard.account.AccountFragment;
 import com.example.konekapp.ui.dashboard.home.waitingreview.WaitingReviewActivity;
 import com.example.konekapp.ui.toregistmitra.ToRegistMitraActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,8 +66,6 @@ public class HomeFragment extends Fragment {
     private ArrayList<ArtikelModel> list;
     private ArtikelAdapter adapter;
     private RecyclerView recyclerView;
-
-    AccountFragment accountFragment = new AccountFragment();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -279,6 +273,10 @@ public class HomeFragment extends Fragment {
                 ConstraintAsAhliTani.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.GONE);
                 ConstraintUnregister.setVisibility(View.VISIBLE);
+
+                //handle daftar userBaru
+                //delete user
+
 
             }
             //if role is mitra

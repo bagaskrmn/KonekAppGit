@@ -139,7 +139,7 @@ public class EditProfileActivity extends AppCompatActivity {
             String retrieveDetailAddress = snapshot.child("fullAddress").getValue().toString();
             String retrieveImage = snapshot.child("image").getValue().toString();
 
-            Log.d("EditProfile", "ImageUrl: "+retrieveImage);
+//            Log.d("EditProfile", "ImageUrl: "+retrieveImage);
 
             UpdateProfName.setText(retrieveName);
             UpdateProfAddress.setText(retrieveAddress);
@@ -186,8 +186,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
         //jika gambar tidak diganti
         if (resultUri == null) {
-            pd.setMessage("Mengunggah Data");
-            pd.show();
+//            pd.setMessage("Mengunggah Data");
+//            pd.show();
             //hanya diupdate objek selain gambar
             HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("name", updatedName);
@@ -199,7 +199,7 @@ public class EditProfileActivity extends AppCompatActivity {
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    pd.dismiss();
+//                    pd.dismiss();
                     if (task.isSuccessful()) {
 //                        pd.dismiss();
                         Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
@@ -229,8 +229,8 @@ public class EditProfileActivity extends AppCompatActivity {
                                 //downloadUrl result into String
                                 profileUrl = task.getResult().toString();
 
-                                pd.setMessage("Data terunggah");
-                                pd.show();
+//                                pd.setMessage("Data terunggah");
+//                                pd.show();
 
                                 HashMap<String, Object> profileMap = new HashMap<>();
                                 profileMap.put("name", updatedName);
@@ -245,14 +245,14 @@ public class EditProfileActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
 
                                                 if (task.isSuccessful()) {
-                                                    pd.dismiss();
+//                                                    pd.dismiss();
                                                     Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                                                     EditProfileActivity.super.onBackPressed();
                                                 }
                                                 else {
-                                                    pd.dismiss();
-                                                    String message = task.getException().toString();
-                                                    Toast.makeText(EditProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+//                                                    pd.dismiss();
+//                                                    String message = task.getException().toString();
+//                                                    Toast.makeText(EditProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
@@ -262,7 +262,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                     else {
                         String message = task.getException().toString();
-                        Toast.makeText(EditProfileActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(EditProfileActivity.this, "Error :" + message, Toast.LENGTH_SHORT).show();
                     }
                 }
             });

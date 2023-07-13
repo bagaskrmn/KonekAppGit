@@ -4,6 +4,10 @@
         android:title="Beranda"
         android:icon="@drawable/home_selector"
         />
+    <item android:id="@+id/manage"
+        android:title="Pengelolaan"
+        android:icon="@drawable/manage_selector"
+        />
     <item android:id="@+id/chat"
         android:title="Pesan"
         android:icon="@drawable/message_selector"

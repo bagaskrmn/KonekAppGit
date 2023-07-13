@@ -1,4 +1,4 @@
-package com.example.konekapp.ui.dashboard.home.managemitra;
+package com.example.konekapp.ui.dashboard.manageuser.managemitra;
 
 
 import androidx.annotation.NonNull;
@@ -60,6 +60,7 @@ public class DetailManageMitra extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail_manage_mitra);
 
         decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -71,7 +72,7 @@ public class DetailManageMitra extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_detail_manage_mitra);
+
         DetailManageMitraProfImage = findViewById(R.id.detailManageMitraProfImage);
         DetailManageMitraName = findViewById(R.id.detailManageMitraName);
         DetailManageMitraPhoneNumber = findViewById(R.id.detailManageMitraPhoneNumber);
