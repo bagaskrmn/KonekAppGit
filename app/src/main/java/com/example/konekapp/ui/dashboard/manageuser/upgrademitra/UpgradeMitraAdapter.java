@@ -1,10 +1,11 @@
-package com.example.konekapp.ui.dashboard.manageuser.manageuser;
+package com.example.konekapp.ui.dashboard.manageuser.upgrademitra;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,37 +15,37 @@ import com.example.konekapp.R;
 import com.example.konekapp.model.UserModel;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public class ManageUserAdapter extends RecyclerView.Adapter<ManageUserAdapter.MyViewHolder> {
+public class UpgradeMitraAdapter extends RecyclerView.Adapter<UpgradeMitraAdapter.MyViewHolder> {
     Context context;
     ArrayList<UserModel> list;
 
-    public ManageUserAdapter(Context context, ArrayList<UserModel> list) {
+    public UpgradeMitraAdapter(Context context, ArrayList<UserModel> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public ManageUserAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UpgradeMitraAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.manage_mitra_card, parent, false);
-        return new ManageUserAdapter.MyViewHolder(v);
+        return new UpgradeMitraAdapter.MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ManageUserAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull UpgradeMitraAdapter.MyViewHolder holder, int position) {
         UserModel user = list.get(position);
 
-        holder.ManageUserName.setText(user.name);
-        Picasso.get().load(user.image).into(holder.ManageUserImage);
+        holder.UpgradeMitraName.setText(user.name);
+        Picasso.get().load(user.image).into(holder.UpgradeMitraImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent detailManageMitra = new Intent(context, DetailManageUserActivity.class);
+                Intent detailManageMitra = new Intent(context, DetailUpgradeMitraActivity.class);
                 detailManageMitra.putExtra("Key", user.userId);
                 context.startActivity(detailManageMitra);
             }
@@ -57,12 +58,12 @@ public class ManageUserAdapter extends RecyclerView.Adapter<ManageUserAdapter.My
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView ManageUserName;
-        CircleImageView ManageUserImage;
+        TextView UpgradeMitraName;
+        ImageView UpgradeMitraImage;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ManageUserName = itemView.findViewById(R.id.manageMitraName);
-            ManageUserImage = itemView.findViewById(R.id.manageMitraImage);
+            UpgradeMitraImage =itemView.findViewById(R.id.manageMitraImage);
+            UpgradeMitraName = itemView.findViewById(R.id.manageMitraName);
         }
     }
 }

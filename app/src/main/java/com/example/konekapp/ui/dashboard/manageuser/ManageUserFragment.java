@@ -15,6 +15,7 @@ import android.widget.Button;
 import com.example.konekapp.R;
 import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.manageuser.manageuser.ManageUserActivity;
+import com.example.konekapp.ui.dashboard.manageuser.upgrademitra.UpgradeMitraActivity;
 
 public class ManageUserFragment extends Fragment {
 
@@ -47,6 +48,14 @@ public class ManageUserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), ManageUserActivity.class);
+                startActivity(i);
+            }
+        });
+
+        BtnUpgradeMitra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), UpgradeMitraActivity.class);
                 startActivity(i);
             }
         });

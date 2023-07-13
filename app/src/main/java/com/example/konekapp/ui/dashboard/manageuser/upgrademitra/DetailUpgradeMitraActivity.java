@@ -1,11 +1,10 @@
-package com.example.konekapp.ui.dashboard.home.registermitra;
+package com.example.konekapp.ui.dashboard.manageuser.upgrademitra;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,6 +21,8 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.NotificationModel;
+import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
+import com.example.konekapp.ui.dashboard.home.registermitra.RegisterSuccessActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,19 +43,20 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class RegisterMitraActivity extends AppCompatActivity {
+public class DetailUpgradeMitraActivity extends AppCompatActivity {
 
-    private ConstraintLayout RegMitraDocumentConstraint;
-    private TextView RegMitraPhoneNumber, RegMitraName, RegMitraFullAddress;
-    private EditText RegMitraVillage, RegMitraSubdistrict, RegMitraCity, RegMitraProvince, RegMitraNIK, RegMitraEmail, RegMitraQuestion1, RegMitraQuestion2;
-    private Button BtnRegMitraDone;
-    private ImageView RegMitraBackAction, RegMitraDocument;
+    private ConstraintLayout UpgradeMitraDocumentConstraint;
+    private TextView UpgradeMitraPhoneNumber, UpgradeMitraName, UpgradeMitraFullAddress;
+    private EditText UpgradeMitraVillage, UpgradeMitraSubdistrict, UpgradeMitraCity, UpgradeMitraProvince,
+            UpgradeMitraNIK, UpgradeMitraEmail, UpgradeMitraQuestion1, UpgradeMitraQuestion2;
+    private Button BtnUpgradeMitraDone;
+    private ImageView UpgradeMitraBackAction, UpgradeMitraDocument;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef, notificationRef;
     private StorageReference idCardImagePath, idCardImagesRef, systemNotificationImageRef;
 
-    private String idCardImageUrl, currentUserId, phoneNumber, removedPhoneNumber, systemNotificationImageUrl, notificationKey;
+    private String idCardImageUrl, currentUserId, systemNotificationImageUrl, notificationKey, SelectedUserId;
     private ProgressDialog pd;
     private Uri resultUri;
 
@@ -70,31 +72,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_mitra);
-
-        RegMitraName = findViewById(R.id.regMitraName);
-        RegMitraPhoneNumber = findViewById(R.id.regMitraPhoneNumber);
-        RegMitraNIK = findViewById(R.id.regMitraNIK);
-        RegMitraEmail = findViewById(R.id.regMitraEmail);
-        RegMitraFullAddress = findViewById(R.id.regMitraFullAddress);
-        RegMitraVillage = findViewById(R.id.regMitraVillage);
-        RegMitraSubdistrict = findViewById(R.id.regMitraSubdistrict);
-        RegMitraCity = findViewById(R.id.regMitraCity);
-        RegMitraProvince = findViewById(R.id.regMitraProvince);
-        RegMitraDocumentConstraint = findViewById(R.id.regMitraDocumentConstraint);
-        RegMitraDocument = findViewById(R.id.regiMitraDocument);
-        RegMitraQuestion1 = findViewById(R.id.regMitraQuestion1);
-        RegMitraQuestion2 = findViewById(R.id.regMitraQuestion2);
-        RegMitraBackAction = findViewById(R.id.regMitraBackAction);
-        BtnRegMitraDone = findViewById(R.id.btnRegMitraDone);
-
-        BtnRegMitraDone.setEnabled(false);
-        RegMitraNIK.addTextChangedListener(textWatcher);
-        RegMitraEmail.addTextChangedListener(textWatcher);
-        RegMitraVillage.addTextChangedListener(textWatcher);
-        RegMitraSubdistrict.addTextChangedListener(textWatcher);
-        RegMitraCity.addTextChangedListener(textWatcher);
-        RegMitraProvince.addTextChangedListener(textWatcher);
+        setContentView(R.layout.activity_detail_upgrade_mitra);
 
         decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -106,25 +84,56 @@ public class RegisterMitraActivity extends AppCompatActivity {
             }
         });
 
-        //init progress dialog
-        pd = new ProgressDialog(this);
-        pd.setTitle("Please wait...");
-        pd.setCanceledOnTouchOutside(false);
+        UpgradeMitraName = findViewById(R.id.upgradeMitraName);
+        UpgradeMitraPhoneNumber = findViewById(R.id.upgradeMitraPhoneNumber);
+        UpgradeMitraNIK = findViewById(R.id.upgradeMitraNIK);
+        UpgradeMitraEmail = findViewById(R.id.upgradeMitraEmail);
+        UpgradeMitraFullAddress = findViewById(R.id.upgradeMitraFullAddress);
+        UpgradeMitraVillage = findViewById(R.id.upgradeMitraVillage);
+        UpgradeMitraSubdistrict = findViewById(R.id.upgradeMitraSubdistrict);
+        UpgradeMitraCity = findViewById(R.id.upgradeMitraCity);
+        UpgradeMitraProvince = findViewById(R.id.upgradeMitraProvince);
+        UpgradeMitraDocumentConstraint = findViewById(R.id.upgradeMitraDocumentConstraint);
+        UpgradeMitraDocument = findViewById(R.id.upgradeMitraDocument);
+        UpgradeMitraQuestion1 = findViewById(R.id.upgradeMitraQuestion1);
+        UpgradeMitraQuestion2 = findViewById(R.id.upgradeMitraQuestion2);
+        UpgradeMitraBackAction = findViewById(R.id.upgradeMitraBackAction);
+        BtnUpgradeMitraDone = findViewById(R.id.btnUpgradeMitraDone);
+
+        UpgradeMitraBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DetailUpgradeMitraActivity.super.onBackPressed();
+            }
+        });
+
+        BtnUpgradeMitraDone.setEnabled(false);
+        UpgradeMitraNIK.addTextChangedListener(textWatcher);
+        UpgradeMitraEmail.addTextChangedListener(textWatcher);
+        UpgradeMitraVillage.addTextChangedListener(textWatcher);
+        UpgradeMitraSubdistrict.addTextChangedListener(textWatcher);
+        UpgradeMitraCity.addTextChangedListener(textWatcher);
+        UpgradeMitraProvince.addTextChangedListener(textWatcher);
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         currentUserId = currentUser.getUid();
-        phoneNumber = currentUser.getPhoneNumber();
-        removedPhoneNumber = phoneNumber.substring(3);
         rootRef = FirebaseDatabase.getInstance().getReference();
         usersRef = rootRef.child("users");
         idCardImagesRef = FirebaseStorage.getInstance().getReference().child("idCardImages");
         notificationKey = rootRef.push().getKey();
 
+        pd = new ProgressDialog(this);
+        pd.setTitle("Please wait...");
+        pd.setCanceledOnTouchOutside(false);
+
         //calendar
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         date = dateFormat.format(calendar.getTime());
+
+        Intent intent = getIntent();
+        SelectedUserId = intent.getStringExtra("Key");
 
         notificationRef = rootRef.child("notification");
         systemNotificationImageRef = FirebaseStorage.getInstance().getReference().child("systemNotificationImage").child("konek_icon.png");
@@ -139,87 +148,37 @@ public class RegisterMitraActivity extends AppCompatActivity {
         pd.setMessage("Memuat data anda");
         pd.show();
 
-        //retrieve data to field
-        usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String retrieveName = snapshot.child("name").getValue().toString();
+        loadUserData();
 
-                String retrieveFullAddress = snapshot.child("fullAddress").getValue().toString();
-
-                RegMitraName.setText(retrieveName);
-                RegMitraFullAddress.setText(retrieveFullAddress);
-                RegMitraPhoneNumber.setText(removedPhoneNumber);
-
-                pd.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                pd.dismiss();
-//                Toast.makeText(RegisterMitraActivity.this, ""+ error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        RegMitraDocumentConstraint.setOnClickListener(new View.OnClickListener() {
+        UpgradeMitraDocumentConstraint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Open Gallery and Crop activity
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setAspectRatio(2,1)
-                        .start(RegisterMitraActivity.this);
+                        .start(DetailUpgradeMitraActivity.this);
             }
         });
 
-        BtnRegMitraDone.setOnClickListener(new View.OnClickListener() {
+        BtnUpgradeMitraDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegMitraDone();
+                UpgradeMitraDone();
             }
         });
-
-        RegMitraBackAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RegisterMitraActivity.super.onBackPressed();
-            }
-        });
-    }
-
-    //image
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        //result crop image OK
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-            if (resultCode == RESULT_OK) {
-                //result of cropped image into Uri
-                resultUri = result.getUri();
-
-                //retrieve to CircleImage
-                Picasso.get().load(resultUri).into(RegMitraDocument);
-
-                idCardImagePath = idCardImagesRef.child(currentUserId + "_ktp.jpg");
-
-            }
-        }
 
     }
 
-
-    private void RegMitraDone() {
-        String NIK = RegMitraNIK.getText().toString();
-        String Email = RegMitraEmail.getText().toString();
-        String Village = RegMitraVillage.getText().toString();
-        String Subdistrict = RegMitraSubdistrict.getText().toString();
-        String City = RegMitraCity.getText().toString();
-        String Province = RegMitraProvince.getText().toString();
-        String Question1 = RegMitraQuestion1.getText().toString();
-        String Question2 = RegMitraQuestion2.getText().toString();
+    private void UpgradeMitraDone() {
+        String NIK = UpgradeMitraNIK.getText().toString();
+        String Email = UpgradeMitraEmail.getText().toString();
+        String Village = UpgradeMitraVillage.getText().toString();
+        String Subdistrict = UpgradeMitraSubdistrict.getText().toString();
+        String City = UpgradeMitraCity.getText().toString();
+        String Province = UpgradeMitraProvince.getText().toString();
+        String Question1 = UpgradeMitraQuestion1.getText().toString();
+        String Question2 = UpgradeMitraQuestion2.getText().toString();
 
 
         if (resultUri == null) {
@@ -257,23 +216,24 @@ public class RegisterMitraActivity extends AppCompatActivity {
                                 profileMap.put("idCardImage", idCardImageUrl);
                                 profileMap.put("question1", Question1);
                                 profileMap.put("question2", Question2);
-                                profileMap.put("role", "4");
+                                profileMap.put("role", "1");
 
-                                usersRef.child(currentUserId).updateChildren(profileMap)
+                                usersRef.child(SelectedUserId).updateChildren(profileMap)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 pd.dismiss();
                                                 if (task.isSuccessful()) {
-                                                    registerNotifToAdmin();
-                                                    Toast.makeText(RegisterMitraActivity.this, "Registrasi selesai", Toast.LENGTH_SHORT).show();
-                                                    Intent registerMitraSuccess = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
-                                                    startActivity(registerMitraSuccess);
-                                                    finish();
+                                                    notifToMitra();
+                                                    DetailUpgradeMitraActivity.super.onBackPressed();
+                                                    Toast.makeText(DetailUpgradeMitraActivity.this, "Registrasi selesai", Toast.LENGTH_SHORT).show();
+//                                                    Intent registerMitraSuccess = new Intent(RegisterMitraActivity.this, RegisterSuccessActivity.class);
+//                                                    startActivity(registerMitraSuccess);
+//                                                    finish();
                                                 }
                                                 else {
                                                     String message = task.getException().toString();
-                                                    Toast.makeText(RegisterMitraActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(DetailUpgradeMitraActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }
 
                                             }
@@ -283,7 +243,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
                     }
                     else {
                         String message = task.getException().toString();
-                        Toast.makeText(RegisterMitraActivity.this, "Error :"+message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailUpgradeMitraActivity.this, "Error :"+message, Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -291,19 +251,46 @@ public class RegisterMitraActivity extends AppCompatActivity {
 
     }
 
+    private void loadUserData() {
+        usersRef.child(SelectedUserId).addValueEventListener(userListener);
+    }
+
+    //listenerUserData
+    ValueEventListener userListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            String retrieveName = snapshot.child("name").getValue().toString();
+            String phoneNumber = snapshot.child("phoneNumber").getValue().toString();
+            String removedPhoneNumber = phoneNumber.substring(3);
+
+            String retrieveFullAddress = snapshot.child("fullAddress").getValue().toString();
+
+            UpgradeMitraName.setText(retrieveName);
+            UpgradeMitraFullAddress.setText(retrieveFullAddress);
+            UpgradeMitraPhoneNumber.setText(removedPhoneNumber);
+
+            pd.dismiss();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            pd.dismiss();
+        }
+    };
+
     private Boolean checkAllFields() {
-        String NIK = RegMitraNIK.getText().toString().trim();
-        String Email = RegMitraEmail.getText().toString().trim();
+        String NIK = UpgradeMitraNIK.getText().toString().trim();
+        String Email = UpgradeMitraEmail.getText().toString().trim();
 
         if (NIK.length() != 16) {
-            RegMitraNIK.requestFocus();
-            RegMitraNIK.setError("NIK harus diisi 16 digit");
+            UpgradeMitraNIK.requestFocus();
+            UpgradeMitraNIK.setError("NIK harus diisi 16 digit");
             return false;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
-            RegMitraEmail.requestFocus();
-            RegMitraEmail.setError("Masukkan alamat email yang tepat");
+            UpgradeMitraEmail.requestFocus();
+            UpgradeMitraEmail.setError("Masukkan alamat email yang tepat");
             return false;
         }
         return true;
@@ -318,14 +305,14 @@ public class RegisterMitraActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            String NIK = RegMitraNIK.getText().toString().trim();
-            String Email = RegMitraEmail.getText().toString().trim();
-            String Village = RegMitraVillage.getText().toString().trim();
-            String Subdistrict = RegMitraSubdistrict.getText().toString().trim();
-            String City = RegMitraCity.getText().toString().trim();
-            String Province = RegMitraProvince.getText().toString().trim();
+            String NIK = UpgradeMitraNIK.getText().toString().trim();
+            String Email = UpgradeMitraEmail.getText().toString().trim();
+            String Village = UpgradeMitraVillage.getText().toString().trim();
+            String Subdistrict = UpgradeMitraSubdistrict.getText().toString().trim();
+            String City = UpgradeMitraCity.getText().toString().trim();
+            String Province = UpgradeMitraProvince.getText().toString().trim();
 
-            BtnRegMitraDone.setEnabled(!NIK.isEmpty() && !Email.isEmpty() && !Village.isEmpty()
+            BtnUpgradeMitraDone.setEnabled(!NIK.isEmpty() && !Email.isEmpty() && !Village.isEmpty()
                     && !Subdistrict.isEmpty() && !City.isEmpty() && !Province.isEmpty());
 
         }
@@ -335,6 +322,44 @@ public class RegisterMitraActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //result crop image OK
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            if (resultCode == RESULT_OK) {
+                //result of cropped image into Uri
+                resultUri = result.getUri();
+
+                //retrieve to CircleImage
+                Picasso.get().load(resultUri).into(UpgradeMitraDocument);
+
+                idCardImagePath = idCardImagesRef.child(SelectedUserId + "_ktp.jpg");
+
+            }
+        }
+
+    }
+
+    private void notifToMitra() {
+        String title = "Selamat";
+        String description ="Pengajuan mitra anda disetujui. Anda telah tergabung sebagai Petani Mitra";
+        int kind = 2;
+
+        NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl,false);
+
+        notificationRef.child(notificationKey).setValue(notificationModel)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        //
+                    }
+                });
+    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -350,23 +375,5 @@ public class RegisterMitraActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-    }
-
-
-    private void registerNotifToAdmin() {
-        String title = "Pendaftaran Mitra Baru";
-        String description = "Terdapat mitra baru untuk ditinjau";
-        int kind = 5;
-
-
-        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl,false);
-
-        notificationRef.child(notificationKey).setValue(notificationModel)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        //
-                    }
-                });
     }
 }
