@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         return true;
                     case R.id.notification:
-                        BottomNav.getMenu().getItem(2).setIcon(R.drawable.notification_selector);
+                        BottomNav.getMenu().getItem(3).setIcon(R.drawable.notification_selector);
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, notificationFragment).commit();
                         return true;
                     case R.id.account:

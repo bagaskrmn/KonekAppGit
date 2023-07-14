@@ -40,7 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AccountFragment extends Fragment {
 
     private CircleImageView AccImageProfile;
-    private ConstraintLayout ConstraintGabungKemitraan, ConstraintKelolaKemitraan, BtnKelolaAkun, BtnKelolaNotifikasi, BtnPrivacyPolicy;
+    private ConstraintLayout ConstraintGabungKemitraan, BtnKelolaAkun, BtnKelolaNotifikasi, BtnPrivacyPolicy;
     private LinearLayout BtnLogout;
     private TextView NameAccountTv, RoleUserTv, DateJoinedTv;
 
@@ -79,7 +79,6 @@ public class AccountFragment extends Fragment {
 
         AccImageProfile = (CircleImageView) getView().findViewById(R.id.accImageProfile);
         ConstraintGabungKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintGabungKemitraan);
-        ConstraintKelolaKemitraan = (ConstraintLayout) getView().findViewById(R.id.constraintAccKelolaKemitraan);
         BtnKelolaAkun = (ConstraintLayout)getView().findViewById(R.id.btnKelolaAkun);
         BtnKelolaNotifikasi = (ConstraintLayout)getView().findViewById(R.id.btnKelolaNotifikasi);
         BtnPrivacyPolicy = (ConstraintLayout)getView().findViewById(R.id.btnPrivacyPolicy);
@@ -108,14 +107,6 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 Intent gabungKemitraanIntent = new Intent(getActivity(), RegisterMitraActivity.class);
                 startActivity(gabungKemitraanIntent);
-            }
-        });
-
-        ConstraintKelolaKemitraan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), ManageMitra.class);
-                startActivity(intent);
             }
         });
 
@@ -189,34 +180,29 @@ public class AccountFragment extends Fragment {
 
             if (role.equals("0")) {
                 ConstraintGabungKemitraan.setVisibility(View.VISIBLE);
-                ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Pengguna");
             }
 
             if (role.equals("4")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
-                ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Pengguna");
             }
 
             if (role.equals("1")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
-                ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Petani Mitra");
             }
             if (role.equals("2")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
-                ConstraintKelolaKemitraan.setVisibility(View.GONE);
 
                 RoleUserTv.setText("Ahli Tani");
             }
 
             if (role.equals("3")) {
                 ConstraintGabungKemitraan.setVisibility(View.GONE);
-                ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
 
                 RoleUserTv.setText("Admin");
             }

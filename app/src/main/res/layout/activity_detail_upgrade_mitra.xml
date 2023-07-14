@@ -735,7 +735,7 @@
                 android:id="@+id/btnUpgradeMitraDone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gabung Sekarang"
+                android:text="Upgrade ke Mitra"
                 android:fontFamily="@font/outfit_semi_bold"
                 android:textAllCaps="false"
                 android:background="@drawable/btn_bg"

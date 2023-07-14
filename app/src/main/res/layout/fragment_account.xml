@@ -153,49 +153,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--    Kelola Kemitraan-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintAccKelolaKemitraan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="@drawable/bg_account_btn"
-                android:layout_marginBottom="20dp"
-                android:clickable="true"
-                android:focusable="true"
-                >
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/account_kelola_kemitraan"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kelola Kemitraan"
-                    android:fontFamily="@font/outfit_medium"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/arrow_circle_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <!--    Kelola Akun-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btnKelolaAkun"
