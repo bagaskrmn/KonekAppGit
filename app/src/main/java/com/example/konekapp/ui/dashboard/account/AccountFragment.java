@@ -21,7 +21,6 @@ import com.example.konekapp.R;
 import com.example.konekapp.ui.dashboard.MainActivity;
 import com.example.konekapp.ui.dashboard.account.privacypolicy.PrivacyPolicyActivity;
 import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
 import com.example.konekapp.ui.login.LoginPhoneActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

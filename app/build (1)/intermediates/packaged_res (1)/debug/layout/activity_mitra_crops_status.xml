@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.dashboard.home.crops.mitracrops.MitraCropsStatusActivity">
+
+    <!--    ActionBar-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <ImageView
+            android:id="@+id/mitraCropsStatusBackAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_back_action"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Data Monitoring"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="18sp"
+            android:fontFamily="@font/outfit_bold"
+            />
+        <View
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <!--    ProfileCard-->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_btn_home"
+                android:padding="16dp"
+                android:layout_marginBottom="24dp"
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageStatus"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    tools:src="@tools:sample/avatars"
+                    />
+
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    >
+                    <TextView
+                        android:id="@+id/nameStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textColor="@color/neutral_dark4"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp"
+                        android:text="Bagaskara"
+                        />
+
+                    <TextView
+                        android:id="@+id/commodityStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textColor="@color/neutral_dark3"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="4dp"
+                        tools:text="Kentang"
+                        />
+
+                </LinearLayout>
+
+<!--                ditinjau-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/reviewedStatus"
+                    android:layout_width="80dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="@color/neutral_dark"
+                    app:cardCornerRadius="8dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DITINJAU"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        />
+
+                </androidx.cardview.widget.CardView>
+<!--                disetujui-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/approvedStatus"
+                    android:layout_width="80dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="@color/light_green"
+                    app:cardCornerRadius="8dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DISETUJUI"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                >
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_bold"
+                    android:text="Data Monitoring"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageEditCropsStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/editCropsStatus"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginRight="4dp"/>
+
+                <TextView
+                    android:id="@+id/editCropsStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_bold"
+                    android:text="Edit Data"
+                    android:textColor="@color/light_green"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--            Period and Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                >
+
+                <!--                Period-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="@color/neutral"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Periode"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark4"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="8dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/periodStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pertama"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark3"
+                            android:textSize="14sp"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--                Date-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:backgroundTint="@color/neutral"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tanggal Penanaman"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark4"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="8dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/dateStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="26-6-2023"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark3"
+                            android:textSize="14sp"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <!--            Qty and Loc-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                >
+
+                <!--                Qty-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="@color/neutral"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jumlah Bibit"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark4"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="8dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/qtyStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="500 Biji"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark3"
+                            android:textSize="14sp"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--                Loc-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:backgroundTint="@color/neutral"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lokasi"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark4"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="8dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/locationStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Semarang"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark3"
+                            android:textSize="14sp"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <!--            Fertilizer and result-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                >
+
+                <!--                Fertilizer-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="@color/neutral"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pupuk"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark4"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="8dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/fertilizerStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Organik"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark3"
+                            android:textSize="14sp"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--                Loc-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:backgroundTint="@color/neutral"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Perkiraan Hasil"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark4"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="8dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/resultStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1000 Kg"
+                            android:fontFamily="@font/outfit_medium"
+                            android:textColor="@color/neutral_dark3"
+                            android:textSize="14sp"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <!--            Catatan-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:cardCornerRadius="12dp"
+                android:backgroundTint="@color/neutral"
+                android:padding="8dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Catatan Selama Penanaman"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textColor="@color/neutral_dark3"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/notesStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:textColor="@color/neutral_dark4"
+                        android:text="Lorem ipsum dolor sit amet"
+
+                        />
+                </LinearLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

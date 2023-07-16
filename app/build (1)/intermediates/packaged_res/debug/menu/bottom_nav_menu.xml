@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/home"
+        android:title="Beranda"
+        android:icon="@drawable/home_selector"
+        />
+    <item android:id="@+id/manage"
+        android:title="Pengelolaan"
+        android:icon="@drawable/manage_selector"
+        />
+    <item android:id="@+id/chat"
+        android:title="Pesan"
+        android:icon="@drawable/message_selector"
+        />
+    <item android:id="@+id/notification"
+        android:title="Notifikasi"
+        android:icon="@drawable/notification_selector"
+        />
+    <item android:id="@+id/account"
+        android:title="Akun"
+        android:icon="@drawable/profile_selector"
+        />
+</menu>

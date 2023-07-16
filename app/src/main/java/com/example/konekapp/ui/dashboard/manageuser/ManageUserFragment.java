@@ -5,21 +5,21 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.konekapp.R;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitra;
+import com.example.konekapp.ui.dashboard.manageuser.managemitra.ListAndRequestMitraActivity;
 import com.example.konekapp.ui.dashboard.manageuser.manageuser.ManageUserActivity;
 import com.example.konekapp.ui.dashboard.manageuser.upgrademitra.UpgradeMitraActivity;
 
 public class ManageUserFragment extends Fragment {
 
-    Button BtnManageMitra, BtnManageUser, BtnUpgradeMitra;
+    ConstraintLayout BtnManageMitra, BtnManageUser, BtnUpgradeMitra;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,14 +32,14 @@ public class ManageUserFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        BtnManageMitra = (Button) getView().findViewById(R.id.btnManageMitra);
-        BtnManageUser = (Button) getView().findViewById(R.id.btnManageUser);
-        BtnUpgradeMitra = (Button) getView().findViewById(R.id.btnUpgradeMitra);
+        BtnManageMitra = (ConstraintLayout) getView().findViewById(R.id.btnManageMitra);
+        BtnManageUser = (ConstraintLayout) getView().findViewById(R.id.btnManageUser);
+        BtnUpgradeMitra = (ConstraintLayout) getView().findViewById(R.id.btnUpgradeMitra);
 
         BtnManageMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ManageMitra.class);
+                Intent i = new Intent(getActivity(), ListAndRequestMitraActivity.class);
                 startActivity(i);
             }
         });

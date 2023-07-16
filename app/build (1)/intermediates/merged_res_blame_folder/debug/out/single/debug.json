@@ -1,0 +1,890 @@
+[
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_person_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_person_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_bubble_receiver.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_bubble_receiver.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_call.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/call.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_search.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/search.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_undraw_celebrating_rtuv_1.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/undraw_celebrating_rtuv_1.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_tab_indicator.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/tab_indicator.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_semi_bold.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_semi_bold.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_commodity_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_commodity_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_btn_home.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_btn_home.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-mdpi_bg_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-mdpi/bg_logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_notification.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_notification.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_byagrolestarimerbabu.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/byagrolestarimerbabu.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_personal_id.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/personal_id.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xxhdpi_bg_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xxhdpi/bg_logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_extra_light.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_extra_light.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_tanaman_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/tanaman_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xxxhdpi_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xxxhdpi/logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_detail_crops_bs.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/detail_crops_bs.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_mitra_crops_status.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_mitra_crops_status.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_add_obat.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_add_obat.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_detail_manage_mitra.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_detail_manage_mitra.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.konekapp-main-39:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_consultation.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_consultation.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-anydpi-v24_rectangle.xml.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-anydpi-v24/rectangle.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xhdpi_rectangle.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xhdpi/rectangle.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/xml_backup_rules.xml.flat",
+        "source": "com.example.konekapp-main-39:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_back_action.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_back_action.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_calculator.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/calculator.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-ldpi_bg_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-ldpi/bg_logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_mitra_crops_list.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_mitra_crops_list.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_btn_bg.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/btn_bg.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xxhdpi_rectangle.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xxhdpi/rectangle.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_add_tanaman.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_add_tanaman.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_ahli_tani_and_admin_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_ahli_tani_and_admin_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_home.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_privacy_policy.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_privacy_policy.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_notification_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/notification_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_tanaman.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_tanaman.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_notification.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/notification.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_tab_indicator_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/tab_indicator_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_crops_qty.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/crops_qty.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_register_mitra_declined.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_register_mitra_declined.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-ldpi_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-ldpi/logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_kelola_notifikasi.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/kelola_notifikasi.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_note.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/note.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_obat.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_obat.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/color_btn_text_color.xml.flat",
+        "source": "com.example.konekapp-main-39:/color/btn_text_color.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_mail.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/mail.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_snk.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/snk.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_to_register_mitra.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/to_register_mitra.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_person.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/person.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_edit_mitra_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_edit_mitra_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_item_bubble_received.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/item_bubble_received.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_penyakit_dan_obat.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_penyakit_dan_obat.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_declined_mitra.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/declined_mitra.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_artikel_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/artikel_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_account_gabung_kemitraan.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/account_gabung_kemitraan.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_monitoring.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/monitoring.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_full_artikel_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/full_artikel_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xhdpi_bg_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xhdpi/bg_logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_approved_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_approved_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_register_succes.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/register_succes.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_btn_bg_white.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/btn_bg_white.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_manage.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/manage.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_message_selector.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/message_selector.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_item_bubble_sent.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/item_bubble_sent.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_to_regist_mitra.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_to_regist_mitra.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_account_kelola_kemitraan.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/account_kelola_kemitraan.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xhdpi_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xhdpi/logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_messages.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/messages.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_register_success.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_register_success.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_phone_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_phone_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/color_bottom_nav_color.xml.flat",
+        "source": "com.example.konekapp-main-39:/color/bottom_nav_color.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_complete_profile.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_complete_profile.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_health.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/health.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_add_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_add_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/menu_artikel_menu.xml.flat",
+        "source": "com.example.konekapp-main-39:/menu/artikel_menu.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_register_mitra.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_register_mitra.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_black.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_black.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_spinner_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/spinner_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_regular.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_regular.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_location.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/location.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_new_notification_selector.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/new_notification_selector.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/menu_add_mitra_crops_menu.xml.flat",
+        "source": "com.example.konekapp-main-39:/menu/add_mitra_crops_menu.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_home_colored.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/home_colored.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_bold.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_bold.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-mdpi_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-mdpi/logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_edit.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/edit.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_profile_selector.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/profile_selector.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_close_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_close_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_reviewed_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_reviewed_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_add_artikel.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_add_artikel.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_arrow_back_ios_new_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_arrow_back_ios_new_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_profile_dark.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/profile_dark.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_btn_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_btn_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_user_chat_to_regist_mitra.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_user_chat_to_regist_mitra.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_new_notification.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/new_notification.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_account.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_account.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_logout.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/logout.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_setting.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/setting.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_profile_image.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/profile_image.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_update_profile.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_update_profile.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_pre_mitra_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_pre_mitra_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xxxhdpi_bg_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xxxhdpi/bg_logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_edit__2_.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/edit__2_.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_faq.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/faq.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_add_white.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/add_white.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_organic.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/organic.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_chat_regist_mitra.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/chat_regist_mitra.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_manage_selector.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/manage_selector.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_konek.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/konek.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_notification_setting.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/notification_setting.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_login_phone.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_login_phone.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_check_read.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_check_read.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_chat_room.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_chat_room.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_edit_artikel.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_edit_artikel.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_penyakit.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_penyakit.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_medium.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_medium.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_item_chat.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/item_chat.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_profile.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_profile.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/profile.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_card.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_card.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-anydpi-v24_logo.xml.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-anydpi-v24/logo.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_manage_colored.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/manage_colored.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_calendar.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/calendar.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xxxhdpi_rectangle.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xxxhdpi/rectangle.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_waiting_review.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_waiting_review.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_bubble_sender.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_bubble_sender.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_profile_colored.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/profile_colored.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_notification_colored.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/notification_colored.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_detail_artikel.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_detail_artikel.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_menu_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_menu_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_tambah_konsultasi.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_tambah_konsultasi.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_detail_manage_user.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_detail_manage_user.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_edit_text.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_edit_text.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_splash_screen.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_splash_screen.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_obat_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/obat_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_konek_icon.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/konek_icon.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_btn_logout.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_btn_logout.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_complete_profile_success.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_complete_profile_success.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_manage_user.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_manage_user.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_main.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_add_penyakit.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_add_penyakit.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_detail_upgrade_mitra.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_detail_upgrade_mitra.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_btn_setting.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_btn_setting.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-ldpi_rectangle.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-ldpi/rectangle.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_item_bubble_time.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/item_bubble_time.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_extra_bold.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_extra_bold.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_arrow_circle_right.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/arrow_circle_right.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_waiting_review.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/waiting_review.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_notification_selector.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/notification_selector.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_resgiter_mitra_approved.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_resgiter_mitra_approved.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/menu_delete_item.xml.flat",
+        "source": "com.example.konekapp-main-39:/menu/delete_item.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_logoagro_circle.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/logoagro_circle.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_mitra_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_mitra_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_home_selector.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/home_selector.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_light.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_light.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_people.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/people.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_admin_edit_mitra_crops.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_admin_edit_mitra_crops.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-xxhdpi_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-xxhdpi/logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-hdpi_bg_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-hdpi/bg_logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-anydpi-v24_bg_logo.xml.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-anydpi-v24/bg_logo.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_arrow_right.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/arrow_right.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-mdpi_rectangle.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-mdpi/rectangle.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_fragment_manage_user.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/fragment_manage_user.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_glass.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/glass.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/color_line_colors.xml.flat",
+        "source": "com.example.konekapp-main-39:/color/line_colors.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_penyakit_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/penyakit_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_add_box_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_add_box_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_logoagro1.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/logoagro1.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_message.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/message.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_isi_monitoring.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/isi_monitoring.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_document_upload.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/document_upload.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_account_btn.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_account_btn.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_manage_mitra_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/manage_mitra_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_messages_colored.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/messages_colored.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_setting_notification_bs.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/setting_notification_bs.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_celebrate.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/celebrate.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_forum_3.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/forum_3.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.example.konekapp-main-39:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_add_image.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_add_image.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_personalcard.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/personalcard.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-hdpi_rectangle.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-hdpi/rectangle.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.example.konekapp-main-39:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_bg_bubble_time.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/bg_bubble_time.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_email_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_email_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_send.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_send.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_home.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/home.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_reviewed_crops_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/reviewed_crops_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_artikel.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_artikel.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_add_24_white.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_add_24_white.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable-hdpi_logo.png.flat",
+        "source": "com.example.konekapp-pngs-32:/drawable-hdpi/logo.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_commodity_crops_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/commodity_crops_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_trash.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/trash.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_search_normal.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_search_normal.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_account_konsultasi.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/account_konsultasi.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_upgrade_mitra.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_upgrade_mitra.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_item_mentor.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/item_mentor.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/font_outfit_thin.ttf.flat",
+        "source": "com.example.konekapp-main-39:/font/outfit_thin.ttf"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_kelola_akun.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/kelola_akun.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_ic_baseline_location_on_24.xml.flat",
+        "source": "com.example.konekapp-main-39:/drawable/ic_baseline_location_on_24.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_activity_manage_mitra.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/activity_manage_mitra.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_kentang.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/kentang.png"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/layout_mitra_crops_list_card.xml.flat",
+        "source": "com.example.konekapp-main-39:/layout/mitra_crops_list_card.xml"
+    },
+    {
+        "merged": "com.example.konekapp-merged_res-37:/drawable_cabai.png.flat",
+        "source": "com.example.konekapp-main-39:/drawable/cabai.png"
+    }
+]

@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.UserModel;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitraAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,10 +25,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UpgradeMitraActivity extends AppCompatActivity {
 
-    private ArrayList<UserModel> list;
+    private List<UserModel> list;
+    private List<UserModel> filteredListUser;
     private RecyclerView UpgradeMitraRecyclerView;
     private ImageView UpgradeMitraBackAction;
     private UpgradeMitraAdapter adapter;
@@ -35,6 +40,8 @@ public class UpgradeMitraActivity extends AppCompatActivity {
     private String currentUserId, phoneNumber;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
+    private TextView UserNoData;
+    private EditText SearchUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +58,11 @@ public class UpgradeMitraActivity extends AppCompatActivity {
             }
         });
 
+
         list = new ArrayList<>();
         UpgradeMitraRecyclerView = findViewById(R.id.upgradeMitraRecyclerView);
         UpgradeMitraRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UpgradeMitraAdapter(this, list);
+        adapter = new UpgradeMitraAdapter(this);
         UpgradeMitraRecyclerView.setAdapter(adapter);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -78,10 +86,30 @@ public class UpgradeMitraActivity extends AppCompatActivity {
                 UpgradeMitraActivity.super.onBackPressed();
             }
         });
+
+        UserNoData = findViewById(R.id.userNoData);
+        SearchUser = findViewById(R.id.searchUser);
+        SearchUser.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterListUser(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         
         listenUserFromDatabase();
 
     }
+
 
     private void listenUserFromDatabase() {
         usersRef.addValueEventListener(userListener);
@@ -96,14 +124,26 @@ public class UpgradeMitraActivity extends AppCompatActivity {
                 UserModel user = ds.getValue(UserModel.class);
                 user.setUserId(ds.getKey());
                 try {
-                    if (!user.getUserId().equals(currentUserId) && user.getRole().equals("0")) {
+                    if (!user.getUserId().equals(currentUserId) && (user.getRole().equals("0") || user.getRole().equals("4"))) {
                         list.add(user);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            UpgradeMitraRecyclerView.getAdapter().notifyDataSetChanged();
+            if (list.size() > 0) {
+                UserNoData.setVisibility(View.GONE);
+                UpgradeMitraRecyclerView.setVisibility(View.VISIBLE);
+            } else {
+                UserNoData.setVisibility(View.VISIBLE);
+                UpgradeMitraRecyclerView.setVisibility(View.GONE);
+            }
+
+            if (filteredListUser != null) {
+                adapter.setListUser(filteredListUser);
+            } else {
+                adapter.setListUser(list);
+            }
         }
 
         @Override
@@ -111,6 +151,30 @@ public class UpgradeMitraActivity extends AppCompatActivity {
 
         }
     };
+
+    private void filterListUser(String text) {
+        filteredListUser = new ArrayList<>();
+        filteredListUser.clear();
+        if (text.isEmpty()) {
+            filteredListUser.addAll(list);
+        } else {
+            for (UserModel userModel : list) {
+                if (userModel.name.toLowerCase().contains(text.toLowerCase())) {
+                    filteredListUser.add(userModel);
+                }
+            }
+        }
+
+        if (filteredListUser.size() > 0) {
+            UserNoData.setVisibility(View.GONE);
+            UpgradeMitraRecyclerView.setVisibility(View.VISIBLE);
+        } else {
+            UserNoData.setVisibility(View.VISIBLE);
+            UpgradeMitraRecyclerView.setVisibility(View.GONE);
+        }
+        adapter.setListUser(filteredListUser);
+    }
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

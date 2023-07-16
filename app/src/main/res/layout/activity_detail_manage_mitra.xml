@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".ui.dashboard.manageuser.managemitra.DetailManageMitra">
+    tools:context=".ui.dashboard.manageuser.managemitra.requestmitra.DetailManageMitra">
 
     <!--    ActionBar-->
     <LinearLayout
@@ -588,8 +588,9 @@
                 >
                 <Button
                     android:id="@+id/btnApproveMitra"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Setujui"
                     android:fontFamily="@font/outfit_semi_bold"
                     android:textAllCaps="false"
@@ -600,16 +601,16 @@
 
                 <Button
                     android:id="@+id/btnDecilneMitra"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Tolak"
-                    android:fontFamily="@font/outfit_semi_bold"
-                    android:textAllCaps="false"
-                    android:background="@drawable/btn_bg"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_logout"
                     android:backgroundTint="@null"
-                    app:backgroundTint="@null"
-                    android:layout_marginLeft="24dp"
-                    />
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:text="Tolak"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null" />
             </LinearLayout>
         </LinearLayout>
 

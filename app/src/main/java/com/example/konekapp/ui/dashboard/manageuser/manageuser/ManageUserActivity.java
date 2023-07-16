@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.UserModel;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitraAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,10 +25,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManageUserActivity extends AppCompatActivity {
 
-    private ArrayList<UserModel> list;
+    private List<UserModel> list;
+    private List<UserModel> filteredListUser;
     private RecyclerView recyclerView;
     private ImageView ManageUserBackAction;
     private ManageUserAdapter adapter;
@@ -35,6 +40,8 @@ public class ManageUserActivity extends AppCompatActivity {
     private String currentUserId;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
+    private EditText SearchUser;
+    private TextView UserNoData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,9 @@ public class ManageUserActivity extends AppCompatActivity {
                 }
             }
         });
+
+        SearchUser = findViewById(R.id.searchUser);
+        UserNoData = findViewById(R.id.userNoData);
 
         ManageUserBackAction = findViewById(R.id.manageUserBackAction);
         ManageUserBackAction.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +78,7 @@ public class ManageUserActivity extends AppCompatActivity {
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.manageUserRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ManageUserAdapter(this, list);
+        adapter = new ManageUserAdapter(this);
         recyclerView.setAdapter(adapter);
 
         //init ProgressDialog
@@ -80,6 +90,24 @@ public class ManageUserActivity extends AppCompatActivity {
         pd.show();
 
         listenUserFromDatabase();
+
+        SearchUser.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterListUser(s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 
@@ -102,8 +130,23 @@ public class ManageUserActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
             }
-            recyclerView.getAdapter().notifyDataSetChanged();
+            if (list.size() > 0) {
+                UserNoData.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            } else {
+                UserNoData.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            }
+
+            if (filteredListUser != null) {
+                adapter.setListUser(filteredListUser);
+            } else {
+                adapter.setListUser(list);
+            }
+
         }
 
         @Override
@@ -111,6 +154,29 @@ public class ManageUserActivity extends AppCompatActivity {
 
         }
     };
+
+    private void filterListUser(String text) {
+        filteredListUser = new ArrayList<>();
+        filteredListUser.clear();
+        if (text.isEmpty()) {
+            filteredListUser.addAll(list);
+        } else {
+            for (UserModel userModel : list) {
+                if (userModel.name.toLowerCase().contains(text.toLowerCase())) {
+                    filteredListUser.add(userModel);
+                }
+            }
+        }
+
+        if (filteredListUser.size() > 0) {
+            UserNoData.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            UserNoData.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+        adapter.setListUser(filteredListUser);
+    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

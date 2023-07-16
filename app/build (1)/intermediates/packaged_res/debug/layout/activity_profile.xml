@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.account.profile.ProfileActivity"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+<!--        ActioBar-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            >
+
+            <ImageView
+                android:id="@+id/profBackAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_back_action"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Informasi Akun"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:fontFamily="@font/outfit_bold"
+                />
+            <View
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                />
+        </LinearLayout>
+
+<!--        Image-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@android:color/transparent"
+                app:civ_border_color="@color/neutral_dark"
+                app:civ_border_width="1dp"
+                android:layout_marginEnd="8dp"
+                tools:src="@tools:sample/avatars"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+                <TextView
+                    android:id="@+id/profNameTop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Bagaskara M N"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    android:ellipsize="end"
+                    />
+
+                <TextView
+                    android:id="@+id/profDateJoined"
+                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Bergabung sejak 27/08/2022"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:textColor="@color/neutral_dark4"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+<!--        Nama Lengkap-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Lengkap"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/profile_dark"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+            <TextView
+                android:id="@+id/profName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
+                />
+
+        </LinearLayout>
+
+<!--        Nomor Ponsel-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nomor Ponsel"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/call"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="+62"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/neutral_dark"
+                />
+
+            <TextView
+                android:id="@+id/profPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="16dp"
+                />
+
+        </LinearLayout>
+
+<!--        Domisili-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Domisili"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/location"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+            <TextView
+                android:id="@+id/profAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
+                />
+
+        </LinearLayout>
+
+<!--        Alamat Lengkap-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat Lengkap"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/location"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+            <TextView
+                android:id="@+id/profDetailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
+                />
+
+        </LinearLayout>
+
+<!--        Button Save-->
+        <Button
+            android:id="@+id/btnUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ubah Informasi Akun"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            />
+
+    </LinearLayout>
+</ScrollView>
+

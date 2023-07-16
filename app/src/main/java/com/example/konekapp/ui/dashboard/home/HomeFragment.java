@@ -27,7 +27,6 @@ import com.example.konekapp.model.ArtikelModel;
 import com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.CommodityCropsActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsListActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.PreMitraCropsActivity;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
 import com.example.konekapp.ui.dashboard.home.plant.TanamanActivity;
 //import com.example.konekapp.databinding.FragmentHomeBinding;
@@ -50,7 +49,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeFragment extends Fragment {
 
     private CircleImageView AccImageHome;
-    private Button BtnRegisterMitra, BtnKonsultasi, BtnChatMitra, BtnKelolaKemitraan, BtnWaitingReview;
+    private Button BtnRegisterMitra, BtnKonsultasi, BtnChatMitra, BtnHomeAdmin, BtnWaitingReview;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private DatabaseReference rootRef, usersRef, articleRef, cropsRef;
@@ -92,7 +91,7 @@ public class HomeFragment extends Fragment {
         BtnChatMitra = (Button)getView().findViewById(R.id.btnChatMitra);
         BtnDiseaseAndDrug = (LinearLayout)getView().findViewById(R.id.btnDiseaseAndDrug);
         BtnCrops = (LinearLayout)getView().findViewById(R.id.btnCrops);
-        BtnKelolaKemitraan = (Button)getView().findViewById(R.id.btnKelolaKemitraan);
+        BtnHomeAdmin = (Button)getView().findViewById(R.id.btnHomeAdmin);
         BtnWaitingReview = (Button)getView().findViewById(R.id.btnWaitingReview);
 
         ConstraintRegister = (ConstraintLayout)getView().findViewById(R.id.constraintRegister);
@@ -120,6 +119,7 @@ public class HomeFragment extends Fragment {
 
         BtnChatMitra.setEnabled(false);
         BtnKonsultasi.setEnabled(false);
+        BtnHomeAdmin.setEnabled(false);
 
 
         voidLoadData();
@@ -140,14 +140,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent waitingReviewIntent = new Intent(getActivity(), WaitingReviewActivity.class);
                 startActivity(waitingReviewIntent);
-            }
-        });
-
-        BtnKelolaKemitraan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), ManageMitra.class);
-                startActivity(intent);
             }
         });
 
@@ -305,6 +297,7 @@ public class HomeFragment extends Fragment {
                 ConstraintAsAhliTani.setVisibility(View.GONE);
                 ConstraintKelolaKemitraan.setVisibility(View.VISIBLE);
                 ConstraintUnregister.setVisibility(View.GONE);
+                BtnHomeAdmin.setText("Hi, Admin "+firstName);
             }
 
         }

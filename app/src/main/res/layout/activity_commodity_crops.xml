@@ -63,6 +63,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="Cari tanaman disini..."
+            android:maxLines="1"
+            android:inputType="text"
             android:fontFamily="@font/outfit_medium"
             android:textSize="18sp"
             android:background="@null"
@@ -84,9 +86,6 @@
         android:text="Tidak ada data"
         android:textAlignment="center"
         android:fontFamily="@font/outfit_semi_bold"
-        android:gravity="center"
         />
-
-
 
 </LinearLayout>

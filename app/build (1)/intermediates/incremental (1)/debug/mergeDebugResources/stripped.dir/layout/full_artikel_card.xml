@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="10dp"
+    android:elevation="12dp"
+    app:cardCornerRadius="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:id="@+id/fullImageArtikel"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            tools:src="@tools:sample/avatars"
+            android:scaleType="centerCrop"
+            />
+
+        <TextView
+            android:id="@+id/fullTitleArtikel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:text="Ini Judul Artikeljiefjesifjdsjfnsdjkfnrnfrnfrsrfnfnrrffnrfnrfn fnrfurnfrufnrufn"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            >
+            <TextView
+                android:id="@+id/fullSourceArtikel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="surabaya.net"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark"
+                android:textSize="14sp"
+                />
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:background="@drawable/bg_btn_home"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+
+                />
+
+            <TextView
+                android:id="@+id/fullDateArtikel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="8 Desember 2018"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark"
+                android:textSize="14sp"
+                android:gravity="end"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

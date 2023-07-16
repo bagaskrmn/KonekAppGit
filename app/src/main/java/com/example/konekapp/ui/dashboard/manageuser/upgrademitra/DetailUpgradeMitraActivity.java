@@ -43,12 +43,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class DetailUpgradeMitraActivity extends AppCompatActivity {
 
     private ConstraintLayout UpgradeMitraDocumentConstraint;
     private TextView UpgradeMitraPhoneNumber, UpgradeMitraName, UpgradeMitraFullAddress;
     private EditText UpgradeMitraVillage, UpgradeMitraSubdistrict, UpgradeMitraCity, UpgradeMitraProvince,
             UpgradeMitraNIK, UpgradeMitraEmail, UpgradeMitraQuestion1, UpgradeMitraQuestion2;
+    private CircleImageView UpgradeMitraImage;
     private Button BtnUpgradeMitraDone;
     private ImageView UpgradeMitraBackAction, UpgradeMitraDocument;
     private FirebaseAuth firebaseAuth;
@@ -84,6 +87,7 @@ public class DetailUpgradeMitraActivity extends AppCompatActivity {
             }
         });
 
+        UpgradeMitraImage = findViewById(R.id.upgradeMitraImage);
         UpgradeMitraName = findViewById(R.id.upgradeMitraName);
         UpgradeMitraPhoneNumber = findViewById(R.id.upgradeMitraPhoneNumber);
         UpgradeMitraNIK = findViewById(R.id.upgradeMitraNIK);
@@ -262,12 +266,37 @@ public class DetailUpgradeMitraActivity extends AppCompatActivity {
             String retrieveName = snapshot.child("name").getValue().toString();
             String phoneNumber = snapshot.child("phoneNumber").getValue().toString();
             String removedPhoneNumber = phoneNumber.substring(3);
+            String retrieveImage = snapshot.child("image").getValue().toString();
+
+            String retrieveNIK = snapshot.child("nik").getValue().toString();
+            String retrieveEmail = snapshot.child("email").getValue().toString();
+            String retrieveVillage = snapshot.child("village").getValue().toString();
+            String retrieveSubdistrict = snapshot.child("subdistrict").getValue().toString();
+            String retrieveCity = snapshot.child("city").getValue().toString();
+            String retrieveProvince = snapshot.child("province").getValue().toString();
+            String retrieveIdCardImage = snapshot.child("idCardImage").getValue().toString();
+            String retrieveQuestion1 = snapshot.child("question1").getValue().toString();
+            String retrieveQuestion2 = snapshot.child("question2").getValue().toString();
 
             String retrieveFullAddress = snapshot.child("fullAddress").getValue().toString();
 
             UpgradeMitraName.setText(retrieveName);
             UpgradeMitraFullAddress.setText(retrieveFullAddress);
             UpgradeMitraPhoneNumber.setText(removedPhoneNumber);
+            Picasso.get().load(retrieveImage).into(UpgradeMitraImage);
+
+            UpgradeMitraNIK.setText(retrieveNIK);
+            UpgradeMitraEmail.setText(retrieveEmail);
+            UpgradeMitraVillage.setText(retrieveVillage);
+            UpgradeMitraSubdistrict.setText(retrieveSubdistrict);
+            UpgradeMitraCity.setText(retrieveCity);
+            UpgradeMitraProvince.setText(retrieveProvince);
+            UpgradeMitraQuestion1.setText(retrieveQuestion1);
+            UpgradeMitraQuestion2.setText(retrieveQuestion2);
+
+            if (!retrieveIdCardImage.equals("")) {
+                Picasso.get().load(retrieveIdCardImage).into(UpgradeMitraDocument);
+            }
 
             pd.dismiss();
         }

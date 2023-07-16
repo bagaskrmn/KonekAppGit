@@ -18,6 +18,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.dashboard.manageuser.managemitra.listmitra.ListMitraActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.dashboard.manageuser.managemitra.ListAndRequestMitraActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.dashboard.manageuser.upgrademitra.DetailUpgradeMitraActivity"
             android:exported="false">
             <meta-data
@@ -139,7 +153,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.manageuser.managemitra.DetailManageMitra"
+            android:name=".ui.dashboard.manageuser.managemitra.requestmitra.DetailManageMitra"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -164,7 +178,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.manageuser.managemitra.ManageMitra"
+            android:name=".ui.dashboard.manageuser.managemitra.requestmitra.ManageMitra"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

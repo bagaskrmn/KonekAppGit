@@ -22,7 +22,6 @@ import java.util.List;
 public class CommodityCropsAdapter extends RecyclerView.Adapter<CommodityCropsAdapter.MyViewHolder> {
     Context context;
     List<CommodityCropsModel> filteredCommodity = new ArrayList<>();
-//    String role;
 
     public CommodityCropsAdapter(Context context) {
         this.context = context;

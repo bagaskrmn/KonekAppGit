@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="check_active">#009CEA</color>
+    <color name="dark_green">#064F0C</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="light_green">#3CA520</color>
+    <color name="line_default">#A9B4CD</color>
+    <color name="line_focused">#A9B4CD</color>
+    <color name="line_selected">#192252</color>
+    <color name="neutral">#DFE8F6</color>
+    <color name="neutral_dark">#A9B4CD</color>
+    <color name="neutral_dark2">#424F7B</color>
+    <color name="neutral_dark3">#192252</color>
+    <color name="neutral_dark4">#848FAC</color>
+    <color name="neutral_light">#FAFAFA</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">Konek</string>
+    <string name="complete_profile">Selamat bergabung dengan KONEK, silahkan lengkapi data diri Anda di bawah ini dengan benar.</string>
+    <string name="confirm_otp">Konfirmasi Kode OTP</string>
+    <string name="default_web_client_id" translatable="false">912285370004-i48aklshms5c2ql3al8tcd4kt3lc77kv.apps.googleusercontent.com</string>
+    <string name="didn_t_get_otp_resend">Didn\'t get OTP ? <b>Resend</b></string>
+    <string name="didnt_get_otp">Tidak mendapatkan kode? <b>Kirim Ulang</b></string>
+    <string name="firebase_database_url" translatable="false">https://konekapp-a4aab-default-rtdb.firebaseio.com</string>
+    <string name="forum_baru">Yuk bagikan pengalamanmu ke sesama petani Konek untuk kemajuan bersama!</string>
+    <string name="gcm_defaultSenderId" translatable="false">912285370004</string>
+    <string name="google_api_key" translatable="false">AIzaSyCpJwQdOiSRA-BWVktadXRRbGiUZZZ_gBE</string>
+    <string name="google_app_id" translatable="false">1:912285370004:android:bf8ab0f677f30ef3249681</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCpJwQdOiSRA-BWVktadXRRbGiUZZZ_gBE</string>
+    <string name="google_storage_bucket" translatable="false">konekapp-a4aab.appspot.com</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_otp">Masukkan kode OTP yang kami kirimkan ke nomor  Anda</string>
+    <string name="input_phone">Silahkan masukkan nomor ponsel Anda untuk mendapatkan kode OTP</string>
+    <string name="kuisioner_1">Komoditas apa saja yang anda miliki? (isi jika ada)</string>
+    <string name="kuisioner_2">Di mana lokasi lahan utama anda?</string>
+    <string name="pre_monitoring_mitra">Isi data komoditas anda. Data penanaman anda akan tersimpan dan dievaluasi oleh Ahli Tani</string>
+    <string name="project_id" translatable="false">konekapp-a4aab</string>
+    <string name="register_succes">Admin akan segera memverifikasi data diri anda. Jika ada pertanyaan lebih lanjut dapat hubungi Admin</string>
+    <string name="waiting_review">Akun kamu sedang ditinjau oleh admin. Sambil menunggu, yuk lihat Artikel terbaru tentang tanaman kamu</string>
+    <string name="welcome">Selamat datang di Aplikasi Konek</string>
+    <string name="welcome_greetings">Selamat bergabung dengan KONEK, aplikasi mitra Agro Lestari Merbabu</string>
+    <style name="Theme.KonekApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor">@color/black</item>
+        
+
+    </style>
+</resources>

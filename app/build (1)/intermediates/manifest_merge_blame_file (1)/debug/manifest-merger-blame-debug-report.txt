@@ -1,0 +1,900 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.konekapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+8-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:6:5-80
+12-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:6:22-77
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:7:5-81
+13-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:7:22-78
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:24:5-79
+14-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:24:22-76
+15    <uses-permission android:name="android.permission.WAKE_LOCK" />
+15-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\3cafc9387d2b23469274426ba64fca95\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:24:5-68
+15-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\3cafc9387d2b23469274426ba64fca95\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:24:22-65
+16    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+16-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\3cafc9387d2b23469274426ba64fca95\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:25:5-79
+16-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\3cafc9387d2b23469274426ba64fca95\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:25:22-76
+17    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+17-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:26:5-110
+17-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:26:22-107
+18
+19    <permission
+19-->[androidx.core:core:1.9.0] C:\Users\Asus\.gradle\caches\transforms-3\c9d1df73793a88888b9fc2986788e2da\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+20        android:name="com.example.konekapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+20-->[androidx.core:core:1.9.0] C:\Users\Asus\.gradle\caches\transforms-3\c9d1df73793a88888b9fc2986788e2da\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+21        android:protectionLevel="signature" />
+21-->[androidx.core:core:1.9.0] C:\Users\Asus\.gradle\caches\transforms-3\c9d1df73793a88888b9fc2986788e2da\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+22
+23    <uses-permission android:name="com.example.konekapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+23-->[androidx.core:core:1.9.0] C:\Users\Asus\.gradle\caches\transforms-3\c9d1df73793a88888b9fc2986788e2da\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+23-->[androidx.core:core:1.9.0] C:\Users\Asus\.gradle\caches\transforms-3\c9d1df73793a88888b9fc2986788e2da\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+24
+25    <application
+25-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:9:5-356:19
+26        android:allowBackup="true"
+26-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:10:9-35
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.9.0] C:\Users\Asus\.gradle\caches\transforms-3\c9d1df73793a88888b9fc2986788e2da\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+28        android:dataExtractionRules="@xml/data_extraction_rules"
+28-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:11:9-65
+29        android:debuggable="true"
+30        android:extractNativeLibs="false"
+31        android:fullBackupContent="@xml/backup_rules"
+31-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:12:9-54
+32        android:icon="@mipmap/ic_launcher"
+32-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:13:9-43
+33        android:label="@string/app_name"
+33-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:14:9-41
+34        android:roundIcon="@mipmap/ic_launcher_round"
+34-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:15:9-54
+35        android:supportsRtl="true"
+35-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:16:9-35
+36        android:testOnly="true"
+37        android:theme="@style/Theme.KonekApp"
+37-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:17:9-46
+38        android:usesCleartextTraffic="true" >
+38-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:18:9-44
+39        <activity
+39-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:20:9-26:20
+40            android:name="com.example.konekapp.ui.dashboard.manageuser.upgrademitra.DetailUpgradeMitraActivity"
+40-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:21:13-92
+41            android:exported="false" >
+41-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:22:13-37
+42            <meta-data
+42-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+43                android:name="android.app.lib_name"
+43-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+44                android:value="" />
+44-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+45        </activity>
+46        <activity
+46-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:27:9-33:20
+47            android:name="com.example.konekapp.ui.dashboard.manageuser.upgrademitra.UpgradeMitraActivity"
+47-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:28:13-86
+48            android:exported="false" >
+48-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:29:13-37
+49            <meta-data
+49-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+50                android:name="android.app.lib_name"
+50-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+51                android:value="" />
+51-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+52        </activity>
+53        <activity
+53-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:34:9-40:20
+54            android:name="com.example.konekapp.ui.dashboard.manageuser.manageuser.DetailManageUserActivity"
+54-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:35:13-88
+55            android:exported="false" >
+55-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:36:13-37
+56            <meta-data
+56-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+57                android:name="android.app.lib_name"
+57-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+58                android:value="" />
+58-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+59        </activity>
+60        <activity
+60-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:41:9-47:20
+61            android:name="com.example.konekapp.ui.dashboard.manageuser.manageuser.ManageUserActivity"
+61-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:42:13-82
+62            android:exported="false" >
+62-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:43:13-37
+63            <meta-data
+63-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+64                android:name="android.app.lib_name"
+64-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+65                android:value="" />
+65-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+66        </activity>
+67        <activity
+67-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:48:9-54:20
+68            android:name="com.example.konekapp.ui.dashboard.account.privacypolicy.PrivacyPolicyActivity"
+68-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:49:13-85
+69            android:exported="false" >
+69-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:50:13-37
+70            <meta-data
+70-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+71                android:name="android.app.lib_name"
+71-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+72                android:value="" />
+72-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+73        </activity>
+74        <activity
+74-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:55:9-61:20
+75            android:name="com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraDeclinedActivity"
+75-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:56:13-90
+76            android:exported="false" >
+76-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:57:13-37
+77            <meta-data
+77-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+78                android:name="android.app.lib_name"
+78-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+79                android:value="" />
+79-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+80        </activity>
+81        <activity
+81-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:62:9-68:20
+82            android:name="com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraApprovedActivity"
+82-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:63:13-90
+83            android:exported="false" >
+83-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:64:13-37
+84            <meta-data
+84-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+85                android:name="android.app.lib_name"
+85-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+86                android:value="" />
+86-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+87        </activity>
+88        <activity
+88-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:69:9-75:20
+89            android:name="com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsListActivity"
+89-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:70:13-86
+90            android:exported="false" >
+90-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:71:13-37
+91            <meta-data
+91-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+92                android:name="android.app.lib_name"
+92-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+93                android:value="" />
+93-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+94        </activity>
+95        <activity
+95-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:76:9-82:20
+96            android:name="com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.AdminEditMitraCrops"
+96-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:77:13-94
+97            android:exported="false" >
+97-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:78:13-37
+98            <meta-data
+98-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+99                android:name="android.app.lib_name"
+99-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+100                android:value="" />
+100-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+101        </activity>
+102        <activity
+102-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:83:9-89:20
+103            android:name="com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.CommodityCropsActivity"
+103-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:84:13-97
+104            android:exported="false" >
+104-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:85:13-37
+105            <meta-data
+105-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+106                android:name="android.app.lib_name"
+106-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+107                android:value="" />
+107-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+108        </activity>
+109        <activity
+109-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:90:9-96:20
+110            android:name="com.example.konekapp.ui.dashboard.home.crops.adminandahlitanicrops.AhliTaniAndAdminCropsActivity"
+110-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:91:13-104
+111            android:exported="false" >
+111-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:92:13-37
+112            <meta-data
+112-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+113                android:name="android.app.lib_name"
+113-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+114                android:value="" />
+114-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+115        </activity>
+116        <activity
+116-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:97:9-103:20
+117            android:name="com.example.konekapp.ui.dashboard.home.crops.mitracrops.EditMitraCropsActivity"
+117-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:98:13-86
+118            android:exported="false" >
+118-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:99:13-37
+119            <meta-data
+119-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+120                android:name="android.app.lib_name"
+120-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+121                android:value="" />
+121-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+122        </activity>
+123        <activity
+123-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:104:9-110:20
+124            android:name="com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsStatusActivity"
+124-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:105:13-88
+125            android:exported="false" >
+125-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:106:13-37
+126            <meta-data
+126-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+127                android:name="android.app.lib_name"
+127-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+128                android:value="" />
+128-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+129        </activity>
+130        <activity
+130-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:111:9-117:20
+131            android:name="com.example.konekapp.ui.dashboard.home.crops.mitracrops.PreMitraCropsActivity"
+131-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:112:13-85
+132            android:exported="false" >
+132-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:113:13-37
+133            <meta-data
+133-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+134                android:name="android.app.lib_name"
+134-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+135                android:value="" />
+135-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+136        </activity>
+137        <activity
+137-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:118:9-124:20
+138            android:name="com.example.konekapp.ui.dashboard.home.waitingreview.WaitingReviewActivity"
+138-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:119:13-82
+139            android:exported="false" >
+139-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:120:13-37
+140            <meta-data
+140-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+141                android:name="android.app.lib_name"
+141-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+142                android:value="" />
+142-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+143        </activity>
+144        <activity
+144-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:125:9-131:20
+145            android:name="com.example.konekapp.ui.toregistmitra.ToRegistMitraActivity"
+145-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:126:13-67
+146            android:exported="false" >
+146-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:127:13-37
+147            <meta-data
+147-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+148                android:name="android.app.lib_name"
+148-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+149                android:value="" />
+149-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+150        </activity>
+151        <activity
+151-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:132:9-140:20
+152            android:name="com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsActivity"
+152-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:133:13-82
+153            android:exported="false"
+153-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:134:13-37
+154            android:screenOrientation="portrait"
+154-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:135:13-49
+155            android:windowSoftInputMode="adjustPan" >
+155-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:136:13-52
+156            <meta-data
+156-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+157                android:name="android.app.lib_name"
+157-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+158                android:value="" />
+158-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+159        </activity>
+160        <activity
+160-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:141:9-147:20
+161            android:name="com.example.konekapp.ui.dashboard.manageuser.managemitra.requestmitra.DetailManageMitra"
+161-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:142:13-82
+162            android:exported="false" >
+162-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:143:13-37
+163            <meta-data
+163-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+164                android:name="android.app.lib_name"
+164-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+165                android:value="" />
+165-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+166        </activity>
+167        <activity
+167-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:148:9-156:20
+168            android:name="com.example.konekapp.ui.dashboard.home.plant.drug.adddrug.AddObatActivity"
+168-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:149:13-81
+169            android:exported="false"
+169-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:150:13-37
+170            android:screenOrientation="portrait"
+170-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:151:13-49
+171            android:windowSoftInputMode="adjustPan" >
+171-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:152:13-52
+172            <meta-data
+172-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+173                android:name="android.app.lib_name"
+173-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+174                android:value="" />
+174-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+175        </activity>
+176        <activity
+176-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:157:9-165:20
+177            android:name="com.example.konekapp.ui.dashboard.home.plant.disease.adddisease.AddPenyakitActivity"
+177-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:158:13-91
+178            android:exported="false"
+178-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:159:13-37
+179            android:screenOrientation="portrait"
+179-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:160:13-49
+180            android:windowSoftInputMode="adjustPan" >
+180-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:161:13-52
+181            <meta-data
+181-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+182                android:name="android.app.lib_name"
+182-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+183                android:value="" />
+183-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+184        </activity>
+185        <activity
+185-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:166:9-173:20
+186            android:name="com.example.konekapp.ui.dashboard.manageuser.managemitra.requestmitra.ManageMitra"
+186-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:167:13-76
+187            android:exported="false"
+187-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:168:13-37
+188            android:screenOrientation="portrait" >
+188-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:169:13-49
+189            <meta-data
+189-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+190                android:name="android.app.lib_name"
+190-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+191                android:value="" />
+191-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+192        </activity>
+193        <activity
+193-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:174:9-182:20
+194            android:name="com.example.konekapp.ui.dashboard.home.plant.addplant.AddTanamanActivity"
+194-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:175:13-80
+195            android:exported="false"
+195-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:176:13-37
+196            android:screenOrientation="portrait"
+196-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:177:13-49
+197            android:windowSoftInputMode="adjustPan" >
+197-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:178:13-52
+198            <meta-data
+198-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+199                android:name="android.app.lib_name"
+199-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+200                android:value="" />
+200-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+201        </activity>
+202        <activity
+202-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:183:9-190:20
+203            android:name="com.example.konekapp.ui.dashboard.home.plant.TanamanActivity"
+203-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:184:13-68
+204            android:exported="false"
+204-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:185:13-37
+205            android:screenOrientation="portrait" >
+205-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:186:13-49
+206            <meta-data
+206-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+207                android:name="android.app.lib_name"
+207-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+208                android:value="" />
+208-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+209        </activity>
+210        <activity
+210-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:191:9-198:20
+211            android:name="com.example.konekapp.ui.dashboard.home.plant.PenyakitDanObatActivity"
+211-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:192:13-76
+212            android:exported="false"
+212-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:193:13-37
+213            android:screenOrientation="portrait" >
+213-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:194:13-49
+214            <meta-data
+214-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+215                android:name="android.app.lib_name"
+215-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+216                android:value="" />
+216-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+217        </activity>
+218        <activity
+218-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:199:9-206:20
+219            android:name="com.example.konekapp.ui.dashboard.home.consultation.consultationahlitani.ConsultationToMitraActivity"
+219-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:200:13-108
+220            android:exported="false"
+220-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:201:13-37
+221            android:screenOrientation="portrait" >
+221-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:202:13-49
+222            <meta-data
+222-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+223                android:name="android.app.lib_name"
+223-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+224                android:value="" />
+224-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+225        </activity>
+226        <activity
+226-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:207:9-214:20
+227            android:name="com.example.konekapp.ui.dashboard.home.consultation.chatroom.ChatRoomActivity"
+227-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:208:13-85
+228            android:exported="false"
+228-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:209:13-37
+229            android:screenOrientation="portrait" >
+229-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:210:13-49
+230            <meta-data
+230-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+231                android:name="android.app.lib_name"
+231-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+232                android:value="" />
+232-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+233        </activity>
+234        <activity
+234-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:215:9-223:20
+235            android:name="com.example.konekapp.ui.dashboard.home.article.addarticle.AddArtikelActivity"
+235-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:216:13-84
+236            android:exported="false"
+236-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:217:13-37
+237            android:screenOrientation="portrait"
+237-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:218:13-49
+238            android:windowSoftInputMode="adjustPan" >
+238-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:219:13-52
+239            <meta-data
+239-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+240                android:name="android.app.lib_name"
+240-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+241                android:value="" />
+241-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+242        </activity>
+243        <activity
+243-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:224:9-231:20
+244            android:name="com.example.konekapp.ui.dashboard.home.article.DetailArtikelActivity"
+244-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:225:13-76
+245            android:exported="false"
+245-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:226:13-37
+246            android:screenOrientation="portrait" >
+246-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:227:13-49
+247            <meta-data
+247-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+248                android:name="android.app.lib_name"
+248-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+249                android:value="" />
+249-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+250        </activity>
+251        <activity
+251-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:232:9-239:20
+252            android:name="com.example.konekapp.ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity"
+252-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:233:13-108
+253            android:exported="false"
+253-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:234:13-37
+254            android:screenOrientation="portrait" >
+254-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:235:13-49
+255            <meta-data
+255-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+256                android:name="android.app.lib_name"
+256-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+257                android:value="" />
+257-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+258        </activity>
+259        <activity
+259-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:240:9-247:20
+260            android:name="com.example.konekapp.ui.dashboard.home.consultation.addconsultation.mitra.TambahKonsultasiToAhliTaniActivity"
+260-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:241:13-116
+261            android:exported="false"
+261-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:242:13-37
+262            android:screenOrientation="portrait" >
+262-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:243:13-49
+263            <meta-data
+263-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+264                android:name="android.app.lib_name"
+264-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+265                android:value="" />
+265-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+266        </activity>
+267        <activity
+267-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:248:9-256:20
+268            android:name="com.example.konekapp.ui.dashboard.home.article.editarticle.EditArtikelActivity"
+268-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:249:13-86
+269            android:exported="false"
+269-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:250:13-37
+270            android:screenOrientation="portrait"
+270-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:251:13-49
+271            android:windowSoftInputMode="adjustPan" >
+271-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:252:13-52
+272            <meta-data
+272-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+273                android:name="android.app.lib_name"
+273-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+274                android:value="" />
+274-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+275        </activity>
+276        <activity
+276-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:257:9-264:20
+277            android:name="com.example.konekapp.ui.dashboard.home.article.ArtikelActivity"
+277-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:258:13-70
+278            android:exported="false"
+278-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:259:13-37
+279            android:screenOrientation="portrait" >
+279-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:260:13-49
+280            <meta-data
+280-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+281                android:name="android.app.lib_name"
+281-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+282                android:value="" />
+282-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+283        </activity>
+284        <activity
+284-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:265:9-272:20
+285            android:name="com.example.konekapp.ui.login.completeprofile.CompleteProfileSuccess"
+285-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:266:13-76
+286            android:exported="false"
+286-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:267:13-37
+287            android:screenOrientation="portrait" >
+287-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:268:13-49
+288            <meta-data
+288-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+289                android:name="android.app.lib_name"
+289-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+290                android:value="" />
+290-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+291        </activity>
+292        <activity
+292-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:273:9-286:20
+293            android:name="com.example.konekapp.ui.splashscreen.SplashScreenActivity"
+293-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:274:13-65
+294            android:exported="true"
+294-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:275:13-36
+295            android:screenOrientation="portrait" >
+295-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:276:13-49
+296            <intent-filter>
+296-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:277:13-281:29
+297                <action android:name="android.intent.action.MAIN" />
+297-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:278:17-69
+297-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:278:25-66
+298
+299                <category android:name="android.intent.category.LAUNCHER" />
+299-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:280:17-77
+299-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:280:27-74
+300            </intent-filter>
+301
+302            <meta-data
+302-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+303                android:name="android.app.lib_name"
+303-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+304                android:value="" />
+304-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+305        </activity>
+306        <activity
+306-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:287:9-294:20
+307            android:name="com.example.konekapp.ui.dashboard.home.registermitra.RegisterSuccessActivity"
+307-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:288:13-84
+308            android:exported="false"
+308-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:289:13-37
+309            android:screenOrientation="portrait" >
+309-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:290:13-49
+310            <meta-data
+310-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+311                android:name="android.app.lib_name"
+311-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+312                android:value="" />
+312-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+313        </activity>
+314        <activity
+314-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:295:9-303:20
+315            android:name="com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity"
+315-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:296:13-82
+316            android:exported="false"
+316-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:297:13-37
+317            android:screenOrientation="portrait"
+317-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:298:13-49
+318            android:windowSoftInputMode="adjustPan" >
+318-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:299:13-52
+319            <meta-data
+319-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+320                android:name="android.app.lib_name"
+320-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+321                android:value="" />
+321-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+322        </activity>
+323        <activity
+323-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:304:9-312:20
+324            android:name="com.example.konekapp.ui.dashboard.account.profile.EditProfileActivity"
+324-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:305:13-77
+325            android:exported="false"
+325-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:306:13-37
+326            android:screenOrientation="portrait"
+326-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:307:13-49
+327            android:windowSoftInputMode="adjustPan" >
+327-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:308:13-52
+328            <meta-data
+328-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+329                android:name="android.app.lib_name"
+329-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+330                android:value="" />
+330-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+331        </activity>
+332        <activity
+332-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:313:9-320:20
+333            android:name="com.example.konekapp.ui.dashboard.account.profile.ProfileActivity"
+333-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:314:13-73
+334            android:exported="false"
+334-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:315:13-37
+335            android:screenOrientation="portrait" >
+335-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:316:13-49
+336            <meta-data
+336-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+337                android:name="android.app.lib_name"
+337-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+338                android:value="" />
+338-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+339        </activity>
+340        <activity
+340-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:321:9-328:20
+341            android:name="com.example.konekapp.ui.login.completeprofile.CompleteProfileActivity"
+341-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:322:13-77
+342            android:exported="false"
+342-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:323:13-37
+343            android:screenOrientation="portrait" >
+343-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:324:13-49
+344            <meta-data
+344-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+345                android:name="android.app.lib_name"
+345-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+346                android:value="" />
+346-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+347        </activity>
+348        <activity
+348-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:329:9-336:20
+349            android:name="com.example.konekapp.ui.login.LoginPhoneActivity"
+349-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:330:13-56
+350            android:exported="false"
+350-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:331:13-37
+351            android:screenOrientation="portrait" >
+351-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:332:13-49
+352            <meta-data
+352-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+353                android:name="android.app.lib_name"
+353-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+354                android:value="" />
+354-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+355        </activity>
+356        <activity
+356-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:337:9-344:20
+357            android:name="com.example.konekapp.ui.dashboard.MainActivity"
+357-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:338:13-54
+358            android:exported="false"
+358-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:339:13-37
+359            android:screenOrientation="portrait" >
+359-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:340:13-49
+360            <meta-data
+360-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+361                android:name="android.app.lib_name"
+361-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+362                android:value="" />
+362-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+363        </activity>
+364        <activity
+364-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:345:9-347:59
+365            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+365-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:346:13-76
+366            android:theme="@style/Base.Theme.AppCompat" />
+366-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:347:13-56
+367        <activity
+367-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:348:9-355:20
+368            android:name="com.example.konekapp.ui.dashboard.home.consultation.addconsultation.ahlitani.TambahKonsultasiToMitraActivity"
+368-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:349:13-116
+369            android:exported="false"
+369-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:350:13-37
+370            android:screenOrientation="portrait" >
+370-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:351:13-49
+371            <meta-data
+371-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:23:13-25:36
+372                android:name="android.app.lib_name"
+372-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:24:17-52
+373                android:value="" />
+373-->C:\Users\Asus\AndroidStudioProjects\KonekAppGit\app\src\main\AndroidManifest.xml:25:17-33
+374        </activity>
+375        <activity
+375-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:27:9-44:20
+376            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+376-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:28:13-80
+377            android:excludeFromRecents="true"
+377-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:29:13-46
+378            android:exported="true"
+378-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:30:13-36
+379            android:launchMode="singleTask"
+379-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:31:13-44
+380            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+380-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:32:13-72
+381            <intent-filter>
+381-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:33:13-43:29
+382                <action android:name="android.intent.action.VIEW" />
+382-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:34:17-69
+382-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:34:25-66
+383
+384                <category android:name="android.intent.category.DEFAULT" />
+384-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:36:17-76
+384-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:36:27-73
+385                <category android:name="android.intent.category.BROWSABLE" />
+385-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:37:17-78
+385-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:37:27-75
+386
+387                <data
+387-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:39:17-42:51
+388                    android:host="firebase.auth"
+388-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:40:21-49
+389                    android:path="/"
+389-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:41:21-37
+390                    android:scheme="genericidp" />
+390-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:42:21-48
+391            </intent-filter>
+392        </activity>
+393        <activity
+393-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:45:9-62:20
+394            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+394-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:46:13-79
+395            android:excludeFromRecents="true"
+395-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:47:13-46
+396            android:exported="true"
+396-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:48:13-36
+397            android:launchMode="singleTask"
+397-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:49:13-44
+398            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+398-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:50:13-72
+399            <intent-filter>
+399-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:51:13-61:29
+400                <action android:name="android.intent.action.VIEW" />
+400-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:34:17-69
+400-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:34:25-66
+401
+402                <category android:name="android.intent.category.DEFAULT" />
+402-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:36:17-76
+402-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:36:27-73
+403                <category android:name="android.intent.category.BROWSABLE" />
+403-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:37:17-78
+403-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:37:27-75
+404
+405                <data
+405-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:39:17-42:51
+406                    android:host="firebase.auth"
+406-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:40:21-49
+407                    android:path="/"
+407-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:41:21-37
+408                    android:scheme="recaptcha" />
+408-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:42:21-48
+409            </intent-filter>
+410        </activity>
+411
+412        <service
+412-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:64:9-70:19
+413            android:name="com.google.firebase.components.ComponentDiscoveryService"
+413-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:65:13-84
+414            android:directBootAware="true"
+414-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Asus\.gradle\caches\transforms-3\48553392eeb5decf032250d0aee929da\transformed\firebase-common-20.3.0\AndroidManifest.xml:34:13-43
+415            android:exported="false" >
+415-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:66:13-37
+416            <meta-data
+416-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:67:13-69:85
+417                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+417-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:68:17-109
+418                android:value="com.google.firebase.components.ComponentRegistrar" />
+418-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\Asus\.gradle\caches\transforms-3\4ee3b7bba0b7affb0215a22e8a511509\transformed\firebase-auth-21.1.0\AndroidManifest.xml:69:17-82
+419            <meta-data
+419-->[com.google.firebase:firebase-database:20.1.0] C:\Users\Asus\.gradle\caches\transforms-3\b9f11c01c17667925f4ff9a1c202665a\transformed\firebase-database-20.1.0\AndroidManifest.xml:31:13-33:85
+420                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+420-->[com.google.firebase:firebase-database:20.1.0] C:\Users\Asus\.gradle\caches\transforms-3\b9f11c01c17667925f4ff9a1c202665a\transformed\firebase-database-20.1.0\AndroidManifest.xml:32:17-109
+421                android:value="com.google.firebase.components.ComponentRegistrar" />
+421-->[com.google.firebase:firebase-database:20.1.0] C:\Users\Asus\.gradle\caches\transforms-3\b9f11c01c17667925f4ff9a1c202665a\transformed\firebase-database-20.1.0\AndroidManifest.xml:33:17-82
+422            <meta-data
+422-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Asus\.gradle\caches\transforms-3\765f0d799671d67a8a67844118f915a0\transformed\firebase-storage-20.1.0\AndroidManifest.xml:32:13-34:85
+423                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+423-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Asus\.gradle\caches\transforms-3\765f0d799671d67a8a67844118f915a0\transformed\firebase-storage-20.1.0\AndroidManifest.xml:33:17-107
+424                android:value="com.google.firebase.components.ComponentRegistrar" />
+424-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Asus\.gradle\caches\transforms-3\765f0d799671d67a8a67844118f915a0\transformed\firebase-storage-20.1.0\AndroidManifest.xml:34:17-82
+425            <meta-data
+425-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\3cafc9387d2b23469274426ba64fca95\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:31:13-33:85
+426                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+426-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\3cafc9387d2b23469274426ba64fca95\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:32:17-139
+427                android:value="com.google.firebase.components.ComponentRegistrar" />
+427-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\3cafc9387d2b23469274426ba64fca95\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:33:17-82
+428            <meta-data
+428-->[com.google.firebase:firebase-installations:17.1.1] C:\Users\Asus\.gradle\caches\transforms-3\5b803f8c2a16f52f55c5b70f92871e39\transformed\firebase-installations-17.1.1\AndroidManifest.xml:17:13-19:85
+429                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+429-->[com.google.firebase:firebase-installations:17.1.1] C:\Users\Asus\.gradle\caches\transforms-3\5b803f8c2a16f52f55c5b70f92871e39\transformed\firebase-installations-17.1.1\AndroidManifest.xml:18:17-127
+430                android:value="com.google.firebase.components.ComponentRegistrar" />
+430-->[com.google.firebase:firebase-installations:17.1.1] C:\Users\Asus\.gradle\caches\transforms-3\5b803f8c2a16f52f55c5b70f92871e39\transformed\firebase-installations-17.1.1\AndroidManifest.xml:19:17-82
+431        </service>
+432
+433        <provider
+433-->[com.squareup.picasso:picasso:2.71828] C:\Users\Asus\.gradle\caches\transforms-3\45202b1acfb675fddf9ab9d0fbffafe7\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
+434            android:name="com.squareup.picasso.PicassoProvider"
+434-->[com.squareup.picasso:picasso:2.71828] C:\Users\Asus\.gradle\caches\transforms-3\45202b1acfb675fddf9ab9d0fbffafe7\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
+435            android:authorities="com.example.konekapp.com.squareup.picasso"
+435-->[com.squareup.picasso:picasso:2.71828] C:\Users\Asus\.gradle\caches\transforms-3\45202b1acfb675fddf9ab9d0fbffafe7\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
+436            android:exported="false" />
+436-->[com.squareup.picasso:picasso:2.71828] C:\Users\Asus\.gradle\caches\transforms-3\45202b1acfb675fddf9ab9d0fbffafe7\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
+437        <provider
+437-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Asus\.gradle\caches\transforms-3\48553392eeb5decf032250d0aee929da\transformed\firebase-common-20.3.0\AndroidManifest.xml:25:9-30:39
+438            android:name="com.google.firebase.provider.FirebaseInitProvider"
+438-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Asus\.gradle\caches\transforms-3\48553392eeb5decf032250d0aee929da\transformed\firebase-common-20.3.0\AndroidManifest.xml:26:13-77
+439            android:authorities="com.example.konekapp.firebaseinitprovider"
+439-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Asus\.gradle\caches\transforms-3\48553392eeb5decf032250d0aee929da\transformed\firebase-common-20.3.0\AndroidManifest.xml:27:13-72
+440            android:directBootAware="true"
+440-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Asus\.gradle\caches\transforms-3\48553392eeb5decf032250d0aee929da\transformed\firebase-common-20.3.0\AndroidManifest.xml:28:13-43
+441            android:exported="false"
+441-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Asus\.gradle\caches\transforms-3\48553392eeb5decf032250d0aee929da\transformed\firebase-common-20.3.0\AndroidManifest.xml:29:13-37
+442            android:initOrder="100" />
+442-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Asus\.gradle\caches\transforms-3\48553392eeb5decf032250d0aee929da\transformed\firebase-common-20.3.0\AndroidManifest.xml:30:13-36
+443
+444        <activity
+444-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Asus\.gradle\caches\transforms-3\0c90dee2369b4b74eaad8ea3e28e419d\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+445            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+445-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Asus\.gradle\caches\transforms-3\0c90dee2369b4b74eaad8ea3e28e419d\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+446            android:exported="false"
+446-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Asus\.gradle\caches\transforms-3\0c90dee2369b4b74eaad8ea3e28e419d\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+447            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+447-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Asus\.gradle\caches\transforms-3\0c90dee2369b4b74eaad8ea3e28e419d\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+448
+449        <receiver
+449-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:29:9-33:20
+450            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+450-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:30:13-85
+451            android:enabled="true"
+451-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:31:13-35
+452            android:exported="false" >
+452-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:32:13-37
+453        </receiver>
+454
+455        <service
+455-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:35:9-38:40
+456            android:name="com.google.android.gms.measurement.AppMeasurementService"
+456-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:36:13-84
+457            android:enabled="true"
+457-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:37:13-35
+458            android:exported="false" />
+458-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:38:13-37
+459        <service
+459-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:39:9-43:72
+460            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+460-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:40:13-87
+461            android:enabled="true"
+461-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:41:13-35
+462            android:exported="false"
+462-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:42:13-37
+463            android:permission="android.permission.BIND_JOB_SERVICE" />
+463-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Asus\.gradle\caches\transforms-3\189628ed82555c153e414781963a2f13\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:43:13-69
+464
+465        <meta-data
+465-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Asus\.gradle\caches\transforms-3\d783b131d093ddc395c9a60a0a8c75e0\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+466            android:name="com.google.android.gms.version"
+466-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Asus\.gradle\caches\transforms-3\d783b131d093ddc395c9a60a0a8c75e0\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+467            android:value="@integer/google_play_services_version" />
+467-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Asus\.gradle\caches\transforms-3\d783b131d093ddc395c9a60a0a8c75e0\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+468
+469        <provider
+469-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Asus\.gradle\caches\transforms-3\578ef19881b9e5c75a7e533506929846\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+470            android:name="androidx.startup.InitializationProvider"
+470-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Asus\.gradle\caches\transforms-3\578ef19881b9e5c75a7e533506929846\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+471            android:authorities="com.example.konekapp.androidx-startup"
+471-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Asus\.gradle\caches\transforms-3\578ef19881b9e5c75a7e533506929846\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+472            android:exported="false" >
+472-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Asus\.gradle\caches\transforms-3\578ef19881b9e5c75a7e533506929846\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+473            <meta-data
+473-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Asus\.gradle\caches\transforms-3\578ef19881b9e5c75a7e533506929846\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+474                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+474-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Asus\.gradle\caches\transforms-3\578ef19881b9e5c75a7e533506929846\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+475                android:value="androidx.startup" />
+475-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Asus\.gradle\caches\transforms-3\578ef19881b9e5c75a7e533506929846\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+476            <meta-data
+476-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Asus\.gradle\caches\transforms-3\c2dfcefb92e37fc96955220fe8b8c302\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+477                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+477-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Asus\.gradle\caches\transforms-3\c2dfcefb92e37fc96955220fe8b8c302\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+478                android:value="androidx.startup" />
+478-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Asus\.gradle\caches\transforms-3\c2dfcefb92e37fc96955220fe8b8c302\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+479        </provider>
+480    </application>
+481
+482</manifest>

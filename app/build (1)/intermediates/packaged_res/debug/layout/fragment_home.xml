@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.dashboard.home.HomeFragment"
+    android:orientation="vertical"
+    >
+
+    <!--    top constraint-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        >
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="8dp">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:src="@drawable/konek" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/byagrolestarimerbabu" />
+
+
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/accImageHome"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <!--    card register-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="16dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear_layout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Makin untung dengan"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Kemitraan Perusahaan"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnRegisterMitra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_bg_white"
+                        android:backgroundTint="@null"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Daftar Sekarang"
+                        android:textAllCaps="false"
+                        android:textColor="@color/light_green"
+                        android:textSize="14sp"
+                        app:backgroundTint="@null" />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvWaitingConfirmation"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="30dp"-->
+<!--                        android:fontFamily="@font/outfit_semi_bold"-->
+<!--                        android:text="Menunggu Konfirmasi"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="14sp" />-->
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/people"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout1"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    card unregister-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintUnregister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="16dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear_layout6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Makin untung dengan"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Kemitraan Perusahaan"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnWaitingReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_bg_white"
+                        android:backgroundTint="@null"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Menunggu Tinjauan"
+                        android:textAllCaps="false"
+                        android:textColor="@color/light_green"
+                        android:textSize="14sp"
+                        app:backgroundTint="@null" />
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/tvWaitingConfirmation"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginBottom="30dp"-->
+                    <!--                        android:fontFamily="@font/outfit_semi_bold"-->
+                    <!--                        android:text="Menunggu Konfirmasi"-->
+                    <!--                        android:textColor="@color/white"-->
+                    <!--                        android:textSize="14sp" />-->
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/people"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout6"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!--    card konsultasi-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintAsMitra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="16dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear_layout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Konsultasi langsung"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="dengan Ahli Tani"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnKonsultasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_bg_white"
+                        android:backgroundTint="@null"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textAllCaps="false"
+                        android:textColor="@color/light_green"
+                        android:textSize="14sp"
+                        app:backgroundTint="@null" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/person"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    card konsultasi-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintAsAhliTani"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="16dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear_layout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Jawab Pertanyaan dari"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Petani Mitra"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnChatMitra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_bg_white"
+                        android:backgroundTint="@null"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:textAllCaps="false"
+                        android:textColor="@color/light_green"
+                        android:textSize="14sp"
+                        app:backgroundTint="@null" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/person"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    card Kelola Kemitraan-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintKelolaKemitraan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="16dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear_layout4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Kelola Kemitraan"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="dari Pengguna"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnKelolaKemitraan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_bg_white"
+                        android:backgroundTint="@null"
+                        android:fontFamily="@font/outfit_semi_bold"
+                        android:text="Kelola Kemitraan"
+                        android:textAllCaps="false"
+                        android:textColor="@color/light_green"
+                        android:textSize="14sp"
+                        app:backgroundTint="@null" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/person"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linear_layout4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    Info Seputar Tanaman Text-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Seputar Tanaman"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/outfit_semi_bold"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="16sp"
+                />
+
+            <!--    penyakit dan obat-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <!--        Penyakit Tanaman-->
+                <LinearLayout
+                    android:id="@+id/btnDiseaseAndDrug"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_home"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:layout_marginRight="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/glass"
+                        android:layout_marginBottom="8dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Penyakit dan Obat"
+                        android:fontFamily="@font/outfit_medium"
+                        android:textColor="@color/neutral_dark3"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+                <!--        Obat Tanaman-->
+                <LinearLayout
+                    android:id="@+id/btnCrops"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_home"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/monitoring"
+                        android:layout_marginBottom="8dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Monitoring"
+                        android:fontFamily="@font/outfit_medium"
+                        android:textColor="@color/neutral_dark3"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!--        Artikel pertanian-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="14dp"
+                >
+                <!--    Artikel Pertanian text-->
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_semi_bold"
+                    android:text="Artikel Pertanian"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--            Lihat Semua-->
+                <TextView
+                    android:id="@+id/btnFullArtikel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lihat semua"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/light_green"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    RecyclerView-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+

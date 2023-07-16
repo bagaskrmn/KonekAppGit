@@ -147,9 +147,32 @@ public class RegisterMitraActivity extends AppCompatActivity {
 
                 String retrieveFullAddress = snapshot.child("fullAddress").getValue().toString();
 
+                String retrieveNIK = snapshot.child("nik").getValue().toString();
+                String retrieveEmail = snapshot.child("email").getValue().toString();
+                String retrieveVillage = snapshot.child("village").getValue().toString();
+                String retrieveSubdistrict = snapshot.child("subdistrict").getValue().toString();
+                String retrieveCity = snapshot.child("city").getValue().toString();
+                String retrieveProvince = snapshot.child("province").getValue().toString();
+                String retrieveIdCardImage = snapshot.child("idCardImage").getValue().toString();
+                String retrieveQuestion1 = snapshot.child("question1").getValue().toString();
+                String retrieveQuestion2 = snapshot.child("question2").getValue().toString();
+
                 RegMitraName.setText(retrieveName);
                 RegMitraFullAddress.setText(retrieveFullAddress);
                 RegMitraPhoneNumber.setText(removedPhoneNumber);
+
+                RegMitraNIK.setText(retrieveNIK);
+                RegMitraEmail.setText(retrieveEmail);
+                RegMitraVillage.setText(retrieveVillage);
+                RegMitraSubdistrict.setText(retrieveSubdistrict);
+                RegMitraCity.setText(retrieveCity);
+                RegMitraProvince.setText(retrieveProvince);
+                RegMitraQuestion1.setText(retrieveQuestion1);
+                RegMitraQuestion2.setText(retrieveQuestion2);
+
+                if (!retrieveIdCardImage.equals("")) {
+                    Picasso.get().load(retrieveIdCardImage).into(RegMitraDocument);
+                }
 
                 pd.dismiss();
             }

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.login.LoginPhoneActivity">
+
+    <ImageView
+        android:id="@+id/loginBackAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_back_action"
+        android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+        android:layout_marginBottom="20dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/phoneLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="32dp"
+        >
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/outfit_bold"
+            android:text="@string/welcome"
+            android:textColor="@color/neutral_dark3"
+            android:textAlignment="textStart"
+            android:lineSpacingExtra="8dp"
+            android:textSize="24sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_phone"
+            android:fontFamily="@font/outfit_regular"
+            android:textColor="@color/neutral_dark4"
+            android:textAlignment="textStart"
+            android:lineSpacingExtra="6dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nomor Ponsel"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/call"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+62"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="16sp"
+                android:paddingRight="12dp"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/neutral_dark"
+                />
+
+
+            <EditText
+                android:id="@+id/loginPhoneNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:hint="Nomor Ponsel"
+                android:inputType="phone"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSendOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi OTP"
+            android:textColor="@color/btn_text_color"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:enabled="false"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/codeLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/outfit_bold"
+            android:text="@string/confirm_otp"
+            android:textColor="@color/neutral_dark3"
+            android:textAlignment="textStart"
+            android:textSize="22sp"
+            />
+
+
+        <TextView
+            android:id="@+id/descOTPCodeSent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/outfit_regular"
+            android:textColor="@color/neutral_dark4"
+            android:lineSpacingExtra="6dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="40dp" />
+
+
+        <com.chaos.view.PinView
+            android:id="@+id/enterOTPCode"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:cursorVisible="true"
+            android:fontFamily="@font/outfit_bold"
+            android:inputType="number"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="16sp"
+            app:cursorColor="@color/neutral_dark3"
+            app:cursorWidth="1dp"
+            app:hideLineWhenFilled="false"
+            app:itemCount="6"
+            app:itemRadius="12dp"
+            app:itemSpacing="6dp"
+            app:lineColor="@color/line_colors"
+            app:lineWidth="1.5dp"
+            app:viewType="rectangle"
+            tools:ignore="SpeakableTextPresentCheck"
+            />
+
+        <TextView
+            android:id="@+id/cTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/neutral_dark3"
+            android:fontFamily="@font/outfit_regular"
+            android:textSize="16sp"
+            android:layout_marginBottom="30dp"
+            />
+
+        <TextView
+            android:id="@+id/resendOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/didnt_get_otp"
+            android:textColor="@color/neutral_dark4"
+            android:fontFamily="@font/outfit_regular"
+            android:textSize="16sp"
+            android:layout_marginBottom="30dp"
+            />
+
+        <Button
+            android:id="@+id/btnVerifyOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verify"
+            android:textColor="@color/btn_text_color"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:enabled="false"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

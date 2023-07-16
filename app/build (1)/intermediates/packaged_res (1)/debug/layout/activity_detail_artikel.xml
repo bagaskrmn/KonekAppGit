@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.dashboard.home.article.DetailArtikelActivity"
+    android:padding="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+        <ImageView
+            android:id="@+id/backActionDetailArtikel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_back_action"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            android:contentDescription="Back to Main" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="Artikel"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:fontFamily="@font/outfit_bold"
+            />
+        <View
+            android:id="@+id/spaceViewArtikel"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
+
+        <ImageView
+            android:id="@+id/menuArtikel"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_baseline_menu_24"
+            />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/detailArtikelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Ini Judul Artikeljiefjesifjdsjfnsdjkfnrnfrnfrsr fnfnrrffnrfnrfn fnrfurnfrufnrufn"
+                android:fontFamily="@font/outfit_medium"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TextView
+                android:id="@+id/textImageUrl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Oleh"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark"
+                    android:textSize="14sp"
+                    android:layout_marginRight="6dp"
+                    />
+
+                <TextView
+                    android:id="@+id/detailArtikelSource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Sumber Artikel"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark"
+                    android:textSize="14sp"
+                    />
+
+                <View
+                    android:layout_gravity="center"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:background="@drawable/bg_btn_home"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/detailArtikelDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Tanggal artikel"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/detailArtikelImage"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/avatars"
+                android:layout_marginBottom="16dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Foto : "
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark"
+                    android:textSize="14sp"
+                    />
+
+                <TextView
+                    android:id="@+id/detailArtikelSourceImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Sumber Foto"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textColor="@color/neutral_dark"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+
+
+
+            <TextView
+                android:id="@+id/detailArtikelDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                tools:text="Ini isi/deskripsi artikel"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

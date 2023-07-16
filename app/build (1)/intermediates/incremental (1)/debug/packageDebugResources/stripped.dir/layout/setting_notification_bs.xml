@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kelola Notifikasi"
+            android:fontFamily="@font/outfit_bold"
+            android:textColor="@color/neutral_dark3"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/notification_setting"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Maaf saat ini Kelola Notifikasi belum dapat digunakan. Harap bersabar ya!"
+            android:textAlignment="center"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/neutral"
+            android:layout_marginBottom="12dp"
+
+            />
+
+        <Button
+            android:id="@+id/btnCloseBs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            app:backgroundTint="@null"
+            android:text="Kembali"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/outfit_semi_bold"
+            />
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

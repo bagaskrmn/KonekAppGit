@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".ui.dashboard.home.plant.disease.adddisease.AddPenyakitActivity">
+
+    <!--    add artikel action bar-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+        <ImageView
+            android:id="@+id/addPenyakitBackAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_back_action"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Tambah Penyakit"
+            android:fontFamily="@font/outfit_bold"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="18sp"
+            android:gravity="center"
+            />
+        <View
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addImagePenyakitConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_add_image"
+        >
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/document_upload"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/addImagePenyakit"
+            app:layout_constraintStart_toStartOf="@+id/addImagePenyakit"
+            app:layout_constraintTop_toTopOf="@+id/addImagePenyakit" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_regular"
+            android:text="Unggah Foto"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="16sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/addImagePenyakit"
+            app:layout_constraintStart_toStartOf="@+id/addImagePenyakit"
+            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+
+        <ImageView
+            android:id="@+id/addImagePenyakit"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Penyakit"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="#D8244E"
+            android:text="*"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/addNamePenyakit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edit_text"
+        android:fontFamily="@font/outfit_regular"
+        android:textSize="14sp"
+        android:padding="8dp"
+        tools:text="Ini Nama Penyakit"
+        android:layout_marginBottom="10dp"
+        android:inputType="textCapWords"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deskripsi Penyakit"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="#D8244E"
+            android:text="*"
+            />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/addDescriptionPenyakit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edit_text"
+        android:fontFamily="@font/outfit_regular"
+        android:textSize="14sp"
+        android:padding="8dp"
+        tools:text="Ini Deskripsi"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:lines="8"
+        android:scrollbars="vertical"
+        android:layout_marginBottom="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        >
+
+        <Button
+            android:id="@+id/btnAddPenyakitDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:text="Tambah"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textAllCaps="false"
+            />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

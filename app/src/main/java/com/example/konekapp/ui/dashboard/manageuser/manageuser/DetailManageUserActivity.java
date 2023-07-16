@@ -17,9 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konekapp.R;
-import com.example.konekapp.ui.dashboard.account.profile.EditProfileActivity;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.DetailManageMitra;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.ManageMitra;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,10 +33,6 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
