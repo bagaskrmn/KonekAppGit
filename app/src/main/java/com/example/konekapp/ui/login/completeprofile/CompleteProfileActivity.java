@@ -308,7 +308,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         String description = "Daftarkan diri anda sebagai Mitra Konek dan dapatkan manfaatnya!";
         int kind = 1;
 
-        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl, false );
+        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl);
 
         notificationRef.child(notificationKey).setValue(notificationModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

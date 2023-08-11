@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
@@ -71,12 +72,13 @@ public class ListMitraAdapter extends RecyclerView.Adapter<ListMitraAdapter.MyVi
         bottomSheetDialog.setContentView(R.layout.downgrade_confirm_bs);
 
         ImageView CloseBs;
-        Button BtnConfirm;
+        Button BtnConfirm, BtnCancel;
         FirebaseAuth firebaseAuth;
         DatabaseReference rootRef, usersRef;
 
         CloseBs = bottomSheetDialog.findViewById(R.id.closeBs);
         BtnConfirm = bottomSheetDialog.findViewById(R.id.btnConfirm);
+        BtnCancel = bottomSheetDialog.findViewById(R.id.btnCancel);
 
         firebaseAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -111,6 +113,13 @@ public class ListMitraAdapter extends RecyclerView.Adapter<ListMitraAdapter.MyVi
             }
         });
 
+        BtnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.cancel();
+            }
+        });
+
         bottomSheetDialog.show();
     }
 
@@ -123,7 +132,7 @@ public class ListMitraAdapter extends RecyclerView.Adapter<ListMitraAdapter.MyVi
 
         TextView ListMitraName;
         CircleImageView ListMitraImage;
-        ImageView BtnDowngrade;
+        ConstraintLayout BtnDowngrade;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 

@@ -233,7 +233,7 @@ public class DetailManageMitra extends AppCompatActivity {
         String description ="Pengajuan mitra anda ditolak";
         int kind = 3;
 
-        NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl,false);
+        NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl);
 
         notificationRef.child(notificationKey).setValue(notificationModel)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -249,7 +249,7 @@ public class DetailManageMitra extends AppCompatActivity {
         String description ="Pengajuan mitra anda disetujui. Anda telah tergabung sebagai Petani Mitra";
         int kind = 2;
 
-        NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl,false);
+        NotificationModel notificationModel = new NotificationModel(title, description, SelectedUserId, kind, date, systemNotificationImageUrl);
 
         notificationRef.child(notificationKey).setValue(notificationModel)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -382,7 +382,7 @@ public class RegisterMitraActivity extends AppCompatActivity {
         int kind = 5;
 
 
-        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl,false);
+        NotificationModel notificationModel = new NotificationModel(title, description, currentUserId, kind, date, systemNotificationImageUrl);
 
         notificationRef.child(notificationKey).setValue(notificationModel)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

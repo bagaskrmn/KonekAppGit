@@ -194,7 +194,7 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         String systemNotificationImageUrl = task.getResult().toString();
-                        NotificationModel notificationModel = new NotificationModel(title, description, targetId, kind, date, systemNotificationImageUrl,false);
+                        NotificationModel notificationModel = new NotificationModel(title, description, targetId, kind, date, systemNotificationImageUrl);
 
                         notificationRef.child(notificationKey).setValue(notificationModel)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {

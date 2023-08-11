@@ -476,7 +476,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/monitoring"
+                        android:src="@drawable/monitoing_logo"
                         android:layout_marginBottom="8dp"
                         />
                     <TextView
