@@ -94,10 +94,8 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-
-
         //retrieve data to field
-        voidLoadData();
+        usersRef.child(currentUserId).addValueEventListener(userDataListener);
 
         UpdateProfImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,7 +183,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
         //jika gambar tidak diganti
-        if (resultUri == null) {
+        else if (resultUri == null) {
 //            pd.setMessage("Mengunggah Data");
 //            pd.show();
             //hanya diupdate objek selain gambar
@@ -194,16 +192,14 @@ public class EditProfileActivity extends AppCompatActivity {
             profileMap.put("domicile", updatedAddress);
             profileMap.put("fullAddress", updatedDetailAddress);
 
-
-
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
 //                    pd.dismiss();
                     if (task.isSuccessful()) {
 //                        pd.dismiss();
-                        Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-                        EditProfileActivity.super.onBackPressed();
+//                        EditProfileActivity.super.onBackPressed();
+                        Toast.makeText(EditProfileActivity.this, "Update berhasil Tanpa Foto", Toast.LENGTH_SHORT).show();
                     }
                     else {
 //                        pd.dismiss();
@@ -247,7 +243,8 @@ public class EditProfileActivity extends AppCompatActivity {
                                                 if (task.isSuccessful()) {
 //                                                    pd.dismiss();
                                                     Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-                                                    EditProfileActivity.super.onBackPressed();
+//                                                    EditProfileActivity.super.onBackPressed();
+                                                    //error here
                                                 }
                                                 else {
 //                                                    pd.dismiss();
