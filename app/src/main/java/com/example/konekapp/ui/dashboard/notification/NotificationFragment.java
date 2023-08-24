@@ -147,7 +147,6 @@ public class NotificationFragment extends Fragment {
             editor.apply();
             Log.d("NotifFragment", "int in sharedPreferences: "+sharedPreferences.getInt("notifCount", 0));
 
-
             //sorting list
             Collections.sort(list, (obj1, obj2) -> obj2.getDate().compareTo(obj1.getDate()));
             pd.dismiss();

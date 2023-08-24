@@ -51,7 +51,6 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
         this.list = list;
     }
 
-
     @NonNull
     @Override
     public ReviewedCropsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -73,7 +72,6 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
                 showBottomSheetDialog(crops);
             }
         });
-
     }
     private void showBottomSheetDialog(CropsModel crops) {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);

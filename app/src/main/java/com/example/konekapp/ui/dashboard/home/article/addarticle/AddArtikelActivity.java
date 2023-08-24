@@ -259,7 +259,7 @@ public class AddArtikelActivity extends AppCompatActivity {
         String title = "Artikel Baru";
         int kind = 0;
 
-        NotificationModel notificationModel = new NotificationModel(title, Title, null, kind, date, articleImageUrl);
+        NotificationModel notificationModel = new NotificationModel(title, Title, artikelId, kind, date, articleImageUrl);
 
         notificationRef.child(notificationKey).setValue(notificationModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
