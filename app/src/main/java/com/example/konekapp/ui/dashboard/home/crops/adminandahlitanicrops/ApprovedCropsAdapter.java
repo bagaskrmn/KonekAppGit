@@ -60,10 +60,13 @@ public class ApprovedCropsAdapter extends RecyclerView.Adapter<ApprovedCropsAdap
         holder.BtnDetailCropsMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showBottomSheetDialog(crops);
+                Intent i = new Intent(context, ApprovedDetailMonitoringActivity.class);
+                i.putExtra("Key", crops.cropsId);
+                context.startActivity(i);
             }
         });
     }
+    //change to activity
     private void showBottomSheetDialog(CropsModel crops) {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
         bottomSheetDialog.setContentView(R.layout.detail_crops_bs);

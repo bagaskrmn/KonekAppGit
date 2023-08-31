@@ -110,6 +110,7 @@ public class AdminEditMitraCrops extends AppCompatActivity {
         AdminEditMitraCropsBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cropsRef.child(cropsId).removeEventListener(listener);
                 AdminEditMitraCrops.super.onBackPressed();
             }
         });

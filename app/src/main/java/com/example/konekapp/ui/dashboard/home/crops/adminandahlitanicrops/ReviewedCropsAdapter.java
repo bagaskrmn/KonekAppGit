@@ -69,7 +69,9 @@ public class ReviewedCropsAdapter extends RecyclerView.Adapter<ReviewedCropsAdap
         holder.BtnDetailCropsMitra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showBottomSheetDialog(crops);
+                Intent i = new Intent(context, ReviewedDetailMonitoringActivity.class);
+                i.putExtra("Key", crops.cropsId);
+                context.startActivity(i);
             }
         });
     }

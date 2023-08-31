@@ -33,13 +33,13 @@
             android:layout_margin="8dp"
             android:ellipsize="end"
             android:fontFamily="@font/outfit_medium"
-            android:maxLines="2"
+            android:lines="2"
             android:textColor="@color/neutral_dark3"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageArtikel"
-            tools:text="Ini judul artikel asjdouashdb jfndjnd fjndsfjds fiosdjfidjf fjsdnam emmer " />
+            tools:text="Ini judul artikel " />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -61,6 +61,7 @@
                 android:fontFamily="@font/outfit_regular"
                 android:textColor="@color/neutral_dark"
                 android:textSize="12sp"
+                android:lines="2"
                 tools:text="surabaya.net" />
 
             <View

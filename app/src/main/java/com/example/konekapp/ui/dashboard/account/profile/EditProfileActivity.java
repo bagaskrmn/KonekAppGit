@@ -198,7 +198,7 @@ public class EditProfileActivity extends AppCompatActivity {
 //                    pd.dismiss();
                     if (task.isSuccessful()) {
 //                        pd.dismiss();
-//                        EditProfileActivity.super.onBackPressed();
+                        EditProfileActivity.super.onBackPressed();
                         Toast.makeText(EditProfileActivity.this, "Update berhasil Tanpa Foto", Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -243,7 +243,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                                 if (task.isSuccessful()) {
 //                                                    pd.dismiss();
                                                     Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-//                                                    EditProfileActivity.super.onBackPressed();
+                                                    EditProfileActivity.super.onBackPressed();
                                                     //error here
                                                 }
                                                 else {
