@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
@@ -41,6 +42,7 @@ public class ApprovedCropsFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private String currentUserId;
+    private TextView MonitoringNoData;
 
     BottomSheetDialog dialog;
     public ApprovedCropsFragment() {
@@ -57,6 +59,7 @@ public class ApprovedCropsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        MonitoringNoData = (TextView)getView().findViewById(R.id.monitoringNoData);
         //getString Commodity from Activity
         commodity = getActivity().getIntent().getStringExtra("Commodity");
         //users
@@ -85,6 +88,7 @@ public class ApprovedCropsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
+                pd.dismiss();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     CropsModel crops= ds.getValue(CropsModel.class);
                     crops.setCropsId(ds.getKey());
@@ -94,7 +98,15 @@ public class ApprovedCropsFragment extends Fragment {
 
                         Log.d("DataApproved", Arrays.toString(new ArrayList[]{list}));
                     }
-                    pd.dismiss();
+
+                }
+
+                if (list.size() > 0) {
+                    MonitoringNoData.setVisibility(View.GONE);
+                    ApprovedCropsRv.setVisibility(View.VISIBLE);
+                } else {
+                    MonitoringNoData.setVisibility(View.VISIBLE);
+                    ApprovedCropsRv.setVisibility(View.GONE);
                 }
                 adapter.notifyDataSetChanged();
             }

@@ -16,6 +16,18 @@
             android:layout_height="wrap_content"
             />
 
+        <TextView
+            android:id="@+id/monitoringNoData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:text="Tidak ada data"
+            android:textAlignment="center"
+            android:fontFamily="@font/outfit_semi_bold"
+            />
+
+
+
     </LinearLayout>
 
 </FrameLayout>

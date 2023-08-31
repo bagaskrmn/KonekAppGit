@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.CropsModel;
@@ -43,6 +44,7 @@ public class ReviewedCropsFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private String currentUserId;
+    private TextView MonitoringNoData;
 
     BottomSheetDialog dialog;
 
@@ -63,7 +65,7 @@ public class ReviewedCropsFragment extends Fragment {
         //getString Commodity from Activity
         commodity = getActivity().getIntent().getStringExtra("Commodity");
 
-
+        MonitoringNoData = (TextView)getView().findViewById(R.id.monitoringNoData);
         //users
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -91,6 +93,7 @@ public class ReviewedCropsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 list.clear();
+                pd.dismiss();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     CropsModel crops= ds.getValue(CropsModel.class);
                     crops.setCropsId(ds.getKey());
@@ -100,7 +103,14 @@ public class ReviewedCropsFragment extends Fragment {
 
                         Log.d("DataReviewed", Arrays.toString(new ArrayList[]{list}));
                     }
-                    pd.dismiss();
+                }
+
+                if (list.size() > 0) {
+                    MonitoringNoData.setVisibility(View.GONE);
+                    ReviewedCropsRv.setVisibility(View.VISIBLE);
+                } else {
+                    MonitoringNoData.setVisibility(View.VISIBLE);
+                    ReviewedCropsRv.setVisibility(View.GONE);
                 }
                 adapter.notifyDataSetChanged();
             }
