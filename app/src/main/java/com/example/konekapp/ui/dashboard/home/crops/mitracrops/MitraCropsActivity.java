@@ -82,12 +82,7 @@ public class MitraCropsActivity extends AppCompatActivity {
 
         MitraCropsBackAction = findViewById(R.id.mitraCropsBackAction);
 
-        MitraCropsBackAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MitraCropsActivity.super.onBackPressed();
-            }
-        });
+
 
         BtnMitraCropsDone.setEnabled(false);
         CropsQty.addTextChangedListener(textWatcher);
@@ -198,6 +193,13 @@ public class MitraCropsActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        MitraCropsBackAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MitraCropsActivity.super.onBackPressed();
             }
         });
 

@@ -121,7 +121,8 @@ public class MitraCropsListActivity extends AppCompatActivity {
 
         usersRef.child(currentUserId).addValueEventListener(userListener);
 
-        cropsRef.addListenerForSingleValueEvent(cropsListener);
+//        cropsRef.addListenerForSingleValueEvent(cropsListener);
+        cropsRef.addValueEventListener(cropsListener);
 
     }
 
@@ -162,7 +163,7 @@ public class MitraCropsListActivity extends AppCompatActivity {
                     list.add(crops);
                 }
             }
-
+            adapter.notifyDataSetChanged();
 //            Collections.sort(list, (obj1, obj2) -> obj2.getDate().compareTo(obj1.getDate()));
         }
 
