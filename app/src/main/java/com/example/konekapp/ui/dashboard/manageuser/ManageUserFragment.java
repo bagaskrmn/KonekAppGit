@@ -13,13 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.konekapp.R;
+import com.example.konekapp.ui.dashboard.manageuser.manageAhliTani.ListAndUpgradeAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.manageuser.managemitra.ListAndRequestMitraActivity;
 import com.example.konekapp.ui.dashboard.manageuser.manageuser.ManageUserActivity;
 import com.example.konekapp.ui.dashboard.manageuser.upgrademitra.UpgradeMitraActivity;
 
 public class ManageUserFragment extends Fragment {
 
-    ConstraintLayout BtnManageMitra, BtnManageUser, BtnUpgradeMitra;
+    ConstraintLayout BtnManageMitra, BtnManageUser, BtnUpgradeMitra, BtnManageAhliTani;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +36,7 @@ public class ManageUserFragment extends Fragment {
         BtnManageMitra = (ConstraintLayout) getView().findViewById(R.id.btnManageMitra);
         BtnManageUser = (ConstraintLayout) getView().findViewById(R.id.btnManageUser);
         BtnUpgradeMitra = (ConstraintLayout) getView().findViewById(R.id.btnUpgradeMitra);
+        BtnManageAhliTani = (ConstraintLayout) getView().findViewById(R.id.btnManageAhliTani);
 
         BtnManageMitra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +58,14 @@ public class ManageUserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), UpgradeMitraActivity.class);
+                startActivity(i);
+            }
+        });
+
+        BtnManageAhliTani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(getActivity(), ListAndUpgradeAhliTaniActivity.class);
                 startActivity(i);
             }
         });

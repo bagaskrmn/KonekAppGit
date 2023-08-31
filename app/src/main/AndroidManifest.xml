@@ -18,6 +18,27 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.dashboard.manageuser.manageAhliTani.upgradeAhliTani.UpgradeAhliTaniActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.dashboard.manageuser.manageAhliTani.listAhliTani.ListAhliTaniActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.dashboard.manageuser.manageAhliTani.ListAndUpgradeAhliTaniActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.dashboard.home.crops.adminandahlitanicrops.ApprovedDetailMonitoringActivity"
             android:exported="false">
             <meta-data
