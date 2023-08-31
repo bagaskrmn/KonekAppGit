@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -132,7 +133,7 @@ public class ListMitraAdapter extends RecyclerView.Adapter<ListMitraAdapter.MyVi
 
         TextView ListMitraName;
         CircleImageView ListMitraImage;
-        ConstraintLayout BtnDowngrade;
+        LinearLayout BtnDowngrade;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
