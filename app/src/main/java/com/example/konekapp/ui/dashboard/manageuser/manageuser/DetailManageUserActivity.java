@@ -92,6 +92,7 @@ public class DetailManageUserActivity extends AppCompatActivity {
         DetailManageUserBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                usersRef.child(SelectedUserId).removeEventListener(listener);
                 DetailManageUserActivity.super.onBackPressed();
             }
         });
@@ -173,12 +174,12 @@ public class DetailManageUserActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
 
                     if (task.isSuccessful()) {
-
+                        usersRef.child(SelectedUserId).removeEventListener(listener);
                         Toast.makeText(DetailManageUserActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                         DetailManageUserActivity.super.onBackPressed();
                     }
                     else {
-
+                        usersRef.child(SelectedUserId).removeEventListener(listener);
 //                        String message = task.getException().toString();
 //                        Toast.makeText(DetailManageUserActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                     }
@@ -215,11 +216,12 @@ public class DetailManageUserActivity extends AppCompatActivity {
 
                                                 if (task.isSuccessful()) {
 //                                                    pd.dismiss();
+                                                    usersRef.child(SelectedUserId).removeEventListener(listener);
                                                     Toast.makeText(DetailManageUserActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                                                     DetailManageUserActivity.super.onBackPressed();
                                                 }
                                                 else {
-
+                                                    usersRef.child(SelectedUserId).removeEventListener(listener);
 //                                                    String message = task.getException().toString();
 //                                                    Toast.makeText(EditProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                                                 }

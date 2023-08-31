@@ -124,7 +124,10 @@ public class ManageUserActivity extends AppCompatActivity {
                 UserModel user = ds.getValue(UserModel.class);
                 user.setUserId(ds.getKey());
                 try {
-                    if (!user.getUserId().equals(currentUserId)) {
+//                    if (!user.getUserId().equals(currentUserId)) {
+//                        list.add(user);
+//                    }
+                    if (!user.getRole().equals("3")) {
                         list.add(user);
                     }
                 } catch (Exception e) {
