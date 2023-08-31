@@ -20,6 +20,7 @@ import com.example.konekapp.model.UserModel;
 import com.example.konekapp.ui.dashboard.home.consultation.chatroom.ChatRoomActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -184,17 +185,20 @@ public class ReviewedDetailMonitoringActivity extends AppCompatActivity {
         BtnDeleteDetailCrops.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cropsRef.child(cropsId).removeEventListener(monitoringListener);
-                cropsRef.child(cropsId).removeValue()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    ReviewedDetailMonitoringActivity.super.onBackPressed();
-                                    Toast.makeText(ReviewedDetailMonitoringActivity.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+
+                showBottomSheetDialog();
+
+//                cropsRef.child(cropsId).removeEventListener(monitoringListener);
+//                cropsRef.child(cropsId).removeValue()
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    ReviewedDetailMonitoringActivity.super.onBackPressed();
+//                                    Toast.makeText(ReviewedDetailMonitoringActivity.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        });
             }
         });
 
@@ -211,6 +215,49 @@ public class ReviewedDetailMonitoringActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+    }
+
+    private void showBottomSheetDialog() {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.delete_monitoring_bs);
+
+        ImageView closeBs = bottomSheetDialog.findViewById(R.id.deleteMonitoringBsClose);
+        Button confirmDelete = bottomSheetDialog.findViewById(R.id.confirmDelete);
+        Button cancelDelete = bottomSheetDialog.findViewById(R.id.cancelDelete);
+
+        closeBs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.cancel();
+            }
+        });
+
+        cancelDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.cancel();
+            }
+        });
+
+        confirmDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cropsRef.child(cropsId).removeEventListener(monitoringListener);
+                cropsRef.child(cropsId).removeValue()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    ReviewedDetailMonitoringActivity.super.onBackPressed();
+                                    Toast.makeText(ReviewedDetailMonitoringActivity.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
+        bottomSheetDialog.show();
 
     }
 
