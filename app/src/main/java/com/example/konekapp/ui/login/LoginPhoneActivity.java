@@ -223,7 +223,8 @@ public class LoginPhoneActivity extends AppCompatActivity {
                 Toast.makeText(LoginPhoneActivity.this, "Verification code sent", Toast.LENGTH_SHORT).show();
 
                 String phone = binding.loginPhoneNo.getText().toString().trim();
-                String phoneNumber = "+62" + removeLeadingZeros(phone);
+//                String phoneNumber = "+62" + removeLeadingZeros(phone);
+                String phoneNumber = "+62" + phone;
 
                 binding.descOTPCodeSent.setText("Masukkan SMS OTP yang telah kami kirim " +
                         "\nke " + phoneNumber);
@@ -361,7 +362,8 @@ public class LoginPhoneActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(LoginPhoneActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPhoneActivity.this, "Kode OTP anda salah. Silahkan masukkan kembali", Toast.LENGTH_SHORT).show();
+                        binding.enterOTPCode.setText("");
                     }
                 });
     }

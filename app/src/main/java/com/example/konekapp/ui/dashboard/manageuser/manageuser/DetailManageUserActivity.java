@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -241,8 +242,29 @@ public class DetailManageUserActivity extends AppCompatActivity {
     }
 
     private void deleteUser() {
-        usersRef.child(SelectedUserId).removeEventListener(listener);
-        usersRef.child(SelectedUserId).addValueEventListener(deleteListener);
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.delete_user_bs);
+
+        bottomSheetDialog.show();
+
+        ImageView closeBs = bottomSheetDialog.findViewById(R.id.deleteUserBsClose);
+        Button BtnConfirmDelete = bottomSheetDialog.findViewById(R.id.btnDeleteUserConfirm);
+
+        closeBs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.cancel();
+            }
+        });
+
+        BtnConfirmDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.cancel();
+                usersRef.child(SelectedUserId).removeEventListener(listener);
+                usersRef.child(SelectedUserId).addValueEventListener(deleteListener);
+            }
+        });
     }
 
     //listenData

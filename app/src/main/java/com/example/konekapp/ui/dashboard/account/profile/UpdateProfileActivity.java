@@ -183,8 +183,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         //jika gambar tidak diganti
         else if (resultUri == null) {
-//            pd.setMessage("Mengunggah Data");
-//            pd.show();
+            pd.setMessage("Mengunggah Data");
+            pd.show();
             //hanya diupdate objek selain gambar
             HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("name", updatedName);
@@ -194,12 +194,12 @@ public class UpdateProfileActivity extends AppCompatActivity {
             usersRef.child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-//                    pd.dismiss();
+                    pd.dismiss();
                     if (task.isSuccessful()) {
 //                        pd.dismiss();
                         usersRef.child(currentUserId).removeEventListener(userDataListener);
                         UpdateProfileActivity.super.onBackPressed();
-                        Toast.makeText(UpdateProfileActivity.this, "Update berhasil Tanpa Foto", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
                     }
                     else {
 //                        pd.dismiss();
@@ -212,10 +212,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
         }
 
         else {
+            pd.setMessage("Mengunggah Data");
+            pd.show();
             //put Uri into firebaseStorage
             imageProfilePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+
                     if (task.isSuccessful()) {
                         //get download Url from the storage path(filePath)
                         imageProfilePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -239,7 +243,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-
+                                                pd.dismiss();
                                                 if (task.isSuccessful()) {
 //                                                    pd.dismiss();
                                                     Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
