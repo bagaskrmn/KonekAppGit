@@ -126,6 +126,9 @@ public class LoginPhoneActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
+                if (s.toString().length()==1 && s.toString().startsWith("0")) {
+                    s.clear();
+                }
             }
         });
 
