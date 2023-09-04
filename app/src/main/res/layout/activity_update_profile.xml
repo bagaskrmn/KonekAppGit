@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.dashboard.account.profile.EditProfileActivity"
+    tools:context=".ui.dashboard.account.profile.UpdateProfileActivity"
     >
-    <!--        ActionBar-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,290 +39,278 @@
             />
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="none"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         >
-
+        <!--        Grup Image-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
             >
-            <!--        Grup Image-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/updateProfImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="left"
+                android:src="@android:color/transparent"
+                app:civ_border_color="@color/neutral_dark"
+                app:civ_border_width="1dp"
+                android:layout_marginRight="20dp"
+                />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
                 >
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/updateProfImage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unggah Foto"
+                    android:textColor="@color/neutral_dark3"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/outfit_semi_bold"
                     android:layout_gravity="left"
-                    android:src="@android:color/transparent"
-                    app:civ_border_color="@color/neutral_dark"
-                    app:civ_border_width="1dp"
-                    android:layout_marginRight="20dp"
-                    />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Unggah Foto"
-                        android:textColor="@color/neutral_dark3"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/outfit_semi_bold"
-                        android:layout_gravity="left"
-                        android:layout_marginBottom="10dp"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Maks 2 MB"
-                        android:fontFamily="@font/outfit_regular"
-                        android:textColor="@color/neutral_dark4"
-                        android:textSize="14sp"
-                        android:layout_gravity="left"
-                        />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!--        Nama-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Lengkap"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/profile_dark"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <EditText
-                    android:id="@+id/updateProfName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:hint="Masukkan nama lengkap"
-                    android:inputType="textCapWords"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="16dp"
-                    android:textSize="14sp"
-                    />
-
-            </LinearLayout>
-
-            <!--        Nomor Ponsel-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nomor Ponsel"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/call"
-                    android:layout_gravity="center"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
+                    android:layout_marginBottom="10dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="+62"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="14sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="16dp" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/neutral_dark"
-                    />
-
-                <TextView
-                    android:id="@+id/updatePhoneNumber"
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:text="Maks 2 MB"
                     android:fontFamily="@font/outfit_regular"
                     android:textColor="@color/neutral_dark4"
                     android:textSize="14sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="16dp"
+                    android:layout_gravity="left"
                     />
 
             </LinearLayout>
 
-            <!--        Domisili-->
-            <TextView
+        </LinearLayout>
+
+        <!--        Nama-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Lengkap"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Domisili"
-                android:fontFamily="@font/outfit_medium"
-                android:textColor="@color/neutral_dark3"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/profile_dark"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 />
-            <LinearLayout
+
+            <EditText
+                android:id="@+id/updateProfName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/location"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <EditText
-                    android:id="@+id/updateProfAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:inputType="textCapWords"
-                    android:hint="Masukkan Kota Domisili"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="14sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="16dp"
-                    />
-            </LinearLayout>
-
-            <!--        Alamat Lengkap-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Alamat Lengkap"
-                android:fontFamily="@font/outfit_medium"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
                 android:textColor="@color/neutral_dark3"
+                android:hint="Masukkan nama lengkap"
+                android:inputType="textCapWords"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/location"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    />
-
-                <EditText
-                    android:id="@+id/updateProfDetailAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:hint="Masukkan Alamat Lengkap"
-                    android:inputType="textCapWords"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/outfit_regular"
-                    android:textColor="@color/neutral_dark3"
-                    android:textSize="14sp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="16dp"
-                    />
-            </LinearLayout>
-
-            <!--        ButtonSave-->
-            <Button
-                android:id="@+id/btnUpdateProfileDone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Simpan Perubahan"
-                android:fontFamily="@font/outfit_semi_bold"
-                android:textAllCaps="false"
-                android:background="@drawable/btn_bg"
-                android:backgroundTint="@null"
-                app:backgroundTint="@null"
                 />
 
         </LinearLayout>
 
-    </ScrollView>
+        <!--        Nomor Ponsel-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nomor Ponsel"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/call"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="+62"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/neutral_dark"
+                />
+
+            <TextView
+                android:id="@+id/updatePhoneNumber"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark4"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="16dp"
+                />
+
+        </LinearLayout>
+
+        <!--        Domisili-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Domisili"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/location"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+            <EditText
+                android:id="@+id/updateProfAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:inputType="textCapWords"
+                android:hint="Masukkan Kota Domisili"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
+                />
+        </LinearLayout>
+
+        <!--        Alamat Lengkap-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat Lengkap"
+            android:fontFamily="@font/outfit_medium"
+            android:textColor="@color/neutral_dark3"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edit_text"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/location"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+            <EditText
+                android:id="@+id/updateProfDetailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="Masukkan Alamat Lengkap"
+                android:inputType="textCapWords"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/outfit_regular"
+                android:textColor="@color/neutral_dark3"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
+                />
+        </LinearLayout>
+
+        <!--        ButtonSave-->
+        <Button
+            android:id="@+id/btnUpdateProfileDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan Perubahan"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>
-
-
-

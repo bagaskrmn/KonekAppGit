@@ -99,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity {
         BtnUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent UpdateProfileIntent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                Intent UpdateProfileIntent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
                 startActivity(UpdateProfileIntent);
             }
         });

@@ -165,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                 notification.setKey(ds.getKey());
 
                 try {
-
                     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", new Locale("id", "ID"));
                     Date userDate = dateFormat.parse(dateNTimeUser);
                     Date notifDate = dateFormat.parse(notification.getDate());

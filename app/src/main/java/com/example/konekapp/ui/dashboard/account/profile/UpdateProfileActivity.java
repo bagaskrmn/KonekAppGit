@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +37,7 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class UpdateProfileActivity extends AppCompatActivity {
 
     private TextView UpdatePhoneNumber;
     private EditText UpdateProfName, UpdateProfAddress, UpdateProfDetailAddress;
@@ -62,6 +61,16 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility==0) {
+                    decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            }
+        });
+
         UpdateProfDetailAddress = findViewById(R.id.updateProfDetailAddress);
         UpdatePhoneNumber = findViewById(R.id.updatePhoneNumber);
         UpdateProfName = findViewById(R.id.updateProfName);
@@ -84,16 +93,6 @@ public class EditProfileActivity extends AppCompatActivity {
         usersRef = rootRef.child("users");
         userProfileImagesRef = FirebaseStorage.getInstance().getReference().child("profileImages");
 
-        decorView = getWindow().getDecorView();
-        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if (visibility==0) {
-                    decorView.setSystemUiVisibility(hideSystemBars());
-                }
-            }
-        });
-
         //retrieve data to field
         usersRef.child(currentUserId).addValueEventListener(userDataListener);
 
@@ -103,7 +102,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setAspectRatio(1,1)
-                        .start(EditProfileActivity.this);
+                        .start(UpdateProfileActivity.this);
             }
         });
 
@@ -117,7 +116,7 @@ public class EditProfileActivity extends AppCompatActivity {
         UpdateProfBackAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditProfileActivity.super.onBackPressed();
+                UpdateProfileActivity.super.onBackPressed();
             }
         });
     }
@@ -198,13 +197,14 @@ public class EditProfileActivity extends AppCompatActivity {
 //                    pd.dismiss();
                     if (task.isSuccessful()) {
 //                        pd.dismiss();
-                        EditProfileActivity.super.onBackPressed();
-                        Toast.makeText(EditProfileActivity.this, "Update berhasil Tanpa Foto", Toast.LENGTH_SHORT).show();
+                        usersRef.child(currentUserId).removeEventListener(userDataListener);
+                        UpdateProfileActivity.super.onBackPressed();
+                        Toast.makeText(UpdateProfileActivity.this, "Update berhasil Tanpa Foto", Toast.LENGTH_SHORT).show();
                     }
                     else {
 //                        pd.dismiss();
                         String message = task.getException().toString();
-                        Toast.makeText(EditProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateProfileActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -242,8 +242,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
                                                 if (task.isSuccessful()) {
 //                                                    pd.dismiss();
-                                                    Toast.makeText(EditProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
-                                                    EditProfileActivity.super.onBackPressed();
+                                                    Toast.makeText(UpdateProfileActivity.this, "Update berhasil", Toast.LENGTH_SHORT).show();
+                                                    UpdateProfileActivity.super.onBackPressed();
                                                     //error here
                                                 }
                                                 else {
