@@ -75,7 +75,7 @@ public class ListAhliTaniAdapter extends RecyclerView.Adapter<ListAhliTaniAdapte
 
         CloseBs = bottomSheetDialog.findViewById(R.id.closeBs);
         BtnConfirm = bottomSheetDialog.findViewById(R.id.btnConfirm);
-        BtnCancel = bottomSheetDialog.findViewById(R.id.btnCancel);
+//        BtnCancel = bottomSheetDialog.findViewById(R.id.btnCancel);
 
         firebaseAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -109,13 +109,13 @@ public class ListAhliTaniAdapter extends RecyclerView.Adapter<ListAhliTaniAdapte
                         });
             }
         });
-
-        BtnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetDialog.cancel();
-            }
-        });
+//
+//        BtnCancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bottomSheetDialog.cancel();
+//            }
+//        });
 
         bottomSheetDialog.show();
     }

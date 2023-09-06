@@ -52,13 +52,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
+                android:id="@+id/upgradeAhliTaniRole"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/outfit_medium"
                 android:padding="8dp"
-                android:text="Pengguna"
+                tools:text="Mitra"
                 android:textColor="@color/neutral_dark3"
                 android:textSize="14sp" />
 

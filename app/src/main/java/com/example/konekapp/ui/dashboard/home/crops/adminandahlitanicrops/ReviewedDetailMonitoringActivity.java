@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,6 +57,8 @@ public class ReviewedDetailMonitoringActivity extends AppCompatActivity {
 
     ImageView detailCropsBackAction;
 
+    private ProgressDialog pd;
+
     private View decorView;
 
     @Override
@@ -104,6 +107,15 @@ public class ReviewedDetailMonitoringActivity extends AppCompatActivity {
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         notifDate = dateFormat.format(calendar.getTime());
+
+        //init ProgressDialog
+        pd = new ProgressDialog(ReviewedDetailMonitoringActivity.this);
+        pd.setTitle("Please Wait...");
+        pd.setCanceledOnTouchOutside(false);
+
+        pd.setMessage("Memuat data");
+        pd.show();
+
 
         //detect role currentUser
         usersRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
@@ -200,18 +212,6 @@ public class ReviewedDetailMonitoringActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 showBottomSheetDialog();
-
-//                cropsRef.child(cropsId).removeEventListener(monitoringListener);
-//                cropsRef.child(cropsId).removeValue()
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    ReviewedDetailMonitoringActivity.super.onBackPressed();
-//                                    Toast.makeText(ReviewedDetailMonitoringActivity.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
             }
         });
 
@@ -256,14 +256,22 @@ public class ReviewedDetailMonitoringActivity extends AppCompatActivity {
         confirmDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                pd.setMessage("Menghapus Data");
+                pd.show();
+
                 cropsRef.child(cropsId).removeEventListener(monitoringListener);
                 cropsRef.child(cropsId).removeValue()
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
+                                pd.dismiss();
                                 if (task.isSuccessful()) {
                                     ReviewedDetailMonitoringActivity.super.onBackPressed();
                                     Toast.makeText(ReviewedDetailMonitoringActivity.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    //
                                 }
                             }
                         });
@@ -297,6 +305,8 @@ public class ReviewedDetailMonitoringActivity extends AppCompatActivity {
             FertilizerDetailCrops.setText(fertilizer);
             ResultDetailCrops.setText(result);
             NotesDetailCrops.setText(notes);
+
+            pd.dismiss();
         }
 
         @Override

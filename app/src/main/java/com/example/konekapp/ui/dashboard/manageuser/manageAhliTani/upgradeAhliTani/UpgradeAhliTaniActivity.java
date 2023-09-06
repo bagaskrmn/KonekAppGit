@@ -124,7 +124,7 @@ public class UpgradeAhliTaniActivity extends AppCompatActivity {
                 UserModel user = ds.getValue(UserModel.class);
                 user.setUserId(ds.getKey());
                 try {
-                    if (user.getRole().equals("0")) {
+                    if (user.getRole().equals("0") || user.getRole().equals("1")) {
                         list.add(user);
                     }
                 } catch (Exception e) {

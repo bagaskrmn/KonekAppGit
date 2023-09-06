@@ -211,6 +211,9 @@ public class EditMitraCropsActivity extends AppCompatActivity {
     }
 
     private void EditMitraCropsDone() {
+        pd.setMessage("Mengunggah Data");
+        pd.show();
+
         Date = CropsDate.getText().toString();
         Qty = CropsQty.getText().toString();
         Location = CropsLocation.getText().toString();
@@ -231,6 +234,7 @@ public class EditMitraCropsActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        pd.dismiss();
                         if (task.isSuccessful()) {
                             EditMitraCropsActivity.super.onBackPressed();
                             Toast.makeText(EditMitraCropsActivity.this, "Data berhasil diubah", Toast.LENGTH_SHORT).show();
@@ -246,6 +250,7 @@ public class EditMitraCropsActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             list.clear();
+            pd.dismiss();
 
             for (DataSnapshot ds : snapshot.getChildren()) {
 
@@ -281,7 +286,7 @@ public class EditMitraCropsActivity extends AppCompatActivity {
                         CropsNotes.setText(cropsModel.getNotes());
 
                     }
-                    pd.dismiss();
+//                    pd.dismiss();
                 }
                 catch (Exception e) {
                     e.printStackTrace();

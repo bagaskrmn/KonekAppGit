@@ -223,6 +223,10 @@ public class MitraCropsActivity extends AppCompatActivity {
             Toast.makeText(this, "Data belum terisi", Toast.LENGTH_SHORT).show();
         } else {
             //using model
+
+            pd.setMessage("Mengunggah Data");
+            pd.show();
+
             CropsModel cropsModel = new CropsModel(currentUserId, currentUserName, userImage, Commodity, Period, Date,
                     Qty, Location, Fertilizer, Result, Notes, 0 );
 
@@ -230,6 +234,7 @@ public class MitraCropsActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            pd.dismiss();
                             if (task.isSuccessful()) {
                                 Toast.makeText(MitraCropsActivity.this, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show();
                                 MitraCropsActivity.super.onBackPressed();

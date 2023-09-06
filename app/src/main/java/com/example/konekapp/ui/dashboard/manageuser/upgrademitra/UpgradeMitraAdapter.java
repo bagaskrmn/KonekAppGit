@@ -21,6 +21,8 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UpgradeMitraAdapter extends RecyclerView.Adapter<UpgradeMitraAdapter.MyViewHolder> {
     Context context;
     List<UserModel> filteredUser = new ArrayList<>();
@@ -37,7 +39,7 @@ public class UpgradeMitraAdapter extends RecyclerView.Adapter<UpgradeMitraAdapte
     @NonNull
     @Override
     public UpgradeMitraAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.manage_user_card, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.upgrade_mitra_card, parent, false);
         return new UpgradeMitraAdapter.MyViewHolder(v);
     }
 
@@ -65,11 +67,11 @@ public class UpgradeMitraAdapter extends RecyclerView.Adapter<UpgradeMitraAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView UpgradeMitraName;
-        ImageView UpgradeMitraImage;
+        CircleImageView UpgradeMitraImage;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            UpgradeMitraImage =itemView.findViewById(R.id.manageMitraImage);
-            UpgradeMitraName = itemView.findViewById(R.id.manageMitraName);
+            UpgradeMitraImage =itemView.findViewById(R.id.upgradeMitraImage);
+            UpgradeMitraName = itemView.findViewById(R.id.upgradeMitraName);
         }
     }
 }

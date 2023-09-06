@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +56,14 @@ public class UpgradeAhliTaniAdapter extends RecyclerView.Adapter<UpgradeAhliTani
 
         holder.UpgradeAhliTaniName.setText(user.name);
         Picasso.get().load(user.image).into(holder.UpgradeAhliTaniImage);
+
+        if (user.role.equals("0")) {
+            holder.UpgradeAhliTaniRole.setText("Pengguna");
+        }
+        if (user.role.equals("1")) {
+            holder.UpgradeAhliTaniRole.setText("Mitra");
+        }
+
         holder.BtnUpgrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +83,7 @@ public class UpgradeAhliTaniAdapter extends RecyclerView.Adapter<UpgradeAhliTani
 
         CloseBs = bottomSheetDialog.findViewById(R.id.closeBs);
         BtnConfirm = bottomSheetDialog.findViewById(R.id.btnConfirm);
-        BtnCancel = bottomSheetDialog.findViewById(R.id.btnCancel);
+//        BtnCancel = bottomSheetDialog.findViewById(R.id.btnCancel);
 
         firebaseAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -108,12 +118,12 @@ public class UpgradeAhliTaniAdapter extends RecyclerView.Adapter<UpgradeAhliTani
             }
         });
 
-        BtnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetDialog.cancel();
-            }
-        });
+//        BtnCancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bottomSheetDialog.cancel();
+//            }
+//        });
 
         bottomSheetDialog.show();
     }
@@ -128,9 +138,10 @@ public class UpgradeAhliTaniAdapter extends RecyclerView.Adapter<UpgradeAhliTani
         TextView UpgradeAhliTaniName;
         CircleImageView UpgradeAhliTaniImage;
         LinearLayout BtnUpgrade;
+        TextView UpgradeAhliTaniRole;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            UpgradeAhliTaniRole = itemView.findViewById(R.id.upgradeAhliTaniRole);
             UpgradeAhliTaniImage = itemView.findViewById(R.id.upgradeAhliTaniImage);
             UpgradeAhliTaniName = itemView.findViewById(R.id.upgradeAhliTaniName);
             BtnUpgrade=itemView.findViewById(R.id.btnUpgrade);

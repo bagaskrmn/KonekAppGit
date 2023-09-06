@@ -17,7 +17,7 @@
         >
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/manageUserImage"
+            android:id="@+id/upgradeMitraImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -25,40 +25,18 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/upgradeMitraName"
+            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/outfit_medium"
+            android:textSize="16sp"
+            android:textColor="@color/neutral_dark3"
+            tools:text="Bagaskara"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/manageUserImage"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_gravity="center"
-            >
-
-            <TextView
-                android:id="@+id/manageUserName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/outfit_medium"
-                android:textSize="16sp"
-                android:textColor="@color/neutral_dark3"
-                tools:text="Bagaskara"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-
-                android:id="@+id/manageUserRole"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/outfit_medium"
-                android:textSize="12sp"
-                android:textColor="@color/dark_green"
-                tools:text="Bagaskara"
-                />
-
-        </LinearLayout>
-
+            app:layout_constraintStart_toEndOf="@+id/upgradeMitraImage"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
         <ImageView

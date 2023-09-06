@@ -36,7 +36,7 @@ public class ManageMitraAdapter extends RecyclerView.Adapter<ManageMitraAdapter.
     @NonNull
     @Override
     public ManageMitraAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.manage_user_card, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.request_mitra_card, parent, false);
         return new ManageMitraAdapter.MyViewHolder(v);
     }
 
@@ -68,8 +68,8 @@ public class ManageMitraAdapter extends RecyclerView.Adapter<ManageMitraAdapter.
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            ManageMitraName = itemView.findViewById(R.id.manageMitraName);
-            ManageMitraImage = itemView.findViewById(R.id.manageMitraImage);
+            ManageMitraName = itemView.findViewById(R.id.requestMitraName);
+            ManageMitraImage = itemView.findViewById(R.id.requestMitraImage);
         }
     }
 }

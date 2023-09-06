@@ -20,7 +20,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/question_mark"
+        android:src="@drawable/delete_monitoring_confirm"
         android:layout_gravity="center"
         android:layout_marginBottom="24dp"
         />
@@ -30,45 +30,23 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/outfit_medium"
-        android:text="Apakah anda yakin akan merubah status dari Anggota?"
+        android:text="Apakah anda yakin akan merubah status dari Ahli Tani menjadi Pengguna? "
         android:textSize="18sp"
         android:textAlignment="center"
         android:textColor="@color/neutral_dark3"
         />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <Button
-            android:id="@+id/btnConfirm"
-            android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:text="Pengguna"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:text="Ahli Tani"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@drawable/btn_bg"
+        android:text="Oke"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@null"
+        android:layout_gravity="center"
+        />
 
 </LinearLayout>

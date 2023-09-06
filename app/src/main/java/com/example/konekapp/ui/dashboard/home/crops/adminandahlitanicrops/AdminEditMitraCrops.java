@@ -209,6 +209,10 @@ public class AdminEditMitraCrops extends AppCompatActivity {
     }
 
     private void AdminEditMitraCropsDone() {
+
+        pd.setMessage("Mengunggah Data");
+        pd.show();
+
         Date = CropsDate.getText().toString();
         Qty = CropsQty.getText().toString();
         Location = CropsLocation.getText().toString();
@@ -229,6 +233,7 @@ public class AdminEditMitraCrops extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        pd.dismiss();
                         if (task.isSuccessful()) {
                             AdminEditMitraCrops.super.onBackPressed();
                             Toast.makeText(AdminEditMitraCrops.this, "Data berhasil diubah", Toast.LENGTH_SHORT).show();

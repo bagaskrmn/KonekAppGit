@@ -79,7 +79,7 @@ public class ListMitraAdapter extends RecyclerView.Adapter<ListMitraAdapter.MyVi
 
         CloseBs = bottomSheetDialog.findViewById(R.id.closeBs);
         BtnConfirm = bottomSheetDialog.findViewById(R.id.btnConfirm);
-        BtnCancel = bottomSheetDialog.findViewById(R.id.btnCancel);
+//        BtnCancel = bottomSheetDialog.findViewById(R.id.btnCancel);
 
         firebaseAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -114,12 +114,12 @@ public class ListMitraAdapter extends RecyclerView.Adapter<ListMitraAdapter.MyVi
             }
         });
 
-        BtnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetDialog.cancel();
-            }
-        });
+//        BtnCancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bottomSheetDialog.cancel();
+//            }
+//        });
 
         bottomSheetDialog.show();
     }

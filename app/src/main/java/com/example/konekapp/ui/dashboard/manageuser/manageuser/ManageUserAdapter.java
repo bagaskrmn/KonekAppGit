@@ -49,6 +49,16 @@ public class ManageUserAdapter extends RecyclerView.Adapter<ManageUserAdapter.My
         holder.ManageUserName.setText(user.name);
         Picasso.get().load(user.image).into(holder.ManageUserImage);
 
+        if (user.role.equals("0")) {
+            holder.ManageUserRole.setText("Pengguna");
+        }
+        if (user.role.equals("1")) {
+            holder.ManageUserRole.setText("Mitra");
+        }
+        if (user.role.equals("2")) {
+            holder.ManageUserRole.setText("Ahli Tani");
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,10 +77,12 @@ public class ManageUserAdapter extends RecyclerView.Adapter<ManageUserAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView ManageUserName;
         CircleImageView ManageUserImage;
+        TextView ManageUserRole;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ManageUserName = itemView.findViewById(R.id.manageMitraName);
-            ManageUserImage = itemView.findViewById(R.id.manageMitraImage);
+            ManageUserName = itemView.findViewById(R.id.manageUserName);
+            ManageUserImage = itemView.findViewById(R.id.manageUserImage);
+            ManageUserRole = itemView.findViewById(R.id.manageUserRole);
         }
     }
 }
