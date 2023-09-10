@@ -192,6 +192,8 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     private void addOrUpdateConversation(ChatMessagesModel chatMessagesModel) {
+
+        counterUnreadCount = counterUnreadCount+1;
         //Add new conversation if conversationId is null
         if (conversationId != null) {
             Log.d(TAG, "addOrUpdateConversation: update conversation");
@@ -219,7 +221,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                                     conversation.put(KEY_RECEIVER_IMAGE, userReceiver.getImage());
                                     conversation.put(KEY_LAST_MESSAGE, chatMessagesModel.getMessage());
                                     conversation.put(KEY_DATE_TIME, chatMessagesModel.getDateTime());
-                                    conversation.put(KEY_UNREAD_RECEIVER_COUNT, unReadCount);
+                                    conversation.put(KEY_UNREAD_RECEIVER_COUNT, counterUnreadCount);
                                     conversation.put(KEY_UNREAD_SENDER_COUNT, 0);
 
                                     senderConversationId = currentUserId;
@@ -248,25 +250,27 @@ public class ChatRoomActivity extends AppCompatActivity {
         messageRef.addValueEventListener(listener);
     }
 
-    private int unReadCount = 0;
+    private int counterUnreadCount = 0;
 
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             listChatMessages.clear();
-            unReadCount = 0;
+            counterUnreadCount = 0;
 
             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                 ChatMessagesModel chatMessagesModel = dataSnapshot.getValue(ChatMessagesModel.class);
-                if (chatMessagesModel.getSenderId().equals(currentUserId) && chatMessagesModel.getReceiverId().equals(userReceiver.getUserId())) {
+                if (chatMessagesModel.getSenderId().equals(currentUserId) &&
+                        chatMessagesModel.getReceiverId().equals(userReceiver.getUserId())) {
                     //count unread message
                     if (!chatMessagesModel.getIsReceiverRead()) {
-                        unReadCount ++;
+                        counterUnreadCount ++;
                     }
                     try {chatMessagesModel.setDateTime(setSimpleDate(chatMessagesModel.getDateTime()));}
                     catch (ParseException e) {Log.d("ChatRoomActivity", "onDataChange: " + e.getMessage());}
                     listChatMessages.add(chatMessagesModel);
-                } else if (chatMessagesModel.getSenderId().equals(userReceiver.getUserId()) && chatMessagesModel.getReceiverId().equals(currentUserId)) {
+                } else if (chatMessagesModel.getSenderId().equals(userReceiver.getUserId()) &&
+                        chatMessagesModel.getReceiverId().equals(currentUserId)) {
                     //update message to has read
                     if (!chatMessagesModel.getIsReceiverRead()) {
                         updateReceiverReadMessage(dataSnapshot.getKey());
@@ -350,11 +354,11 @@ public class ChatRoomActivity extends AppCompatActivity {
         conversation.put(KEY_DATE_TIME, getDateTime());
 
         if (currentUser.getUid().equals(senderConversationId)) {
-            conversation.put(KEY_UNREAD_RECEIVER_COUNT, unReadCount + 1);
+            conversation.put(KEY_UNREAD_RECEIVER_COUNT, counterUnreadCount);
             conversation.put(KEY_UNREAD_SENDER_COUNT, 0);
         } else {
             conversation.put(KEY_UNREAD_RECEIVER_COUNT, 0);
-            conversation.put(KEY_UNREAD_SENDER_COUNT, unReadCount + 1);
+            conversation.put(KEY_UNREAD_SENDER_COUNT, counterUnreadCount);
         }
 
         FirebaseDatabase.getInstance().getReference()
