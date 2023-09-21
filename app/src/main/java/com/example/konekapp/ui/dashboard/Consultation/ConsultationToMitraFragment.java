@@ -38,6 +38,7 @@ import com.example.konekapp.model.UserModel;
 import com.example.konekapp.ui.dashboard.home.consultation.ConversationListener;
 import com.example.konekapp.ui.dashboard.home.consultation.RecentConversationAdapter;
 import com.example.konekapp.ui.dashboard.home.consultation.addconsultation.ahlitani.TambahKonsultasiToMitraActivity;
+import com.example.konekapp.ui.dashboard.home.consultation.addconsultation.mitra.TambahKonsultasiToAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.home.consultation.chatroom.ChatRoomActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -57,8 +58,11 @@ public class ConsultationToMitraFragment extends Fragment implements Conversatio
     LinearLayout btnAddNewConsultation;
     RecyclerView rvConversation;
     String currentUserId;
-    TextView tvNoData;
+    LinearLayout tvNoData;
+    LinearLayout newConsultation;
+    LinearLayout searchConsultation;
     EditText edtSearch;
+    TextView noSearchData;
 
     //recent conversation
     private List<ChatMessagesModel> listConversation;
@@ -80,6 +84,7 @@ public class ConsultationToMitraFragment extends Fragment implements Conversatio
 
         //initialization
         init();
+        noSearchData.setVisibility(View.GONE);
 
         //listen conversation
         listenConversation();
@@ -95,6 +100,14 @@ public class ConsultationToMitraFragment extends Fragment implements Conversatio
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(requireContext(), TambahKonsultasiToMitraActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        newConsultation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), TambahKonsultasiToAhliTaniActivity.class);
                 startActivity(intent);
             }
         });
@@ -120,6 +133,10 @@ public class ConsultationToMitraFragment extends Fragment implements Conversatio
         rvConversation = requireActivity().findViewById(R.id.rvConversation);
         tvNoData = requireActivity().findViewById(R.id.tvNoData);
         edtSearch = requireActivity().findViewById(R.id.edtSearch);
+
+        newConsultation = requireActivity().findViewById(R.id.btnNewConsultation);
+        searchConsultation = requireActivity().findViewById(R.id.searchConsultation);
+        noSearchData = requireActivity().findViewById(R.id.noSearchData);
 
         //initialization
         listConversation = new ArrayList<>();
@@ -178,9 +195,15 @@ public class ConsultationToMitraFragment extends Fragment implements Conversatio
             if (listConversation.size() > 0) {
                 rvConversation.setVisibility(View.VISIBLE);
                 tvNoData.setVisibility(View.GONE);
+                newConsultation.setVisibility(View.VISIBLE);
+                searchConsultation.setVisibility(View.VISIBLE);
+                noSearchData.setVisibility(View.GONE);
             } else {
+                noSearchData.setVisibility(View.GONE);
                 rvConversation.setVisibility(View.GONE);
                 tvNoData.setVisibility(View.VISIBLE);
+                newConsultation.setVisibility(View.GONE);
+                searchConsultation.setVisibility(View.GONE);
             }
             //sorting list conversation by date time
             Collections.sort(listConversation, (obj1, obj2) -> obj2.getDateTime().compareTo(obj1.getDateTime()));
@@ -210,10 +233,12 @@ public class ConsultationToMitraFragment extends Fragment implements Conversatio
 
         if (filteredListConversation.size() > 0) {
             rvConversation.setVisibility(View.VISIBLE);
-            tvNoData.setVisibility(View.GONE);
+//            tvNoData.setVisibility(View.GONE);
+            noSearchData.setVisibility(View.GONE);
         } else {
             rvConversation.setVisibility(View.GONE);
-            tvNoData.setVisibility(View.VISIBLE);
+//            tvNoData.setVisibility(View.VISIBLE);
+            noSearchData.setVisibility(View.VISIBLE);
         }
 
         Log.d("RecentConversationAdapter", "list: "+ listConversation);

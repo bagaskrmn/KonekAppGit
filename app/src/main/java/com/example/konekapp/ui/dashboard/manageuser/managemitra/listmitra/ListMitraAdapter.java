@@ -1,7 +1,6 @@
 package com.example.konekapp.ui.dashboard.manageuser.managemitra.listmitra;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.UserModel;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.requestmitra.DetailManageMitra;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.requestmitra.ManageMitraAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -26,8 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;

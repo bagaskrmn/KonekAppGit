@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
-import com.example.konekapp.model.CommodityCropsModel;
 import com.example.konekapp.model.UserModel;
 import com.squareup.picasso.Picasso;
 
@@ -49,7 +48,7 @@ public class ManageUserAdapter extends RecyclerView.Adapter<ManageUserAdapter.My
         holder.ManageUserName.setText(user.name);
         Picasso.get().load(user.image).into(holder.ManageUserImage);
 
-        if (user.role.equals("0")) {
+        if (user.role.equals("0") || user.role.equals("4")) {
             holder.ManageUserRole.setText("Pengguna");
         }
         if (user.role.equals("1")) {

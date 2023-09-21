@@ -159,15 +159,13 @@
 
             </LinearLayout>
 
-
-
-
             <TextView
                 android:id="@+id/detailArtikelDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 tools:text="Ini isi/deskripsi artikel"
+                android:justificationMode="inter_word"
                 android:fontFamily="@font/outfit_regular"
                 android:textColor="@color/neutral_dark3"
                 />

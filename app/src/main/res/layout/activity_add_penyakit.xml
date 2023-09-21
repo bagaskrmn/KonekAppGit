@@ -118,7 +118,7 @@
         android:padding="8dp"
         tools:text="Ini Nama Penyakit"
         android:layout_marginBottom="10dp"
-        android:inputType="textCapWords"
+        android:inputType="textPersonName"
         />
 
     <LinearLayout

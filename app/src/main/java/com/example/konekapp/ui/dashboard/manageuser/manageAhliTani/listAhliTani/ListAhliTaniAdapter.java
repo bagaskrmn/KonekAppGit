@@ -1,7 +1,5 @@
 package com.example.konekapp.ui.dashboard.manageuser.manageAhliTani.listAhliTani;
 
-import static com.example.konekapp.R.layout.ahli_tani_downgrade_confirm_bs;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.UserModel;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.listmitra.ListMitraAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;

@@ -7,27 +7,54 @@
     android:orientation="vertical"
     tools:context=".ui.dashboard.home.consultation.consultationmitra.ConsultationToAhliTaniActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginHorizontal="16dp"
         >
+
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:text="Konsultasi"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:gravity="left"
+            android:text="Pesan Masuk"
             android:textColor="@color/neutral_dark3"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:fontFamily="@font/outfit_bold"
-            />
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/btnNewConsultation"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_bg"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_add_24_white"
+                />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/neutral_dark"
+        />
 
     <LinearLayout
+        android:id="@+id/searchConsultation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -69,50 +96,85 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="24dp"
-        tools:listitem="@layout/item_chat"/>
+        />
+<!--        tools:listitem="@layout/item_chat"-->
+
+    <LinearLayout
+        android:id="@+id/tvNoData"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:src="@drawable/chat_no_data"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Belum Ada Pesan"
+            android:textAlignment="center"
+            android:fontFamily="@font/outfit_semi_bold"
+            android:textSize="26sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/btnAddNewConsultation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/btn_bg"
+            android:padding="16dp"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="24dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baseline_add_24"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tambah Konsultasi Baru"
+                android:fontFamily="@font/outfit_semi_bold"
+                android:textColor="@color/white"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
+
+            />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tvNoData"
-        android:visibility="gone"
+        android:id="@+id/noSearchData"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
+        android:visibility="gone"
         android:text="Tidak ada chat"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/neutral_dark"
-        />
+    <!--        android:visibility="gone"-->
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@color/neutral_dark"-->
+<!--        />-->
     
-    <LinearLayout
-        android:id="@+id/btnAddNewConsultation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/btn_bg"
-        android:padding="16dp"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginHorizontal="24dp">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_baseline_add_24"
-            app:tint="@color/white" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tambah Konsultasi Baru"
-            android:fontFamily="@font/outfit_semi_bold"
-            android:textColor="@color/white"
-            android:layout_marginStart="16dp" />
-
-    </LinearLayout>
 
 
 </LinearLayout>

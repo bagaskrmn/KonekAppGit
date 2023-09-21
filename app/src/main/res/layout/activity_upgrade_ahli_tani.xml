@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Upgrade Ahli Tani"
+            android:text="Peningkatan Ahli Tani"
             android:fontFamily="@font/outfit_bold"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"

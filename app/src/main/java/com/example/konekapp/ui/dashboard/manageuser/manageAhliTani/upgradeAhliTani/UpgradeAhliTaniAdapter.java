@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.UserModel;
-import com.example.konekapp.ui.dashboard.manageuser.manageAhliTani.listAhliTani.ListAhliTaniAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -23,8 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;

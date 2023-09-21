@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Monitoring"
+            android:text="Ubah Monitoring"
             android:textColor="@color/neutral_dark3"
             android:textSize="18sp"
             android:fontFamily="@font/outfit_bold"

@@ -173,7 +173,7 @@ public class ReviewedDetailMonitoringActivity extends AppCompatActivity {
             private void notifCropsToMitra() {
                 String targetId = userId;
                 String title = "Data Monitoring Disetujui";
-                String description = "Data monitoring hasil panen anda telah disetujui";
+                String description = "Data monitoring pertanian anda telah disetujui";
                 int kind = 4;
 
                 StorageReference systemNotificationImageRef;

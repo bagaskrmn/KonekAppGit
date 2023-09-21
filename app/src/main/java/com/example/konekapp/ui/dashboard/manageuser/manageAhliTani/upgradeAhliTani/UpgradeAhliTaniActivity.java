@@ -12,12 +12,10 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.UserModel;
-import com.example.konekapp.ui.dashboard.manageuser.manageAhliTani.listAhliTani.ListAhliTaniAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

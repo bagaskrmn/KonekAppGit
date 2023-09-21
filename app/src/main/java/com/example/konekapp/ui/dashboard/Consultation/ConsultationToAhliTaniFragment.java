@@ -58,13 +58,15 @@ public class ConsultationToAhliTaniFragment extends Fragment implements Conversa
     LinearLayout btnAddNewConsultation;
     RecyclerView rvConversation;
     String currentUserId;
-    TextView tvNoData;
+    LinearLayout tvNoData;
+    LinearLayout newConsultation;
+    LinearLayout searchConsultation;
     EditText edtSearch;
+    TextView noSearchData;
 
     //recent conversation
     private List<ChatMessagesModel> listConversation;
     private RecentConversationAdapter recentConversationAdapter;
-
 
     public ConsultationToAhliTaniFragment() {
         // Required empty public constructor
@@ -83,6 +85,8 @@ public class ConsultationToAhliTaniFragment extends Fragment implements Conversa
         //initialization
         init();
 
+        noSearchData.setVisibility(View.GONE);
+
         //listen conversation
         listenConversation();
 
@@ -96,6 +100,14 @@ public class ConsultationToAhliTaniFragment extends Fragment implements Conversa
         btnAddNewConsultation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), TambahKonsultasiToAhliTaniActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        newConsultation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(requireContext(), TambahKonsultasiToAhliTaniActivity.class);
                 startActivity(intent);
             }
@@ -121,6 +133,10 @@ public class ConsultationToAhliTaniFragment extends Fragment implements Conversa
         rvConversation = requireActivity().findViewById(R.id.rvConversation);
         tvNoData = requireActivity().findViewById(R.id.tvNoData);
         edtSearch = requireActivity().findViewById(R.id.edtSearch);
+
+        newConsultation = requireActivity().findViewById(R.id.btnNewConsultation);
+        searchConsultation = requireActivity().findViewById(R.id.searchConsultation);
+        noSearchData = requireActivity().findViewById(R.id.noSearchData);
 
         listConversation = new ArrayList<>();
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -178,9 +194,15 @@ public class ConsultationToAhliTaniFragment extends Fragment implements Conversa
             if (listConversation.size() > 0) {
                 rvConversation.setVisibility(View.VISIBLE);
                 tvNoData.setVisibility(View.GONE);
+                newConsultation.setVisibility(View.VISIBLE);
+                searchConsultation.setVisibility(View.VISIBLE);
+                noSearchData.setVisibility(View.GONE);
             } else {
                 rvConversation.setVisibility(View.GONE);
                 tvNoData.setVisibility(View.VISIBLE);
+                newConsultation.setVisibility(View.GONE);
+                searchConsultation.setVisibility(View.GONE);
+                noSearchData.setVisibility(View.GONE);
             }
 
             //sorting list conversation by date time
@@ -211,10 +233,12 @@ public class ConsultationToAhliTaniFragment extends Fragment implements Conversa
 
         if (filteredListConversation.size() > 0) {
             rvConversation.setVisibility(View.VISIBLE);
-            tvNoData.setVisibility(View.GONE);
+//            tvNoData.setVisibility(View.GONE);
+            noSearchData.setVisibility(View.GONE);
         } else {
             rvConversation.setVisibility(View.GONE);
-            tvNoData.setVisibility(View.VISIBLE);
+//            tvNoData.setVisibility(View.VISIBLE);
+            noSearchData.setVisibility(View.VISIBLE);
         }
 
         Log.d("RecentConversationAdapter", "list: "+ listConversation);

@@ -19,8 +19,6 @@ import android.widget.TextView;
 import com.example.konekapp.R;
 import com.example.konekapp.model.UserModel;
 import com.example.konekapp.ui.dashboard.manageuser.manageAhliTani.upgradeAhliTani.UpgradeAhliTaniActivity;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.listmitra.ListMitraActivity;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.listmitra.ListMitraAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

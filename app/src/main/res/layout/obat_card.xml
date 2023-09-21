@@ -61,6 +61,7 @@
             android:fontFamily="@font/outfit_regular"
             android:textColor="@color/neutral_dark4"
             android:layout_marginBottom="20dp"
+            android:justificationMode="inter_word"
             />
     </LinearLayout>
 

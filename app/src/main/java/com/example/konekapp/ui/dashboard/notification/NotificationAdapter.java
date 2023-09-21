@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.NotificationModel;
-import com.example.konekapp.ui.dashboard.home.article.ArtikelActivity;
 import com.example.konekapp.ui.dashboard.home.article.DetailArtikelActivity;
 import com.example.konekapp.ui.dashboard.home.crops.mitracrops.MitraCropsListActivity;
 import com.example.konekapp.ui.dashboard.manageuser.managemitra.requestmitra.DetailManageMitra;
-import com.example.konekapp.ui.dashboard.manageuser.managemitra.requestmitra.ManageMitra;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraApprovedActivity;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraDeclinedActivity;
 import com.example.konekapp.ui.toregistmitra.ToRegistMitraActivity;

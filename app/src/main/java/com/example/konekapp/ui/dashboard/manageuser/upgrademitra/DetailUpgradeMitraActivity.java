@@ -21,8 +21,6 @@ import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.NotificationModel;
-import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
-import com.example.konekapp.ui.dashboard.home.registermitra.RegisterSuccessActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

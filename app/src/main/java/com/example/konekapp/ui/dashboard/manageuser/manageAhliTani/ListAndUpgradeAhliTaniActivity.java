@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.konekapp.R;
-import com.example.konekapp.ui.dashboard.manageuser.manageAhliTani.listAhliTani.ListAhliTaniActivity;
 import com.example.konekapp.ui.dashboard.manageuser.manageAhliTani.upgradeAhliTani.UpgradeAhliTaniActivity;
+import com.example.konekapp.ui.dashboard.manageuser.manageAhliTani.listAhliTani.ListAhliTaniActivity;
 
 public class ListAndUpgradeAhliTaniActivity extends AppCompatActivity {
 

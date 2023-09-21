@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.konekapp.R;
 import com.example.konekapp.model.NotificationModel;
@@ -34,7 +33,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 

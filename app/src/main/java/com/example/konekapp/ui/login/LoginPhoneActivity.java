@@ -118,9 +118,10 @@ public class LoginPhoneActivity extends AppCompatActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().equals("")) {
+                if (s.toString().equals("") || s.length()<8) {
                     binding.btnSendOTP.setEnabled(false);
-                } else {
+                }
+                else {
                     binding.btnSendOTP.setEnabled(true);
                 }
             }

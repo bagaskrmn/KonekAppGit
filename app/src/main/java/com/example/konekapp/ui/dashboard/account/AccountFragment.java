@@ -23,6 +23,7 @@ import com.example.konekapp.ui.dashboard.account.privacypolicy.PrivacyPolicyActi
 import com.example.konekapp.ui.dashboard.account.profile.ProfileActivity;
 import com.example.konekapp.ui.dashboard.home.registermitra.RegisterMitraActivity;
 import com.example.konekapp.ui.login.LoginPhoneActivity;
+import com.example.konekapp.ui.toregistmitra.ToRegistMitraActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
@@ -104,7 +105,7 @@ public class AccountFragment extends Fragment {
         ConstraintGabungKemitraan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gabungKemitraanIntent = new Intent(getActivity(), RegisterMitraActivity.class);
+                Intent gabungKemitraanIntent = new Intent(getActivity(), ToRegistMitraActivity.class);
                 startActivity(gabungKemitraanIntent);
             }
         });
